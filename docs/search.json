@@ -1,0 +1,277 @@
+[
+  {
+    "objectID": "tech_setup.html",
+    "href": "tech_setup.html",
+    "title": "Tech Setup",
+    "section": "",
+    "text": "Follow these instructions to set up the software that we’ll be using throughout the semester. Even if you’ve already downloaded both R and RStudio, you’ll want to re-download to make sure that you have the most current versions.\n\nRequired: Change the default file download location for your internet browser.\n\nGenerally by default, internet browsers automatically save all files to the Downloads folder on your computer. This does not encourage good file organization practices. You need to change this option so that your browser asks you where to save each file before downloading it.\nThis page has information on how to do this for the most common browsers.\n\n\nRequired: Download R and RStudio.\n\nFIRST: Download R here.\n\nIn the top section, you will see three links “Download R for …”\nChoose the link that corresponds to your computer.\nAs of August 27, 2024, the latest version of R is 4.4.1 (“Race for Your Life”).\n\nSECOND: Download RStudio here.\n\nClick the button under step 2 to install the version of RStudio recommended for your computer.\nAs of August 27, 2024, the latest version of RStudio is 2024.04.2+764.\n\n\n\nSuggested: Watch this video describing key configuration options for RStudio.\n\nRequired: Install required packages.\n\nAn R package is an extra bit of functionality that will help us in our data analysis efforts in a variety of ways.\nOpen RStudio and click inside the Console pane (by default, the bottom left pane). Copy and paste the following command into the Console. You should see the text below appear to the right of the &gt;, which is called the R prompt. After you paste, hit Enter.\n\n\ninstall.packages(c(\"tidyverse\"))\n\n\nYou will see a lot of text from status messages appearing in the Console as the packages are being installed. Wait until you see the &gt; again.\nEnter the command library(tidyverse) and hit Enter.\nIf you see an error message, then there was a problem installing the package. Talk to the instructor or a preceptor for help.\nQuit RStudio. You’re done setting up!\n\n\nOptional: For a tour of RStudio features, watch this video. It also shows you how to customize the layout and color scheme of RStudio.\n\nRequired: Set essential RStudio options.\nGo to Tools -&gt; Global Options -&gt; General -&gt; Workplace. You’ll see 2 options:\n\nRestore .RData into workspace at startup: Leave this unchecked\nSave workspace to .RData on exit: Select “Never”\n\nWithout doing this RStudio will save and reload everything that you’ve been working on from the start of the semester. Since we’ll be working with new data each class, we want to keep our digital environment clean. Essentially, this is like an artist getting a clean canvas for each new painting rather than trying to paint all paintings on a single canvas."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Course Schedule",
+    "section": "",
+    "text": "The course schedule below will be filled in throughout the semester. For each day, there will be a link to course slides (if there are any that day) and notes/links on what is due ahead of class time. The “Announcements” column is (hopefully) self-explanatory. Any urgent announcements will be made over email.\n\n\n\nWeek\nTuesday\nThursday\nAnnouncements\n\n\n\n\n1\nWinter Break\n1/23: First day of class!\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\nWelcome back to campus!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STAT 155: Introduction to Statistical Modeling",
+    "section": "",
+    "text": "STAT 155: Introduction to Statistical Modeling\nMacalester College, Spring 2025\n\nLearn the fundamentals of summarizing, visualizing, and modeling data to answer research questions.\n\n\nInstructor: Jedidiah Carlson  Class meeting times:\n\nSection 02: Tu/Th 9:40-11:10am\nSection 03: Tu/Th 1:20-2:50pm\nSection 04: Tu/Th 3:00-4:30pm\n\nClass location: THTR 202 \nJed’s drop-in hours:\n\nlocation: My office (OLRI 235)\ntimes: See this calendar (Tentatively from 10am-12pm and 1-2pm on Wednesdays and 11:30am-12:30pm on Thursdays, but subject to change based on responses to the introductions survey).\n1:1 appointments: I’m also happy to meet one-on-one if my normal drop-in hours don’t work for you. You can schedule a time to meet with me using this link.\n\n\nR/RStudio Preceptor Office Hours: Available on the MSCS Events google calendar (not to be used for questions about course content, only R-related things!)\nSTAT 155 Preceptor Office Hours: There is a link to a Google Calendar containing all preceptor office hours available at the top of the course Moodle page!\n\nThis course website will be updated throughout the semester with new activities, assignments, and announcements, so please bookmark this page if you are enrolled in the course!\nIf you find any typos, bugs, dead links, or have other questions, please email jcarls13@macalester.edu"
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html",
+    "href": "activities/01_foundations_welcome.html",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "",
+    "text": "Welcome to our first in-class activity! Today we will collect and summarize some data. Our goals are to get to know the people in this class and to start working with data.\nBy the end of this lesson, you should be able to:\n\nDefine cases and variables\nApply the 5 W’s + H (who, what, when, where, why, and how) to data collection\n\nLinks to related reading(s):\n\nWhat is Data?\nData Context\n\nThis activity is structured a bit differently than the activities for the remainder of the class. In this section, you’ll typically find a mini-lecture, review material, or guided / structural examples, followed by exercises.\nFor today, you’ll have some steps to follow for an interactive, tactile activity at your tables before working through the exercises below together.\n\n\nAt your table, write a one to two word answer to each of the following 7 question(s), each on a separate post-it note (do this individually). If there are two questions: write your answer to the first question on the left-hand side of the post-it note, and your answer to the second question on the bottom of the post-it note.\n\nHow many hours of sleep did you get last night? How many cups of coffee did you drink this morning?\nWhat is your declared or potential major? (If you are a double major, just pick whichever one you think of first.)\nWhat is your class year? (first year, sophomore, junior, senior)\nHow many stats courses have you taken in the past?\nOn a scale of 1 (get me out of here) to 10 (yay!), how excited are you about this course?\nIs it your birthday this semester? (yes/no)\nHow many unread emails do you have in your inbox right now?\nHave you used R/RStudio a lot, a little, or never?\n\n\n\n\nDesignate one person from your table to distribute your group’s answers to the questions to the corresponding “station” around the classroom. Each table should have a number on it, corresponding to the “station”/question.\n\n\n\nFill out an electronic version of these questions. We’ll come back to this in a future class. Wait until everyone in your group is done with this before moving on to the exercises.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#step-1",
+    "href": "activities/01_foundations_welcome.html#step-1",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "",
+    "text": "At your table, write a one to two word answer to each of the following 7 question(s), each on a separate post-it note (do this individually). If there are two questions: write your answer to the first question on the left-hand side of the post-it note, and your answer to the second question on the bottom of the post-it note.\n\nHow many hours of sleep did you get last night? How many cups of coffee did you drink this morning?\nWhat is your declared or potential major? (If you are a double major, just pick whichever one you think of first.)\nWhat is your class year? (first year, sophomore, junior, senior)\nHow many stats courses have you taken in the past?\nOn a scale of 1 (get me out of here) to 10 (yay!), how excited are you about this course?\nIs it your birthday this semester? (yes/no)\nHow many unread emails do you have in your inbox right now?\nHave you used R/RStudio a lot, a little, or never?",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#step-2",
+    "href": "activities/01_foundations_welcome.html#step-2",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "",
+    "text": "Designate one person from your table to distribute your group’s answers to the questions to the corresponding “station” around the classroom. Each table should have a number on it, corresponding to the “station”/question.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#step-3",
+    "href": "activities/01_foundations_welcome.html#step-3",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "",
+    "text": "Fill out an electronic version of these questions. We’ll come back to this in a future class. Wait until everyone in your group is done with this before moving on to the exercises.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#exercise-1",
+    "href": "activities/01_foundations_welcome.html#exercise-1",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nWith your group, in no more than two sentences per question, respond to the questions posed by the 5 W’s + H for the data at your group’s table. If you need a refresher on the 5 W’s + H, check out the related readings posted at the top of this activity!\nWho\n\nResponse: Type your response here.\n\nWhat\n\nResponse: Type your response here.\n\nWhen\n\nResponse: Type your response here.\n\nWhere\n\nResponse: Type your response here.\n\nWhy\n\nResponse: Type your response here.\n\nHow\n\nResponse: Type your response here.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#exercise-2",
+    "href": "activities/01_foundations_welcome.html#exercise-2",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nMove the post-it notes around to construct a visualization of the responses at your station.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#exercise-3",
+    "href": "activities/01_foundations_welcome.html#exercise-3",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nCalculate at least one numerical summary of the post-it note responses at your station, and record your numerical summary in the response text below. Write a complete sentence, not just the numerical summary alone! This is good practice for summarizing data in more formal writing.\n\nResponse: Type your response here.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#exercise-4",
+    "href": "activities/01_foundations_welcome.html#exercise-4",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nIn no more than three sentences, describe what you learn about from the visual and numerical summaries. Try to write your description in a way that tells an interesting story about the people in this class.\n\nResponse: Type your response here.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#exercise-5",
+    "href": "activities/01_foundations_welcome.html#exercise-5",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nImagine that you took all the post-it notes in this room and organized them into a spreadsheet. What would each row in the underlying data set represent? What would each column of the data set represent? Check out the first related reading, linked at the top of this activity, if you need assistance!\n\nResponse: Type your response here.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "activities/01_foundations_welcome.html#reflection",
+    "href": "activities/01_foundations_welcome.html#reflection",
+    "title": "01. Collecting and Summarizing Data",
+    "section": "Reflection",
+    "text": "Reflection\nIn three to four sentences, reflect upon today’s activity. Some reflection prompts are found below:\n\nDo you think the context in which the data was collected influenced the results you found?\nWho would the numerical summaries you calculated potentially be represented of? Could you generalize the information you learned to a broader population (all students at Mac, perhaps), or would you have ethical concerns with generalizing your results?\nWhat (if anything) surprised you about the numerical summaries calculated by your group, or other groups?\nDid your data visualization help you better understand, or discover new things about the data that otherwise would have been difficult to distinguish? Why or why not?\n\n\nResponse: Type your response here.",
+    "crumbs": [
+      "01. Collecting and Summarizing Data"
+    ]
+  },
+  {
+    "objectID": "assignments.html",
+    "href": "assignments.html",
+    "title": "Practice Problems",
+    "section": "",
+    "text": "…due Wednesdays at 5pm Central on Moodle!\n\n[Practice Problems 1], due 2/5\n[Practice Problems 2], due 2/12\n[Practice Problems 3], due 2/26\n[Practice Problems 4], due 3/5\n[Practice Problems 5], due 3/26\n[Practice Problems 6], due 4/9\n[Practice Problems 7], due 4/16\n[Practice Problems 8], due 4/23"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Project",
+    "section": "",
+    "text": "As noted in the syllabus, a detailed description of the group project can be found here. Important dates and additional information are listed below.\n\nImportant Dates\nDetails coming soon!\n\n\nGrading\nThe final draft will be graded using the rubric found here. Although the first two checkpoints will not directly contribute to your course grade, the feedback they allow me to provide will ensure the success of your final draft!\n\n\nResources\nLater in the semester, I will post at least one example of a successful final draft, as well as a google doc template for the final draft.\n\n\nProject Groups\nProject groups will ultimately be determined by me, with the assistance of a Project Group Preferences survey. The survey will be sent out early in the semester (exact date TBD) and will allow you to either list people you would like to be in a group with or specify that you would like to be placed in a group randomly by me. I will do my best to ensure that groups are constructed as closely to survey responses as possible. Since one component of the project involves an in-class presentation, you may not work with students in different sections on the project.\nIf for any reason there is an individual (or individuals) with whom you do not feel safe participating in a project group with, there will be a space to note this on the survey. You will not be expected to provide any justification for your response to this question, but note that as I need to place you in groups, the survey will not be anonymous.\nGroup work and collaboration are important components of nearly all statistical analyses and projects. I recognize that individual contributions to a group project are not always consistent between group members. To this end, you will (as a group) be expected to explicitly specify the project tasks completed by each team member along with the final draft of your paper.\nIf there are any concerns with project groups throughout the semester, I am happy to meet with groups or individuals to discuss ways to move forward."
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": " ",
+    "section": "",
+    "text": "Macalester College, Spring 2025\n\nSection 02: Tu/Th 9:40-11:10am, THTR 202\nSection 03: Tu/Th 1:20-2:50pm, THTR 202\nSection 04: Tu/Th 3:00-4:30pm, THTR 202\n\n\n\n\nJedidiah (Jed) Carlson, PhD\nPronouns: he/him\nPronunciation: listen here\nOffice: Olin-Rice 235\nWebsite: https://jedidiahcarlson.com\nEmail: jcarls13@macalester.edu\n\n\n\n\n\n\nCall me “Jed”\n\n\n\nYou may call me (in order of my personal preference), Jed, Professor Carlson, or Dr. Carlson–but please use whichever of these options you are most comfortable with!\n\n\nDrop-in (office) hours:\n\nlocation: My office (OLRI 235)\ntimes: See this calendar (Tentatively from 10am-12pm and 1-2pm on Wednesdays and 11:30am-12:30pm on Thursdays).\n1:1 appointments: I’m also happy to meet one-on-one if my normal drop-in hours don’t work for you. You can schedule a time to meet with me using this link.\n\n\n\n\nThis course provides an introduction to statistical modeling. In other words, you will develop the basic skills to analyze data, test research hypotheses, and make predictions about the world.\nBeing able to summarize, interpret, and communicate about data are crucial for navigating today’s information landscape, and these are precisely the skills that we’ll build in this class. Throughout the semester, we’ll study the fundamental methods that statisticians use to extract knowledge from data, emphasizing statistical literacy & intuition, real data applications, and modern computing over memorizing facts and formulas.\n\n\nBy actively participating in this course, you will develop and/or strengthen your abilities to:\n\nVisualize: explore, understand, and describe patterns in data with plots and graphics\nModel: build, interpret, and evaluate statistical models to identify trends in data\nInfer: extend observations from sample data to draw conclusions and make predictions\nCompute: use the (free!) statistical software R to analyze real data and create reproducible reports\nContextualize: interpret results in context, by considering the methods of data collection, the scientific and social contexts, and ethical dimensions\nCommunicate: accurately describe methods and results in a way that is scientifically sound and widely accessible\nCollaborate: work productively and effectively in a group setting\n\n\n\n\n\n\nThere is no required textbook for this course. Throughout the course, readings may be assigned from these notes, or other sources. All links and materials needed will be provided on the Schedule tab of this website.\nThe best resources for this course are course content videos, attending and participating in class / assignments, and office hours. I am happy to talk about possible additional materials / strategies for effective learning at any time throughout the semester!\n\n\n\nWe will use the (completely free and open source) R programming language extensively throughout this course. RStudio (an interface for R) will facilitate our use of R. You may use RStudio in one of two ways:\n\nDesktop version: Download for Windows or Mac at https://posit.co/downloads/. Note: You first need to download and install R on your computer in order to use the desktop version of RStudio\nOnline: Go to https://rstudio.macalester.edu, and log in with your full Mac email address and your usual Mac password to get access. (Note that this is a shared resource across MSCS, and you may experience performance issues due to high traffic, server outages, etc.)\n\nMore detailed instructions on downloading, installing, and getting started with R, RStudio, and an important package called Quarto is available on the Tech Setup tab.\n\n\n\n\nWhen taking a new course, figuring out the right workflow/cadence of effort throughout the week can be a big adjustment. And most of you are doing this for 4 different courses! Below are some suggestions for what to expect in the course and how to focus your time and attention during and outside of class.\n\n\nPre-class videos/readings: Some class periods will have required videos or reading to get acquainted with new concepts before seeing them again in class. My goal for these videos and readings is for you to get the most out of class time by being able to more easily follow explanations in class and to engage most fully in class activities. When there are required readings or videos, there will be an associated checkpoint to complete on Moodle (due 30 minutes before the start of the next class).\n\n\n\n\n\n\nSuggestions\n\n\n\n\nAs you take notes on videos/readings, highlight or otherwise mark all the areas where you have questions. Gather up all of these questions in one place, and bring them to class with you.\nRecord any reflections from in-class time about your learning process or interactions with peers while they are still fresh.\nAfter learning a new topic in class, it is helpful to attempt the upcoming assignment as soon as possible. Just by getting some rough ideas down quickly, you avoid the difficulty of starting from a blank slate.\nCome to instructor and preceptor drop-in hours (office hours) to chat about the course or anything else!\n\n\n\n\n\n\nClass time will be a mix of interactive lecture and longer stretches of group work. During the lecture portion, I will pause explanation frequently to prompt a short exercise or ask questions that you’ll reflect on individually or together.\n\n\n\n\n\n\nSuggestions\n\n\n\n\nAs we review the material at the start of class and as you work on the class activity, reference your set of questions from the pre-class material. Have you made progress on addressing those questions? Who or what helped with improving your understanding, and how?"
+  },
+  {
+    "objectID": "syllabus.html#your-instructor",
+    "href": "syllabus.html#your-instructor",
+    "title": " ",
+    "section": "",
+    "text": "Jedidiah (Jed) Carlson, PhD\nPronouns: he/him\nPronunciation: listen here\nOffice: Olin-Rice 235\nWebsite: https://jedidiahcarlson.com\nEmail: jcarls13@macalester.edu\n\n\n\n\n\n\nCall me “Jed”\n\n\n\nYou may call me (in order of my personal preference), Jed, Professor Carlson, or Dr. Carlson–but please use whichever of these options you are most comfortable with!\n\n\nDrop-in (office) hours:\n\nlocation: My office (OLRI 235)\ntimes: See this calendar (Tentatively from 10am-12pm and 1-2pm on Wednesdays and 11:30am-12:30pm on Thursdays).\n1:1 appointments: I’m also happy to meet one-on-one if my normal drop-in hours don’t work for you. You can schedule a time to meet with me using this link."
+  },
+  {
+    "objectID": "syllabus.html#overview",
+    "href": "syllabus.html#overview",
+    "title": " ",
+    "section": "",
+    "text": "This course provides an introduction to statistical modeling. In other words, you will develop the basic skills to analyze data, test research hypotheses, and make predictions about the world.\nBeing able to summarize, interpret, and communicate about data are crucial for navigating today’s information landscape, and these are precisely the skills that we’ll build in this class. Throughout the semester, we’ll study the fundamental methods that statisticians use to extract knowledge from data, emphasizing statistical literacy & intuition, real data applications, and modern computing over memorizing facts and formulas.\n\n\nBy actively participating in this course, you will develop and/or strengthen your abilities to:\n\nVisualize: explore, understand, and describe patterns in data with plots and graphics\nModel: build, interpret, and evaluate statistical models to identify trends in data\nInfer: extend observations from sample data to draw conclusions and make predictions\nCompute: use the (free!) statistical software R to analyze real data and create reproducible reports\nContextualize: interpret results in context, by considering the methods of data collection, the scientific and social contexts, and ethical dimensions\nCommunicate: accurately describe methods and results in a way that is scientifically sound and widely accessible\nCollaborate: work productively and effectively in a group setting\n\n\n\n\n\n\nThere is no required textbook for this course. Throughout the course, readings may be assigned from these notes, or other sources. All links and materials needed will be provided on the Schedule tab of this website.\nThe best resources for this course are course content videos, attending and participating in class / assignments, and office hours. I am happy to talk about possible additional materials / strategies for effective learning at any time throughout the semester!\n\n\n\nWe will use the (completely free and open source) R programming language extensively throughout this course. RStudio (an interface for R) will facilitate our use of R. You may use RStudio in one of two ways:\n\nDesktop version: Download for Windows or Mac at https://posit.co/downloads/. Note: You first need to download and install R on your computer in order to use the desktop version of RStudio\nOnline: Go to https://rstudio.macalester.edu, and log in with your full Mac email address and your usual Mac password to get access. (Note that this is a shared resource across MSCS, and you may experience performance issues due to high traffic, server outages, etc.)\n\nMore detailed instructions on downloading, installing, and getting started with R, RStudio, and an important package called Quarto is available on the Tech Setup tab.\n\n\n\n\nWhen taking a new course, figuring out the right workflow/cadence of effort throughout the week can be a big adjustment. And most of you are doing this for 4 different courses! Below are some suggestions for what to expect in the course and how to focus your time and attention during and outside of class.\n\n\nPre-class videos/readings: Some class periods will have required videos or reading to get acquainted with new concepts before seeing them again in class. My goal for these videos and readings is for you to get the most out of class time by being able to more easily follow explanations in class and to engage most fully in class activities. When there are required readings or videos, there will be an associated checkpoint to complete on Moodle (due 30 minutes before the start of the next class).\n\n\n\n\n\n\nSuggestions\n\n\n\n\nAs you take notes on videos/readings, highlight or otherwise mark all the areas where you have questions. Gather up all of these questions in one place, and bring them to class with you.\nRecord any reflections from in-class time about your learning process or interactions with peers while they are still fresh.\nAfter learning a new topic in class, it is helpful to attempt the upcoming assignment as soon as possible. Just by getting some rough ideas down quickly, you avoid the difficulty of starting from a blank slate.\nCome to instructor and preceptor drop-in hours (office hours) to chat about the course or anything else!\n\n\n\n\n\n\nClass time will be a mix of interactive lecture and longer stretches of group work. During the lecture portion, I will pause explanation frequently to prompt a short exercise or ask questions that you’ll reflect on individually or together.\n\n\n\n\n\n\nSuggestions\n\n\n\n\nAs we review the material at the start of class and as you work on the class activity, reference your set of questions from the pre-class material. Have you made progress on addressing those questions? Who or what helped with improving your understanding, and how?"
+  },
+  {
+    "objectID": "syllabus.html#course-website",
+    "href": "syllabus.html#course-website",
+    "title": " ",
+    "section": "Course website",
+    "text": "Course website\nAll course materials will be posted on the course website. The Schedule tab of this website will contain information about due dates, in-class activities, etc."
+  },
+  {
+    "objectID": "syllabus.html#moodle",
+    "href": "syllabus.html#moodle",
+    "title": " ",
+    "section": "Moodle",
+    "text": "Moodle\nMoodle will be used to submit assignments/checkpoint quizzes, post grades, assignment feedback, announcements, and more. Please check the course Moodle page every day before class!"
+  },
+  {
+    "objectID": "syllabus.html#email",
+    "href": "syllabus.html#email",
+    "title": " ",
+    "section": "Email",
+    "text": "Email\nPlease send any personal questions or administrative updates (e.g., attendance, accommodations) to me via email. Please put “STAT 155” in the subject line of all emails to help ensure that it does not get lost in my inbox!\nI will generally not respond to emails outside of business hours (9am-5pm M-F). Please allow 1 business day for a response (e.g. an email sent on Friday may not get a response until the following Monday).\nAny urgent announcements (e.g. unexpected class cancellations, notice of modifications to assignments) will be made over email."
+  },
+  {
+    "objectID": "syllabus.html#drop-in-office-hours",
+    "href": "syllabus.html#drop-in-office-hours",
+    "title": " ",
+    "section": "Drop-in (office) hours",
+    "text": "Drop-in (office) hours\nOffice hours are an open-ended time for you to go over coursework, clarify concepts, solicit my biased opinions sage wisdom on career planning/graduate school, discuss research/internship opportunities, find resources you need, or chat about life in general. To encourage attendance at office hours, there may be individual and/or collective incentives along the way and/or at the end of the semester, depending on how well you utilize office hours (but please be respectful of your peers and do not monopolize this time).\n\n\n\n\n\n\nFirst time office hours user?\n\n\n\nIf you are nervous about coming to office hours for the first time, I encourage you to come with a friend! (they don’t even have to be enrolled in STAT 155!). You may also find it useful to come prepared with a specific question or topic you would like to discuss (some examples here–and remember, it does not have to be about STAT 155 material!)."
+  },
+  {
+    "objectID": "syllabus.html#preceptors",
+    "href": "syllabus.html#preceptors",
+    "title": " ",
+    "section": "Preceptors",
+    "text": "Preceptors\nWe have many preceptors for STAT 155 this semester! You may attend office hours for any of the STAT 155 preceptors, not just those grading/attending my sections. All MSCS courses will also share a dedicated R preceptor (Kyle Suelflow), who can help with any issues you have with your R code or RStudio configuration. The course Moodle site contains detailed information for preceptor office hour times/locations.\nThe role of an MSCS preceptor is to help students with content questions, assist in the navigation of available resources, advise on studying approaches for classes, and assist with concepts, tools, and skills needed for problem sets. Students are accountable for their own learning; as such, preceptors are not allowed to share answers to assignments (unless specifically directed by the instructor), are not expected to immediately know the right approach, or provide assistance outside of office hours. Guidelines and expectations on how to interact with preceptors can be found here.\nIn addition, the Macalester Academic Excellence (MAX) Center provides tutoring for STAT 155. Check out their website for more information and their tutoring schedule."
+  },
+  {
+    "objectID": "syllabus.html#course-grading-system",
+    "href": "syllabus.html#course-grading-system",
+    "title": " ",
+    "section": "Course grading system",
+    "text": "Course grading system\nYour overall course grade will consist of three, evenly-weighted components (Quizzes, Practice Problems, and the Project), modified by your Checkpoint Quiz completion.\n\n33% Quizzes\n33% Practice Problems\n33% Project\n\nOverall percentages will correspond to the following letter grades:\n\n\n\nLetter Grade\nOverall Course Percentage\n\n\n\n\nA\n&gt;90%\n\n\nA-\n87-90%\n\n\nB+\n84-87%\n\n\nB\n81-84%\n\n\nB-\n78-81%\n\n\nC+\n75-78%\n\n\nC\n72-75%\n\n\nC-\n69-72%\n\n\nD\n&lt;69%\n\n\n\nNote that I may slightly relax the cutoffs for letter grades on a case-by-case basis, depending on your overall engagement in class, utilization of office hours, demonstrated growth, completion of &gt;80% of Moodle checkpoints, etc.\n\nQuizzes\nThere will be 3 quizzes over the course of the semester.\n\nQuiz 1: Thursday, 2/14. 1 hour in class.\nQuiz 2: Thursday, 3/28. 1 hour in class. Will cover material from the first quiz to some extent because of the way that material in this course builds on earlier ideas.\nQuiz 3: Final exam period. The quiz will be written to take 1.25 hours, but you will have the full two hour period to complete it. Will cover content from the whole course.\nSection 02: Fri. 5/9 8:00am-10:00am\nSection 03: Thurs. 5/8 1:30pm-3:30pm\nSection 04: Sat. 5/10 10:30am-12:30pm\n\nEach quiz question will be graded on the following scale:\n\n3 points: fully correct\n2 points: mostly correct with minor errors\n1 point: missing key understanding\n0 points: fully off target or blank\n\nQuiz format:\n\nFully pen/pencil and paper. You will not need to write code or use a calculator, but you will need to be able to read and interpret output from R code.\nYou are allowed to bring a 3x5 index card with notes written on both sides. Typing your notes and pasting them on the card is fine.\n\nShowing growth: You can earn up to 50% of missed points back on quizzes if you submit a quiz correction and reflection. You must:\n\nWrite a reflection of how you prepared for the quiz and where you felt strongest and more uncertain in your understanding before taking the quiz.\nSubmit your quiz corrections along with your reflection to the instructor, no later than one week after quizzes have been handed back.\n\nYou will not have the option to earn points back on the third quiz, due to time constraints at the end of the semester, so I encourage you to make use of this opportunity early on!\n\n\nPractice problems\nThere will be 8 practice problems throughout the course, building off of topics learned in videos/our in-class activities. Practice problems will be due on Wednesdays at 5pm. You are encouraged to work together on practice problems, but the work that you submit, including code, should be your own.\nYou will receive qualitative feedback on all questions on these practice problem sets. Each question (or occasionally, parts of a question) will receive an overall score on the following scale:\n\nHigh pass: 2 points\nPass: 1 point\nNeeds improvement: 0 points\n\nShowing growth: If, on a quiz, you demonstrate stronger understanding of the concepts you missed on a practice problem, you have the chance to earn points back on up to two questions on a single practice problem. Similarly to quiz corrections, you must:\n\nWrite a reflection of how the practice problem went for you, and where you felt strongest and more uncertain in your understanding before submitting the assignment.\nDemonstrate an improved understanding of the concepts on the practice problem that you missed, referencing specific questions you answered correctly on the quiz.\nSubmit your practice problem corrections along with your reflection to the instructor, no later than one week after quizzes have been handed back.\n\nYou can do this 2 times over the semester (once for each of the first two quizzes), and you can show improvement on multiple practice problems using a single quiz. You cannot do this on the third quiz, due to time constraints at the end of the semester.\n\n\nGroup Project\nThe goal of the course project is to apply the data analysis skills from our course to investigate a research question in a dataset of your choosing. Through milestones over the course of the semester, you will make steady progress on your projects and iterate on feedback. Full details about the project will be available on the Project page.\n\n\nCheckpoints\nSome class periods will have readings and/or videos assigned ahead of time. For these classes, there will be a short multiple-choice Moodle checkpoint, due by the end of the day. I strongly encourage you to complete the checkpoints before class, but you have the option to complete them after class if you find that doing so helps you review & retain the material better.\nThese short quizzes are designed to ensure that you stay on top of course material, since we move very quickly and much of the content in this course builds on itself.\nCheckpoint quizzes are graded for completion. If you complete 80% of the checkpoint quizzes before the time they are due, your overall course grade will not be negatively affected. If you complete less than 80% of the checkpoint quizzes before the time they are due, your overall course grade will be lowered by 1/3 of a letter grade (i.e. B → B-, A- → B+, etc.)."
+  },
+  {
+    "objectID": "syllabus.html#attendance",
+    "href": "syllabus.html#attendance",
+    "title": " ",
+    "section": "Attendance",
+    "text": "Attendance\nAttendance is not (directly) a part of your grade—I recognize that some students may learn more effectively when working through the material independently, and mandating attendance can create a barrier to accessibility. However, because this course is designed to be interactive and community-oriented, regular attendance will likely improve your experience and help you get the most out of the course (remember, that encompasses lots of intangible benefits beyond your final grade!).\nIf you do miss class, I expect you to complete any in-class activities on your own. Check the solutions in the online manual and come to office hours with any follow-up questions."
+  },
+  {
+    "objectID": "syllabus.html#late-work",
+    "href": "syllabus.html#late-work",
+    "title": " ",
+    "section": "Late work",
+    "text": "Late work\nThroughout the semester, you may use up to three, three-day extensions. These three extensions can be used on Problem Sets only, not quizzes. The purpose of deadlines (and extensions) are to keep you accountable for your own learning, to keep you on track with the pace of the course (which builds upon itself throughout the semester), and to provide preceptors and myself with the ability to provide you with timely feedback on assignments. Since the Problem Sets are due roughly every two weeks, you must begin working on them early if you want to succeed.\nExtensions can be used automatically, without letting me know in advance. The Moodle dropboxes for assignments will close exactly 3 days after the original deadline (i.e. Saturdays at 5pm), and I will not accept work submitted after that point unless there are extenuating circumstances that you have communicated with me about ahead of the original deadline. If you email me a completed assignment after a 3-day extension is up, I may have the preceptors provide you with feedback, but you will not receive credit for the assignment (equivalent to “Needs Improvement” on every question of the relevant assignment).\nI expect you to keep track of how many extensions you’ve used. I will do my best to email you a reminder if you have used all three of your extensions and have none remaining.\nIf you have run out of extensions and/or an extenuating circumstance occurs that impacts your ability to submit assignments on time, please email me to discuss the situation. I am happy to be flexible as long as you communicate!"
+  },
+  {
+    "objectID": "syllabus.html#religious-observance",
+    "href": "syllabus.html#religious-observance",
+    "title": " ",
+    "section": "Religious Observance",
+    "text": "Religious Observance\nStudents may wish to take part in religious observances that occur during the semester. If you have a religious observance/practice that conflicts with your participation in the course, please contact me before the end of the second week of the semester to discuss appropriate accommodations."
+  },
+  {
+    "objectID": "syllabus.html#academic-integrity",
+    "href": "syllabus.html#academic-integrity",
+    "title": " ",
+    "section": "Academic integrity",
+    "text": "Academic integrity\nAcademic integrity is the cornerstone of our learning community. Students are expected to be familiar with the college’s standards on academic integrity.\nI encourage you to work with your classmates to discuss material and ideas for assignments, but in order for you to receive individualized feedback on your own learning, you must submit your own work. This involves writing your own code and putting explanations into your own words. Always cite any sources you use, including AI (see section below)."
+  },
+  {
+    "objectID": "syllabus.html#artificial-intelligence-ai-use",
+    "href": "syllabus.html#artificial-intelligence-ai-use",
+    "title": " ",
+    "section": "Artificial Intelligence (AI) Use",
+    "text": "Artificial Intelligence (AI) Use\nIn this course, I strongly discourage the use of generative AI tools (ChatGPT, Google Gemini, Claude, etc.), for three main reasons:\n\nWe are learning the essentials of a new language and way of thinking. Learning how to do something the “long” or “hard” way is beneficial not only for developing critical thinking skills, but because that process can be enriching and fulfilling in its own right. Though AI can (sometimes) put access to answers at your fingertips, it cannot replace the physical, sensory, and emotional experience of sketching out ideas on a whiteboard with friends, stopping by your professor’s office for a donut, or the satisfaction of knowing that you can do something hard from scratch.\nI care much more about developing your ability to identify interesting problems, iteratively seek a solution, and convince the world that your solution works than I do about your ability to find answers that are already known (using AI or otherwise). Remember that “generative” AI is only capable of remixing existing information—it cannot create new knowledge, situate that knowledge in the context of your lived experience, or apply that knowledge to instigate change.\nIn this course, I hope to emphasize the importance of process over output. Consider an analogy of a painting class at Macalester. You’re a novice painter, but you have a strong point of view and a solid understanding of context and tradition, so you decide to write an AI prompt to generate the artwork and translate it to physical media. After lots of wordsmithing and iterations on Midjourney, your AI-generated image ready. It’s provocative and beautiful…it will look even better on canvas! You get to work, admiring yourself for finishing faster than your classmates because you knew exactly what your final product would look like. You step back to admire your masterpiece, and realize it’s at best a paint-by-numbers, and at worst, complete garbage because you were so focused on crafting the perfect AI prompt that you didn’t really learn how to mix colors or use different brush techniques.\n\nAll of that being said, I have neither the time nor interest in policing the use of AI tools. If you do choose to use AI, any ideas, language, or code that is produced by AI must be cited, just like any other resource.\n\nHow to cite AI: If you have used AI in any assignment, please include a paragraph at the end explaining what you used the AI for and what prompts you used to get the results. Failure to do so is in violation of the academic integrity policy at Macalester College."
+  },
+  {
+    "objectID": "syllabus.html#well-being",
+    "href": "syllabus.html#well-being",
+    "title": " ",
+    "section": "Well-being",
+    "text": "Well-being\nI want you to succeed. Both here at Macalester and beyond. To help make this happen, I am committed to the following.\nRespect: Everyone comes from a different path through life, and it is our moral duty as human beings to listen to each other without judgment and to respect one another. I have no tolerance for discrimination of any kind, in and out of the classroom. If you are seeking campus resources regarding discrimination, the Department of Multicultural Life and the Center for Religious and Spiritual Life are wonderful resources. We will also respect the MSCS Community Guidelines.\nSensitive Topics: Applications in this course span issues in science, policy, and society. As such, we may sometimes address sensitive topics. I will try to announce in class if an assignment or activity involves a potentially sensitive topic. If you have reservations about a particular topic, please come talk to me to discuss possible options.\nAccommodations: If you need accommodations for any reason, please contact Disability Services to discuss your needs, and speak with me as soon as possible afterwards so that we can discuss your accommodation plan. If you already have official accommodations, please discuss these with me within the first week of class so that you get off to a great start. Contact me if you have other special circumstances. I will find resources for you.\nTitle IX: You deserve a community free from discrimination, sexual harassment, hostility, sexual assault, domestic violence, dating violence, and stalking. If you or anyone you know has experienced harassment or discrimination, know that you are not alone. Macalester provides staff and resources to help you find support. Please be aware that as a faculty member, it is my responsibility to report disclosure about sexual harassment, sexual misconduct, relationship violence, and stalking to the Title IX Office. The purpose of this report is to ensure that anyone experiencing harm receives the resources and support they need. I will keep this information private, and it will not be shared beyond this required report.\nYou may also contact Macalester’s Title IX Coordinator directly (phone: 651-696-6258; e-mail: titleixcordinator@macalester.edu); they will provide you with supportive measures, resources, and referrals. Additional information about how to file a report (including anonymously) is available on the Title IX website.\nGeneral Health and Well-being: I care that you prioritize your well-being in this semester and beyond. Investing time into taking care of yourself will have profound impacts on all aspects of your life. Remember that beyond being a student, you are a human being carrying your own experiences, thoughts, emotions, and identities. It is important to acknowledge any stressors you may be facing, which can be mental, emotional, physical, cultural, financial, etc., and how they can have an impact on you. I encourage you to remember that you have a body with needs. In the classroom, eat when you are hungry, drink water, use the restroom, and step out if you are upset and need some air. Please do what is necessary so long as it does not impede your or others’ ability to be mentally and emotionally present in the course. Outside of the classroom, sleeping well, moving your body, and connecting with others can be strategies can help nourish you. If you are having difficulties maintaining your well-being, please don’t hesitate to contact me and/or find support from physical and mental health resources here, here, and here."
+  },
+  {
+    "objectID": "syllabus.html#you-belong-here",
+    "href": "syllabus.html#you-belong-here",
+    "title": " ",
+    "section": "You belong here!",
+    "text": "You belong here!\nStatistics–like most other areas of science–has a long history of excluding and exploiting people from marginalized communities and identities. Many of the earliest statisticians in the 19th and 20th centuries used and abused statistics to justify colonialism, ableism, classism, sexism, eugenics, and white supremacy.\nOn top of this problematic history, cultural norms around academic performance in quantitative disciplines can make courses like this one feel intimidating and exclusionary, rather than collaborative and interdisciplinary.\nTo counter these barriers, my central goal as an instructor is to intentionally foster community and connectedness. I believe that your unique voices and perspectives in this class will enrich our collective learning process and, in turn, your college experience. I encourage you to get to know your classmates (and me!) beyond a superficial familiarity and connect over our shared interests, identities, and ideas. You can help cultivate that community by being thoughtful about the way you engage with others and stretching your comfort zone to interact with people who are outside of your established social circles."
+  },
+  {
+    "objectID": "syllabus.html#informed-skepticism",
+    "href": "syllabus.html#informed-skepticism",
+    "title": " ",
+    "section": "Informed skepticism",
+    "text": "Informed skepticism\nIn virtually all of contemporary Western science, statistical reasoning is foundational to establishing trust in scientific theories. However, it is shockingly common to encounter “statistically justified” conclusions that are 1) not generalizable or cannot be replicated, 2) invalidated by honest coding/modeling mistakes, 3) based on deliberately cherry-picked models, or–in extreme cases–4) data that have been outright fabricated/falsified. Like in all aspects of life, trust in scientific claims must be earned.\nIn this course and beyond, I encourage you to approach any statistical results you encounter with a healthy skepticism, informed by both your gut intuition and the material you’ve learned. Know that you may be wrong (counter-intuitive results are abundant!) but you should always feel empowered to respectfully and rigorously challenge statistical claims."
+  },
+  {
+    "objectID": "syllabus.html#a-commitment-to-ethical-deliberation-and-conduct",
+    "href": "syllabus.html#a-commitment-to-ethical-deliberation-and-conduct",
+    "title": " ",
+    "section": "A commitment to ethical deliberation and conduct",
+    "text": "A commitment to ethical deliberation and conduct\nBecause statistics is a way to make sense of the world around us, it is also a way to influence it. This comes with an inherent responsibility to grapple with the ethical and sociopolitical dimensions of the content in this course. This includes delving into the context of how methods were developed, questioning assumptions, and considering the potential for misuse and misinterpretation. Throughout the course, you will be challenged to consider the broader impact of your work: How might your results and interpretations directly or indirectly affect the environment, specific individuals, or human culture & society? Whose prior scientific contributions are you amplifying or ignoring? How do your assumptions and biases shape your scientific approach and communication?"
+  },
+  {
+    "objectID": "syllabus.html#mistakes-and-uncertainty-are-essential",
+    "href": "syllabus.html#mistakes-and-uncertainty-are-essential",
+    "title": " ",
+    "section": "Mistakes and uncertainty are essential",
+    "text": "Mistakes and uncertainty are essential\nI expect that you and I will make lots of mistakes along the way in this course. Perhaps paradoxically, this is an important way to gain confidence: as we make mistakes, we will develop skills for recognizing and correcting them. These skills are vital for succeeding in STEM careers (and life in general). This course will provide a low-stakes environment for us to practice accountability, reflection, and troubleshooting when mistakes occur."
+  },
+  {
+    "objectID": "syllabus.html#context-before-content",
+    "href": "syllabus.html#context-before-content",
+    "title": " ",
+    "section": "Context before content",
+    "text": "Context before content\nRigorous statistical reasoning demands that we understand the context of our data and our research questions before we run a model and obtain/interpret results. I also aim to be mindful of various other contexts that shape our learning experience: our individual identities/histories, the classroom environment, the campus climate, etc. Throughout the semester, we will create space to address and discuss whatever contexts might impact our ability to engage the material (and how they may even relate to the material!)."
+  }
+]

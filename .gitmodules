@@ -1,0 +1,3 @@
+[submodule "stat155"]
+	path = stat155
+	url = git@github.com:mac-stat/stat155.git

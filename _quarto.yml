@@ -1,0 +1,82 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!activity_templates/"
+    - "!assignments/"
+    - "!working/"
+  post-render: "cp -r activities docs/activity_templates"
+  resources:
+    - "data/*.csv"
+    # - "activity_templates/*.qmd"
+    - "assignments/*.qmd"
+
+website:
+  title: "STAT 155"
+  navbar:
+    background: primary
+    search: true
+    left:
+      - file: index.qmd
+        text: "Home"
+      - file: syllabus.qmd
+        text: "Syllabus"
+      - file: schedule.qmd
+        text: "Schedule"
+      - sidebar:activities
+      - file: assignments.qmd
+        text: "Practice Problems"
+      - file: project.qmd
+        text: "Project"
+      - file: tech_setup.qmd
+        text: "Tech Setup"
+
+  sidebar:
+    - id: activities
+      title: "Activities"
+      contents:
+        # - "activities/26_p_values_discussion.qmd"
+        # - "activities/25_f_tests.qmd"
+        # - "activities/24_hypothesis_testing_considerations.qmd"
+        # - "activities/23_hypothesis_testing_details.qmd"
+        # - "activities/22_hypothesis_testing_discovery.qmd"
+        # - "activities/21_confidence_intervals.qmd"
+        # - "activities/20_bootstrapping.qmd"
+        # - "activities/19_sampling_dist_clt.qmd"
+        # - "activities/18_sampling_normal.qmd"
+        # - "activities/17_logistic_multiple_evaluation.qmd"
+        # - "activities/16_logistic_univariate.qmd"
+        # - "activities/15_prob_odds.qmd"
+        # - "activities/14_mlr_model_building_2.qmd"
+        # - "activities/13_mlr_model_building_1.qmd"
+        # - "activities/12_mlr_interaction_practice.qmd"
+        # - "activities/11_mlr_interaction_explore.qmd"
+        # - "activities/10_mlr_confounding.qmd"
+        # - "activities/09_mlr_principles.qmd"
+        # - "activities/08_mlr_intro.qmd"
+        # - "activities/07_slr_cat_predictor.qmd"
+        # - "activities/06_slr_transformations.qmd"
+        # - "activities/05_slr_model_eval.qmd"
+        # - "activities/04_slr_formalization.qmd"
+        # - "activities/03_slr_introduction.qmd"
+        # - "activities/02_foundations_univariate.qmd"
+        - "activities/01_foundations_welcome.qmd"
+  
+  page-footer:
+    left: |
+      &copy; Jedidiah Carlson, 2025<br>
+      All content licensed under ![](https://static.thenounproject.com/png/70967-200.png){height=20px} ([CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/))
+    right: |
+      Site built with [Quarto](https://quarto.org/)
+
+format:
+  html:
+    theme:
+      light: simplex
+      dark: [simplex, simplex-dark.scss]
+    # css: styles.css
+    toc: true
+    code-overflow: wrap
+
+editor: source

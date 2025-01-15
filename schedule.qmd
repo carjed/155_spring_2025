@@ -1,0 +1,295 @@
+---
+title: "Course Schedule"
+sidebar: false
+---
+
+The course schedule below will be filled in throughout the semester. For each day, there will be a link to course slides (if there are any that day) and notes/links on what is due ahead of class time. The “Announcements” column is (hopefully) self-explanatory. Any urgent announcements will be made over email.
+
++------+--------------+------------------------------------------------------------------------------+-------------------------+
+| Week | Tuesday      | Thursday                                                                     | Announcements           |
++======+==============+==============================================================================+=========================+
+| 1    | Winter Break | 1/23: First day of class!                                                    | Welcome back to campus! |
+|      |              |                                                                              |                         |
+|      |              | Before class:                                                                |                         |
+|      |              |                                                                              |                         |
+|      |              | -   Review the [course syllabus](syllabus.qmd)                               |                         |
+|      |              | -   Familiarize yourself with Moodle and the course website                  |                         |
+|      |              | -   Complete the [Introductions survey](https://forms.gle/mXYCQfrz7Qryk1vW8) |                         |
+|      |              | -   [Download R and RStudio](tech_setup.qmd)                                 |                         |
++------+--------------+------------------------------------------------------------------------------+-------------------------+
+
+<!-- ## Course Schedule & Announcements -->
+
+<!-- ::: {.callout-tip icon=false collapse="false" title="Week 1: 1/23 - 1/31 (Data fundamentals, univariate visualization and summaries, and intro to simple linear regression)"} -->
+
+<!-- #### Announcements -->
+
+<!-- Welcome back to campus! -->
+
+<!-- #### Thursday -->
+
+<!-- Before class: -->
+
+<!-- - Review the [course syllabus](syllabus.qmd)  -->
+
+<!-- - Familiarize yourself with Moodle and the course website -->
+
+<!-- - Complete the [Introductions survey](https://forms.gle/mXYCQfrz7Qryk1vW8) -->
+
+<!-- - [Download R and RStudio](tech_setup.qmd) -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 2: 1/27 - 1/31 (Simple linear regression)"} -->
+
+<!-- #### Announcements -->
+
+<!-- - Practice Problems #1 will be due on Friday, 9/13 at 5pm! -->
+
+<!-- - Friday, 9/13 is also the add/drop deadline -->
+
+<!-- - Preceptor office hours start this week--see the course calendar for times -->
+
+<!-- #### Tuesday -->
+
+<!-- Before class: -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - Do either the readings or videos for the Day 3 Activity (see Moodle for links) -->
+
+<!--   - due 30 minutes before class on 9/10 -->
+
+<!-- #### Thursday -->
+
+<!-- Before class: -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - Do either the readings or videos for the Day 4 Activity (see Moodle for links) -->
+
+<!--   - due 30 minutes before class on 9/12 -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 3: 9/16 - 9/20 (Simple linear regression: model evaluation and variable transformations)"} -->
+
+<!-- #### Announcements -->
+
+<!-- - Practice Problems #2 will be due Friday, 9/20 at 5pm -->
+
+<!-- - Reminder that preceptor office hours are held in the Sub-Hub (the glass room in the middle of the *first* floor of OLRI) -->
+
+<!--   - see Moodle for the preceptor office hours calendar, or add [this calendar](https://calendar.google.com/calendar/u/5?cid=Y181NGJlMTEzOWZmYzE1YmI0ZDBmYTc2OGM2MGJiODFjYmZiM2M2MGFhM2Y1OTFjMTM3YjBlNzBiOTkwYmQ0NjlhQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20) in your Mac Google account -->
+
+<!-- - Please remember to read your email 🥲 -->
+
+<!-- #### Tuesday -->
+
+<!-- Before class: -->
+
+<!-- - Complete the [Project Preferences survey](https://forms.gle/1zrKb8c7pGwHjWxh7) -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - Do either the readings or videos for the Day 5 Activity (see Moodle for links) -->
+
+<!--   - due 30 minutes before class on 9/17 -->
+
+<!-- #### Thursday -->
+
+<!-- Before class:  -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - Do either the readings or videos for the Day 6 Activity (see Moodle for links) -->
+
+<!-- - Library data discovery day! -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 4: 9/23 - 9/27 (Simple linear regression: categorical predictors)"} -->
+
+<!-- #### Announcements -->
+
+<!-- #### Tuesday -->
+
+<!-- Before class: -->
+
+<!-- - No readings/videos/checkpoints for today! -->
+
+<!-- #### Thursday -->
+
+<!-- - Quiz 1 today (1 hour in class) -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 5: 9/30 - 10/4 (Multiple linear regression: principles + confounding)"} -->
+
+<!-- #### Announcements -->
+
+<!-- - Grades for Quiz #1 and PP #2 are posted on Moodle -->
+
+<!-- - Practice Problems #3 will be due Friday, 10/4 at 5pm -->
+
+<!-- #### Tuesday -->
+
+<!-- Before class: -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - due 30 minutes before class on 10/1 -->
+
+<!-- #### Thursday -->
+
+<!-- Before class: -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - due 30 minutes before class on 10/3 -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 6: 10/7 - 10/11 (Multiple linear regression: interaction)"} -->
+
+<!-- #### Announcements -->
+
+<!-- - Practice Problems #4 will be due Friday, 10/11 at 5pm -->
+
+<!-- - Try to submit Project Checkpoint #1 by Friday, 10/11 at 11pm -->
+
+<!-- -  -->
+
+<!-- #### Tuesday -->
+
+<!-- #### Thursday -->
+
+<!-- Before class: -->
+
+<!-- - Complete today’s checkpoints (note that there are two!) on Moodle -->
+
+<!--   - due ~~30 minutes before class on 10/10~~ 30 minutes before usual class time on Friday, 10/11, since I forgot to open the checkpoints on Moodle at the usual time -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 7: 10/14 - 10/18 (Multiple linear regression: model building) (Fall Break)"} -->
+
+<!-- #### Announcements -->
+
+<!-- #### Tuesday -->
+
+<!-- No Moodle checkpoint today -->
+
+<!-- #### Thursday -->
+
+<!-- No class! (Fall Break) -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 8: 10/21 - 10/25 (Logistic regression)"} -->
+
+<!-- #### Announcements -->
+
+<!-- #### Tuesday -->
+
+<!-- #### Thursday -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 9: 10/28 - 11/1 (Tools for statistical inference)"} -->
+
+<!-- #### Announcements -->
+
+<!-- #### Tuesday -->
+
+<!-- #### Thursday -->
+
+<!-- Quiz #2 -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 10: 11/4 - 11/8 (Confidence intervals)"} -->
+
+<!-- #### Announcements -->
+
+<!-- PP#6 due on Friday, 11/8 at 5pm -->
+
+<!-- #### Tuesday -->
+
+<!-- Before class: -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - due 30 minutes before class on 11/5 -->
+
+<!-- #### Thursday -->
+
+<!-- Before class: -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - due 30 minutes before class on 11/7 -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="false" title="Week 11: 11/11 - 11/15 (Hypothesis testing)"} -->
+
+<!-- #### Announcements -->
+
+<!-- PP#7 due on Friday, 11/15 at 5pm -->
+
+<!-- #### Tuesday -->
+
+<!-- Before class: -->
+
+<!-- - Complete today’s checkpoint on Moodle -->
+
+<!--   - due 30 minutes before class on 11/12 -->
+
+<!-- #### Thursday -->
+
+<!-- Before class: -->
+
+<!-- - No checkpoint due today -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 12: 11/18 - 11/22 (Hypothesis testing)"} -->
+
+<!-- #### Announcements -->
+
+<!-- #### Tuesday -->
+
+<!-- #### Thursday -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 13: 11/25 - 11/29 (Hypothesis testing, p-values) (Thanksgiving Break)"} -->
+
+<!-- #### Announcements -->
+
+<!-- #### Tuesday -->
+
+<!-- #### Thursday -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 14: 12/2 - 12/6 (Project work)"} -->
+
+<!-- #### Announcements -->
+
+<!-- #### Tuesday -->
+
+<!-- #### Thursday -->
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip icon=false collapse="true" title="Week 15: 12/9 - 12/13 (Project work, paper, and presentations)"} -->
+
+<!-- #### Announcements -->
+
+<!-- #### Tuesday -->
+
+<!-- (Last day of class) -->
+
+<!-- ::: -->

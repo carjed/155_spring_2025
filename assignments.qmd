@@ -1,0 +1,24 @@
+---
+title: "Practice Problems"
+sidebar: false
+---
+
+**...due Wednesdays at 5pm Central on Moodle!**
+
+- [Practice Problems 1], due 2/5
+- [Practice Problems 2], due 2/12
+- [Practice Problems 3], due 2/26
+- [Practice Problems 4], due 3/5
+- [Practice Problems 5], due 3/26
+- [Practice Problems 6], due 4/9
+- [Practice Problems 7], due 4/16
+- [Practice Problems 8], due 4/23
+
+<!-- - [Practice Problems 1](assignments/pp1.qmd), due 2/5 -->
+<!-- - [Practice Problems 2](assignments/pp2.qmd), due 2/12 -->
+<!-- - [Practice Problems 3](assignments/pp3.qmd), due 2/26 -->
+<!-- - [Practice Problems 4](assignments/pp4.qmd), due 3/5 -->
+<!-- - [Practice Problems 5](assignments/pp5.qmd), due 3/26 -->
+<!-- - [Practice Problems 6](assignments/pp6.qmd), due 4/9 -->
+<!-- - [Practice Problems 7](assignments/pp7.qmd), due 4/16 -->
+<!-- - [Practice Problems 8](assignments/pp8.qmd), due 4/23 -->

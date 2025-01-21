@@ -5,18 +5,18 @@ sidebar: false
 
 The course schedule below will be filled in throughout the semester. For each day, there will be a link to course slides (if there are any that day) and notes/links on what is due ahead of class time. The “Announcements” column is (hopefully) self-explanatory. Any urgent announcements will be made over email.
 
-+------+--------------+------------------------------------------------------------------------------+-------------------------+
-| Week | Tuesday      | Thursday                                                                     | Announcements           |
-+======+==============+==============================================================================+=========================+
-| 1    | Winter Break | 1/23: First day of class!                                                    | Welcome back to campus! |
-|      |              |                                                                              |                         |
-|      |              | Before class:                                                                |                         |
-|      |              |                                                                              |                         |
-|      |              | -   Review the [course syllabus](syllabus.qmd)                               |                         |
-|      |              | -   Familiarize yourself with Moodle and the course website                  |                         |
-|      |              | -   Complete the [Introductions survey](https://forms.gle/mXYCQfrz7Qryk1vW8) |                         |
-|      |              | -   [Download R and RStudio](tech_setup.qmd)                                 |                         |
-+------+--------------+------------------------------------------------------------------------------+-------------------------+
++----------+--------------+------------------------------------------------------------------------------+-------------------------+
+| Week     | Tuesday      | Thursday                                                                     | Announcements           |
++==========+==============+==============================================================================+=========================+
+| 1        | Winter Break | 1/23: First day of class!                                                    | Welcome back to campus! |
+|          |              |                                                                              |                         |
+|          |              | Before class:                                                                |                         |
+|          |              |                                                                              |                         |
+|          |              | -   Review the [course syllabus](syllabus.qmd)                               |                         |
+|          |              | -   Familiarize yourself with Moodle and the course website                  |                         |
+|          |              | -   Complete the [Introductions survey](https://forms.gle/Wra1dy35ozJUAmNs8) |                         |
+|          |              | -   [Download R and RStudio](tech_setup.qmd)                                 |                         |
++----------+--------------+------------------------------------------------------------------------------+-------------------------+
 
 <!-- ## Course Schedule & Announcements -->
 

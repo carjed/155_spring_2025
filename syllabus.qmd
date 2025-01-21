@@ -172,19 +172,12 @@ Note that I may slightly relax the cutoffs for letter grades on a case-by-case b
 
 There will be 3 quizzes over the course of the semester.
 
--   Quiz 1: Thursday, 2/14. 1 hour in class.
--   Quiz 2: Thursday, 3/28. 1 hour in class. Will cover material from the first quiz to some extent because of the way that material in this course builds on earlier ideas.
+-   Quiz 1: Thursday, 2/13. 1 hour in class.
+-   Quiz 2: Thursday, 3/27. 1 hour in class. Will cover material from the first quiz to some extent because of the way that material in this course builds on earlier ideas.
 -   Quiz 3: Final exam period. The quiz will be written to take 1.25 hours, but you will have the full two hour period to complete it. Will cover content from the whole course.
   -   Section 02: Fri. 5/9 8:00am-10:00am
   -   Section 03: Thurs. 5/8 1:30pm-3:30pm
   -   Section 04: Sat. 5/10 10:30am-12:30pm
-
-Each quiz question will be graded on the following scale:
-
--   3 points: fully correct
--   2 points: mostly correct with minor errors
--   1 point: missing key understanding
--   0 points: fully off target or blank
 
 Quiz format:
 
@@ -196,11 +189,11 @@ Quiz format:
 -   Write a reflection of how you prepared for the quiz and where you felt strongest and more uncertain in your understanding before taking the quiz.
 -   Submit your quiz corrections along with your reflection to the instructor, no later than one week after quizzes have been handed back.
 
-You will not have the option to earn points back on the third quiz, due to time constraints at the end of the semester, so I encourage you to make use of this opportunity early on!
+You will not have the option to earn points back on the third quiz, due to time constraints at the end of the semester, so I encourage you to make full use of the reflection opportunities on the first two quizzes!
 
 ### Practice problems
 
-There will be 8 practice problems throughout the course, building off of topics learned in videos/our in-class activities. Practice problems will be due on Wednesdays at 5pm. You are encouraged to work together on practice problems, but the work that you submit, including code, should be your own.
+There will be 8 practice problem sets throughout the course, building off of topics learned in videos/our in-class activities. Practice problems will be due on Wednesdays at 5pm. You are encouraged to work together on practice problems, but the work that you submit, including code, should be your own.
 
 You will receive qualitative feedback on all questions on these practice problem sets. Each question (or occasionally, parts of a question) will receive an overall score on the following scale:
 
@@ -208,17 +201,11 @@ You will receive qualitative feedback on all questions on these practice problem
 - Pass: 1 point
 - Needs improvement: 0 points
 
-**Showing growth:** If, on a quiz, you demonstrate stronger understanding of the concepts you missed on a practice problem, you have the chance to earn points back on *up to two questions* on a single practice problem. Similarly to quiz corrections, you must:
-
--   Write a reflection of how the practice problem went for you, and where you felt strongest and more uncertain in your understanding before submitting the assignment.
--   Demonstrate an improved understanding of the concepts on the practice problem that you missed, referencing specific questions you answered correctly on the quiz.
--   Submit your practice problem corrections along with your reflection to the instructor, no later than one week after quizzes have been handed back.
-
-You can do this 2 times over the semester (once for each of the first two quizzes), and you can show improvement on multiple practice problems using a single quiz. You cannot do this on the third quiz, due to time constraints at the end of the semester.
+Thus, the number of overall points on a given Practice Problem may vary depending on the length of the assignment. **Your lowest practice problem score will be dropped from your final grade, so long as you have submitted all 8 practice problems and demonstrated effort on each one.**
 
 ### Group Project
 
-The goal of the course project is to apply the data analysis skills from our course to investigate a research question in a dataset of your choosing. Through milestones over the course of the semester, you will make steady progress on your projects and iterate on feedback. Full details about the project will be available on the [Project page](project.qmd).
+The goal of the course project is to apply the data analysis skills from our course to collaboratively investigate a research question in a dataset of your choosing. Through milestones over the course of the semester, you will make steady progress on your projects and iterate on feedback. Full details about the project will be available on the [Project page](project.qmd).
 
 ### Checkpoints
 
@@ -317,3 +304,7 @@ I expect that you and I will make lots of mistakes along the way in this course.
 ## Context before content
 
 Rigorous statistical reasoning demands that we understand the context of our data and our research questions before we run a model and obtain/interpret results. I also aim to be mindful of various other contexts that shape our learning experience: our individual identities/histories, the classroom environment, the campus climate, etc. Throughout the semester, we will create space to address and discuss whatever contexts might impact our ability to engage the material (and how they may even relate to the material!).
+
+# Note
+
+This syllabus is subject to change at any time! Announcements of changes will be made in class or via email.

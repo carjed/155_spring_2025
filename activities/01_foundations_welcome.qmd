@@ -28,23 +28,27 @@ For today, you'll have some steps to follow for an interactive, tactile activity
 
 ## Step 1
 
-At your table, write a one to two word answer to each of the following 7 question(s), each on a separate post-it note (do this individually). If there are two questions: write your answer to the first question on the left-hand side of the post-it note, and your answer to the second question on the bottom of the post-it note.
+At your table, write a one to two word answer to each of the following questions, each on a separate post-it note (do this individually). If there are two questions: write your answer to the first question on the left-hand side of the post-it note, and your answer to the second question on the bottom of the post-it note.
 
-1.  How many hours of sleep did you get last night? How many cups of coffee did you drink this morning?
+1.  How many hours of sleep did you get last night?
 
-2.  What is your declared or potential major? (If you are a double major, just pick whichever one you think of first.)
+2.  Approximately how far away (in miles) is your hometown from Macalester?
 
-3.  What is your class year? (first year, sophomore, junior, senior)
+3.  What is your declared or potential major? (If you are a double major, just pick whichever one you think of first.)
 
-4.  How many stats courses have you taken in the past?
+4.  What is your anticipated graduation year?
 
-5.  On a scale of 1 (get me out of here) to 10 (yay!), how excited are you about this course?
+5.  How tall are you in inches?
 
-6.  Is it your birthday this semester? (yes/no)
+6.  How many stats courses have you taken in the past?
 
-7.  How many unread emails do you have in your inbox right now?
+7.  Have you used R or RStudio before?
 
-8.  Have you used R/RStudio a lot, a little, or never?
+8.  How many other students in the class do you know?
+
+9.  Is it your birthday this semester? (yes/no)
+
+10. How many unread emails do you have in your inbox right now?
 
 ## Step 2
 
@@ -52,7 +56,7 @@ Designate one person from your table to distribute your group's answers to the q
 
 ## Step 3
 
-Fill out an [electronic version](https://forms.gle/8Ki1v65rnfQmPANi8) of these questions. We'll come back to this in a future class. Wait until everyone in your group is done with this before moving on to the exercises.
+Fill out an [electronic version](https://forms.gle/heuboBKmBw3cQDEY6) of these questions. We'll come back to this in a future class. Wait until everyone in your group is done with this before moving on to the exercises.
 
 # Exercises
 
@@ -112,7 +116,7 @@ Imagine that you took all the post-it notes in this room and organized them into
 
 In three to four sentences, reflect upon today's activity. Some reflection prompts are found below:
 
--   Do you think the context in which the data was collected influenced the results you found? 
+-   Do you think the context in which the data was collected influenced the results you found?
 -   Who would the numerical summaries you calculated potentially be represented of? Could you generalize the information you learned to a broader population (all students at Mac, perhaps), or would you have ethical concerns with generalizing your results?
 -   What (if anything) surprised you about the numerical summaries calculated by your group, or other groups?
 -   Did your data visualization help you better understand, or discover new things about the data that otherwise would have been difficult to distinguish? Why or why not?

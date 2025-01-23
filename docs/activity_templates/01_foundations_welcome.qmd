@@ -19,8 +19,8 @@ By the end of this lesson, you should be able to:
 
 Links to related reading(s):
 
--   [What is Data?](https://bcheggeseth.github.io/Stat155Notes/what-is-data.html)
--   [Data Context](https://bcheggeseth.github.io/Stat155Notes/data-context.html)
+-   [What is Data?](https://mac-stat.github.io/Stat155Notes/what-is-data.html)
+-   [Data Context](https://mac-stat.github.io/Stat155Notes/data-context.html)
 
 This activity is structured a bit differently than the activities for the remainder of the class. In this section, you'll typically find a mini-lecture, review material, or guided / structural examples, followed by exercises.
 

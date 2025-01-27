@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>01. Collecting and Summarizing Data – STAT 155</title>
+<title>02. Univariate visualization and summaries – STAT 155</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4812,7 +4812,7 @@ vertical-align: -.125em;
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../activities/01_foundations_welcome.html">01. Collecting and Summarizing Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../activities/02_foundations_univariate.html">02. Univariate visualization and summaries</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -4826,13 +4826,13 @@ vertical-align: -.125em;
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../activities/02_foundations_univariate.html" class="sidebar-item-text sidebar-link">
+  <a href="../activities/02_foundations_univariate.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">02. Univariate visualization and summaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../activities/01_foundations_welcome.html" class="sidebar-item-text sidebar-link active">
+  <a href="../activities/01_foundations_welcome.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. Collecting and Summarizing Data</span></a>
   </div>
 </li>
@@ -4848,18 +4848,30 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
-  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
-  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#readings-and-videos" id="toc-readings-and-videos" class="nav-link" data-scroll-target="#readings-and-videos">Readings and videos</a></li>
   </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
   <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
-  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
-  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  <li><a href="#exercise-1-get-curious" id="toc-exercise-1-get-curious" class="nav-link" data-scroll-target="#exercise-1-get-curious">Exercise 1: Get curious</a></li>
+  <li><a href="#exercise-2-importing-and-getting-to-know-the-data" id="toc-exercise-2-importing-and-getting-to-know-the-data" class="nav-link" data-scroll-target="#exercise-2-importing-and-getting-to-know-the-data">Exercise 2: Importing and getting to know the data</a></li>
+  <li><a href="#exercise-3-preparing-to-summarize-and-visualize-the-data" id="toc-exercise-3-preparing-to-summarize-and-visualize-the-data" class="nav-link" data-scroll-target="#exercise-3-preparing-to-summarize-and-visualize-the-data">Exercise 3: Preparing to summarize and visualize the data</a></li>
+  <li><a href="#exercise-4-exploring-themes-in-the-letters" id="toc-exercise-4-exploring-themes-in-the-letters" class="nav-link" data-scroll-target="#exercise-4-exploring-themes-in-the-letters">Exercise 4: Exploring themes in the letters</a></li>
+  <li><a href="#exercise-5-exploring-sentiment" id="toc-exercise-5-exploring-sentiment" class="nav-link" data-scroll-target="#exercise-5-exploring-sentiment">Exercise 5: Exploring sentiment</a></li>
+  <li><a href="#exercise-6-box-plots-vs.-histograms-vs.-density-plots" id="toc-exercise-6-box-plots-vs.-histograms-vs.-density-plots" class="nav-link" data-scroll-target="#exercise-6-box-plots-vs.-histograms-vs.-density-plots">Exercise 6: Box plots vs. histograms vs. density plots</a></li>
+  <li><a href="#exercise-7-explore-outliers" id="toc-exercise-7-explore-outliers" class="nav-link" data-scroll-target="#exercise-7-explore-outliers">Exercise 7: Explore outliers</a></li>
+  <li><a href="#exercise-8-returning-to-our-context-looking-ahead" id="toc-exercise-8-returning-to-our-context-looking-ahead" class="nav-link" data-scroll-target="#exercise-8-returning-to-our-context-looking-ahead">Exercise 8: Returning to our context, looking ahead</a></li>
+  <li><a href="#exercise-9-different-ways-to-think-about-data-visualization" id="toc-exercise-9-different-ways-to-think-about-data-visualization" class="nav-link" data-scroll-target="#exercise-9-different-ways-to-think-about-data-visualization">Exercise 9: Different ways to think about data visualization</a></li>
+  <li><a href="#exercise-10-rendering-your-work" id="toc-exercise-10-rendering-your-work" class="nav-link" data-scroll-target="#exercise-10-rendering-your-work">Exercise 10: Rendering your work</a></li>
   <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  </ul></li>
+  <li><a href="#additional-practice" id="toc-additional-practice" class="nav-link" data-scroll-target="#additional-practice">Additional Practice</a>
+  <ul class="collapse">
+  <li><a href="#exercise-11-read-in-and-get-to-know-the-weather-data" id="toc-exercise-11-read-in-and-get-to-know-the-weather-data" class="nav-link" data-scroll-target="#exercise-11-read-in-and-get-to-know-the-weather-data">Exercise 11: Read in and get to know the weather data</a></li>
+  <li><a href="#exercise-12-exploring-the-data-structure" id="toc-exercise-12-exploring-the-data-structure" class="nav-link" data-scroll-target="#exercise-12-exploring-the-data-structure">Exercise 12: Exploring the data structure</a></li>
+  <li><a href="#exercise-13-exploring-rainfall" id="toc-exercise-13-exploring-rainfall" class="nav-link" data-scroll-target="#exercise-13-exploring-rainfall">Exercise 13: Exploring rainfall</a></li>
+  <li><a href="#exercise-14-exploring-temperature" id="toc-exercise-14-exploring-temperature" class="nav-link" data-scroll-target="#exercise-14-exploring-temperature">Exercise 14: Exploring temperature</a></li>
+  <li><a href="#exercise-15-customizing-challenge" id="toc-exercise-15-customizing-challenge" class="nav-link" data-scroll-target="#exercise-15-customizing-challenge">Exercise 15: Customizing! (CHALLENGE)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -4869,7 +4881,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">01. Collecting and Summarizing Data</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">02. Univariate visualization and summaries</h1>
 <p class="subtitle lead">Notes and in-class exercises</p>
 </div>
 
@@ -4889,115 +4901,367 @@ vertical-align: -.125em;
 
 <section id="notes" class="level1">
 <h1>Notes</h1>
-<p>Welcome to our first in-class activity! Today we will collect and summarize some data. Our goals are to get to know the people in this class and to start working with data.</p>
+<section id="learning-goals" class="level2">
+<h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
 <p>By the end of this lesson, you should be able to:</p>
 <ul>
-<li>Define <em>cases</em> and <em>variables</em></li>
-<li>Apply the 5 W’s + H (who, what, when, where, why, and how) to data collection</li>
+<li>Describe what a <strong>case</strong> (or <strong>unit of analysis</strong>) represents in a dataset.</li>
+<li>Describe what a <strong>variable</strong> represents in a dataset.</li>
+<li>Identify whether a variable is <strong>categorical</strong> or <strong>quantitative</strong> and what summarizations and visualizations are appropriate for that variable</li>
+<li>Write R code to read in data and to summarize and visualize a single variable at a time.</li>
+<li>Interpret key features of barplots, boxplots, histograms, and density plots</li>
+<li>Describe information about the distribution of a quantitative variable using the concepts of shape, center, spread, and outliers</li>
+<li>Relate summary statistics of data to the concepts of shape, center, spread, and outliers</li>
 </ul>
-<p>Links to related reading(s):</p>
+</section>
+<section id="readings-and-videos" class="level2">
+<h2 class="anchored" data-anchor-id="readings-and-videos">Readings and videos</h2>
+<p>Choose either the reading or the videos to go through <strong>before</strong> class.</p>
 <ul>
-<li><a href="https://mac-stat.github.io/Stat155Notes/what-is-data.html">What is Data?</a></li>
-<li><a href="https://mac-stat.github.io/Stat155Notes/data-context.html">Data Context</a></li>
+<li>Reading: Sections 2.1-2.4, 2.6 in the <a href="https://mac-stat.github.io/Stat155Notes/">STAT 155 Notes</a></li>
+<li>Videos:
+<ul>
+<li><a href="https://youtu.be/7zQmWTT_m-Y">Univariate visualization and summarization</a> (<a href="https://drive.google.com/file/d/1QJgnchneN-cHfa2TNa-amBAx6VWO3UGT/view?usp=drive_link">slides</a>)</li>
+<li><a href="https://voicethread.com/share/14968914/">R Code for Categorical Visualization and Summarization</a></li>
+<li><a href="https://voicethread.com/share/14923042/">R Code for Quantitative Visualization and Summarization</a></li>
+</ul></li>
 </ul>
-<p>This activity is structured a bit differently than the activities for the remainder of the class. In this section, you’ll typically find a mini-lecture, review material, or guided / structural examples, followed by exercises.</p>
-<p>For today, you’ll have some steps to follow for an interactive, tactile activity at your tables before working through the exercises below together.</p>
-<section id="step-1" class="level2">
-<h2 class="anchored" data-anchor-id="step-1">Step 1</h2>
-<p>At your table, write a one to two word answer to each of the following questions, each on a separate post-it note (do this individually). If there are two questions: write your answer to the first question on the left-hand side of the post-it note, and your answer to the second question on the bottom of the post-it note.</p>
-<ol type="1">
-<li><p>How many hours of sleep did you get last night?</p></li>
-<li><p>Approximately how far away (in miles) is your hometown from Macalester?</p></li>
-<li><p>What is your declared or potential major? (If you are a double major, just pick whichever one you think of first.)</p></li>
-<li><p>What is your anticipated graduation year?</p></li>
-<li><p>How tall are you in inches?</p></li>
-<li><p>How many stats courses have you taken in the past?</p></li>
-<li><p>Have you used R or RStudio before?</p></li>
-<li><p>How many other students in the class do you know?</p></li>
-<li><p>Is it your birthday this semester? (yes/no)</p></li>
-<li><p>How many unread emails do you have in your inbox right now?</p></li>
-</ol>
-</section>
-<section id="step-2" class="level2">
-<h2 class="anchored" data-anchor-id="step-2">Step 2</h2>
-<p>Designate one person from your table to distribute your group’s answers to the questions to the corresponding “station” around the classroom. Each table should have a number on it, corresponding to the “station”/question.</p>
-</section>
-<section id="step-3" class="level2">
-<h2 class="anchored" data-anchor-id="step-3">Step 3</h2>
-<p>Fill out an <a href="https://forms.gle/heuboBKmBw3cQDEY6">electronic version</a> of these questions. We’ll come back to this in a future class. Wait until everyone in your group is done with this before moving on to the exercises.</p>
+<!-- This section is for any mini-lecture, review material, material to motivate today's lesson, more guided / structured examples than the exercises section below. -->
+<p><strong>File organization:</strong> Save this file in the “Activities” subfolder of your “STAT155” folder.</p>
 </section>
 </section>
 <section id="exercises" class="level1">
 <h1>Exercises</h1>
-<p>You’ll now answer a few questions related to the data collected at your group’s table. Data is <em>anything</em> that contains information</p>
-<section id="exercise-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
-<p>With your group, in no more than two sentences per question, respond to the questions posed by the 5 W’s + H for the data at your group’s table. If you need a refresher on the 5 W’s + H, check out the related readings posted at the top of this activity!</p>
-<p><strong>Who</strong></p>
 <blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
+<p><strong>Guiding question:</strong> What anxieties have been on Americans’ minds over the decades?</p>
 </blockquote>
-<p><strong>What</strong></p>
-<blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
-</blockquote>
-<p><strong>When</strong></p>
-<blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
-</blockquote>
-<p><strong>Where</strong></p>
-<blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
-</blockquote>
-<p><strong>Why</strong></p>
-<blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
-</blockquote>
-<p><strong>How</strong></p>
-<blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
-</blockquote>
+<p><strong>Context:</strong> <em>Dear Abby</em> is America’s longest running advice column. Started in 1956 by Pauline Phillips under the pseudonym Abigail van Buren, the column continues to this day under the stewardship of her daughter Jeanne. Each column features one or more letters to Abby from anonymous individuals, all signed with a pseudonym. Abby’s response follows each letter.</p>
+<p>In 2018, the data journalism site <a href="https://pudding.cool/">The Pudding</a> published a visual article called <a href="https://pudding.cool/2018/11/dearabby/">30 Years of American Anxieties</a> in which the authors explored themes in Dear Abby letters from 1985 to 2017. (We only have the questions, not Abby’s responses.) The codebook is available <a href="https://github.com/Mac-STAT/data/blob/main/dear_abby_codebook.md">here</a>.</p>
+<section id="exercise-1-get-curious" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-get-curious">Exercise 1: Get curious</h2>
+<ul>
+<li>Hypothesize with each other: what themes do you think might come up often in Dear Abby letters?</li>
+<li>After brainstorming, take a quick glance at the original article from <a href="https://pudding.cool/2018/11/dearabby/">The Pudding</a> to see what themes they explored.</li>
+<li>Go to the very end of the Pudding article to the section titled “Data and Method”. In thinking about the who, what, when, where, why, and how of data context, what concerns/limitations surface with regards to using this data to learn about Americans’ concerns over the decades?</li>
+</ul>
 </section>
-<section id="exercise-2" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<p>Move the post-it notes around to construct a visualization of the responses at your station.</p>
+<section id="exercise-2-importing-and-getting-to-know-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-importing-and-getting-to-know-the-data">Exercise 2: Importing and getting to know the data</h2>
+<p>First, in the <strong>Console pane</strong> of RStudio, run the following command to install some necessary packages (you will need to do this any time you are installing a new package):</p>
+<pre><code>install.packages(&quot;tidyverse&quot;)</code></pre>
+<p>Now, in the <strong>Quarto pane</strong>, run the following code chunk to load the package and load a dataset (you can either click the green arrow in the top right of the code chunk, put your cursor in the code chunk and hit Ctrl+Alt+C [on Windows/Linux] or Command+Option+C [on Mac]).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the course evaluation data</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>abby <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://mac-stat.github.io/data/dear_abby.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If it runs successfully, you should see the following output appear in the <strong>Console pane</strong>:</p>
+<pre><code>&gt; # Load package
+&gt; library(tidyverse)
+&gt; 
+&gt; # Read in the course evaluation data
+&gt; abby &lt;- read_csv(&quot;https://mac-stat.github.io/data/dear_abby.csv&quot;)
+Rows: 20034 Columns: 11
+── Column specification ────────────────────────────
+Delimiter: &quot;,&quot;
+chr (4): day, url, title, question_only
+dbl (7): year, month, letterId, afinn_overall, a...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<ol type="a">
+<li><p>Click on the <strong>Environment tab</strong> (generally in the upper right hand pane in RStudio). Then click the <code>abby</code> line. The <code>abby</code> data will pop up as a separate pane (like viewing a spreadsheet) – check it out.</p></li>
+<li><p>In this <strong>tidy</strong> dataset, what is the unit of observation? That is, what is represented in each row of the dataset?</p></li>
+<li><p>What term do we use for the columns of the dataset?</p></li>
+<li><p>Try out each function below. Identify what each function tells you about the <code>abby</code> data and note this in the <code>???</code>:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ??? [what do both numbers mean?]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(abby)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(abby)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(abby)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(abby)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(abby)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="a">
+<li><strong>[OPTIONAL]</strong> If you’re not sure how exactly to use a function, you can pull up a built-in help page with information about the arguments a function takes (i.e., what goes inside the parentheses), and the output it produces. To do this, click inside the Console pane, and enter <code>?function_name</code>. For example, to pull up a help page for the <code>dim()</code> function, we can type <code>?dim</code> and hit Enter. Try pulling up the help page for the <code>read_csv()</code> function we used to load the dataset.</li>
+</ol>
 </section>
-<section id="exercise-3" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
-<p>Calculate at least one numerical summary of the post-it note responses at your station, and record your numerical summary in the response text below. Write a complete sentence, not just the numerical summary alone! This is good practice for summarizing data in more formal writing.</p>
-<blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
-</blockquote>
+<section id="exercise-3-preparing-to-summarize-and-visualize-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-preparing-to-summarize-and-visualize-the-data">Exercise 3: Preparing to summarize and visualize the data</h2>
+<p>In the next exercises, we will be exploring themes in the Dear Abby questions and the overall “mood” or sentiment of the questions. Before continuing, read the <a href="https://github.com/Mac-STAT/data/blob/main/dear_abby_codebook.md">codebook</a> for this dataset for some context about sentiment analysis, which gives us a measure of the mood/sentiment of a text.</p>
+<ol type="a">
+<li><p>What sentiment variables do we have in the dataset? Are they <strong>quantitative</strong> or <strong>categorical</strong>?</p></li>
+<li><p>If we were able to create a <code>theme</code> variable that took values like “friendship”, “marriage”, and “relationships”, would <code>theme</code> be <strong>quantitative</strong> or <strong>categorical</strong>?</p></li>
+<li><p>What visualizations are appropriate for looking at the distribution of a single quantitative variable? What about a single categorical variable?</p></li>
+</ol>
 </section>
-<section id="exercise-4" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
-<p>In no more than three sentences, describe what you learn about from the visual and numerical summaries. Try to write your description in a way that tells an interesting story about the people in this class.</p>
-<blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
-</blockquote>
+<section id="exercise-4-exploring-themes-in-the-letters" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-exploring-themes-in-the-letters">Exercise 4: Exploring themes in the letters</h2>
+<p>The <code>dplyr</code> package provides many useful functions for managing data (like creating new variables, summarizing information). The <code>stringr</code> package provides tools for working with strings (text). We’ll use these packages to search for words in the questions in order to (roughly) identify themes/subjects.</p>
+<p>The code below searches for words related to mothers, fathers, marriage, and money and combines them into a single <code>theme</code> variable.</p>
+<ul>
+<li>Inside <code>mutate()</code> the line <code>moms = ifelse(str_detect(question_only, &quot;mother|mama|mom&quot;), &quot;mom&quot;, &quot;no mom&quot;)</code> creates a new variable called <code>moms</code>. If any of the text “mother”, “mama”, or “mom” (which covers “mommy”) is found, then the variable takes the value “mom”. Otherwise, the variable takes the value “no mom”.</li>
+<li>The <code>dads</code>, <code>marriage</code>, and <code>money</code> variables are created similarly.</li>
+<li>The <code>themes = str_c(moms, dads, marriage, money, sep = &quot;|&quot;)</code> line takes the 4 created variables and combines the text of those variables separated with a |. For example, one value of the <code>themes</code> variable is “mom|no_dad|no_marriage|no_money” (which contains words about moms but not dads, marriage, or money).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>abby <span class="ot">&lt;-</span> abby <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">moms =</span> <span class="fu">ifelse</span>(<span class="fu">str_detect</span>(question_only, <span class="st">&quot;mother|mama|mom&quot;</span>), <span class="st">&quot;mom&quot;</span>, <span class="st">&quot;no mom&quot;</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">dads =</span> <span class="fu">ifelse</span>(<span class="fu">str_detect</span>(question_only, <span class="st">&quot;father|papa|dad&quot;</span>), <span class="st">&quot;dad&quot;</span>, <span class="st">&quot;no dad&quot;</span>),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">marriage =</span> <span class="fu">ifelse</span>(<span class="fu">str_detect</span>(question_only, <span class="st">&quot;marriage|marry|married&quot;</span>), <span class="st">&quot;marriage&quot;</span>, <span class="st">&quot;no marriage&quot;</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">money =</span> <span class="fu">ifelse</span>(<span class="fu">str_detect</span>(question_only, <span class="st">&quot;money|finance&quot;</span>), <span class="st">&quot;money&quot;</span>, <span class="st">&quot;no money&quot;</span>),</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">themes =</span> <span class="fu">str_c</span>(moms, dads, marriage, money, <span class="at">sep =</span> <span class="st">&quot;|&quot;</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li>Modify the code above however you wish to replace themes (e.g., replace “moms” with something else) or add new themes to search for. If you want to add a new subject to search for, copy and paste a line for an existing subject above the <code>themes</code> line, and modify the code like this:
+<ul>
+<li>If your subject is captured by multiple words: <code>YOUR_SUBJECT = ifelse(str_detect(question_only, &quot;WORD1|WORD2|ETC&quot;), &quot;SUBJECT&quot;, &quot;NO SUBJECT&quot;),</code></li>
+<li>If your subject is captured by a single word: <code>YOUR_SUBJECT = ifelse(str_detect(question_only, &quot;WORD&quot;), &quot;SUBJECT&quot;, &quot;NO SUBJECT&quot;),</code></li>
+<li>Try to have no more than 6 subjects—otherwise we’ll have too many themes, which will complicate exploration.</li>
+</ul></li>
+<li>The code below makes a <strong>barplot</strong> of the <code>themes</code> variable using the <code>ggplot2</code> visualization package. <em>Before making the plot</em>, make note of what you expect the plot might look like. (This might be hard–just do your best!) <em>Then</em> compare to what you observe when you run the code chunk to make the plot. (Clearly defining your expectations first is good scientific practice to avoid confirmation bias.)</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># barplot</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(abby, <span class="fu">aes</span>(<span class="at">x =</span> themes)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li>We can follow up on the barplot with a simple numerical summary. Whereas the <code>ggplot2</code> package is great for visualizations, <code>dplyr</code> is great for numerical summaries. The code below constructs a table of the number of questions with each theme. Make sure that these numerical summaries match up with what you saw in the barplot.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct a table of counts</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>abby <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(themes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="a">
+<li>Before proceeding, let’s break down the plotting code above. Run each chunk to see how the two lines of code above build up the plot in “layers”. Add comments (on the lines starting with <code>#</code>) to document what you notice.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(abby, <span class="fu">aes</span>(<span class="at">x =</span> themes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(abby, <span class="fu">aes</span>(<span class="at">x =</span> themes)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(abby, <span class="fu">aes</span>(<span class="at">x =</span> themes)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(abby, <span class="fu">aes</span>(<span class="at">x =</span> themes)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="exercise-5" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
-<p>Imagine that you took all the post-it notes in this room and organized them into a spreadsheet. What would each row in the underlying data set represent? What would each column of the data set represent? Check out the first related reading, linked at the top of this activity, if you need assistance!</p>
-<blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
-</blockquote>
+<section id="exercise-5-exploring-sentiment" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-exploring-sentiment">Exercise 5: Exploring sentiment</h2>
+<p>We’ll look at the distribution of the <code>afinn_overall</code> sentiment variable and associated summary statistics.</p>
+<ol type="a">
+<li>The code below creates a <strong>boxplot</strong> of this variable. In the comment, make note of how this code is simliar to the code for the barplot above. As in the previous exercise, <em>before</em> running the code chunk to create the plot, make note of what you expect the boxplot to look like.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ???</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(abby, <span class="fu">aes</span>(<span class="at">x =</span> afinn_overall)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li><strong>Challenge:</strong> Using the code for the barplot and boxplot as a guide, try to make a <strong>histogram</strong> and a <strong>density</strong> plot of the overall average ratings.
+<ul>
+<li>What information is given by the tallest bar of the histogram?</li>
+<li>How would you describe the shape of the distribution?</li>
+</ul></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li>We can compute summary statistics (numerical summaries) for a quantitative variable using the <code>summary()</code> function or with the <code>summarize()</code> function from the <code>dplyr</code> package. (<code>1st Qu.</code> and <code>3rd Qu.</code> stand for first and third quartile.) After inspecting these summaries, look back to your boxplot, histogram, and density plot. Which plots show which summaries most clearly?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using summary() - convenient for computing many summaries in one command</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Does not show the standard deviation</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(abby<span class="sc">$</span>afinn_overall)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Using summarize() from dplyr</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that we use %&gt;% to pipe the data into the summarize() function</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to use na.rm = TRUE because there are missing values (NAs)</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>abby <span class="sc">%&gt;%</span> </span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">mean</span>(afinn_overall, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">median</span>(afinn_overall, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">sd</span>(afinn_overall, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="a">
+<li>Write a good paragraph describing the information in the histogram (or density plot) by discussing shape, center, spread, and outliers. Incorporate the numerical summaries from part c.</li>
+</ol>
+</section>
+<section id="exercise-6-box-plots-vs.-histograms-vs.-density-plots" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6-box-plots-vs.-histograms-vs.-density-plots">Exercise 6: Box plots vs. histograms vs. density plots</h2>
+<p>We took 3 different approaches to plotting the quantitative average course variable above. They all have pros and cons.</p>
+<ol type="a">
+<li>What is one pro about the boxplot in comparison to the histogram and density plot?</li>
+<li>What is one con about the boxplot in comparison to the histogram and density plots?</li>
+<li>In this example, which plot do you prefer and why?</li>
+</ol>
+</section>
+<section id="exercise-7-explore-outliers" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7-explore-outliers">Exercise 7: Explore outliers</h2>
+<p>Given that Dear Abby column is an advice column, it seems natural that the sentiment of the questions would lean more negative. What’s going on with the questions that have particularly positive sentiments?</p>
+<p>We can use the <code>filter()</code> function in the <code>dplyr</code> package to look at the . Based on the plots of <code>afinn_overall</code> that you made in Exercise 5, pick a threshold for the <code>afinn_overall</code> variable—we’ll say that questions with an overall sentiment score above this threshold are high outliers. Fill in this number where it says <code>YOUR_THRESHOLD</code> below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>abby <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(afinn_overall <span class="sc">&gt;</span> YOUR_THRESHOLD) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(question_only)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What do you notice? Why might these questions have such high sentiment scores?</p>
+</section>
+<section id="exercise-8-returning-to-our-context-looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8-returning-to-our-context-looking-ahead">Exercise 8: Returning to our context, looking ahead</h2>
+<p>In this activity, we explored data on Dear Abby question, with a focus on exploring a single variable at a time.</p>
+<ul>
+<li>In big picture terms, what have we learned about Dear Abby questions?</li>
+<li>What further curiosities do you have about the data?</li>
+</ul>
+</section>
+<section id="exercise-9-different-ways-to-think-about-data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-9-different-ways-to-think-about-data-visualization">Exercise 9: Different ways to think about data visualization</h2>
+<p>In working with and visualizing data, it’s important to keep in mind what a data point <em>represents</em>. It can reflect the experience of a real person. It might reflect the sentiment in a piece of art. It might reflect history. We’ve taken one very narrow and technical approach to data visualization. Check out the following examples, and write some notes about anything you find interesting.</p>
+<ul>
+<li><a href="http://www.dear-data.com/by-week">Dear Data</a></li>
+<li><a href="https://hyperallergic.com/476334/how-w-e-b-du-bois-meticulously-visualized-20th-century-black-america/">W.E.B. DuBois</a></li>
+<li><a href="https://stephanieevergreen.com/decolonizing-data-viz/">Decolonizing Data Viz</a></li>
+<li><a href="http://www.variableprojects.com/#/phase-change/">Phase Change Project (by Prof Kim, Mac research students)</a></li>
+</ul>
+</section>
+<section id="exercise-10-rendering-your-work" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-10-rendering-your-work">Exercise 10: Rendering your work</h2>
+<p>Save this file, and then click the “Render” button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.</p>
+<ul>
+<li>Scroll through and inspect the document to see how your work was translated into this HTML format. Neat!</li>
+<li>Close the browser tab.</li>
+<li>Go to the “Background Jobs” pane in RStudio and click the Stop button to end the rendering process.</li>
+<li>Navigate to your “Activities” subfolder within your “STAT155” folder and locate the HTML file. You can open it again in your browser to double check.</li>
+</ul>
 </section>
 <section id="reflection" class="level2">
 <h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
-<p>In three to four sentences, reflect upon today’s activity. Some reflection prompts are found below:</p>
-<ul>
-<li>Do you think the context in which the data was collected influenced the results you found?</li>
-<li>Who would the numerical summaries you calculated potentially be represented of? Could you generalize the information you learned to a broader population (all students at Mac, perhaps), or would you have ethical concerns with generalizing your results?</li>
-<li>What (if anything) surprised you about the numerical summaries calculated by your group, or other groups?</li>
-<li>Did your data visualization help you better understand, or discover new things about the data that otherwise would have been difficult to distinguish? Why or why not?</li>
-</ul>
+<p>Go to the top of this file and review the learning objectives for this lesson. Which objectives do you have a good handle on, are at least familiar with, or are struggling with? What feels challenging right now? What are some wins from the day?</p>
 <blockquote class="blockquote">
-<p><strong>Response:</strong> Type your response here.</p>
+<p><strong>Response:</strong> Put your response here.</p>
 </blockquote>
+</section>
+</section>
+<section id="additional-practice" class="level1">
+<h1>Additional Practice</h1>
+<p>If you have time and want additional practice, try out the following exercises.</p>
+<section id="exercise-11-read-in-and-get-to-know-the-weather-data" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-11-read-in-and-get-to-know-the-weather-data">Exercise 11: Read in and get to know the weather data</h2>
+<p>Daily weather data are available for 3 locations in Perth, Australia.</p>
+<ul>
+<li>View the codebook <a href="https://github.com/Mac-STAT/data/blob/main/weather_3_locations_codebook.md">here</a>.</li>
+<li>Complete the code below to read in the data.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the ??? with your own name for the weather data</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the ___ with the correct function</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>??? <span class="ot">&lt;-</span> <span class="fu">___</span>(<span class="st">&quot;https://mac-stat.github.io/data/weather_3_locations.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-12-exploring-the-data-structure" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-12-exploring-the-data-structure">Exercise 12: Exploring the data structure</h2>
+<p>Check out the basic features of the weather data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine the first six cases</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the dimensions of the data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What does a case represent in this data?</p>
+</section>
+<section id="exercise-13-exploring-rainfall" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-13-exploring-rainfall">Exercise 13: Exploring rainfall</h2>
+<p>The <code>raintoday</code> variable contains information about rainfall.</p>
+<ul>
+<li>Is this variable quantitative or categorical?</li>
+<li>Create an appropriate visualization, and compute appropriate numerical summaries.</li>
+<li>What do you learn about rainfall in Perth?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Numerical summaries</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-14-exploring-temperature" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-14-exploring-temperature">Exercise 14: Exploring temperature</h2>
+<p>The <code>maxtemp</code> variable contains information on the daily high temperature.</p>
+<ul>
+<li>Is this variable quantitative or categorical?</li>
+<li>Create an appropriate visualization, and compute appropriate numerical summaries.</li>
+<li>What do you learn about high temperatures in Perth?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Numerical summaries</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-15-customizing-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-15-customizing-challenge">Exercise 15: Customizing! (CHALLENGE)</h2>
+<p>Though you will naturally absorb some RStudio code throughout the semester, being an effective statistical thinker and “programmer” does not require that we memorize <em>all</em> code. That would be impossible! In contrast, using the <em>foundation</em> you built today, do some digging online to learn how to customize your visualizations.</p>
+<ol type="a">
+<li>For the histogram below, add a title and more meaningful axis labels. Specifically, title the plot “Distribution of max temperatures in Perth”, change the x-axis label to “Maximum temperature” and y-axis label to “Number of days”. HINT: Do a Google search for something like “add axis labels ggplot”.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a title and axis labels</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(weather, <span class="fu">aes</span>(<span class="at">x =</span> maxtemp)) <span class="sc">+</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li>Adjust the code below in order to color the bars green. NOTE: Color can be an effective tool, but here it is simply gratuitous.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the bars green</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(weather, <span class="fu">aes</span>(<span class="at">x =</span> raintoday)) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li><p>Check out the <code>ggplot2</code> <a href="https://rstudio.github.io/cheatsheets/data-visualization.pdf">cheat sheet</a>. Try making some of the other kinds of univariate plots outlined there.</p></li>
+<li><p>What else would you like to change about your plot? Try it!</p></li>
+</ol>
+<p><br><br><br><br><br><br></p>
+<p><a href="../solutions/02_foundations_univariate.html">Solutions</a></p>
 
-
-<!-- -->
 
 </section>
 </section>
@@ -5236,57 +5500,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
     clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
@@ -5617,132 +5830,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;01. Collecting and Summarizing Data&quot;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> &quot;Notes and in-class exercises&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># Notes</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Welcome to our first in-class activity! Today we will collect and summarize some data. Our goals are to get to know the people in this class and to start working with data.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>By the end of this lesson, you should be able to:</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Define *cases* and *variables*</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Apply the 5 W&#39;s + H (who, what, when, where, why, and how) to data collection</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Links to related reading(s):</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">What is Data?</span><span class="co">](https://mac-stat.github.io/Stat155Notes/what-is-data.html)</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Data Context</span><span class="co">](https://mac-stat.github.io/Stat155Notes/data-context.html)</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>This activity is structured a bit differently than the activities for the remainder of the class. In this section, you&#39;ll typically find a mini-lecture, review material, or guided / structural examples, followed by exercises.</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>For today, you&#39;ll have some steps to follow for an interactive, tactile activity at your tables before working through the exercises below together.</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>At your table, write a one to two word answer to each of the following questions, each on a separate post-it note (do this individually). If there are two questions: write your answer to the first question on the left-hand side of the post-it note, and your answer to the second question on the bottom of the post-it note.</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>How many hours of sleep did you get last night?</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Approximately how far away (in miles) is your hometown from Macalester?</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>What is your declared or potential major? (If you are a double major, just pick whichever one you think of first.)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>What is your anticipated graduation year?</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>How tall are you in inches?</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>How many stats courses have you taken in the past?</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>Have you used R or RStudio before?</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>How many other students in the class do you know?</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">9.  </span>Is it your birthday this semester? (yes/no)</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>How many unread emails do you have in your inbox right now?</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>Designate one person from your table to distribute your group&#39;s answers to the questions to the corresponding &quot;station&quot; around the classroom. Each table should have a number on it, corresponding to the &quot;station&quot;/question.</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>Fill out an <span class="co">[</span><span class="ot">electronic version</span><span class="co">](https://forms.gle/heuboBKmBw3cQDEY6)</span> of these questions. We&#39;ll come back to this in a future class. Wait until everyone in your group is done with this before moving on to the exercises.</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercises</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>You&#39;ll now answer a few questions related to the data collected at your group&#39;s table. Data is *anything* that contains information</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 1</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>With your group, in no more than two sentences per question, respond to the questions posed by the 5 W&#39;s + H for the data at your group&#39;s table. If you need a refresher on the 5 W&#39;s + H, check out the related readings posted at the top of this activity!</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>**Who**</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>**What**</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>**When**</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>**Where**</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>**Why**</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>**How**</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 2</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>Move the post-it notes around to construct a visualization of the responses at your station.</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 3</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>Calculate at least one numerical summary of the post-it note responses at your station, and record your numerical summary in the response text below. Write a complete sentence, not just the numerical summary alone! This is good practice for summarizing data in more formal writing.</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 4</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>In no more than three sentences, describe what you learn about from the visual and numerical summaries. Try to write your description in a way that tells an interesting story about the people in this class.</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 5</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>Imagine that you took all the post-it notes in this room and organized them into a spreadsheet. What would each row in the underlying data set represent? What would each column of the data set represent? Check out the first related reading, linked at the top of this activity, if you need assistance!</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>In three to four sentences, reflect upon today&#39;s activity. Some reflection prompts are found below:</span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Do you think the context in which the data was collected influenced the results you found?</span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Who would the numerical summaries you calculated potentially be represented of? Could you generalize the information you learned to a broader population (all students at Mac, perhaps), or would you have ethical concerns with generalizing your results?</span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What (if anything) surprised you about the numerical summaries calculated by your group, or other groups?</span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Did your data visualization help you better understand, or discover new things about the data that otherwise would have been difficult to distinguish? Why or why not?</span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Response:** Type your response here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

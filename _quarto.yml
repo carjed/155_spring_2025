@@ -6,7 +6,7 @@ project:
     - "!activity_templates/"
     - "!assignments/"
     - "!working/"
-  post-render: "cp -r activities docs/activity_templates"
+  post-render: "cp -r activities docs/activity_templates" # adds activity qmd as downloadable template
   resources:
     - "data/*.csv"
     # - "activity_templates/*.qmd"

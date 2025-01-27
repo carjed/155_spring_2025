@@ -8,6 +8,8 @@ format:
 eval: false # change this to "true" if you want to render a complete .qmd    
 ---
 
+-   Download the `.qmd` file for this activity [here](../activity_templates/02_foundations_univariate.qmd).
+
 # Notes
 
 ## Learning goals

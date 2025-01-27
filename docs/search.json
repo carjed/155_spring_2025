@@ -4,7 +4,7 @@
     "href": "activities/02_foundations_univariate.html",
     "title": "02. Univariate visualization and summaries",
     "section": "",
-    "text": "By the end of this lesson, you should be able to:\n\nDescribe what a case (or unit of analysis) represents in a dataset.\nDescribe what a variable represents in a dataset.\nIdentify whether a variable is categorical or quantitative and what summarizations and visualizations are appropriate for that variable\nWrite R code to read in data and to summarize and visualize a single variable at a time.\nInterpret key features of barplots, boxplots, histograms, and density plots\nDescribe information about the distribution of a quantitative variable using the concepts of shape, center, spread, and outliers\nRelate summary statistics of data to the concepts of shape, center, spread, and outliers\n\n\n\n\nChoose either the reading or the videos to go through before class.\n\nReading: Sections 2.1-2.4, 2.6 in the STAT 155 Notes\nVideos:\n\nUnivariate visualization and summarization (slides)\nR Code for Categorical Visualization and Summarization\nR Code for Quantitative Visualization and Summarization\n\n\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
+    "text": "Download the .qmd file for this activity here.",
     "crumbs": [
       "02. Univariate visualization and summaries"
     ]
@@ -13,8 +13,8 @@
     "objectID": "activities/02_foundations_univariate.html#learning-goals",
     "href": "activities/02_foundations_univariate.html#learning-goals",
     "title": "02. Univariate visualization and summaries",
-    "section": "",
-    "text": "By the end of this lesson, you should be able to:\n\nDescribe what a case (or unit of analysis) represents in a dataset.\nDescribe what a variable represents in a dataset.\nIdentify whether a variable is categorical or quantitative and what summarizations and visualizations are appropriate for that variable\nWrite R code to read in data and to summarize and visualize a single variable at a time.\nInterpret key features of barplots, boxplots, histograms, and density plots\nDescribe information about the distribution of a quantitative variable using the concepts of shape, center, spread, and outliers\nRelate summary statistics of data to the concepts of shape, center, spread, and outliers",
+    "section": "Learning goals",
+    "text": "Learning goals\nBy the end of this lesson, you should be able to:\n\nDescribe what a case (or unit of analysis) represents in a dataset.\nDescribe what a variable represents in a dataset.\nIdentify whether a variable is categorical or quantitative and what summarizations and visualizations are appropriate for that variable\nWrite R code to read in data and to summarize and visualize a single variable at a time.\nInterpret key features of barplots, boxplots, histograms, and density plots\nDescribe information about the distribution of a quantitative variable using the concepts of shape, center, spread, and outliers\nRelate summary statistics of data to the concepts of shape, center, spread, and outliers",
     "crumbs": [
       "02. Univariate visualization and summaries"
     ]
@@ -23,8 +23,8 @@
     "objectID": "activities/02_foundations_univariate.html#readings-and-videos",
     "href": "activities/02_foundations_univariate.html#readings-and-videos",
     "title": "02. Univariate visualization and summaries",
-    "section": "",
-    "text": "Choose either the reading or the videos to go through before class.\n\nReading: Sections 2.1-2.4, 2.6 in the STAT 155 Notes\nVideos:\n\nUnivariate visualization and summarization (slides)\nR Code for Categorical Visualization and Summarization\nR Code for Quantitative Visualization and Summarization\n\n\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
+    "section": "Readings and videos",
+    "text": "Readings and videos\nChoose either the reading or the videos to go through before class.\n\nReading: Sections 2.1-2.4, 2.6 in the STAT 155 Notes\nVideos:\n\nUnivariate visualization and summarization (slides)\nR Code for Categorical Visualization and Summarization\nR Code for Quantitative Visualization and Summarization\n\n\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
     "crumbs": [
       "02. Univariate visualization and summaries"
     ]

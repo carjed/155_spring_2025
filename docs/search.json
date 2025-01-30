@@ -589,5 +589,266 @@
     "title": "Solutions for 02. Univariate visualization and summaries",
     "section": "Exercise 15: Customizing! (CHALLENGE)",
     "text": "Exercise 15: Customizing! (CHALLENGE)\n\n\n\n\nggplot(weather, aes(x = maxtemp)) + \n    geom_histogram() + \n    labs(x = \"Maximum temperature\", y = \"Number of days\", title = \"Distribution of max temperatures in Perth\")\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 34 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n# Make the bars green\nggplot(weather, aes(x = raintoday)) + \n    geom_bar(fill = \"green\")"
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html",
+    "href": "activities/03_slr_introduction.html",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "",
+    "text": "Download the .qmd file for this activity here.",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#learning-goals",
+    "href": "activities/03_slr_introduction.html#learning-goals",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Learning goals",
+    "text": "Learning goals\nBy the end of this lesson, you should be able to:\n\nVisualize and describe the relationship between two quantitative variables using a scatterplot\nDescribe/identify weak / strong, and positive / negative correlation from a point cloud\nDifferentiate between a response / outcome variable and a predictor / explanatory variable\nWrite a model formula and R code for a simple linear regression model with a quantitative predictor\nInterpret the intercept and slope coefficients in a simple linear regression model with a quantitative predictor\nCompute and interpret expected / predicted / fitted values and residuals from a linear regression model formula",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#readings-and-videos",
+    "href": "activities/03_slr_introduction.html#readings-and-videos",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Readings and videos",
+    "text": "Readings and videos\n\nReading: Sections 2.8, 3.1-3.3, 3.6 in the STAT 155 Notes\nVideos:\n\nSummarizing the Relationships between Two Quantitative Variables (Time: 12:12)\nIntroduction to Linear Models (Time: 10:57)\nMethod of Least Squares (Time: 5:10)\nInterpretation of Intercept and Slope (Time: 11:09)\nR Code for Fitting a Linear Model (Time: 11:07)\n\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-1-get-to-know-the-data",
+    "href": "activities/03_slr_introduction.html#exercise-1-get-to-know-the-data",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 1: Get to know the data",
+    "text": "Exercise 1: Get to know the data\n\nCreate a new code chunk by clicking the green “C” button with a green + sign in the top right of the menu bar. In this code chunk, use an appropriate function to look at the first few rows of the data.\nCreate a new code chunk, and use an appropriate function to summarize how much data we have (in terms of number of cases and number of variables).\nWhat does a case represent?\nNavigate to the FAQ page and read the response to the “How does this site work? Do you just download results from the federations?” question. What do you learn about data quality and completeness from this response?",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-2-modifying-our-dataframe",
+    "href": "activities/03_slr_introduction.html#exercise-2-modifying-our-dataframe",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 2: Modifying our dataframe",
+    "text": "Exercise 2: Modifying our dataframe\n\n2a: mutating\nA popular variable of interest in weightlifting is the Strength-to-Weight ratio (SWR), defined as TotalKg/BodyweightKg. We can use the mutate() function from the dplyr package to create a new SWR variable in our dataframe using the following code:\n\n# The %&gt;% is called a \"pipe\" and feeds what comes before it\n# into what comes after (lifts data is \"fed into\" the mutate() function).\n# When creating a new variable, we often reassign the data frame to itself,\n# which updates the existing columns in lifts with the additional \"new\" column(s)\n# in lifts!\nlifts &lt;- lifts %&gt;% \n    mutate(SWR = TotalKg/BodyweightKg)\n\n\n\n2b: filtering\nAnother common task you’ll see in R is “filtering” a dataframe to only contain observations that match some criteria. Here, we’ll filter our dataframe to include only people age 18 or higher from the USA:\n\n# The %&gt;% is called a \"pipe\" and feeds what comes before it\n# into what comes after (lifts data is \"piped into\" the filter() function)\nlifts &lt;- lifts %&gt;% \n    filter(Country == \"USA\", Age&gt;=18)\n\nLet’s look at how many observations are in our new dataframe–how does this compare to the number of observations in the full lifts dataframe that you found in exercise 1b?\n\nnrow(lifts)\n\n\n\n\n\n\n\nReassign to the original dataframe, or create a new one?\n\n\n\n\n\nIn the example above, we are reassigning the lifts dataframe back to itself after applying the filtering/mutating functions (i.e., lifts &lt;- lifts%&gt;% *FUNCTIONS THAT MODIFY THE DATA FRAME*).\nGenerally this is an OK thing to do, but you want to be sure that you don’t remove or replace information in the original dataframe that you might need later. For example, if we update the lifts dataframe to remove non-USA observations, but later we realize we do want to analyze those observations, we will need to go back to reload the raw data and start over.\nAn alternative when using these functions is to assign the output to a dataframe with a different name. For example, we could assign our filtered data to a dataframe named lifts_usa instead, preserving the original lifts dataframe if we need to go back to it.\nThe only catch is that if you create too many dataframes, R may eventually run out of memory and crash (though this shouldn’t be a concern with the size of datasets we are typically working with).",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-3-get-to-know-the-outcomeresponse-variable",
+    "href": "activities/03_slr_introduction.html#exercise-3-get-to-know-the-outcomeresponse-variable",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 3: Get to know the outcome/response variable",
+    "text": "Exercise 3: Get to know the outcome/response variable\nLet’s get acquainted with the SWR variable.\n\nCreate a new code chunk and use ggplot to construct an appropriate plot to visualize the distribution of this variable\nCreate a new code chunk and compute at least two appropriate numerical summaries for the SWR variable.\nWrite a brief paragraph interpreting the plot and numerical summaries.",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-4-data-visualization---two-quantitative-variables",
+    "href": "activities/03_slr_introduction.html#exercise-4-data-visualization---two-quantitative-variables",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 4: Data visualization - two quantitative variables",
+    "text": "Exercise 4: Data visualization - two quantitative variables\nWe’d like to visualize the relationship between body weight and the strength-to-weight ratio. A scatterplot (or informally, a “point cloud”) allows us to do this! The code below creates a scatterplot of body weight vs. SWR using ggplot().\n\n# scatterplot\n\n# The alpha = 0.5 in geom_point() adds transparency to the points\n# to make them easier to see. You can decrease this value to make points\n# more transparent, and increase it to make them more opaque\nlifts %&gt;%\n  ggplot(aes(x = BodyweightKg, y = SWR)) +\n  geom_point(alpha = 0.5)\n\n\nThis is your first bivariate data visualization (visualization for two variables)! What differences do you notice in the code structure when creating a bivariate visualization, compared to univariate visualizations we’ve worked with before?\nWhat similarities do you notice in the code structure?\nDoes there appear to be some sort of pattern in the structure of the point cloud? Describe it, in no more than three sentences! Comment on the direction of the relationship between the two variables (positive? negative?) and the spread of the points (are they dispersed? close together?).",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-5-scatterplots---patterns-in-point-clouds",
+    "href": "activities/03_slr_introduction.html#exercise-5-scatterplots---patterns-in-point-clouds",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 5: Scatterplots - patterns in point clouds",
+    "text": "Exercise 5: Scatterplots - patterns in point clouds\nSometimes, it can be easier to see a pattern in a point cloud by adding a smoothing line to our scatterplots. We can accomplish this by adding another layer to the code in Exercise 4:\n\n# scatterplot with smoothing line\nlifts %&gt;%\n  ggplot(aes(x = BodyweightKg, y = SWR)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth()\n\n\nLook back at your answer to Exercise 4 (c). Does the smoothing line assist you in seeing a pattern, or change your answer at all? Why or why not?\nBased on the scatterplot with the smoothing line added above, does there appear to be a linear relationship between body weight and SWR (i.e. would a straight line do a decent job at summarizing the relationship between these two variables)? Why or why not?",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-6-correlation",
+    "href": "activities/03_slr_introduction.html#exercise-6-correlation",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 6: Correlation",
+    "text": "Exercise 6: Correlation\nWe can quantify the linear relationship between two quantitative variables using a numerical summary known as correlation (sometimes known as a “correlation coefficient” or “Pearson’s correlation”). Correlation can range from -1 to 1, where a correlation of 0 indicates that there is no linear relationship between the two quantitative variables.\nBelow is an example of a “Math Box”. You’ll see these occasionally throughout the activities. You are not required to memorize, nor will you be assessed on, anything in the math boxes. If you plan on continuing with Statistics courses at Macalester (or are interested in the math behind everything!), these math boxes are for you!\n\n\n\n\n\n\nCorrelation\n\n\n\n\n\nThe Pearson correlation coefficient, \\(r_{x, y}\\), of \\(x\\) and \\(y\\) is the (almost) average of products of the z-scores of variables \\(x\\) and \\(y\\):\n\\[\nr_{x, y} = \\frac{\\sum z_x z_y}{n - 1}\n\\]\n\n\n\nIn general, we will want to be able to describe (qualitatively) two aspects of correlation:\n\nStrength\n\n\nIs the correlation between x and y strong, or weak, i.e. how closely do the points fit around a line? This has to do with how dispersed our point clouds are.\n\n\nDirection\n\n\nIs the correlation between x and y positive or negative, i.e. does y go “up” when x goes “up” [positive], or does y go “down” when x goes “up” (or vice versa) [negative]?\n\nStronger correlations will be further from 0 (closer to -1 or 1), and positive and negative correlations will have the appropriate respective sign (above or below zero).\n\nIn addition to a smooth trend line, we can add a linear trendline using geom_smooth(method = 'lm'), as below:\n\n\n# scatterplot with linear trend line\nlifts %&gt;%\n  ggplot(aes(x = BodyweightKg, y = SWR)) +\n  geom_point(alpha = 0.5) +\n    geom_smooth(method = \"lm\", color = \"red\", se = FALSE) +\n    geom_smooth(color = \"blue\", se = FALSE)\n\n\nBased on the above scatterplot, how would you describe the correlation between body weight and SWR, in terms of strength and direction?\nMake a guess as to what numerical value the correlation between body weight and SWR will have, based on your response to part (b).",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-7-computing-correlation-in-r",
+    "href": "activities/03_slr_introduction.html#exercise-7-computing-correlation-in-r",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 7: Computing correlation in R",
+    "text": "Exercise 7: Computing correlation in R\nWe can compute the correlation between body weight and SWR using summarize and cor functions:\n\n# correlation\n\n# Note: the order in which you put your two quantitative variables into the cor\n# function doesn't matter! Try switching them around to confirm this for yourself\n# Because of the missing data, we need to include the use = \"complete.obs\" - otherwise the correlation would be computed as NA\nlifts %&gt;%\n    summarize(cor(SWR, BodyweightKg, use = \"complete.obs\"))\n\nIs the computed correlation close to what you guessed in Exercise 6 part (c)?",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-8-model-fitting-and-coefficient-interpretation",
+    "href": "activities/03_slr_introduction.html#exercise-8-model-fitting-and-coefficient-interpretation",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 8: Model fitting and coefficient interpretation",
+    "text": "Exercise 8: Model fitting and coefficient interpretation\nLet’s fit a simple linear regression model and examine the results. Step through the code chunks slowly, and make note of new code.\n\n# Construct and save the model as lifts_mod\n# the lm() function has two required arguments:\n#  - What's the purpose of \"SWR ~ BodyweightKg\"?\n#  - What's the purpose of \"data = lifts\"?\nlifts_mod &lt;- lm(SWR ~ BodyweightKg, data = lifts)\n\n\n# The summary() function gives us a detailed glance at the model stored in lifts_mod\nsummary(lifts_mod)\n\n\n# A simplified model summary of just the coefficients\ncoef(summary(lifts_mod))\n\n\nUsing the model summary output, complete the following model formula:\nE[SWR | BodyweightKg] = ___ + ___ * BodyweightKg\nInterpret the intercept in terms of the data context. Make sure to use non-causal language, include units, and talk about averages rather than individual cases. Is the intercept meaningful in this situation?\nInterpret the slope in terms of the data context. Make sure to use non-causal language, include units, and talk about averages rather than individual cases.",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-9-predictions-and-residuals",
+    "href": "activities/03_slr_introduction.html#exercise-9-predictions-and-residuals",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 9: Predictions and residuals",
+    "text": "Exercise 9: Predictions and residuals\nLet’s look at how well our model does at predicting the strength-weight ratio for a lifter named “Chris Della Fave.” We can get the relevant observed data for Della Fave using the filter() and select() dplyr functions. Note–but don’t worry about–the syntax for the select() function, we haven’t learned this yet:\n\nlifts %&gt;% \n    filter(Name == \"Chris Della Fave\") %&gt;% \n    select(BodyweightKg, SWR) \n\n\nPeek back at the scatterplot you made in exercise 6a. Identify which point corresponds to this lifter. Is it close to the trend? Is their SWR higher or lower than expected?\nUse your model formula from the previous exercise to find what our model predicts Della Fave’s SWR should be, based on his body weight. (That is, where do individuals with similar body weight fall on the model trend line? What SWR should would we expect from a 118.4kg lifter?)\nCheck your part b calculation using the predict() function. Take careful note of the syntax – there’s a lot going on!\n\n\n# What is the purpose of newdata = ___???\npredict(lifts_mod, newdata = data.frame(BodyweightKg = 118.39))\n\n\nCalculate the residual or prediction error. How far does Della Fave’s observed SWR fall from the model prediction?\nresidual = observed y - predicted y = ???\nAre positive residuals above or below the trend line? When we have positive residuals, does the model over- or under-estimate SWR? Repeat these questions for negative residuals.",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-10-lines-of-best-fit",
+    "href": "activities/03_slr_introduction.html#exercise-10-lines-of-best-fit",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 10: Lines of best fit",
+    "text": "Exercise 10: Lines of best fit\nIn this activity, we’ve learned how to fit straight lines to data, to help us visualize the relationship between two quantitative variables. So far, ggplot has chosen the line for us. How does it know which line is “best”, and what does “best” even mean?\nFor this exercise, we’ll be working with the anscombe dataset, which is built in to R. To load this dataset into our environment, we run the following code:\n\n# load anscombe data\ndata(\"anscombe\")\n\nWe’ll consider the relationship between the x1 and y1 variables in the anscombe dataset. Run the following code, which creates a scatterplot with a fitted line to our data using the function geom_abline:\n\n# scatterplot with a fitted line, whose slope is 0.4 and intercept is 3\nanscombe %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_point() +\n  geom_abline(slope = 0.4, intercept = 3, col = \"blue\", size = 1)\n\nDescribe the line that you see. Do you think the line is “good”? What are you using to define “good”?\nSome things to think about:\n\nHow many points are above the line?\nHow many points are below the line?\nAre the distances of the points above and below the line roughly similar, or is there meaningful difference?\n\nNow we’ll add another line to our plot. Which line do you think is better suited for this data? Why? Be specific!\n\n# scatterplot with a fitted line, whose slope is 0.4 and intercept is 3\nanscombe %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_point() +\n  geom_abline(slope = 0.4, intercept = 3, col = \"blue\", size = 1) +\n  geom_abline(slope = 0.5, intercept = 4, col = \"orange\", size = 1)\n\nIt’s usually quite simple to note when a line is bad, but more difficult to quantify when a line is a good fit for our data. Consider the following line:\n\n# scatterplot with a fitted line, whose slope is 0.4 and intercept is 3\nanscombe %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_point() +\n  geom_abline(slope = -0.5, intercept = 10, col = \"red\", size = 1) \n\nIn the reading/videos for today, we formalized the principle of least squares, which gives us one particular definition of a line of best fit that is commonly used in statistics! We’ll take advantage of the vertical distances between each point and the fitted line (residuals), which will help us define (mathematically) a line that best fits our data:\n\nlibrary(broom)\nanscombe %&gt;%\n  lm(y1 ~ x1, data = .) %&gt;%\n  augment() %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  geom_segment(aes(xend = x1, yend = .fitted), col = \"red\") +\n  geom_point()",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-11-data-drills-filter-select-summarize",
+    "href": "activities/03_slr_introduction.html#exercise-11-data-drills-filter-select-summarize",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 11: Data drills (filter, select, summarize)",
+    "text": "Exercise 11: Data drills (filter, select, summarize)\nThis exercise is designed to help you keep building your dplyr skills. These skills are important to data cleaning and digging, which in turn is important to really making meaning of our data. We’ll work with a simpler set of 10 data points:\n\nnew_lifts &lt;- lifts %&gt;% \n    select(Name, State, Sex, Age, BodyweightKg, SWR) %&gt;% \n    head(10)\n\n\nVerb 1: summarize\nThus far, in the dplyr grammar you’ve seen 3 verbs or action words: summarize(), select(), filter(). Try out the following code and then summarize the point of the summarize() function:\n\nnew_lifts %&gt;% \n    summarize(mean_bodyweight = mean(BodyweightKg, na.rm=T),\n              mean_SWR = mean(SWR, na.rm=T))\n\n\n\nVerb 2: select\nTry out the following code and then summarize the point of the select() function:\n\nnew_lifts %&gt;%\n    select(Name, State)\n\n\nnew_lifts %&gt;% \n    select(-Name, -State)\n\n\n\nVerb 3: filter\nTry out the following code and then summarize the point of the filter() function:\n\nnew_lifts %&gt;% \n    filter(Age &gt;=28)\n\n\nnew_lifts %&gt;% \n    filter(State == \"CA\")\n\n\nnew_lifts %&gt;% \n    filter(Age &gt;= 28, State==\"CA\")\n\nUse dplyr verbs to complete each task below using the new_lifts dataframe.\n\n# Keep only Bodyweight and SWR variables\n\n# Keep only Bodyweight and SWR variables using a different approach\n\n# Keep only participants (observations) who are female\n\n# Keep only participants (observations) who are female and younger than 30\n\n# Calculate the maximum and minimum ages of participants",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-12-limitations-of-correlation",
+    "href": "activities/03_slr_introduction.html#exercise-12-limitations-of-correlation",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 12: Limitations of correlation",
+    "text": "Exercise 12: Limitations of correlation\nWe previously noted that correlation was a numerical summary of the linear relationship between two variables. We’ll now go through some examples of relationships between quantitative variables to demonstrate why it is incredibly important to visualize our data in addition to just computing numerical summaries!\nWe’ll retun to the anscombe dataset, which contains four different pairs of quantitative variables:\n\nx1, y1\nx2, y2\nx3, y3\nx4, y4\n\nAdapt the code we used in Exercise 7 to compute the correlation between each of these four pairs of variables, below:\n\n# correlation between x1, y1\n\n# correlation between x2, y2\n\n# correlation between x3, y3\n\n# correlation between x4, y4\n\n\nWhat do you notice about each of these correlations (if the answer to this isn’t obvious, double-check your code)?\nDescribe these correlations in terms of strength and direction, using only the numerical summary to assist you in your description.\nDraw an example on the white board or at your tables of what you think the point clouds for these pairs of variables might look like. There are only 11 observations, so you can draw all 11 points if you’d like!\nAdapt the code for scatterplots given previously in this activity to make four distinct scatterplots for each pair of quantitative variables in the anscombe dataset. You do not need to add a smooth trend line or a linear trend line to these plots.\n\n\n# scatterplot: x1, y1\n\n# scatterplot: x2, y2\n\n# scatterplot: x3, y3\n\n# scatterplot: x4, y4\n\n\nBased on the correlations you calculated and scatterplots you made, what is the message of this last exercise as it relates to the limits of correlation?",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-13-correlation-and-extreme-values",
+    "href": "activities/03_slr_introduction.html#exercise-13-correlation-and-extreme-values",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 13: Correlation and extreme values",
+    "text": "Exercise 13: Correlation and extreme values\nIn this exercise, we’ll explore how correlation changes with the addition of extreme values, or observations. We’ll begin by generating a simulated dataset called dat with two quantitative variables, x and y. Run the code below to create the dataset.\nwhile not required, recall that you can look up function documentation in R using the ? in front of a function name to figure out what that function is doing!\n\n# create a toy dataset\nset.seed(1234)\nx &lt;- rnorm(100, mean = 5, sd = 2)\ny &lt;- -3 * x + rnorm(100, sd = 4)\ndat &lt;- data.frame(x = x, y = y)\n\n\nMake a scatterplot of x vs. y.\n\n\n# scatterplot\n\n\nBased on your scatterplot, describe the correlation between x and y in terms of strength and direction.\nGuess the correlation (the numerical value) between x and y.\nCompute the correlation between x and y. Was your guess from part (c) close?\n\n\n# correlation\n\n\nSuppose we observe an additional observation with x = 15 and y = -45. We can create a new data frame, dat_new1, that contains this observation in addition to the original ones as follows:\n\n\n# creating dat_new1\nx1 &lt;- c(x, 15)\ny1 &lt;- c(y, -45)\ndat_new1 &lt;- data.frame(x = x1, y = y1)\n\n\nMake a scatterplot of x vs. y for this new data frame, and compute the correlation between x and y. Did your correlation change very much with the addition of this observation? Hypothesize why or why not.\n\n\n# scatterplot\n\n# correlation\n\n\nSuppose instead of our additional observation having values x = 15 and y = -45, we instead observe x = 15 and y = -15. We can create a new data frame, dat_new2, that contains this observation in addition to the original ones as follows:\n\n\n# creating dat_new1\nx2 &lt;- c(x, 15)\ny2 &lt;- c(y, 45)\ndat_new2 &lt;- data.frame(x = x2, y = y2)\n\n\nMake a scatterplot of x vs. y for this new data frame, and compute the correlation between x and y. Did your correlation change very much with the addition of this observation? Hypothesize why or why not.\n\n\n# scatterplot\n\n# correlation\n\n\nWhat do you think the takeaway message is of this exercise?\n\n\n\nChallenge Add linear trend lines to your scatterplots from parts (f) and (h). Does this give you any additional insight into why the correlations may have changed in different ways with the addition of a new observation?",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#reflection",
+    "href": "activities/03_slr_introduction.html#reflection",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Reflection",
+    "text": "Reflection\nMuch of statistics is about making (hopefully) reasonable assumptions in attempt to summarize observed relationships in data. Today we started considering assumptions of linear relationships between quantitative variables.\nReview the learning objectives at the top of this file and today’s activity. How do you imagine assumptions of linearity might be useful in terms of quantifying relationships between quantitative variables? How do you imagine these assumptions could sometimes fall short, or even be unethical in certain cases?\n\nResponse: Put your response here.\n\n\nSolutions",
+    "crumbs": [
+      "03/04. Introduction to simple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-1-get-to-know-the-data-1",
+    "href": "activities/03_slr_introduction.html#exercise-1-get-to-know-the-data-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 1: Get to know the data",
+    "text": "Exercise 1: Get to know the data\n\nUse an appropriate function to look at the first few rows of the data.\n\n\nhead(lifts)\n\n\nCreate a new code chunk, and use an appropriate function to learn how much data we have (in terms of cases and variables).\n\n\ndim(lifts)\n\n\nA case represents an individual lifter at a single weightlifting competition.\nIt looks like some meets may be missing if they weren’t detected by the web scraper used by the maintainers of the Open Powerlifting database. They don’t describe in detail the process used for transferring PDFs of results to their database, so it’s unclear what errors in transcription might have resulted. Still, it’s worth taking a moment to appreciate the labor they put into making these results available for passionate powerlifters to explore."
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-2-modifying-our-data",
+    "href": "activities/03_slr_introduction.html#exercise-2-modifying-our-data",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 2: Modifying our data",
+    "text": "Exercise 2: Modifying our data\nStrength-to-weight ratio (SWR) is defined as TotalKg/BodyweightKg. We can use the mutate() function from the dplyr package to create a new variable in our dataframe for SWR using the following code:\n\nlifts &lt;- lifts %&gt;% \n    mutate(SWR = TotalKg / BodyweightKg)\n\nAdapt the example above to create a new variable called SWR, where SWR is defined as TotalKg/BodyweightKg."
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-3-get-to-know-the-outcomeresponse-variable-1",
+    "href": "activities/03_slr_introduction.html#exercise-3-get-to-know-the-outcomeresponse-variable-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 3: Get to know the outcome/response variable",
+    "text": "Exercise 3: Get to know the outcome/response variable\nLet’s get acquainted with the SWR variable.\n\nConstruct an appropriate plot to visualize the distribution of this variable, and compute appropriate numerical summaries.\n\n\nlifts %&gt;%\n  ggplot(aes(SWR)) +\n  geom_histogram(bins = 10, col = \"black\")\n\nlifts %&gt;% summarize(mean(SWR, na.rm = TRUE), min(SWR, na.rm = TRUE), max(SWR, na.rm = TRUE), sd(SWR, na.rm = TRUE))\n\n\nWrite a good paragraph interpreting the plot and numerical summaries.\n\nStrength-to-weight (SWR) ratio ranges from 0.18 to 12.46, with a mean SWR of 4.4. SWR varies about 2.08 units above and below the mean. We observe that most SWRs appear to be centered between 4 and 7, with a slight right-skew to the data. The distribution of SWRs appears to be unimodal."
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-4-data-visualization---two-quantitative-variables-1",
+    "href": "activities/03_slr_introduction.html#exercise-4-data-visualization---two-quantitative-variables-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 4: Data visualization - two quantitative variables",
+    "text": "Exercise 4: Data visualization - two quantitative variables\nWe’d like to visualize the relationship between body weight and the strength-to-weight ratio. A scatterplot (or informally, a “point cloud”) allows us to do this! The code below creates a scatterplot of body weight vs. SWR using ggplot().\n\n# scatterplot\n\n# The alpha = 0.5 in geom_point() adds transparency to the points\n# to make them easier to see. You can make this smaller for more transparency\nlifts %&gt;%\n  ggplot(aes(x = BodyweightKg, y = SWR)) +\n  geom_point(alpha = 0.5)\n\na & b. In our plot aesthetics, we now have two variables listed (an “x” and a “y”) as opposed to just a single variable. The “geom” for a scatterplot is geom_point. Otherwise, the code structure remains very similar!\n\nIn general, it seems as though higher body weights are associated with lower SWRs. Once body weight (in kg) is greater than 50, the relationship between body weight and SWR appears to be weakly negative, and roughly linear. The points are very dispersed, indicating that there is a good amount of variation in this relationship (hence the term “weak”)."
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-5-scatterplots---patterns-in-point-clouds-1",
+    "href": "activities/03_slr_introduction.html#exercise-5-scatterplots---patterns-in-point-clouds-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 5: Scatterplots - patterns in point clouds",
+    "text": "Exercise 5: Scatterplots - patterns in point clouds\nSometimes, it can be easier to see a pattern in a point cloud by adding a smoothing line to our scatterplots. The code below adapts the code in Exercise 4 to do this:\n\n# scatterplot with smoothing line\nlifts %&gt;%\n  ggplot(aes(x = BodyweightKg, y = SWR)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth()\n\n\nThis doesn’t change my answer much (but it may have changed yours, and that’s okay!). It does appear as though there is a weakly negative relationship between body weight and SWR, particularly once body weight is above a certain value.\nI would say that yes, a linear relationship here seems reasonable! Even though there is some curvature in the smoothed trend line early on, that is based on very few data points. Those data points with low body weights aren’t enough to convince me that the relationship couldn’t be roughly linear between body weight and SWR."
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-6-correlation-1",
+    "href": "activities/03_slr_introduction.html#exercise-6-correlation-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 6: Correlation",
+    "text": "Exercise 6: Correlation\n\nI would describe the correlation between body weight and SWR as weak and negative.\nI’ll guess -0.1, since the line is negative, and the points are very dispersed around the line!"
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-7-computing-correlation-in-r-1",
+    "href": "activities/03_slr_introduction.html#exercise-7-computing-correlation-in-r-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 7: Computing correlation in R",
+    "text": "Exercise 7: Computing correlation in R\n\n# correlation\n\n# Note: the order in which you put your two quantitative variables into the cor\n# function doesn't matter! Try switching them around to confirm this for yourself\n# Because of the missing data, we need to include the use = \"complete.obs\" - otherwise the correlation would be computed as NA\nlifts %&gt;%\n    summarize(cor(SWR, BodyweightKg, use = \"complete.obs\"))\n\nSo close to our guess!"
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-8-model-fitting-and-coefficient-interpretation-1",
+    "href": "activities/03_slr_introduction.html#exercise-8-model-fitting-and-coefficient-interpretation-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 8: Model fitting and coefficient interpretation",
+    "text": "Exercise 8: Model fitting and coefficient interpretation\nLet’s fit a simple linear regression model and examine the results. Step through the code chunks slowly, and make note of new code.\n\n# Construct and save the model as lifts_mod\n# the lm() function has two required arguments:\n#  - What's the purpose of \"SWR ~ BodyweightKg\"?\n#  - What's the purpose of \"data = lifts\"?\nlifts_mod &lt;- lm(SWR ~ BodyweightKg, data = lifts)\n\n\n# The summary() function gives us a detailed glance at the model stored in lifts_mod\nsummary(lifts_mod)\n\n\n# A simplified model summary of just the coefficients\ncoef(summary(lifts_mod))\n\n\nUsing the model summary output, complete the following model formula:\nE[SWR | BodyweightKg] = 5.875 + -0.0097 * BodyweightKg\nInterpret the intercept in terms of the data context. Make sure to use non-causal language, include units, and talk about averages rather than individual cases. Is the intercept meaningful in this situation?\n\n\nThe intercept means that on average, we expect n individual with a bodyweight of 0Kg to have a SWR of 5.875. This is not meaningful because a bodyweight of 0Kg is not possible!\n\n\nInterpret the slope in terms of the data context. Make sure to use non-causal language, include units, and talk about averages rather than individual cases.\n\n\nThe slope coefficient tells us that on average, we expect that a lifter’s SWR decreases by 0.0097 per 1Kg increase in bodyweight–so generally, we find that people in this particular dataset (i.e., competitive weightlifters) who weigh less tend to have a higher SWR."
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-9-predictions-and-residuals-1",
+    "href": "activities/03_slr_introduction.html#exercise-9-predictions-and-residuals-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 9: Predictions and residuals",
+    "text": "Exercise 9: Predictions and residuals\nLet’s look at how well our model does at predicting the strength-weight ratio for a lifter named “Chris Della Fave.” We can get the relevant observed data for Della Fave using the filter() and select() dplyr functions. Note–but don’t worry about–the syntax for the select() function, we haven’t learned this yet:\n\nlifts %&gt;% \n    filter(Name == \"Chris Della Fave\") %&gt;% \n    select(BodyweightKg, SWR) \n\n\nPeek back at the scatterplot you made in exercise 6a. Identify which point corresponds to this lifter. Is it close to the trend? Is their SWR higher or lower than expected?\n\n\nThe observed SWR for Della Fave is much higher than the trendline\n\n\nUse your model formula from the previous exercise to find what our model predicts Della Fave’s SWR should be, based on his body weight. (That is, where do individuals with similar body weight fall on the model trend line? What SWR should would we expect from a 118.4kg lifter?)\n\n\n5.875 + -0.0097 *118.4 = 4.73 The predicted SWR is much lower than the observed\n\n\nCheck your part b calculation using the predict() function. Take careful note of the syntax – there’s a lot going on!\n\n\n# What is the purpose of newdata = ___???\npredict(lifts_mod, newdata = data.frame(BodyweightKg = 118.39))\n\n\nCalculate the residual or prediction error. How far does Della Fave’s observed SWR fall from the model prediction?\n\n\nresidual = observed y - predicted y = 10.98-4.73 = 6.25\n\n\nAre positive residuals above or below the trend line? When we have positive residuals, does the model over- or under-estimate SWR? Repeat these questions for negative residuals.\n\n\npositive residual = above the trendline, so the model has UNDERestimated SWR in this case.\n\n\nnegative residual = below the trendline, so when this occurs, the model has OVERestimated SWR."
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-10-lines-of-best-fit-1",
+    "href": "activities/03_slr_introduction.html#exercise-10-lines-of-best-fit-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 10: Lines of best fit",
+    "text": "Exercise 10: Lines of best fit\nIn this activity, we’ve learned how to fit straight lines to data, to help us visualize the relationship between two quantitative variables. So far, ggplot has chosen the line for us. How does it know which line is “best”, and what does “best” even mean?\nFor this exercise, we’ll be working with the anscombe dataset, which is built in to R. To load this dataset into our environment, we run the following code:\n\n# load anscombe data\ndata(\"anscombe\")\n\nWe’ll consider the relationship between the x1 and y1 variables in the anscombe dataset. Run the following code, which creates a scatterplot with a fitted line to our data using the function geom_abline:\n\n# scatterplot with a fitted line, whose slope is 0.4 and intercept is 3\nanscombe %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_point() +\n  geom_abline(slope = 0.4, intercept = 3, col = \"blue\", size = 1)\n\nDescribe the line that you see. Do you think the line is “good”? What are you using to define “good”?\nSome things to think about:\n\nHow many points are above the line?\nHow many points are below the line?\nAre the distances of the points above and below the line roughly similar, or is there meaningful difference?\n\nNow we’ll add another line to our plot. Which line do you think is better suited for this data? Why? Be specific!\n\n# scatterplot with a fitted line, whose slope is 0.4 and intercept is 3\nanscombe %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_point() +\n  geom_abline(slope = 0.4, intercept = 3, col = \"blue\", size = 1) +\n  geom_abline(slope = 0.5, intercept = 4, col = \"orange\", size = 1)\n\nIt’s usually quite simple to note when a line is bad, but more difficult to quantify when a line is a good fit for our data. Consider the following line:\n\n# scatterplot with a fitted line, whose slope is 0.4 and intercept is 3\nanscombe %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_point() +\n  geom_abline(slope = -0.5, intercept = 10, col = \"red\", size = 1) \n\nIn the reading/videos for today, we formalized the principle of least squares, which gives us one particular definition of a line of best fit that is commonly used in statistics! We’ll take advantage of the vertical distances between each point and the fitted line (residuals), which will help us define (mathematically) a line that best fits our data:\n\nlibrary(broom)\nanscombe %&gt;%\n  lm(y1 ~ x1, data = .) %&gt;%\n  augment() %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  geom_segment(aes(xend = x1, yend = .fitted), col = \"red\") +\n  geom_point()"
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-11-data-drills-filter-select-summarize-1",
+    "href": "activities/03_slr_introduction.html#exercise-11-data-drills-filter-select-summarize-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 11: Data drills (filter, select, summarize)",
+    "text": "Exercise 11: Data drills (filter, select, summarize)\nThis exercise is designed to help you keep building your dplyr skills. These skills are important to data cleaning and digging, which in turn is important to really making meaning of our data. We’ll work with a simpler set of 10 data points:\n\nnew_lifts &lt;- lifts %&gt;% \n    select(Name, State, Sex, Age, BodyweightKg, SWR) %&gt;% \n    head(10)\n\n\nVerb 1: summarize\nThus far, in the dplyr grammar you’ve seen 3 verbs or action words: summarize(), select(), filter(). Try out the following code and then summarize the point of the summarize() function:\n\nnew_lifts %&gt;% \n    summarize(mean_bodyweight = mean(BodyweightKg, na.rm=T),\n              mean_SWR = mean(SWR, na.rm=T))\n\n\n\nVerb 2: select\nTry out the following code and then summarize the point of the select() function:\n\nnew_lifts %&gt;%\n    select(Name, State)\n\n\nnew_lifts %&gt;% \n    select(-Name, -State)\n\n\n\nVerb 3: filter\nTry out the following code and then summarize the point of the filter() function:\n\nnew_lifts %&gt;% \n    filter(Age &gt;=28)\n\n\nnew_lifts %&gt;% \n    filter(State == \"CA\")\n\n\nnew_lifts %&gt;% \n    filter(Age &gt;= 28, State==\"CA\")\n\nUse dplyr verbs to complete each task below using the new_lifts dataframe.\n\n# Keep only BodyweightKg and SWR variables\n\nnew_lifts %&gt;%\n  select(BodyweightKg, SWR)\n\n# Keep only BodyweightKg and SWR variables using a different approach\nnew_lifts %&gt;%\n  select(-Name, -State, -Age, -Sex)\n\n# Keep only participants (observations) who are female\nnew_lifts %&gt;%\n  filter(Sex==\"F\")\n\n# Keep only participants (observations) who are female and younger than 30\nnew_lifts %&gt;%\n  filter(Sex==\"F\", Age&lt;30)\n\n# Calculate the maximum and minimum ages of participants\nnew_lifts %&gt;%\n  summarise(age_min = min(Age, na.rm=T),\n            age_max = max(Age, na.rm=T))"
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-12-limitations-of-correlation-1",
+    "href": "activities/03_slr_introduction.html#exercise-12-limitations-of-correlation-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 12: Limitations of correlation",
+    "text": "Exercise 12: Limitations of correlation\n\n# correlation between x1, y1\nanscombe %&gt;% summarize(cor(x1, y1))\n\n# correlation between x2, y2\nanscombe %&gt;% summarize(cor(x2, y2))\n\n# correlation between x3, y3\nanscombe %&gt;% summarize(cor(x3, y3))\n\n# correlation between x4, y4\nanscombe %&gt;% summarize(cor(x4, y4))\n\n\nEach of these correlations are nearly the same!\nEach of these correlations is relatively strong, and positive, since 0.8 is positive and closer to 1 than 0.\n\n\n\n# scatterplot: x1, y1\nanscombe %&gt;%\n  ggplot(aes(x = x1, y = y1)) +\n  geom_point()\n\n# scatterplot: x2, y2\nanscombe %&gt;%\n  ggplot(aes(x = x2, y = y2)) +\n  geom_point()\n\n# scatterplot: x3, y3\nanscombe %&gt;%\n  ggplot(aes(x = x3, y = y3)) +\n  geom_point()\n\n# scatterplot: x4, y4\nanscombe %&gt;%\n  ggplot(aes(x = x4, y = y4)) +\n  geom_point()\n\n\nThe message of this exercise is that data visualization is important in addition to numerical summaries! Many different sets of points can have nearly the same correlation, but display very different patterns in point clouds upon closer inspection. Reporting correlation alone is not enough to summarize the relationship between two quantitative variables, and should be accompanied by a scatter plot!"
+  },
+  {
+    "objectID": "activities/03_slr_introduction.html#exercise-13-correlation-and-extreme-values-1",
+    "href": "activities/03_slr_introduction.html#exercise-13-correlation-and-extreme-values-1",
+    "title": "03/04. Introduction to simple linear regression",
+    "section": "Exercise 13: Correlation and extreme values",
+    "text": "Exercise 13: Correlation and extreme values\n\n# create a toy dataset\nset.seed(1234)\nx &lt;- rnorm(100, mean = 5, sd = 2)\ny &lt;- -3 * x + rnorm(100, sd = 4)\ndat &lt;- data.frame(x = x, y = y)\n\n\n\n\n\n# scatterplot\ndat %&gt;% \n  ggplot(aes(x = x, y = y)) +\n  geom_point()\n\n\nThe correlation between x and y is moderately strong and negative.\nI’ll guess -0.6, since the relationship is negative and is sort of in-between weak and strong.\n\n\n\n# correlation\ndat %&gt;% summarize(cor(x, y))\n\n\n\n\n\n# creating dat_new1\nx1 &lt;- c(x, 15)\ny1 &lt;- c(y, -45)\ndat_new1 &lt;- data.frame(x = x1, y = y1)\n\n\n\n\n\n# scatterplot\ndat_new1 %&gt;%\n  ggplot(aes(x1, y1)) +\n  geom_point()\n\n# correlation\ndat %&gt;% summarize(cor(x1, y1))\n\nOur correlation stayed roughly the same with the addition of this new point!\n\n\n\n\n# creating dat_new1\nx2 &lt;- c(x, 15)\ny2 &lt;- c(y, 45)\ndat_new2 &lt;- data.frame(x = x2, y = y2)\n\n\n\n\n\n# scatterplot\ndat_new2 %&gt;%\n  ggplot(aes(x2, y2)) +\n  geom_point()\n\n# correlation\ndat_new2 %&gt;% summarize(cor(x2, y2))\n\nThe correlation changes quite a bit with the addition of this new point! Something to note is that this new point does not follow the rough linear trend that the original points had, that the first point we considered adding also had. This line seems way off base, comparatively!\n\nThe takeaway message here is that even though both of these additional points might be considered “outliers” because they have extreme x values, one changes the relationship between x and y much more than the other. In this case, the second point we considered would be influential because it changes the observed relationship between all x’s and y’s much more than the first point we considered. Not all “outliers” are considered equal!\n\n\n\n\n\ndat_new1 %&gt;%\n  ggplot(aes(x1, y1)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)\n\ndat_new2 %&gt;%\n  ggplot(aes(x2, y2)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n\nSolutions"
   }
 ]

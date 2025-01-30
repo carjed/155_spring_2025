@@ -60,7 +60,7 @@ website:
         # - "activities/06_slr_transformations.qmd"
         # - "activities/05_slr_model_eval.qmd"
         # - "activities/04_slr_formalization.qmd"
-        # - "activities/03_slr_introduction.qmd"
+        - "activities/03_slr_introduction.qmd"
         - "activities/02_foundations_univariate.qmd"
         - "activities/01_foundations_welcome.qmd"
   

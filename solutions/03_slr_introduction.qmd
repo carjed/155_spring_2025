@@ -38,7 +38,7 @@ d.  It looks like some meets may be missing if they weren't detected by the web 
 
 Strength-to-weight ratio (SWR) is defined as `TotalKg`/`BodyweightKg`. We can use the `mutate()` function from the `dplyr` package to create a new variable in our dataframe for `SWR` using the following code:
 
-```{r eval=FALSE}
+```{r}
 lifts <- lifts %>% 
     mutate(SWR = TotalKg / BodyweightKg)
 ```

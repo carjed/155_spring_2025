@@ -1,0 +1,203 @@
+---
+title: "Solutions for 05. Simple linear regression: model evaluation"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+---
+
+```{r warning=FALSE, message=FALSE}
+# Load packages and import data
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+bikes <- read_csv("https://mac-stat.github.io/data/bikeshare.csv")
+```
+
+
+## Exercise 1: Is the model correct?
+
+The blue curved trend line shows a clear downward trend around 85 degrees, which contextually makes plenty of sense---extremely hot days would naturally see less riders. Overall the combination of the upward trend and downward trend makes for a curved relationship that is not captured well by a straight line of best fit.
+  
+```{r}
+ggplot(bikes, aes(x = temp_feel, y = riders_registered)) + 
+    geom_point() + 
+    geom_smooth(se = FALSE) +
+    geom_smooth(method = "lm", se = FALSE, color = "red")
+```
+
+    
+    
+   
+## Exercise 2: Fixing the model
+
+The second plot (showing the model *with* squared temperature) follows the natural curve in the trend better.
+
+```{r}
+bikes <- bikes %>% 
+    mutate(temp_feel_squared = temp_feel^2)
+
+# Plot the model WITHOUT squared temperature
+ggplot(bikes, aes(x = temp_feel, y = riders_registered)) + 
+    geom_point() + 
+    geom_smooth(se = FALSE) +
+    geom_smooth(method = "lm", se = FALSE, color = "red")
+# Plot the model WITH squared temperature
+ggplot(bikes, aes(x = temp_feel, y = riders_registered)) + 
+    geom_point() + 
+    geom_smooth(se = FALSE) +
+    geom_smooth(method = "lm", formula = y ~ x + I(x^2), se = FALSE, color = "red")
+```
+
+
+## Exercise 3: Residual plots
+
+The first residual plot (from the model with just a straight line trend) shows a lingering trend in the residuals---the blue curve traces the trend in the residuals, and it does not lie flat on the y = 0 line.
+
+On the other hand, the second residual plot (from the model which uses a squared term to allow for curvature) shows very little trend in the residuals---the blue curve is almost flat on the y = 0 line.
+
+```{r}
+# Fit a linear model
+bike_mod1 <- lm(riders_registered ~ temp_feel, data = bikes)
+# Fit a quadratic model
+bike_mod2 <- lm(riders_registered ~ temp_feel + temp_feel_squared, data = bikes)
+
+# Check out the residual plot for bike_mod1 (the incorrect model)
+ggplot(bike_mod1, aes(x = .fitted, y = .resid)) + 
+    geom_point() + 
+    geom_hline(yintercept = 0) +
+    geom_smooth(se = FALSE)
+
+# Construct the residual plot for bike_mod2 (the good model)
+ggplot(bike_mod2, aes(x = .fitted, y = .resid)) + 
+    geom_point() + 
+    geom_hline(yintercept = 0) +
+    geom_smooth(se = FALSE)
+```
+
+
+
+## Exercise 4: Another example of an incorrect model
+
+```{r}
+# Import the data
+library(fivethirtyeight)
+data(bechdel)
+
+# Get only 1997 movies
+movies_1997 <- bechdel %>% 
+    filter(year == 1997)
+
+# Construct the model
+bechdel_model <- lm(intgross ~ budget, movies_1997)
+```
+
+
+a.
+
+```{r}
+# Scatterplot of earnings and budget with linear and curved trend lines
+ggplot(movies_1997, aes(x = budget, y = intgross)) +
+    geom_point() +
+    geom_smooth(se = FALSE) +
+    geom_smooth(method = "lm", se = FALSE, color = "red")
+
+# Residual plot for bechdel_model
+ggplot(bechdel_model, aes(x = .fitted, y = .resid)) +
+    geom_point() +
+    geom_hline(yintercept = 0) +
+    geom_smooth(se = FALSE)
+```
+
+b. From the scatterplot, we can see that there is one movie that is a massive outlier in both budget and earnings, and this outlier is pulling up the trend line that makes the model for "regular" movies that have budgets and earnings in "normal" ranges.
+
+c. The outlier movie is [Titanic](https://www.imdb.com/title/tt0120338/):
+
+```{r}
+# One of many ways to filter to find the outlier movie!
+movies_1997 %>% 
+    filter(intgross > 2000000000)
+```
+
+
+
+## Exercise 5: Is the model strong? Developing R-squared intuition
+
+The R-squared metric is a way to quantify the strength of a model. It measures how much variation in the outcome/response variable can be explained by the model.
+
+Where does R-squared come from? Well, it turns out that we can **partition the variance** of the observed response values into the variability that's explained by the model (the variance of the predictions) and the variability that's left unexplained by the model (the variance of the residuals):
+
+$$\text{Var(observed) = Var(predicted) + Var(residuals)}$$
+
+"Good" models have residuals that don't deviate far from 0.  So the smaller the variance in the residuals (thus larger the variance in the predictions), the stronger the model. Take a look at the picture below and write a few sentences addressing the following:
+
+- The first row corresponds to the weaker model. We can tell because the points are much more dispersed from the trend line than in the second row. Recall that the correlation metric measures how closely clustered points are about a straight line of best fit, so we would expect the correlation to be lower for the first row than the second row.
+- The variance of the residuals is much lower for the second row---the residuals are *all* quite small. This indicates a stronger model.
+
+![](https://mac-stat.github.io/images/155/rsquared.png)
+
+## Exercise 6: R-squared Interpretations
+
+```{r}
+summary(bike_mod1)
+```
+
+Multiple R-squared: 0.2961
+
+Interpretation: 29.61% of the variation in number of registered riders on any given day can be explained by the variation in temperature (specifically, what temperature it "feels" like it is).
+
+## Exercise 7: Further exploring R-squared
+
+In this exercise, we'll look at data from a synthetic dataset called Anscombe's quartet. Load the data in as follows, and look at the first few rows:
+
+```{r}
+data(anscombe)
+
+# Look at the first few rows
+head(anscombe)
+```
+
+All of these models have close to the same intercept, slope, and R-squared!
+
+```{r}
+anscombe_mod1 <- lm(y1 ~ x1, data = anscombe)
+anscombe_mod2 <- lm(y2 ~ x2, data = anscombe)
+anscombe_mod3 <- lm(y3 ~ x3, data = anscombe)
+anscombe_mod4 <- lm(y4 ~ x4, data = anscombe)
+
+summary(anscombe_mod1)
+summary(anscombe_mod2)
+summary(anscombe_mod3)
+summary(anscombe_mod4)
+```
+
+But when we look at the scatterplots, they all look substantially different, and we would want to approach our modeling differently for each one:
+
+- `x1` and `y1`: A linear model seems appropriate for this data.
+- `x2` and `y2`: The scatterplot is clearly curved---a "linear" regression model with squared terms, for example, would be more appropriate for this data. (We'll talk more about ways to handle nonlinear relationships soon!)
+- `x3` and `y3`: There is a very clear outlier at about `x3 = 13` that we would want to dig into to better understand the context. After that investigation, we might consider removing this outlier and refitting the model.
+- `x4` and `y4`: There is clearly something strange going on with most of the cases having an `x4` value of exactly 8. We would not want to jump straight into modeling. Instead, we should dig deeper to find out more about this data.
+
+```{r}
+ggplot(anscombe, aes(x = x1, y = y1)) +
+    geom_point() + 
+    geom_smooth(method = "lm", color = "red", se = FALSE)
+
+ggplot(anscombe, aes(x = x2, y = y2)) +
+    geom_point() + 
+    geom_smooth(method = "lm", color = "red", se = FALSE)
+
+ggplot(anscombe, aes(x = x3, y = y3)) +
+    geom_point() + 
+    geom_smooth(method = "lm", color = "red", se = FALSE)
+
+ggplot(anscombe, aes(x = x4, y = y4)) +
+    geom_point() + 
+    geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+## Exercises 8 - 11
+
+No solutions for these exercises. These require longer discussions, not discrete answers.

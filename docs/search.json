@@ -418,105 +418,150 @@
     "href": "activities/07_slr_cat_predictor.html",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "",
-    "text": "Download the .qmd file for this activity here."
+    "text": "Download the .qmd file for this activity here.",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#learning-goals",
     "href": "activities/07_slr_cat_predictor.html#learning-goals",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Learning goals",
-    "text": "Learning goals\nBy the end of this lesson, you should be able to:\n\nWrite a model formula for a simple linear regression model with a categorical predictor using indicator variables\nInterpret the intercept and slope coefficients in a simple linear regression model with a categorical predictor"
+    "text": "Learning goals\nBy the end of this lesson, you should be able to:\n\nWrite a model formula for a simple linear regression model with a categorical predictor using indicator variables\nInterpret the intercept and slope coefficients in a simple linear regression model with a categorical predictor",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#readings-and-videos",
     "href": "activities/07_slr_cat_predictor.html#readings-and-videos",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Readings and videos",
-    "text": "Readings and videos\nComplete both the reading and the videos to go through before class.\n\nReading: Section 3.9 in the STAT 155 Notes only up through section 3.9.1 Indicator Variables\nVideos:\n\nSimple linear regression: categorical predictor (slides)\nR Code for Categorical Predictors\n\n\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder."
+    "text": "Readings and videos\nComplete both the reading and the videos to go through before class.\n\nReading: Section 3.9 in the STAT 155 Notes only up through section 3.9.1 Indicator Variables\nVideos:\n\nSimple linear regression: categorical predictor (slides)\nR Code for Categorical Predictors\n\n\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-1-get-to-know-the-data",
     "href": "activities/07_slr_cat_predictor.html#exercise-1-get-to-know-the-data",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 1: Get to know the data",
-    "text": "Exercise 1: Get to know the data\nWrite R code to answer the following:\n\nHow many cases and variables do we have? What does a case represent?\nWhat do the first few rows of the data look like?\nConstruct and interpret two different visualizations of the price variable.\nConstruct and interpret a visualization of the cut variable."
+    "text": "Exercise 1: Get to know the data\nWrite R code to answer the following:\n\nHow many cases and variables do we have? What does a case represent?\nWhat do the first few rows of the data look like?\nConstruct and interpret two different visualizations of the price variable.\nConstruct and interpret a visualization of the cut variable.",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-2-visualizations",
     "href": "activities/07_slr_cat_predictor.html#exercise-2-visualizations",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 2: Visualizations",
-    "text": "Exercise 2: Visualizations\nStart by visualizing this relationship of interest, that between price and cut.\n\nThe appropriate plot depends upon the type of variables we’re plotting. When exploring the relationship between a quantitative response (ridership) and a quantitative predictor (temperature), a scatterplot was an effective choice. After running the code below, explain why a scatterplot is not effective for exploring the relationship between ridership and our categorical cut predictor.\n\n\n# Try a scatterplot\nggplot(diamonds, aes(y = price, x = cut)) + \n    geom_point()\n\n\nSeparately run each chunk below, with two plots. Comment (#) on what changes in the code / output.\n\n\n# Univariate boxplot\nggplot(diamonds, aes(y = price)) + \n    geom_boxplot()\n\n\n# ???\nggplot(diamonds, aes(y = price, x = cut)) + \n    geom_boxplot()\n\n\n# Univariate density plot\nggplot(diamonds, aes(x = price)) + \n    geom_density()\n\n\n# ???\nggplot(diamonds, aes(x = price, color = cut)) + \n    geom_density()\n\n\n# Univariate histogram\nggplot(diamonds, aes(x = price)) + \n    geom_histogram()\n\n\n# ???\nggplot(diamonds, aes(x = price)) + \n    geom_histogram() + \n    facet_wrap(~ cut)\n\n\nDo you notice anything interesting about the relationship between price and cut? What do you think might be happening here?"
+    "text": "Exercise 2: Visualizations\nStart by visualizing this relationship of interest, that between price and cut.\n\nThe appropriate plot depends upon the type of variables we’re plotting. When exploring the relationship between a quantitative response (ridership) and a quantitative predictor (temperature), a scatterplot was an effective choice. After running the code below, explain why a scatterplot is not effective for exploring the relationship between ridership and our categorical cut predictor.\n\n\n# Try a scatterplot\nggplot(diamonds, aes(y = price, x = cut)) + \n    geom_point()\n\n\nSeparately run each chunk below, with two plots. Comment (#) on what changes in the code / output.\n\n\n# Univariate boxplot\nggplot(diamonds, aes(y = price)) + \n    geom_boxplot()\n\n\n# ???\nggplot(diamonds, aes(y = price, x = cut)) + \n    geom_boxplot()\n\n\n# Univariate density plot\nggplot(diamonds, aes(x = price)) + \n    geom_density()\n\n\n# ???\nggplot(diamonds, aes(x = price, color = cut)) + \n    geom_density()\n\n\n# Univariate histogram\nggplot(diamonds, aes(x = price)) + \n    geom_histogram()\n\n\n# ???\nggplot(diamonds, aes(x = price)) + \n    geom_histogram() + \n    facet_wrap(~ cut)\n\n\nDo you notice anything interesting about the relationship between price and cut? What do you think might be happening here?",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-3-numerical-summaries",
     "href": "activities/07_slr_cat_predictor.html#exercise-3-numerical-summaries",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 3: Numerical summaries",
-    "text": "Exercise 3: Numerical summaries\nLet’s follow up our plots with some numerical summaries.\n\nTo warm up, first calculate the mean price across all diamonds.\n\n\ndiamonds %&gt;% \n    ___(mean(___))\n\n\nTo summarize the trends we observed in the grouped plots above, we can calculate the mean price for each type of cut. This requires the inclusion of the group_by() function:\n\n\n# Calculate mean price by cut\ndiamonds %&gt;% \n    group_by(cut) %&gt;% \n    ___(mean(___))\n\n\nExamine the group mean measurements, and make sure that you can match these numbers up with what you see in the plots.\nBased on the results above, we can see that, on average, diamonds with a “Fair” cut tend to cost more than higher-quality cuts. Let’s construct a new variable named cutFair, using on the following criteria:\n\n\ncutFair = 1 if the diamond is of Fair cut\ncutFair = 0 otherwise (any other value of cut (Good, Very Good, Premium, Ideal))\n\nThe ifelse function allows to create a new variable from an existing one, based on whether or not the values in that variable meet a certain “condition” (remember, you can always look up function documentation in R by typing ?ifelse in the Console, and hitting enter!).\nFill in the following code to create cutFair. The condition was given to you already. Try to use this to complete the code.\n\n# In the first blank, put what value cutFair should have if the condition is \"met\", or TRUE\n# In the second blank, put what value cutFair should have if the condition is \"not met\", or FALSE\ndiamonds &lt;- diamonds %&gt;%\n  mutate(cutFair=ifelse(cut == \"Fair\", ___, ___))\n\nVariables like cutFair that are coded as 0/1 to numerically indicate if a categorical variable is at a particular state are known as an indicator variable. You will sometimes see these referred to as a “binary variable” or “dichotomous variable”; you may also encounter the term “dummy variable” in older statistical literature.\n\nNow, let’s calculate the group means based on the new cutFair indicator variable:\n\n\ndiamonds %&gt;% \n    group_by(cutFair) %&gt;% \n    summarize(mean(price))"
+    "text": "Exercise 3: Numerical summaries\nLet’s follow up our plots with some numerical summaries.\n\nTo warm up, first calculate the mean price across all diamonds.\n\n\ndiamonds %&gt;% \n    ___(mean(___))\n\n\nTo summarize the trends we observed in the grouped plots above, we can calculate the mean price for each type of cut. This requires the inclusion of the group_by() function:\n\n\n# Calculate mean price by cut\ndiamonds %&gt;% \n    group_by(cut) %&gt;% \n    ___(mean(___))\n\n\nExamine the group mean measurements, and make sure that you can match these numbers up with what you see in the plots.\nBased on the results above, we can see that, on average, diamonds with a “Fair” cut tend to cost more than higher-quality cuts. Let’s construct a new variable named cutFair, using on the following criteria:\n\n\ncutFair = 1 if the diamond is of Fair cut\ncutFair = 0 otherwise (any other value of cut (Good, Very Good, Premium, Ideal))\n\nThe ifelse function allows to create a new variable from an existing one, based on whether or not the values in that variable meet a certain “condition” (remember, you can always look up function documentation in R by typing ?ifelse in the Console, and hitting enter!).\nFill in the following code to create cutFair. The condition was given to you already. Try to use this to complete the code.\n\n# In the first blank, put what value cutFair should have if the condition is \"met\", or TRUE\n# In the second blank, put what value cutFair should have if the condition is \"not met\", or FALSE\ndiamonds &lt;- diamonds %&gt;%\n  mutate(cutFair=ifelse(cut == \"Fair\", ___, ___))\n\nVariables like cutFair that are coded as 0/1 to numerically indicate if a categorical variable is at a particular state are known as an indicator variable. You will sometimes see these referred to as a “binary variable” or “dichotomous variable”; you may also encounter the term “dummy variable” in older statistical literature.\n\nNow, let’s calculate the group means based on the new cutFair indicator variable:\n\n\ndiamonds %&gt;% \n    group_by(cutFair) %&gt;% \n    summarize(mean(price))",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-4-modeling-trend-using-a-categorical-predictor-with-exactly-2-categories",
     "href": "activities/07_slr_cat_predictor.html#exercise-4-modeling-trend-using-a-categorical-predictor-with-exactly-2-categories",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 4: Modeling trend using a categorical predictor with exactly 2 categories",
-    "text": "Exercise 4: Modeling trend using a categorical predictor with exactly 2 categories\nNext, let’s model the trend in the relationship between the cutFair and price variables using a simple linear regression model:\n\n# Construct the model\ndiamond_mod0 &lt;- lm(price ~ cutFair, data = diamonds)\n\n# Summarize the model\ncoef(summary(diamond_mod0))\n\nCompare these results to the output of exercise 3e. What do you notice? How do you interpret the intercept and cutFair coefficient terms from this model?\n\nyour answer here"
+    "text": "Exercise 4: Modeling trend using a categorical predictor with exactly 2 categories\nNext, let’s model the trend in the relationship between the cutFair and price variables using a simple linear regression model:\n\n# Construct the model\ndiamond_mod0 &lt;- lm(price ~ cutFair, data = diamonds)\n\n# Summarize the model\ncoef(summary(diamond_mod0))\n\nCompare these results to the output of exercise 3e. What do you notice? How do you interpret the intercept and cutFair coefficient terms from this model?\n\nyour answer here",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-5-modeling-trend-using-a-categorical-predictor-with-2-categories",
     "href": "activities/07_slr_cat_predictor.html#exercise-5-modeling-trend-using-a-categorical-predictor-with-2-categories",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 5: Modeling trend using a categorical predictor with >2 categories",
-    "text": "Exercise 5: Modeling trend using a categorical predictor with &gt;2 categories\nUsing a single binary predictor like the cutFair indicator variable is useful when there are two clearly delineated categories. However, the cut variable actually contains 5 categories! Because we’ve collapsed all non-Fair classifications into a single category (i.e. cutFair = 0), the model above can’t tell us anything about the difference in expected price between, say, Premium and Ideal cuts. The good news is that it is very straightforward to model categorical predictors with &gt;2 categories. We can do this by using the cut variable as our predictor:\n\n# Construct the model\ndiamond_mod &lt;- lm(price ~ cut, data = diamonds)\n\n# Summarize the model\ncoef(summary(diamond_mod))\n\n\nEven though we specified a single predictor variable in the model, we are seeing 4 coefficient estimates–why do you think this is the case?\n\n\nyour answer here\n\n\nNOTE: We see 4 indicator variables (for Good, Very Good, Premium, and Ideal), but we do not see cutFair in the model output. This is because Fair is the reference level of the cut variable (it’s first alphabetically). You’ll see below that it is, indeed, still in the model. You’ll also see why the term “reference level” makes sense!\n\n\nAfter examining the summary table output from the code chunk above, complete the model formula:\n\n\n\nE[price | cut] = ___ +/- ___ cutGood +/- ___ cutVery Good +/- ___ cutPremium +/- ___ cutIdeal"
+    "text": "Exercise 5: Modeling trend using a categorical predictor with &gt;2 categories\nUsing a single binary predictor like the cutFair indicator variable is useful when there are two clearly delineated categories. However, the cut variable actually contains 5 categories! Because we’ve collapsed all non-Fair classifications into a single category (i.e. cutFair = 0), the model above can’t tell us anything about the difference in expected price between, say, Premium and Ideal cuts. The good news is that it is very straightforward to model categorical predictors with &gt;2 categories. We can do this by using the cut variable as our predictor:\n\n# Construct the model\ndiamond_mod &lt;- lm(price ~ cut, data = diamonds)\n\n# Summarize the model\ncoef(summary(diamond_mod))\n\n\nEven though we specified a single predictor variable in the model, we are seeing 4 coefficient estimates–why do you think this is the case?\n\n\nyour answer here\n\n\nNOTE: We see 4 indicator variables (for Good, Very Good, Premium, and Ideal), but we do not see cutFair in the model output. This is because Fair is the reference level of the cut variable (it’s first alphabetically). You’ll see below that it is, indeed, still in the model. You’ll also see why the term “reference level” makes sense!\n\n\nAfter examining the summary table output from the code chunk above, complete the model formula:\n\n\n\nE[price | cut] = ___ +/- ___ cutGood +/- ___ cutVery Good +/- ___ cutPremium +/- ___ cutIdeal",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-6-making-sense-of-the-model",
     "href": "activities/07_slr_cat_predictor.html#exercise-6-making-sense-of-the-model",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 6: Making sense of the model",
-    "text": "Exercise 6: Making sense of the model\nRecall our model: E[price | cut] = 4358.7578 - 429.8933 cutGood - 376.9979 cutVery Good + 225.4999 cutPremium - 901.2158 cutIdeal\n\nUse the model formula to calculate the expected/typical price for diamonds of Good cut.\nSimilarly, calculate the expected/typical price for diamonds of Fair cut.\nRe-examine these 2 calculations. Where have you seen these numbers before?!"
+    "text": "Exercise 6: Making sense of the model\nRecall our model: E[price | cut] = 4358.7578 - 429.8933 cutGood - 376.9979 cutVery Good + 225.4999 cutPremium - 901.2158 cutIdeal\n\nUse the model formula to calculate the expected/typical price for diamonds of Good cut.\nSimilarly, calculate the expected/typical price for diamonds of Fair cut.\nRe-examine these 2 calculations. Where have you seen these numbers before?!",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-7-interpreting-coefficients",
     "href": "activities/07_slr_cat_predictor.html#exercise-7-interpreting-coefficients",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 7: Interpreting coefficients",
-    "text": "Exercise 7: Interpreting coefficients\nRecall that our model formula is not a formula for a line. Thus we can’t interpret the coefficients as “slopes” as we have before. Taking this into account and reflecting upon your calculations above…\n\nInterpret the intercept coefficient (4358.7578) in terms of the data context. Make sure to use non-causal language, include units, and talk about averages rather than individual cases.\nInterpret the cutGood and cutVery Good coefficients (-429.8933 and -376.9979) in terms of the data context. Hint: where did you use these value in the prediction calculations above?"
+    "text": "Exercise 7: Interpreting coefficients\nRecall that our model formula is not a formula for a line. Thus we can’t interpret the coefficients as “slopes” as we have before. Taking this into account and reflecting upon your calculations above…\n\nInterpret the intercept coefficient (4358.7578) in terms of the data context. Make sure to use non-causal language, include units, and talk about averages rather than individual cases.\nInterpret the cutGood and cutVery Good coefficients (-429.8933 and -376.9979) in terms of the data context. Hint: where did you use these value in the prediction calculations above?",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-8-modeling-choices-challenge",
     "href": "activities/07_slr_cat_predictor.html#exercise-8-modeling-choices-challenge",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 8: Modeling choices (CHALLENGE)",
-    "text": "Exercise 8: Modeling choices (CHALLENGE)\nWhy do we fit this model in this way (using 4 indicator variables cutGood, cutVery Good, cutPremium, cutIdeal)? Instead, suppose that we created a single variable cutCat that gave each category a numerical value: 0 for Fair, 1 for Good, 2 for Very Good, 3 for Premium, and 4 for Ideal.\nHow would this change things? What are the pros and cons of each approach?"
+    "text": "Exercise 8: Modeling choices (CHALLENGE)\nWhy do we fit this model in this way (using 4 indicator variables cutGood, cutVery Good, cutPremium, cutIdeal)? Instead, suppose that we created a single variable cutCat that gave each category a numerical value: 0 for Fair, 1 for Good, 2 for Very Good, 3 for Premium, and 4 for Ideal.\nHow would this change things? What are the pros and cons of each approach?",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#reflection",
     "href": "activities/07_slr_cat_predictor.html#reflection",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Reflection",
-    "text": "Reflection\nThrough the exercises above, you learned how to build and interpret models that incorporate a categorical predictor variable. For the benefit of your future self, summarize how one can interpret the coefficients for a categorical predictor.\n\nResponse: Put your response here."
+    "text": "Reflection\nThrough the exercises above, you learned how to build and interpret models that incorporate a categorical predictor variable. For the benefit of your future self, summarize how one can interpret the coefficients for a categorical predictor.\n\nResponse: Put your response here.",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#render-your-work",
     "href": "activities/07_slr_cat_predictor.html#render-your-work",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Render your work",
-    "text": "Render your work\n\nClick the “Render” button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.\nScroll through and inspect the document to check that your work translated to the HTML format correctly.\nClose the browser tab.\nGo to the “Background Jobs” pane in RStudio and click the Stop button to end the rendering process.\nNavigate to your “Activities” subfolder within your “STAT155” folder and locate the HTML file. You can open it again in your browser to double check."
+    "text": "Render your work\n\nClick the “Render” button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.\nScroll through and inspect the document to check that your work translated to the HTML format correctly.\nClose the browser tab.\nGo to the “Background Jobs” pane in RStudio and click the Stop button to end the rendering process.\nNavigate to your “Activities” subfolder within your “STAT155” folder and locate the HTML file. You can open it again in your browser to double check.",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-9-diamond-color",
     "href": "activities/07_slr_cat_predictor.html#exercise-9-diamond-color",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 9: Diamond color",
-    "text": "Exercise 9: Diamond color\nConsider modeling price by color.\n\nBefore creating a visualization that shows the relationship between price and color, write down what you expect the plot to look like. Then construct and interpret an apporpriate plot.\nCompute the average price for each color.\nFit an appropriate linear model with lm() and display a short summary of the model.\nWrite out the model formula from the above summary.\nWhich color is the reference level? How can you tell from the model summary?\nInterpret the intercept and two other coefficients from the model in terms of the data context."
+    "text": "Exercise 9: Diamond color\nConsider modeling price by color.\n\nBefore creating a visualization that shows the relationship between price and color, write down what you expect the plot to look like. Then construct and interpret an apporpriate plot.\nCompute the average price for each color.\nFit an appropriate linear model with lm() and display a short summary of the model.\nWrite out the model formula from the above summary.\nWhich color is the reference level? How can you tell from the model summary?\nInterpret the intercept and two other coefficients from the model in terms of the data context.",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "activities/07_slr_cat_predictor.html#exercise-10-diamond-clarity",
     "href": "activities/07_slr_cat_predictor.html#exercise-10-diamond-clarity",
     "title": "07. Simple linear regression: categorical predictor",
     "section": "Exercise 10: Diamond clarity",
-    "text": "Exercise 10: Diamond clarity\nIf you want more practice, repeat the steps from Exercise 8 for the clarity variable.\n\nSolutions"
+    "text": "Exercise 10: Diamond clarity\nIf you want more practice, repeat the steps from Exercise 8 for the clarity variable.\n\nSolutions",
+    "crumbs": [
+      "07. Simple linear regression: categorical predictor"
+    ]
   },
   {
     "objectID": "solutions/05_slr_model_eval.html",
@@ -593,7 +638,7 @@
     "href": "schedule.html",
     "title": "Course Schedule",
     "section": "",
-    "text": "The course schedule below will be filled in throughout the semester. For each day, there will be a link to course slides (if there are any that day) and notes/links on what is due ahead of class time. The “Announcements” column is (hopefully) self-explanatory. Any urgent announcements will be made over email.\n\n\n\nWeek\nTuesday\nThursday\nAnnouncements\n\n\n\n\n3\n2/4: SLR model evaluation\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/6: SLR variable transformations + library activity\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nPP#1 due by 5pm Wednesday, 2/5\nPlease complete the project preferences survey by Friday, 2/7\nSee course Google Calendar for updated office hours\n\n\n\n2\n1/28: Intro to R + univariate visualization & summaries\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n1/30: Intro to simple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nLast day to add/drop is Friday, 1/31\nPreceptor office hours start this week–see the Google calendar for times\nPP#1 is posted on the assignments tab (due Wednesday, 2/5 at 5pm CT)\n\n\n\n1\nWinter Break\n1/23: First day of class!\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\nWelcome back to campus!"
+    "text": "The course schedule below will be filled in throughout the semester. For each day, there will be a link to course slides (if there are any that day) and notes/links on what is due ahead of class time. The “Announcements” column is (hopefully) self-explanatory. Any urgent announcements will be made over email.\n\n\n\nWeek\nTuesday\nThursday\nAnnouncements\n\n\n\n\n4\n2/11: SLR categorical predictors\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/13: Quiz 1 (1 hour in class)\n\nPP#2 due by 5pm Wednesday, 2/12\nGroup members for the final project are posted on Moodle\n\n\n\n3\n2/4: SLR model evaluation\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/6: SLR variable transformations + library activity\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nPP#1 due by 5pm Wednesday, 2/5\nPlease complete the project preferences survey by Friday, 2/7\nSee course Google Calendar for updated office hours\n\n\n\n2\n1/28: Intro to R + univariate visualization & summaries\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n1/30: Intro to simple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nLast day to add/drop is Friday, 1/31\nPreceptor office hours start this week–see the Google calendar for times\nPP#1 is posted on the assignments tab (due Wednesday, 2/5 at 5pm CT)\n\n\n\n1\nWinter Break\n1/23: First day of class!\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\nWelcome back to campus!"
   },
   {
     "objectID": "index.html",

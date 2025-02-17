@@ -55,7 +55,7 @@ website:
         # - "activities/11_mlr_interaction_explore.qmd"
         # - "activities/10_mlr_confounding.qmd"
         # - "activities/09_mlr_principles.qmd"
-        # - "activities/08_mlr_intro.qmd"
+        - "activities/08_mlr_intro.qmd"
         - "activities/07_slr_cat_predictor.qmd"
         - "activities/06_slr_transformations.qmd"
         - "activities/05_slr_model_eval.qmd"

@@ -1,0 +1,429 @@
+---
+title: "Solutions for 08/09. Introduction to multiple regression"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+---
+
+
+```{r warning=FALSE, message=FALSE}
+# Load packages
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+# Load data
+library(palmerpenguins)
+data(penguins)
+penguins <- penguins %>% 
+  filter(species != "Adelie", bill_length_mm < 57)
+
+# Check it out
+head(penguins)
+```
+
+## Review Exercise 1: Visualizing bivariate relationships
+
+Consider two potential predictors of flipper length: a penguin's bill length, and the species of penguin.
+
+Let's first visualize how each of these predictors is related to flipper length:
+
+```{r}
+penguins %>% 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)+
+  theme_classic()
+```
+
+```{r}
+# could instead do a density plot or histogram too!
+penguins %>% 
+  ggplot(aes(y = flipper_length_mm, x = species)) + 
+  geom_boxplot() + 
+  theme_classic()
+```
+
+## Review Exercise 2: model the bivariate relationships
+
+Let's fit 2 simple linear regression models of `flipper_length_mm` by penguin `bill_length_mm` and `species`: 
+
+```{r}
+summary(lm(flipper_length_mm ~ bill_length_mm, penguins))
+```
+
+**Review:** How do we interpret the `bill_length_mm` coefficient from this model?
+
+> For every 1mm increase in bill length, we expect the flipper length increases by 0.715mm
+
+```{r}
+summary(lm(flipper_length_mm ~ species, penguins))
+```
+
+**Review:** How do we interpret the intercept and `speciesGentoo` coefficient from this model?
+
+> Intercept: the expected flipper length for Chinstrap penguins is 196mm.
+
+> Slope: the expected flipper length for Gentoo penguins is 21.08mm longer than that of Chinstrap penguins.
+
+What do these visualizations and models tell us? Do you think it would be useful to consider both bill length *and* species as predictors?
+
+> Both bill length and species appear to be associated with flipper length--perhaps we should try to model these both simultaneously!
+
+
+## Exercise 3: Visualizing the model
+
+We've learned how to visualize the relationship of `flipper_length_mm` by `bill_length_mm` alone:
+
+```{r}
+penguins %>% 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + 
+  geom_point()
+```
+
+a. THINK: How might we change the scatterplot points to *also* indicate information about penguin `species`? (There's more than 1 approach!)
+
+> Use the categorical `species` variable as a color aesthetic
+
+b. Try out your idea by modifying the code below. If you get stuck, talk with the tables around you!
+
+```{r}
+# instead of colour = species, could also use shape or size
+penguins %>%
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, colour = species)) +
+  geom_point()
+```
+
+c. THINK: Reflect on this plot--how do you think a *multiple* regression model of `flipper_length_mm` using *both* of these predictors would be represented?
+
+> perhaps separate lines of best fit for each of the species
+
+b. Check your intuition below by modifying the code below to include `species` in this plot, as you did in Exercise 1.
+
+```{r}
+penguins %>%
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, colour = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+
+
+## Exercise 4: Intuition
+
+a. Gentoo tend to have longer flippers.
+b. Flipper length is positively associated with bill length.
+c. No. the lines are parallel / have the same slopes.
+
+
+
+
+
+
+
+
+
+## Exercise 5: Model formula
+
+```{r}
+# Build the model
+penguin_mod <- lm(flipper_length_mm ~ bill_length_mm + species, data = penguins)
+
+# Summarize the model
+summary(penguin_mod)
+```
+
+a.  `bill_length_mm + species`
+b. E[flipper_length_mm | bill_length_mm, speciesGentoo] = 127.75 + 1.40 * bill_length_mm + 22.85 * speciesGentoo
+
+
+
+
+
+
+## Exercise 6: Sub-model formulas
+
+Chinstrap: flipper_length_mm = 127.75 + 1.40 bill_length_mm
+
+Gentoo:    flipper_length_mm = (127.75 + 22.85) + 1.40 bill_length_mm = 150.6 + 1.40 bill_length_mm
+
+
+
+
+
+## Exercise 7: coefficients -- physical interpretation
+
+a. The intercept coefficient, 127.75, is the intercept of the line for **Chinstrap** penguins.
+
+b. The `bill_length_mm` coefficient, 1.40, is the **slope** of both lines.
+
+c. The `speciesGentoo` coefficient, 22.85, indicates that the **intercept** of the line for Gentoo is 22.85mm higher than the **intercept** of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any `bill_length_mm`.
+    
+    
+
+
+
+## Exercise 8: coefficients -- contextual interpretation
+
+a. For Chinstrap penguins with 0mm bills (silly), we expect a flipper length of 127.75mm.
+
+b. For both Chinstrap and Gentoo penguins, flipper lengths increase by 1.40mm on average for every additional mm in bill length.
+
+c. At any `bill_length_mm`, we expect the a Gentoo penguin to have 22.85mm longer flippers than a Chinstrap, on average.
+
+
+
+
+
+## Exercise 9: Prediction
+
+```{r}
+# a
+127.75 + 1.40*50 + 22.85*0
+
+# b
+127.75 + 1.40*50 + 22.85*1
+
+# c
+predict(penguin_mod,
+        newdata = data.frame(bill_length_mm = 50, 
+                             species = "Chinstrap"))
+predict(penguin_mod,
+        newdata = data.frame(bill_length_mm = 50, 
+                             species = "Gentoo"))
+```
+
+
+
+
+
+
+## Exercise 10: R-squared
+
+a. species
+b. no wrong answer
+c. It's higher than the R-squared when we use either predictor alone!
+
+# More practice
+
+```{r warning = FALSE, message = FALSE}
+# Load packages & import data
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+bikes <- read_csv("https://mac-stat.github.io/data/bikeshare.csv") %>% 
+  rename(rides = riders_registered)
+```
+
+## Exercise 1: Review visualization
+
+```{r}
+bikes %>% 
+  ggplot(aes(y = rides, x = windspeed, color = weekend)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+## Exercise 2: Review model
+
+weekdays: rides = 4738.38 - 63.97 windspeed    
+
+weekends: rides = 4738.38 - 63.97 windspeed - 925.16 = 3813.22 - 63.97 windspeed
+
+
+## Exercise 3: Review coefficient interpretation
+
+a. We expect an average of 4738 riders on **weekdays with 0 windspeed**.
+
+b. On average, we expect a 1mph increase in windspeed to be associated with 64 fewer riders, controlling for weekend status.
+
+c. On average, we expect 925 fewer riders on weekend days than on weekends, controlling for windspeed.
+
+
+
+
+## Exercise 4: 2 categorical predictors – visualization
+
+
+```{r}
+bikes %>% 
+  ggplot(aes(y = rides, x = season, fill = weekend)) + 
+  geom_boxplot()
+```
+
+
+
+
+## Exercise 5: follow-up
+
+a. In every season, ridership tends to be lower on weekends. Across weekend status, ridership tends to be highest in summer and lowest in winter.
+
+b. 8 expected outcomes
+
+
+
+## Exercise 6: 2 categorical predictors – build the model
+
+a.
+
+```{r}
+#fall weekday:    
+4260.45 - 912.33*0 - 116.38*0 + 438.44*0 - 1719.06*0
+
+#winter weekday:
+4260.45 - 912.33*0 - 116.38*0 + 438.44*0 - 1719.06*1
+
+#fall weekend:    
+4260.45 - 912.33*1 - 116.38*0 + 438.44*0 - 1719.06*0
+
+#winter weekend:
+4260.45 - 912.33*1 - 116.38*0 + 438.44*0 - 1719.06*1
+```
+
+b. 8: 2 weekend categories * 4 season categories    
+
+
+## Exercise 7: 2 categorical predictors – interpret the model
+
+
+a. We expect there to be, on average, 4260 riders on **weekdays** during the **fall**.
+b. On average, we expect there to be 912 fewer riders on weekends than on weekends, adjusting for season.
+c. On average, we expect there to be 1719 fewer riders in winter than in fall, adjusting for weekday status.
+
+
+## Exercise 8: 2 quantitative predictors – visualization
+
+
+```{r}
+bikes %>% 
+  ggplot(aes(y = rides, x = windspeed, color = temp_feel)) + 
+  geom_point() 
+```
+
+
+
+
+## Exercise 9: follow-up
+
+Ridership tends to increase with temperature (no matter the windspeed) and decrease with windspeed (no matter the temperature).
+
+
+
+## Exercise 10: 2 quantitative predictors – modeling
+
+a. -24.06 = average ridership on days with 0 windspeed and a 0 degree temperature. (Note: this is a *correct* interpretation, even though it doesn't make conceptual sense! The model doesn't know that ridership can't be negative!)
+
+b. On average, we expect a 1mph increase in windspeed to be associated with 37 fewer riders on a given day, adjusting for temperature.
+
+c. On average, we expect a 1 degree increase in temperature to be associated with 56 more riders on a given day, adjusting for windspeed.
+
+
+## Exercise 11: Which is best?
+
+a. model 2
+b. temperature
+c. R-squared increases (our model is stronger when we include another predictor)
+d. nope. model 1 (with windspeed and weekend) has a lower R-squared than model 5 (with only temperature)
+    
+
+\
+\
+
+
+## Exercise 13: Practice 1    
+
+```{r}
+bikes %>% 
+  ggplot(aes(y = rides, x = weekend, fill = weather_cat)) + 
+  geom_boxplot()
+
+new_model_1 <- lm(rides ~ weekend + weather_cat, bikes)
+coef(summary(new_model_1))
+```
+
+
+
+- The average ridership on a *weekday* with *nice* weather (categ1) is 4212 rides.    
+
+- On days with the same weather, we expect on average 982 rides less on a weekend than on a weekday.
+
+- On average, we expect ridership to be 609 rides less on dreary days than when the weather is nice, controlling for day of the week.
+
+
+\
+\
+
+
+
+
+## Exercise 14: Practice 2    
+    
+```{r}
+bikes %>% 
+  ggplot(aes(y = rides, x = temp_feel, color = humidity)) + 
+    geom_point()
+
+new_model_2 <- lm(rides ~ temp_feel + humidity, bikes)
+coef(summary(new_model_2))
+```
+
+- On average, we expect 316 riders on days that feel like 0 degrees with no humidity.
+
+- On average, we expect a 1 degree increase in ridership to be associated with a 60 ride increase in ridership, for days with the same humidity.
+
+- On average, we expect a 0.1 increase in humidity levels to be associated with a decrease in ridership by 187 rides, for days with the same temperature.
+
+
+\
+\
+
+
+
+
+## Exercise 15: Practice 3
+
+```{r}
+new_model_3 <- lm(rides ~ temp_feel + weather_cat, bikes)
+coef(summary(new_model_3))
+
+bikes %>% 
+  ggplot(aes(y = rides, x = temp_feel, color = weather_cat)) + 
+  geom_point() + 
+  geom_line(aes(y = new_model_3$fitted.values), size = 1.5)
+```
+- We expect an average of -289 riders on nice weather days that feel like 0 degrees. (Note: this is a *correct* interpretation, even though it doesn't make conceptual sense!)
+
+- On average, we expect a 1 degree increase in temperature to be associated with a 55 ride increase, for days with the same weather.
+
+- On average, we expect the number of rides to be 386 rides lower on a dreary weather day compared to a nice weather day, for days with the same temperature.
+
+## Exercise 16: CHALLENGE
+
+   
+```{r}
+bikes %>% 
+  ggplot(aes(y = rides, x = temp_feel, color = humidity, size = weekend)) + 
+  geom_point()
+
+new_model_4 <- lm(rides ~ temp_feel + humidity + weekend, bikes)
+coef(summary(new_model_4))
+```
+
+- We expect an average of 669 riders on weekdays that feel like 0 degrees, and have no humidity.
+
+- On average, we expect a 1 degree increase in temperature to be associated with a 59 ride increase in ridership, for days with the same humidity levels and time of the week.
+
+- On average, we expect a 0.1 point increase in humidity levels to be associated with a 190.6 ride decrease in ridership, for days with the same temperature and time of the week.
+
+- On average, we expect ridership to be 869 rides lower on weekends compared to weekdays, controlling for temperature and humidity.
+
+
+
+
+
+

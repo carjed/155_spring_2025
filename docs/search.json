@@ -98,194 +98,371 @@
     "text": "Exercise 13: Correlation and extreme values\n\n# create a toy dataset\nset.seed(1234)\nx &lt;- rnorm(100, mean = 5, sd = 2)\ny &lt;- -3 * x + rnorm(100, sd = 4)\ndat &lt;- data.frame(x = x, y = y)\n\n\n\n\n\n# scatterplot\ndat %&gt;% \n  ggplot(aes(x = x, y = y)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\nThe correlation between x and y is moderately strong and negative.\nI’ll guess -0.6, since the relationship is negative and is sort of in-between weak and strong.\n\n\n\n# correlation\ndat %&gt;% summarize(cor(x, y))\n\n   cor(x, y)\n1 -0.8295483\n\n\n\n\n\n\n# creating dat_new1\nx1 &lt;- c(x, 15)\ny1 &lt;- c(y, -45)\ndat_new1 &lt;- data.frame(x = x1, y = y1)\n\n\n\n\n\n# scatterplot\ndat_new1 %&gt;%\n  ggplot(aes(x1, y1)) +\n  geom_point()\n\n\n\n\n\n\n\n# correlation\ndat %&gt;% summarize(cor(x1, y1))\n\n  cor(x1, y1)\n1  -0.8573567\n\n\nOur correlation stayed roughly the same with the addition of this new point!\n\n\n\n\n# creating dat_new1\nx2 &lt;- c(x, 15)\ny2 &lt;- c(y, 45)\ndat_new2 &lt;- data.frame(x = x2, y = y2)\n\n\n\n\n\n# scatterplot\ndat_new2 %&gt;%\n  ggplot(aes(x2, y2)) +\n  geom_point()\n\n\n\n\n\n\n\n# correlation\ndat_new2 %&gt;% summarize(cor(x2, y2))\n\n  cor(x2, y2)\n1  -0.2924792\n\n\nThe correlation changes quite a bit with the addition of this new point! Something to note is that this new point does not follow the rough linear trend that the original points had, that the first point we considered adding also had. This line seems way off base, comparatively!\n\nThe takeaway message here is that even though both of these additional points might be considered “outliers” because they have extreme x values, one changes the relationship between x and y much more than the other. In this case, the second point we considered would be influential because it changes the observed relationship between all x’s and y’s much more than the first point we considered. Not all “outliers” are considered equal!\n\n\n\n\n\ndat_new1 %&gt;%\n  ggplot(aes(x1, y1)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\ndat_new2 %&gt;%\n  ggplot(aes(x2, y2)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
-    "objectID": "activities/02_foundations_univariate.html",
-    "href": "activities/02_foundations_univariate.html",
-    "title": "02. Univariate visualization and summaries",
+    "objectID": "activities/08_mlr_intro.html",
+    "href": "activities/08_mlr_intro.html",
+    "title": "08/09. Introduction to multiple linear regression",
     "section": "",
     "text": "Download the .qmd file for this activity here.",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#learning-goals",
-    "href": "activities/02_foundations_univariate.html#learning-goals",
-    "title": "02. Univariate visualization and summaries",
+    "objectID": "activities/08_mlr_intro.html#learning-goals",
+    "href": "activities/08_mlr_intro.html#learning-goals",
+    "title": "08/09. Introduction to multiple linear regression",
     "section": "Learning goals",
-    "text": "Learning goals\nBy the end of this lesson, you should be able to:\n\nDescribe what a case (or unit of analysis) represents in a dataset.\nDescribe what a variable represents in a dataset.\nIdentify whether a variable is categorical or quantitative and what summarizations and visualizations are appropriate for that variable\nWrite R code to read in data and to summarize and visualize a single variable at a time.\nInterpret key features of barplots, boxplots, histograms, and density plots\nDescribe information about the distribution of a quantitative variable using the concepts of shape, center, spread, and outliers\nRelate summary statistics of data to the concepts of shape, center, spread, and outliers",
+    "text": "Learning goals\nBy the end of this lesson, you should be familiar with:\n\nsome limitations of simple linear regression\nthe general goals behind multiple linear regression\nstrategies for visualizing and interpreting multiple linear regression models of \\(y\\) vs 2 predictors, 1 quantitative and 1 categorical\nhow additional quantitative or categorical predictors impact the physical representation of a model",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#readings-and-videos",
-    "href": "activities/02_foundations_univariate.html#readings-and-videos",
-    "title": "02. Univariate visualization and summaries",
+    "objectID": "activities/08_mlr_intro.html#readings-and-videos",
+    "href": "activities/08_mlr_intro.html#readings-and-videos",
+    "title": "08/09. Introduction to multiple linear regression",
     "section": "Readings and videos",
-    "text": "Readings and videos\nChoose either the reading or the videos to go through before class.\n\nReading: Sections 2.1-2.4, 2.6 in the STAT 155 Notes\nVideos:\n\nUnivariate visualization and summarization (slides)\nR Code for Categorical Visualization and Summarization\nR Code for Quantitative Visualization and Summarization\n\n\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
+    "text": "Readings and videos\nPlease watch the following video before class.\n\nInterpreting multivariate models (slides)",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-1-get-curious",
-    "href": "activities/02_foundations_univariate.html#exercise-1-get-curious",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 1: Get curious",
-    "text": "Exercise 1: Get curious\n\nHypothesize with each other: what themes do you think might come up often in Dear Abby letters?\nAfter brainstorming, take a quick glance at the original article from The Pudding to see what themes they explored.\nGo to the very end of the Pudding article to the section titled “Data and Method”. In thinking about the who, what, when, where, why, and how of data context, what concerns/limitations surface with regards to using this data to learn about Americans’ concerns over the decades?",
+    "objectID": "activities/08_mlr_intro.html#review-exercise-1-visualizing-bivariate-relationships",
+    "href": "activities/08_mlr_intro.html#review-exercise-1-visualizing-bivariate-relationships",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Review Exercise 1: Visualizing bivariate relationships",
+    "text": "Review Exercise 1: Visualizing bivariate relationships\nConsider two potential predictors of flipper length: a penguin’s bill length, and the species of penguin.\nLet’s first visualize how each of these predictors is related to flipper length:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_ ____t() + \n  geom_smooth(method = \"lm\", se = FALSE)+\n  theme_classic()\n\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = species)) + \n  geom_ ____() + \n  theme_classic()",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-2-importing-and-getting-to-know-the-data",
-    "href": "activities/02_foundations_univariate.html#exercise-2-importing-and-getting-to-know-the-data",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 2: Importing and getting to know the data",
-    "text": "Exercise 2: Importing and getting to know the data\nFirst, in the Console pane of RStudio, run the following command to install some necessary packages (you will need to do this any time you are installing a new package):\ninstall.packages(\"tidyverse\")\nNow, in the Quarto pane, run the following code chunk to load the package and load a dataset (you can either click the green arrow in the top right of the code chunk, put your cursor in the code chunk and hit Ctrl+Alt+C [on Windows/Linux] or Command+Option+C [on Mac]).\n\n# Load package\nlibrary(tidyverse)\n\n# Read in the course evaluation data\nabby &lt;- read_csv(\"https://mac-stat.github.io/data/dear_abby.csv\")\n\nIf it runs successfully, you should see the following output appear in the Console pane:\n&gt; # Load package\n&gt; library(tidyverse)\n&gt; \n&gt; # Read in the course evaluation data\n&gt; abby &lt;- read_csv(\"https://mac-stat.github.io/data/dear_abby.csv\")\nRows: 20034 Columns: 11\n── Column specification ────────────────────────────\nDelimiter: \",\"\nchr (4): day, url, title, question_only\ndbl (7): year, month, letterId, afinn_overall, a...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nClick on the Environment tab (generally in the upper right hand pane in RStudio). Then click the abby line. The abby data will pop up as a separate pane (like viewing a spreadsheet) – check it out.\nIn this tidy dataset, what is the unit of observation? That is, what is represented in each row of the dataset?\nWhat term do we use for the columns of the dataset?\nTry out each function below. Identify what each function tells you about the abby data and note this in the ???:\n\n\n# ??? [what do both numbers mean?]\ndim(abby)\n\n\n# ???\nnrow(abby)\n\n\n# ???\nncol(abby)\n\n\n# ???\nhead(abby)\n\n\n# ???\nnames(abby)\n\n\n[OPTIONAL] If you’re not sure how exactly to use a function, you can pull up a built-in help page with information about the arguments a function takes (i.e., what goes inside the parentheses), and the output it produces. To do this, click inside the Console pane, and enter ?function_name. For example, to pull up a help page for the dim() function, we can type ?dim and hit Enter. Try pulling up the help page for the read_csv() function we used to load the dataset.",
+    "objectID": "activities/08_mlr_intro.html#review-exercise-2-model-the-bivariate-relationships",
+    "href": "activities/08_mlr_intro.html#review-exercise-2-model-the-bivariate-relationships",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Review Exercise 2: model the bivariate relationships",
+    "text": "Review Exercise 2: model the bivariate relationships\nLet’s fit 2 simple linear regression models of flipper_length_mm by penguin bill_length_mm and species:\n\nsummary(lm(flipper_length_mm ~ bill_length_mm, penguins))\n\nReview: How do we interpret the bill_length_mm coefficient from this model?\n\nYour answer\n\n\nsummary(lm(flipper_length_mm ~ species, penguins))\n\nReview: How do we interpret the intercept and speciesGentoo coefficient from this model?\n\nYour answer\n\nWhat do these visualizations and models tell us? Do you think it would be useful to consider both bill length and species as predictors?\n\nYour answer",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-3-preparing-to-summarize-and-visualize-the-data",
-    "href": "activities/02_foundations_univariate.html#exercise-3-preparing-to-summarize-and-visualize-the-data",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 3: Preparing to summarize and visualize the data",
-    "text": "Exercise 3: Preparing to summarize and visualize the data\nIn the next exercises, we will be exploring themes in the Dear Abby questions and the overall “mood” or sentiment of the questions. Before continuing, read the codebook for this dataset for some context about sentiment analysis, which gives us a measure of the mood/sentiment of a text.\n\nWhat sentiment variables do we have in the dataset? Are they quantitative or categorical?\nIf we were able to create a theme variable that took values like “friendship”, “marriage”, and “relationships”, would theme be quantitative or categorical?\nWhat visualizations are appropriate for looking at the distribution of a single quantitative variable? What about a single categorical variable?",
+    "objectID": "activities/08_mlr_intro.html#exercise-3-visualizing-the-model",
+    "href": "activities/08_mlr_intro.html#exercise-3-visualizing-the-model",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 3: Visualizing the model",
+    "text": "Exercise 3: Visualizing the model\nWe’ve learned how to visualize the relationship of flipper_length_mm by bill_length_mm alone:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point()\n\n\nTHINK: How might we change the scatterplot points to also indicate information about penguin species? (There’s more than 1 approach!)\nTry out your idea by modifying the code below. If you get stuck, talk with the tables around you!\n\n\npenguins %&gt;%\n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, ___ = ___)) +\n  geom_point()\n\n\nTHINK: Reflect on this plot–how do you think a multiple regression model of flipper_length_mm using both of these predictors would be represented?\nCheck your intuition below by modifying the code below to include species in this plot, as you did in Exercise 1.\n\n\npenguins %&gt;%\n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, ___ = ___)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-4-exploring-themes-in-the-letters",
-    "href": "activities/02_foundations_univariate.html#exercise-4-exploring-themes-in-the-letters",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 4: Exploring themes in the letters",
-    "text": "Exercise 4: Exploring themes in the letters\nThe dplyr package provides many useful functions for managing data (like creating new variables, summarizing information). The stringr package provides tools for working with strings (text). We’ll use these packages to search for words in the questions in order to (roughly) identify themes/subjects.\nThe code below searches for words related to mothers, fathers, marriage, and money and combines them into a single theme variable.\n\nInside mutate() the line moms = ifelse(str_detect(question_only, \"mother|mama|mom\"), \"mom\", \"no mom\") creates a new variable called moms. If any of the text “mother”, “mama”, or “mom” (which covers “mommy”) is found, then the variable takes the value “mom”. Otherwise, the variable takes the value “no mom”.\nThe dads, marriage, and money variables are created similarly.\nThe themes = str_c(moms, dads, marriage, money, sep = \"|\") line takes the 4 created variables and combines the text of those variables separated with a |. For example, one value of the themes variable is “mom|no_dad|no_marriage|no_money” (which contains words about moms but not dads, marriage, or money).\n\n\nlibrary(dplyr)\nlibrary(stringr)\n\nabby &lt;- abby %&gt;% \n    mutate(\n        moms = ifelse(str_detect(question_only, \"mother|mama|mom\"), \"mom\", \"no mom\"),\n        dads = ifelse(str_detect(question_only, \"father|papa|dad\"), \"dad\", \"no dad\"),\n        marriage = ifelse(str_detect(question_only, \"marriage|marry|married\"), \"marriage\", \"no marriage\"),\n        money = ifelse(str_detect(question_only, \"money|finance\"), \"money\", \"no money\"),\n        themes = str_c(moms, dads, marriage, money, sep = \"|\")\n    )\n\n\nModify the code above however you wish to replace themes (e.g., replace “moms” with something else) or add new themes to search for. If you want to add a new subject to search for, copy and paste a line for an existing subject above the themes line, and modify the code like this:\n\nIf your subject is captured by multiple words: YOUR_SUBJECT = ifelse(str_detect(question_only, \"WORD1|WORD2|ETC\"), \"SUBJECT\", \"NO SUBJECT\"),\nIf your subject is captured by a single word: YOUR_SUBJECT = ifelse(str_detect(question_only, \"WORD\"), \"SUBJECT\", \"NO SUBJECT\"),\nTry to have no more than 6 subjects—otherwise we’ll have too many themes, which will complicate exploration.\n\nThe code below makes a barplot of the themes variable using the ggplot2 visualization package. Before making the plot, make note of what you expect the plot might look like. (This might be hard–just do your best!) Then compare to what you observe when you run the code chunk to make the plot. (Clearly defining your expectations first is good scientific practice to avoid confirmation bias.)\n\n\n# Load package\nlibrary(ggplot2)\n\n# barplot\nggplot(abby, aes(x = themes)) +\n    geom_bar() +\n    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\n\n\nWe can follow up on the barplot with a simple numerical summary. Whereas the ggplot2 package is great for visualizations, dplyr is great for numerical summaries. The code below constructs a table of the number of questions with each theme. Make sure that these numerical summaries match up with what you saw in the barplot.\n\n\n# Construct a table of counts\nabby %&gt;% \n    count(themes)\n\n\nBefore proceeding, let’s break down the plotting code above. Run each chunk to see how the two lines of code above build up the plot in “layers”. Add comments (on the lines starting with #) to document what you notice.\n\n\n# ???\nggplot(abby, aes(x = themes))\n\n\n# ???\nggplot(abby, aes(x = themes)) +\n    geom_bar()\n\n\n# ???\nggplot(abby, aes(x = themes)) +\n    geom_bar() +\n    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\n\n\n# ???\nggplot(abby, aes(x = themes)) +\n    geom_bar() +\n    theme_classic() +\n    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))",
+    "objectID": "activities/08_mlr_intro.html#exercise-4-intuition",
+    "href": "activities/08_mlr_intro.html#exercise-4-intuition",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 4: Intuition",
+    "text": "Exercise 4: Intuition\nYour plot in Exercise 2 demonstrated that the multiple linear regression model of flipper_length_mm by bill_length_mm and species is represented by 2 lines, each defined by a slope and an intercept.\nLet’s interpret the punchlines!\nFor each question, provide an answer along with evidence from the model lines that supports your answer.\n\nWhat’s the relationship between flipper_length_mm and species, no matter a penguin’s bill_length_mm?\nWhat’s the relationship between flipper_length_mm and bill_length_mm, no matter a penguin’s species?\nDoes the rate of increase in flipper_length_mm with bill_length_mm differ between the two species?\nDo the intercepts for flipper_length_mm (i.e., the expected flipper length when bill_length_mm = 0) appear to differ between the two species?",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-5-exploring-sentiment",
-    "href": "activities/02_foundations_univariate.html#exercise-5-exploring-sentiment",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 5: Exploring sentiment",
-    "text": "Exercise 5: Exploring sentiment\nWe’ll look at the distribution of the afinn_overall sentiment variable and associated summary statistics.\n\nThe code below creates a boxplot of this variable. In the comment, make note of how this code is simliar to the code for the barplot above. As in the previous exercise, before running the code chunk to create the plot, make note of what you expect the boxplot to look like.\n\n\n# ???\nggplot(abby, aes(x = afinn_overall)) +\n    geom_boxplot()\n\n\nChallenge: Using the code for the barplot and boxplot as a guide, try to make a histogram and a density plot of the overall average ratings.\n\nWhat information is given by the tallest bar of the histogram?\nHow would you describe the shape of the distribution?\n\n\n\n# Histogram\n\n# Density plot\n\n\nWe can compute summary statistics (numerical summaries) for a quantitative variable using the summary() function or with the summarize() function from the dplyr package. (1st Qu. and 3rd Qu. stand for first and third quartile.) After inspecting these summaries, look back to your boxplot, histogram, and density plot. Which plots show which summaries most clearly?\n\n\n# Summary statistics\n# Using summary() - convenient for computing many summaries in one command\n# Does not show the standard deviation\nsummary(abby$afinn_overall)\n\n# Using summarize() from dplyr\n# Note that we use %&gt;% to pipe the data into the summarize() function\n# We need to use na.rm = TRUE because there are missing values (NAs)\nabby %&gt;% \n    summarize(mean(afinn_overall, na.rm = TRUE), median(afinn_overall, na.rm = TRUE), sd(afinn_overall, na.rm = TRUE))\n\n\nWrite a good paragraph describing the information in the histogram (or density plot) by discussing shape, center, spread, and outliers. Incorporate the numerical summaries from part c.",
+    "objectID": "activities/08_mlr_intro.html#exercise-5-fitting-a-multiple-linear-regression-model",
+    "href": "activities/08_mlr_intro.html#exercise-5-fitting-a-multiple-linear-regression-model",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 5: Fitting a multiple linear regression model",
+    "text": "Exercise 5: Fitting a multiple linear regression model\nFitting a multiple linear regression model in R is very straightforward, using the familiar lm() function:\n\n# Build the model\npenguin_mod &lt;- lm(flipper_length_mm ~ bill_length_mm + species, data = penguins)\n\n# Summarize the model\nsummary(penguin_mod)\n\n\nIn the lm() function, how did we communicate that we wanted to model flipper_length_mm by both bill_length_mm and species?\nUsing the coefficient estimates from the model summary output, complete the following model formula:\nE[flipper_length_mm | bill_length_mm, speciesGentoo] = ___ + ___ * bill_length_mm + ___ * speciesGentoo\n\n\nInterlude: MLR formula and coefficient interpretation\n\n\n\n\n\n\nNote\n\n\n\n\n\nIn general, a multiple linear regression model of \\(y\\) with \\(p\\) multiple predictors \\((X_1, X_2, ..., X_p)\\) is represented by the following formula:\n\\[E[Y \\mid X_1, X_2, ..., X_p] = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2 + ... + \\beta_p X_p\\]\nPut another way, multiple linear regression means that we are estimating the value of our response variable \\(Y\\) as a linear combination of \\(p &gt; 1\\) different predictors (\\(X_1, X_2, ..., X_p\\)).\nPrinciples of interpretation\nWe can interpret the coefficients from this model as follows:\n\n\\(\\beta_0\\) (“beta 0”) is the y-intercept. It describes the average value of \\(Y\\) when \\(X_1, X_2,..., X_p\\) are all 0, i.e. when all quantitative predictors are set to 0 and the categorical predictors are set to their reference levels.\n\\(\\beta_i\\) (“beta i”) is the coefficient of the predictor \\(X_i\\).\nIf \\(X_i\\) is quantitative, \\(\\beta_i\\) describes the average change in \\(Y\\) associated with a 1-unit increase in \\(X_i\\) while at a fixed set of the other \\(X\\).\nIf \\(X_i\\) represents a category of a categorical variable, \\(\\beta_i\\) describes the average difference in \\(Y\\) between this category and the reference category, while at a fixed set of the other \\(X\\).\nThe phrase “while at a fixed set of the other \\(X\\)” in the interpretations above is crucial. This is because our typical interpretation of \\(\\beta_i\\) as “expected change in Y per 1 unit change in \\(X_i\\)” (or average difference in \\(Y\\) between a category and the reference category) can only be valid if we assume that “all else is equal.” We cannot, for example, interpret the slope coefficient in the penguin model above if we are comparing penguins of different species!\n\nTwo other (more common) ways of stating this caveat in your interpretation of a given \\(\\beta_i\\) as “…holding predictors \\(X_j, X_k, ..., X_p\\) constant” or “…adjusting for predictors \\(X_j, X_k, ..., X_p\\).”",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-6-box-plots-vs.-histograms-vs.-density-plots",
-    "href": "activities/02_foundations_univariate.html#exercise-6-box-plots-vs.-histograms-vs.-density-plots",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 6: Box plots vs. histograms vs. density plots",
-    "text": "Exercise 6: Box plots vs. histograms vs. density plots\nWe took 3 different approaches to plotting the quantitative average course variable above. They all have pros and cons.\n\nWhat is one pro about the boxplot in comparison to the histogram and density plot?\nWhat is one con about the boxplot in comparison to the histogram and density plots?\nIn this example, which plot do you prefer and why?",
+    "objectID": "activities/08_mlr_intro.html#exercise-6-sub-model-formulas",
+    "href": "activities/08_mlr_intro.html#exercise-6-sub-model-formulas",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 6: Sub-model formulas",
+    "text": "Exercise 6: Sub-model formulas\nOk. We now have a single formula for the model. And we observed earlier that this formula is represented by two lines: one describing the relationship between flipper_length_mm and bill_length_mm for Chinstrap penguins and the other for Gentoo penguins. Let’s bring these ideas together. Utilize the model formula to obtain the equations of these two lines, i.e. to obtain the sub-model formulas for the 2 species. Hint: Plug speciesGentoo = 0 and speciesGentoo = 1.\nChinstrap: flipper_length_mm = ___ + ___ bill_length_mm\nGentoo: flipper_length_mm = ___ + ___ bill_length_mm\nChallenge question: What are some pros and cons of fitting a multiple linear regression model versus subsetting the data by species and fitting two separate simple linear regression models?\n\nYour answer",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-7-explore-outliers",
-    "href": "activities/02_foundations_univariate.html#exercise-7-explore-outliers",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 7: Explore outliers",
-    "text": "Exercise 7: Explore outliers\nGiven that Dear Abby column is an advice column, it seems natural that the sentiment of the questions would lean more negative. What’s going on with the questions that have particularly positive sentiments?\nWe can use the filter() function in the dplyr package to look at the . Based on the plots of afinn_overall that you made in Exercise 5, pick a threshold for the afinn_overall variable—we’ll say that questions with an overall sentiment score above this threshold are high outliers. Fill in this number where it says YOUR_THRESHOLD below.\n\nabby %&gt;% \n    filter(afinn_overall &gt; YOUR_THRESHOLD) %&gt;% \n    pull(question_only)\n\nWhat do you notice? Why might these questions have such high sentiment scores?",
+    "objectID": "activities/08_mlr_intro.html#exercise-7-coefficients-physical-interpretation",
+    "href": "activities/08_mlr_intro.html#exercise-7-coefficients-physical-interpretation",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 7: coefficients – physical interpretation",
+    "text": "Exercise 7: coefficients – physical interpretation\nReflecting on Exercise 5, let’s interpret what the model coefficients tell us about the physical properties of the two 2 sub-model lines.\nChoose the correct option given in parentheses:\n\nThe intercept coefficient, 127.75, is the intercept of the line for (Chinstrap / Gentoo) penguins.\nThe bill_length_mm coefficient, 1.40, is the (intercept / slope) of both lines.\nThe speciesGentoo coefficient, 22.85, indicates that the (intercept / slope) of the line for Gentoo is 22.85mm higher than the (intercept / slope) of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any bill_length_mm.",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-8-returning-to-our-context-looking-ahead",
-    "href": "activities/02_foundations_univariate.html#exercise-8-returning-to-our-context-looking-ahead",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 8: Returning to our context, looking ahead",
-    "text": "Exercise 8: Returning to our context, looking ahead\nIn this activity, we explored data on Dear Abby question, with a focus on exploring a single variable at a time.\n\nIn big picture terms, what have we learned about Dear Abby questions?\nWhat further curiosities do you have about the data?",
+    "objectID": "activities/08_mlr_intro.html#exercise-8-coefficients-contextual-interpretation",
+    "href": "activities/08_mlr_intro.html#exercise-8-coefficients-contextual-interpretation",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 8: coefficients – contextual interpretation",
+    "text": "Exercise 8: coefficients – contextual interpretation\nNext, interpret each coefficient in a contextually meaningful way. What do they tell us about penguin flipper lengths?!\n\nInterpret 127.75 (intercept of the Chinstrap line).\nInterpret 1.40 (slope of both lines). For both Chinstrap and Gentoo penguins, we expect…\nInterpret 22.85. At any bill_length_mm, we expect…",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-9-different-ways-to-think-about-data-visualization",
-    "href": "activities/02_foundations_univariate.html#exercise-9-different-ways-to-think-about-data-visualization",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 9: Different ways to think about data visualization",
-    "text": "Exercise 9: Different ways to think about data visualization\nIn working with and visualizing data, it’s important to keep in mind what a data point represents. It can reflect the experience of a real person. It might reflect the sentiment in a piece of art. It might reflect history. We’ve taken one very narrow and technical approach to data visualization. Check out the following examples, and write some notes about anything you find interesting.\n\nDear Data\nW.E.B. DuBois\nDecolonizing Data Viz\nPhase Change Project (by Prof Kim, Mac research students)",
+    "objectID": "activities/08_mlr_intro.html#exercise-9-prediction",
+    "href": "activities/08_mlr_intro.html#exercise-9-prediction",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 9: Prediction",
+    "text": "Exercise 9: Prediction\nNow that we better understand the model, let’s use it to predict flipper lengths! Recall the model summary and visualization:\n\ncoef(summary(penguin_mod))\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\n\nPredict the flipper length of a Chinstrap penguin with a 50mm long bill. Make sure your calculation is consistent with the plot.\n\n\n127.75 + 1.40*___ + 22.85*___\n\n\nPredict the flipper length of a Gentoo penguin with a 50mm long bill. Make sure your calculation is consistent with the plot.\n\n\n127.75 + 1.40*___ + 22.85*___\n\n\nUse the predict() function to confirm your predictions in parts a and b.\n\n\n# Confirm the calculation in part a\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = ___, species = \"___\"))\n\n# Confirm the calculation in part b\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = ___, species = \"___\"))",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-10-rendering-your-work",
-    "href": "activities/02_foundations_univariate.html#exercise-10-rendering-your-work",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 10: Rendering your work",
-    "text": "Exercise 10: Rendering your work\nSave this file, and then click the “Render” button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.\n\nScroll through and inspect the document to see how your work was translated into this HTML format. Neat!\nClose the browser tab.\nGo to the “Background Jobs” pane in RStudio and click the Stop button to end the rendering process.\nNavigate to your “Activities” subfolder within your “STAT155” folder and locate the HTML file. You can open it again in your browser to double check.",
+    "objectID": "activities/08_mlr_intro.html#exercise-10-r-squared",
+    "href": "activities/08_mlr_intro.html#exercise-10-r-squared",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 10: R-squared",
+    "text": "Exercise 10: R-squared\nFinally, recall that improving our predictions was one motivation for multiple linear regression (using 2 predictors instead of 1).\nTo this end, consider the R-squared values of the simple linear regression models that use just one predictor at a time:\n\nsummary(lm(flipper_length_mm ~ bill_length_mm, data = penguins))$r.squared\n\nsummary(lm(flipper_length_mm ~ species, data = penguins))$r.squared\n\n\nIf you had to use only 1 of our 2 predictors, which would give the better predictions of flipper_length_mm?\nWhat do you guess is the R-squared of our multiple regression model that uses both of these predictors? Why?\nCheck your intuition. How does the R-squared of our multiple regression model compare to that of the 2 separate simple linear regression models?\n\n\nsummary(penguin_mod)$r.squared",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#reflection",
-    "href": "activities/02_foundations_univariate.html#reflection",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Reflection",
-    "text": "Reflection\nGo to the top of this file and review the learning objectives for this lesson. Which objectives do you have a good handle on, are at least familiar with, or are struggling with? What feels challenging right now? What are some wins from the day?\n\nResponse: Put your response here.",
+    "objectID": "activities/08_mlr_intro.html#exercise-1-review-visualization",
+    "href": "activities/08_mlr_intro.html#exercise-1-review-visualization",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 1: Review visualization",
+    "text": "Exercise 1: Review visualization\nLet’s build a model of rides by windspeed (quantitative) and weekend status (categorical).\n\nWrite a model statement for this regression model.\nPlot & describe, in words, the relationship between these 3 variables.\n\n\n# Plot of rides vs windspeed & weekend\n# HINT: Start with a plot of rides vs windspeed, then add an aesthetic for weekend!",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-11-read-in-and-get-to-know-the-weather-data",
-    "href": "activities/02_foundations_univariate.html#exercise-11-read-in-and-get-to-know-the-weather-data",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 11: Read in and get to know the weather data",
-    "text": "Exercise 11: Read in and get to know the weather data\nDaily weather data are available for 3 locations in Perth, Australia.\n\nView the codebook here.\nComplete the code below to read in the data.\n\n\n# Replace the ??? with your own name for the weather data\n# Replace the ___ with the correct function\n??? &lt;- ___(\"https://mac-stat.github.io/data/weather_3_locations.csv\")",
+    "objectID": "activities/08_mlr_intro.html#exercise-2-review-model",
+    "href": "activities/08_mlr_intro.html#exercise-2-review-model",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 2: Review model",
+    "text": "Exercise 2: Review model\nLet’s build the model. Run the following code:\n\nbike_model_1 &lt;- lm(rides ~ windspeed + weekend, data = bikes)\ncoef(summary(bike_model_1))\n\nThe model formula with our coefficient estimates filled in is therefore:\nE[rides | windspeed, weekendTRUE] = 4738.38 - 63.97 * windspeed - 925.16 * weekendTRUE\nThis model formula is represented by 2 lines, one corresponding to weekends and the other to weekdays. Simplify the model formula above for weekdays and weekends:\nweekdays: rides = ___ - ___ windspeed\nweekends: rides = ___ - ___ windspeed",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-12-exploring-the-data-structure",
-    "href": "activities/02_foundations_univariate.html#exercise-12-exploring-the-data-structure",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 12: Exploring the data structure",
-    "text": "Exercise 12: Exploring the data structure\nCheck out the basic features of the weather data.\n\n# Examine the first six cases\n\n# Find the dimensions of the data\n\nWhat does a case represent in this data?",
+    "objectID": "activities/08_mlr_intro.html#exercise-3-review-coefficient-interpretation",
+    "href": "activities/08_mlr_intro.html#exercise-3-review-coefficient-interpretation",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 3: Review coefficient interpretation",
+    "text": "Exercise 3: Review coefficient interpretation\n\nThe intercept coefficient, 4738.38, represents the intercept of the sub-model for weekdays, the reference category. What’s its contextual interpretation?\nThe windspeed coefficient, -63.97, represents the shared slope of the weekend and weekday sub-models. What’s its contextual interpretation?\nThe weekendTRUE coefficient, -925.16, represents the change in intercept for the weekend vs weekday sub-model. What’s its contextual interpretation?",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-13-exploring-rainfall",
-    "href": "activities/02_foundations_univariate.html#exercise-13-exploring-rainfall",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 13: Exploring rainfall",
-    "text": "Exercise 13: Exploring rainfall\nThe raintoday variable contains information about rainfall.\n\nIs this variable quantitative or categorical?\nCreate an appropriate visualization, and compute appropriate numerical summaries.\nWhat do you learn about rainfall in Perth?\n\n\n# Visualization\n\n# Numerical summaries",
+    "objectID": "activities/08_mlr_intro.html#exercise-4-2-categorical-predictors-visualization",
+    "href": "activities/08_mlr_intro.html#exercise-4-2-categorical-predictors-visualization",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 4: 2 categorical predictors – visualization",
+    "text": "Exercise 4: 2 categorical predictors – visualization\nThus far, we’ve explored a couple examples of multiple regression models that have 2 predictors, 1 quantitative and 1 categorical.\nSo what happens when both predictors are categorical?!\nTo this end, let’s model rides by weekend status and season.\nThe below code plots rides vs season.\nModify this code to also include information about weekend.\nHINT: Remember the visualization principle that additional categorical predictors require some sort of grouping mechanism / mechanism that distinguishes between the 2 groups.\n\n# rides vs season\nbikes %&gt;% \n  ggplot(aes(y = rides, x = season)) + \n  geom_boxplot()\n\nrides vs season AND weekend\nbikes %&gt;%\n  ggplot(aes(y = rides, x = season, ___ = ___)) +\n  geom_boxplot()",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-14-exploring-temperature",
-    "href": "activities/02_foundations_univariate.html#exercise-14-exploring-temperature",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 14: Exploring temperature",
-    "text": "Exercise 14: Exploring temperature\nThe maxtemp variable contains information on the daily high temperature.\n\nIs this variable quantitative or categorical?\nCreate an appropriate visualization, and compute appropriate numerical summaries.\nWhat do you learn about high temperatures in Perth?\n\n\n# Visualization\n\n# Numerical summaries",
+    "objectID": "activities/08_mlr_intro.html#exercise-5-follow-up",
+    "href": "activities/08_mlr_intro.html#exercise-5-follow-up",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 5: follow-up",
+    "text": "Exercise 5: follow-up\n\nDescribe (in words) the relationship of ridership with season & weekend status.\nA model of rides by season alone would be represented by only 4 expected outcomes, 1 for each season. Considering this and the plot above, how do you anticipate a model of rides by season and weekend status will be represented?\n\n2 lines, 1 for each weekend status\n8 lines, 1 for each possible combination of season & weekend\n2 expected outcomes, 1 for each weekend status\n8 expected outcomes, 1 for each possible combination of season & weekend",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
   },
   {
-    "objectID": "activities/02_foundations_univariate.html#exercise-15-customizing-challenge",
-    "href": "activities/02_foundations_univariate.html#exercise-15-customizing-challenge",
-    "title": "02. Univariate visualization and summaries",
-    "section": "Exercise 15: Customizing! (CHALLENGE)",
-    "text": "Exercise 15: Customizing! (CHALLENGE)\nThough you will naturally absorb some RStudio code throughout the semester, being an effective statistical thinker and “programmer” does not require that we memorize all code. That would be impossible! In contrast, using the foundation you built today, do some digging online to learn how to customize your visualizations.\n\nFor the histogram below, add a title and more meaningful axis labels. Specifically, title the plot “Distribution of max temperatures in Perth”, change the x-axis label to “Maximum temperature” and y-axis label to “Number of days”. HINT: Do a Google search for something like “add axis labels ggplot”.\n\n\n# Add a title and axis labels\nggplot(weather, aes(x = maxtemp)) + \n    geom_histogram()\n\n\nAdjust the code below in order to color the bars green. NOTE: Color can be an effective tool, but here it is simply gratuitous.\n\n\n# Make the bars green\nggplot(weather, aes(x = raintoday)) + \n    geom_bar()\n\n\nCheck out the ggplot2 cheat sheet. Try making some of the other kinds of univariate plots outlined there.\nWhat else would you like to change about your plot? Try it!\n\n\nSolutions",
+    "objectID": "activities/08_mlr_intro.html#exercise-6-2-categorical-predictors-build-the-model",
+    "href": "activities/08_mlr_intro.html#exercise-6-2-categorical-predictors-build-the-model",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 6: 2 categorical predictors – build the model",
+    "text": "Exercise 6: 2 categorical predictors – build the model\nLet’s build the multiple regression model of rides vs season and weekend:\n\nbike_model_2 &lt;- lm(rides ~ weekend + season, bikes)\ncoef(summary(bike_model_2))\n\nThus the model formula with coefficient estimates filled in is given by:\nE[rides | weekend, season] = 4260.45 - 912.33 weekendTRUE - 116.38 seasonspring + 438.44 seasonsummer - 1719.06 seasonwinter\n\nUse this model to predict the ridership on the following days:\n\n\n# a fall weekday\n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a winter weekday    \n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a fall weekend day        \n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a winter weekend day\n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n\nWe only made 4 predictions here. How many possible predictions does this model produce? Is this consistent with your intuition in the previous exercise?",
     "crumbs": [
-      "02. Univariate visualization and summaries"
+      "08/09. Introduction to multiple linear regression"
     ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-7-2-categorical-predictors-interpret-the-model",
+    "href": "activities/08_mlr_intro.html#exercise-7-2-categorical-predictors-interpret-the-model",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 7: 2 categorical predictors – interpret the model",
+    "text": "Exercise 7: 2 categorical predictors – interpret the model\nUse your above predictions and visualization to fill in the below interpretations of the model coefficients.\nHint: What is the consequence of plugging in 0 or 1 for the different weekend and season categories?\n\nInterpreting 4260: On average, we expect there to be 4260 riders on (weekdays/weekends) during the (fall/spring/summer/winter).\nInterpreting -912: On average, in any season, we expect there to be 912 (more/fewer) riders on weekends than on ___.\n\nAn alternative interpretation: On average, we expect there to be 912 (more/fewer) riders on weekends than on ___, adjusting for season.\n\nInterpreting -1719: On average, on both weekdays and weekends, we expect there to be 1719 (more/fewer) riders in winter than in ___.\n\nAn alternative interpretation: On average, we expect there to be 1719 (more/fewer) riders in winter than in ___, controlling for weekday status.",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-8-2-quantitative-predictors-visualization",
+    "href": "activities/08_mlr_intro.html#exercise-8-2-quantitative-predictors-visualization",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 8: 2 quantitative predictors – visualization",
+    "text": "Exercise 8: 2 quantitative predictors – visualization\nNext, consider the relationship between rides and 2 quantitative predictors: windspeed and temp_feel. Check out the plot of this relationship below.\nThis reflect the visualization principle that quantitative variables require some sort of numerical scaling mechanism – rides and windspeed get numerical axes, and temp_feel gets a color scale.\n\nModify the code below to recreate this plot.\n\nbikes %&gt;%\n  ggplot(aes(y = rides, x = windspeed, ___ = ___)) +\n  geom_point()",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-9-follow-up",
+    "href": "activities/08_mlr_intro.html#exercise-9-follow-up",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 9: follow-up",
+    "text": "Exercise 9: follow-up\nDescribe (in words) the relationship of ridership with windspeed & temperature.",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-10-2-quantitative-predictors-modeling",
+    "href": "activities/08_mlr_intro.html#exercise-10-2-quantitative-predictors-modeling",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 10: 2 quantitative predictors – modeling",
+    "text": "Exercise 10: 2 quantitative predictors – modeling\nLet’s build the multiple regression model of rides vs windspeed and temp_feel:\n\nbike_model_3 &lt;- lm(rides ~ windspeed + temp_feel, data = bikes)\ncoef(summary(bike_model_3))\n\nThus the model formula with coefficient estimates filled in is given by,\nE[rides | windspeed, temp_feel] = -24.06 - 36.54 windspeed + 55.52 temp_feel\n\nInterpret the intercept coefficient, -24.06, in context.\nInterpret the windspeed coefficient, -36.54, in context.\nInterpret the temp_feel coefficient, 55.52, in context.",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-11-which-is-best",
+    "href": "activities/08_mlr_intro.html#exercise-11-which-is-best",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 11: Which is “best”?",
+    "text": "Exercise 11: Which is “best”?\nWe’ve now observed 3 different models of ridership, each having 2 predictors. The R-squared values of these models, along with those of the simple linear regression models with each predictor alone, are summarized below.\n\n\n\nmodel\npredictors\nR-squared\n\n\n\n\nbike_model_1\nwindspeed & weekend\n0.119\n\n\nbike_model_2\nweekend & season\n0.349\n\n\nbike_model_3\nwindspeed & temp_feel\n0.310\n\n\nbike_model_4\nwindspeed\n0.047\n\n\nbike_model_5\ntemp_feel\n0.296\n\n\nbike_model_6\nweekend\n0.074\n\n\nbike_model_7\nseason\n0.279\n\n\n\n\nWhich model does the best job of explaining the variability in ridership from day to day?\nIf you could only pick one predictor, which would it be?\nWhat happens to R-squared when we add a second predictor to our model, and why does this make sense? For example, how does the R-squared for model 1 (with both windspeed and weekend) compare to those of model 4 (only windspeed) and model 6 (only weekend)?\nAre 2 predictors always better than 1? Provide evidence and explain why this makes sense.",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-12-principles-of-interpretation",
+    "href": "activities/08_mlr_intro.html#exercise-12-principles-of-interpretation",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 12: Principles of interpretation",
+    "text": "Exercise 12: Principles of interpretation\nThese exercises have revealed some principles behind interpreting model coefficients, summarized below.\nReview and confirm that these make sense.",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-13-practice-1",
+    "href": "activities/08_mlr_intro.html#exercise-13-practice-1",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 13: Practice 1",
+    "text": "Exercise 13: Practice 1\nConsider the relationship of rides vs weekend and weather_cat.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients.",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-14-practice-2",
+    "href": "activities/08_mlr_intro.html#exercise-14-practice-2",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 14: Practice 2",
+    "text": "Exercise 14: Practice 2\nConsider the relationship of rides vs temp_feel and humidity.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients.",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-15-practice-3",
+    "href": "activities/08_mlr_intro.html#exercise-15-practice-3",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 15: Practice 3",
+    "text": "Exercise 15: Practice 3\nConsider the relationship of rides vs temp_feel and weather_cat.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients.",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "activities/08_mlr_intro.html#exercise-16-challenge",
+    "href": "activities/08_mlr_intro.html#exercise-16-challenge",
+    "title": "08/09. Introduction to multiple linear regression",
+    "section": "Exercise 16: CHALLENGE",
+    "text": "Exercise 16: CHALLENGE\nWe’ve explored models with 2 predictors. What about 3 predictors?! Consider the relationship of rides vs temp_feel, humidity, AND weekend.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret each model coefficient.\n\n\nSolutions",
+    "crumbs": [
+      "08/09. Introduction to multiple linear regression"
+    ]
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html",
+    "href": "solutions/07_slr_cat_predictor.html",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "",
+    "text": "# Load packages and import data\nlibrary(ggplot2)\nlibrary(dplyr)\n\ndata(diamonds)\n\n# A little bit of data wrangling code - let's not focus on this for now\ndiamonds &lt;- diamonds %&gt;% \n    mutate(\n        cut = factor(cut, ordered = FALSE),\n        color = factor(color, ordered = FALSE),\n        clarity = factor(clarity, ordered = FALSE)\n    )"
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-1-get-to-know-the-data",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-1-get-to-know-the-data",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 1: Get to know the data",
+    "text": "Exercise 1: Get to know the data\n\nA case represents a single diamond.\nThe distribution of price is right skewed with considerable high outliers. The right skew is evidenced by the mean price ($3932) being much higher than the median price ($2401).\nMost diamonds in this data are of Good cut or better. Ideal cut diamonds are the most common with each succesive grade being the next most common.\n\n\ndim(diamonds)\n\n[1] 53940    10\n\nhead(diamonds)\n\n# A tibble: 6 × 10\n  carat cut       color clarity depth table price     x     y     z\n  &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43\n2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31\n3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31\n4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63\n5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75\n6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48\n\n# Visualize price (outcome variable)\nggplot(diamonds, aes(x = price)) +\n    geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\nggplot(diamonds, aes(y = price)) +\n    geom_boxplot()\n\n\n\n\n\n\n\ndiamonds %&gt;%\n    summarize(mean(price), median(price), sd(price))\n\n# A tibble: 1 × 3\n  `mean(price)` `median(price)` `sd(price)`\n          &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;\n1         3933.            2401       3989.\n\n# Visualize cut (predictor variable)\nggplot(diamonds, aes(x = cut)) +\n    geom_bar()\n\n\n\n\n\n\n\ndiamonds %&gt;% \n    count(cut)\n\n# A tibble: 5 × 2\n  cut           n\n  &lt;fct&gt;     &lt;int&gt;\n1 Fair       1610\n2 Good       4906\n3 Very Good 12082\n4 Premium   13791\n5 Ideal     21551"
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-2-visualizations",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-2-visualizations",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 2: Visualizations",
+    "text": "Exercise 2: Visualizations\nStart by visualizing this relationship of interest, that between price and cut.\n\nWe just don’t see anything clearly on a scatterplot. With the small number of unique values of the predictor variable, all of the points are bunched up on each other.\n\n\n# Try a scatterplot\nggplot(diamonds, aes(y = price, x = cut)) + \n    geom_point()\n\n\n\n\n\n\n\n\n\nSeparately run each chunk below, with two plots. Comment (#) on what changes in the code / output.\n\n\n# Univariate boxplot\nggplot(diamonds, aes(y = price)) + \n    geom_boxplot()\n\n\n\n\n\n\n\n\n\n# Separate boxes by category\nggplot(diamonds, aes(y = price, x = cut)) + \n    geom_boxplot()\n\n\n\n\n\n\n\n\n\n# Univariate density plot\nggplot(diamonds, aes(x = price)) + \n    geom_density()\n\n\n\n\n\n\n\n\n\n# Separate density plots by category\nggplot(diamonds, aes(x = price, color = cut)) + \n    geom_density()\n\n\n\n\n\n\n\n\n\n# Univariate histogram\nggplot(diamonds, aes(x = price)) + \n    geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\n# Separate histograms by category\nggplot(diamonds, aes(x = price)) + \n    geom_histogram() + \n    facet_wrap(~ cut)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\nThe relationship between price and cut seems to be opposite what we would expect. The diamonds with the best cut (Ideal) have the lowest average price, and the ones with the worst cut (Fair) are woth the most. Maybe something else is different between the diamonds with the best and worst cuts…size maybe?"
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-3-numerical-summaries",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-3-numerical-summaries",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 3: Numerical summaries",
+    "text": "Exercise 3: Numerical summaries\nLet’s follow up our plots with some numerical summaries.\n\nMean price across all diamonds:\n\n\ndiamonds %&gt;% \n    summarize(mean(price))\n\n# A tibble: 1 × 1\n  `mean(price)`\n          &lt;dbl&gt;\n1         3933.\n\n\n\nMean price for each type of cut:\n\n\ndiamonds %&gt;% \n    group_by(cut) %&gt;% \n    summarize(mean(price))\n\n# A tibble: 5 × 2\n  cut       `mean(price)`\n  &lt;fct&gt;             &lt;dbl&gt;\n1 Fair              4359.\n2 Good              3929.\n3 Very Good         3982.\n4 Premium           4584.\n5 Ideal             3458.\n\n\n\nGroup means should reflect what you see in the plots (easiest to see in the boxplots)\nCreate our new cutFair variable:\n\n\ndiamonds &lt;- diamonds %&gt;%\n  mutate(cutFair=ifelse(cut == \"Fair\", 1, 0))\n\n\nCalculate the group means based on this new variable\n\n\ndiamonds %&gt;% \n    group_by(cutFair) %&gt;% \n    summarize(mean(price))\n\n# A tibble: 2 × 2\n  cutFair `mean(price)`\n    &lt;dbl&gt;         &lt;dbl&gt;\n1       0         3920.\n2       1         4359."
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-4-modeling-trend-using-a-categorical-predictor-with-exactly-2-categories",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-4-modeling-trend-using-a-categorical-predictor-with-exactly-2-categories",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 4: Modeling trend using a categorical predictor with exactly 2 categories",
+    "text": "Exercise 4: Modeling trend using a categorical predictor with exactly 2 categories\n\n# Construct the model\ndiamond_mod0 &lt;- lm(price ~ cutFair, data = diamonds)\n\n# Summarize the model\ncoef(summary(diamond_mod0))\n\n             Estimate Std. Error    t value     Pr(&gt;|t|)\n(Intercept) 3919.6946    17.4367 224.795616 0.000000e+00\ncutFair      439.0632   100.9269   4.350309 1.361951e-05\n\n\nThe intercept is the expected value (mean) of the price for all diamonds with a cut quality that isn’t Fair (Good, Very Good, Premium, or Ideal, i.e. when cutFair = 0)–the same as we saw in exercise 3e.\n\nWhen we add the intercept and coefficient for cutFair, we get 3919.69 + 439.06 = 4358.75–this is the mean price for all diamonds with a Fair cut quality that we saw in exercise 3e! Therefore, the coefficient of cutFair (439.06) is interpreted as the difference between the mean value of diamonds with a Fair cut quality and the mean value of diamonds with a higher cut quality."
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-5-modeling-trend-using-a-categorical-predictor-with-2-categories",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-5-modeling-trend-using-a-categorical-predictor-with-2-categories",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 5: Modeling trend using a categorical predictor with >2 categories",
+    "text": "Exercise 5: Modeling trend using a categorical predictor with &gt;2 categories\n\n# Construct the model\ndiamond_mod &lt;- lm(price ~ cut, data = diamonds)\n\n# Summarize the model\ncoef(summary(diamond_mod))\n\n              Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)  4358.7578   98.78795 44.122361 0.000000e+00\ncutGood      -429.8933  113.84940 -3.775982 1.595493e-04\ncutVery Good -376.9979  105.16422 -3.584849 3.375707e-04\ncutPremium    225.4999  104.39521  2.160060 3.077240e-02\ncutIdeal     -901.2158  102.41155 -8.799943 1.408406e-18\n\n\n\nWe are seeing 4 coefficient estimates because each category is being assigned to a separate indicator variable–cutGood = 1 when cut == \"Good\" and 0 otherwise, cutVery Good = 1 when `cut == “Very Good” and 0 otherwise, and so on.\nE[price | cut] = 4358.7578 - 429.8933 cutGood - 376.9979 cutVery Good + 225.4999 cutPremium - 901.2158 cutIdeal"
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-6-making-sense-of-the-model",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-6-making-sense-of-the-model",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 6: Making sense of the model",
+    "text": "Exercise 6: Making sense of the model\n\nExpected/typical price for diamonds of Good cut:\n\nE[price | cut] = 4358.7578 - 429.8933 * 1 - 376.9979 * 0 + 225.4999 * 0 - 901.2158 * 0 = 4358.7578 - 429.8933 = $3928.865\n\npredict(diamond_mod, newdata = data.frame(cut = \"Good\"))\n\n       1 \n3928.864 \n\n\n\nExpected/typical price for diamonds of Fair cut:\n\nE[price | cut] = 4358.7578 - 429.8933 * 0 - 376.9979 * 0 + 225.4999 * 0 - 901.2158 * 0 = $4358.7578\n\npredict(diamond_mod, newdata = data.frame(cut = \"Fair\"))\n\n       1 \n4358.758 \n\n\n\nThese come from our group mean calculations in Exercise 3b! The predicted value for diamonds of Fair cut is also the same as what we obtained using the SLR model in exercise 4 with only a single cutFair indicator variable."
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-7-interpreting-coefficients",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-7-interpreting-coefficients",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 7: Interpreting coefficients",
+    "text": "Exercise 7: Interpreting coefficients\nRecall that our model formula is not a formula for a line. Thus we can’t interpret the coefficients as “slopes” as we have before. Taking this into account and reflecting upon your calculations above…\n\nThe average price of a Fair cut diamonds is $4358.7578.\n\nInterpretation of cutGood coefficient: On average, Good cut diamonds are worth $429.89 less than Fair cut diamonds.\nInterpretation of cutVery Good coefficient: On average, Very Good cut diamonds are worth $377.00 less than Fair cut diamonds."
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-8-modeling-choices-challenge",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-8-modeling-choices-challenge",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 8: Modeling choices (CHALLENGE)",
+    "text": "Exercise 8: Modeling choices (CHALLENGE)\nWhy do we fit this model in this way (using 4 indicator variables cutGood, cutVery Good, cutPremium, cutIdeal)? Instead, suppose that we created a single variable cutCat that gave each category a numerical value: 0 for Fair, 1 for Good, 2 for Very Good, 3 for Premium, and 4 for Ideal.\n\nIf we used 0-4 instead of creating indicator variables, we would be constraining the change from 0 to 1, from 1 to 2, etc. to always be of the same magnitude. That is, a 1 unit change in the cut variable would always have the same change in price in our model.\nUsing separate indicator variables allows the difference between subsequent categories to be different, which allows our model to be a bit more nuanced. It is possible to take nuance too far though. For example, in our previous investigations of bikeshare data, we modeled ridership versus temperature. We treated temperature as a quantitative predictor. Imagine if we had created an indicator variable for each unique temperature in the data—that would be so many variables! Having so many variables creates a very complex model which can be hard to make sense of. (These ideas are addressed further in STAT 253: Statistical Machine Learning!)"
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-9-diamond-color",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-9-diamond-color",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 9: Diamond color",
+    "text": "Exercise 9: Diamond color\nConsider modeling price by color.\n\nThe best color diamonds are J, and worst are D. We would expect D diamonds to have the lowest price and increase steadily as we get to J. This is in fact what we see in the boxplots.\n\n\nggplot(diamonds, aes(x = color, y = price)) +\n    geom_boxplot()\n\n\n\n\n\n\n\ndiamonds %&gt;% \n    group_by(color) %&gt;% \n    summarize(mean(price))\n\n# A tibble: 7 × 2\n  color `mean(price)`\n  &lt;fct&gt;         &lt;dbl&gt;\n1 D             3170.\n2 E             3077.\n3 F             3725.\n4 G             3999.\n5 H             4487.\n6 I             5092.\n7 J             5324.\n\n\n\nWe fit a linear model and obtain the model formula: E[price | color] = 3169.95 - 93.20 colorE + 554.93 colorF + 829.18 colorG + 1316.72 colorH + 1921.92 colorI + 2153.86 colorJ\n\n\ndiamond_mod2 &lt;- lm(price ~ color, data = diamonds)\n\ncoef(summary(diamond_mod2))\n\n              Estimate Std. Error   t value      Pr(&gt;|t|)\n(Intercept) 3169.95410   47.70694 66.446391  0.000000e+00\ncolorE       -93.20162   62.04724 -1.502107  1.330752e-01\ncolorF       554.93230   62.38527  8.895246  6.004834e-19\ncolorG       829.18158   60.34470 13.740751  6.836340e-43\ncolorH      1316.71510   64.28715 20.481777  7.074714e-93\ncolorI      1921.92086   71.55308 26.860072 7.078041e-158\ncolorJ      2153.86392   88.13203 24.439060 3.414906e-131\n\n\n\nColor D is the reference level because we don’t see its indicator variable in the model output.\nInterpretation of the intercept: Diamonds with D color cost $3169.95 on average.\nInterpretation of the colorE coefficient: Diamonds with E color cost $93.20 less than D color diamonds on average.\nInterpretation of the colorF coefficient: Diamonds with F color cost $554.93 more than D color diamonds on average."
+  },
+  {
+    "objectID": "solutions/07_slr_cat_predictor.html#exercise-10-diamond-clarity",
+    "href": "solutions/07_slr_cat_predictor.html#exercise-10-diamond-clarity",
+    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "section": "Exercise 10: Diamond clarity",
+    "text": "Exercise 10: Diamond clarity\nWe see the unexpected result that diamonds of better clarity (VS1 and higher) have lower average prices. In fact the best clarity diamonds (VVS1 and IF) have the lowest average prices. What might be going on? What if the most clear diamonds were also quite small…\n\nggplot(diamonds, aes(x = clarity, y = price)) +\n    geom_boxplot()\n\n\n\n\n\n\n\ndiamonds %&gt;% \n    group_by(clarity) %&gt;% \n    summarize(mean(price))\n\n# A tibble: 8 × 2\n  clarity `mean(price)`\n  &lt;fct&gt;           &lt;dbl&gt;\n1 I1              3924.\n2 SI2             5063.\n3 SI1             3996.\n4 VS2             3925.\n5 VS1             3839.\n6 VVS2            3284.\n7 VVS1            2523.\n8 IF              2865.\n\ndiamond_mod3 &lt;- lm(price ~ clarity, data = diamonds)\n\ncoef(summary(diamond_mod3))\n\n                 Estimate Std. Error      t value      Pr(&gt;|t|)\n(Intercept)  3924.1686910   144.5619 27.145247517 3.513547e-161\nclaritySI2   1138.8599147   150.2746  7.578526239  3.550711e-14\nclaritySI1     71.8324571   148.6049  0.483378837  6.288287e-01\nclarityVS2      0.8207037   148.8672  0.005512992  9.956013e-01\nclarityVS1    -84.7132999   150.9746 -0.561109670  5.747251e-01\nclarityVVS2  -640.4316203   154.7737 -4.137858008  3.510944e-05\nclarityVVS1 -1401.0540535   158.5401 -8.837224284  1.010097e-18\nclarityIF   -1059.3295848   171.8990 -6.162510636  7.210567e-10"
   },
   {
     "objectID": "solutions/02_foundations_univariate.html",
@@ -638,7 +815,7 @@
     "href": "schedule.html",
     "title": "Course Schedule",
     "section": "",
-    "text": "The course schedule below will be filled in throughout the semester. For each day, there will be a link to course slides (if there are any that day) and notes/links on what is due ahead of class time. The “Announcements” column is (hopefully) self-explanatory. Any urgent announcements will be made over email.\n\n\n\nWeek\nTuesday\nThursday\nAnnouncements\n\n\n\n\n4\n2/11: SLR categorical predictors\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/13: Quiz 1 (1 hour in class)\n\nPP#2 due by 5pm Wednesday, 2/12\nGroup members for the final project are posted on Moodle\n\n\n\n3\n2/4: SLR model evaluation\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/6: SLR variable transformations + library activity\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nPP#1 due by 5pm Wednesday, 2/5\nPlease complete the project preferences survey by Friday, 2/7\nSee course Google Calendar for updated office hours\n\n\n\n2\n1/28: Intro to R + univariate visualization & summaries\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n1/30: Intro to simple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nLast day to add/drop is Friday, 1/31\nPreceptor office hours start this week–see the Google calendar for times\nPP#1 is posted on the assignments tab (due Wednesday, 2/5 at 5pm CT)\n\n\n\n1\nWinter Break\n1/23: First day of class!\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\nWelcome back to campus!"
+    "text": "The course schedule below will be filled in throughout the semester. For each day, there will be a link to course slides (if there are any that day) and notes/links on what is due ahead of class time. The “Announcements” column is (hopefully) self-explanatory. Any urgent announcements will be made over email.\n\n\n\nWeek\nTuesday\nThursday\nAnnouncements\n\n\n\n\n5\n2/18: Intro to multiple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/20: MLR confounding + project work day\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nNo homework due this week!\nLibrarians will be in class for project help on Thursday\n\n\n\n4\n2/11: SLR categorical predictors\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/13: Quiz 1 (1 hour in class)\n\nPP#2 due by 5pm Wednesday, 2/12\nGroup members for the final project are posted on Moodle\n\n\n\n3\n2/4: SLR model evaluation\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/6: SLR variable transformations + library activity\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nPP#1 due by 5pm Wednesday, 2/5\nPlease complete the project preferences survey by Friday, 2/7\nSee course Google Calendar for updated office hours\n\n\n\n2\n1/28: Intro to R + univariate visualization & summaries\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n1/30: Intro to simple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nLast day to add/drop is Friday, 1/31\nPreceptor office hours start this week–see the Google calendar for times\nPP#1 is posted on the assignments tab (due Wednesday, 2/5 at 5pm CT)\n\n\n\n1\nWinter Break\n1/23: First day of class!\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\nWelcome back to campus!"
   },
   {
     "objectID": "index.html",
@@ -752,7 +929,7 @@
     "href": "assignments.html",
     "title": "Practice Problems",
     "section": "",
-    "text": "…due Wednesdays at 5pm Central on Moodle!\n\nPractice Problems 1, due 2/5\nPractice Problems 2, due 2/12\n[Practice Problems 3], due 2/26\n[Practice Problems 4], due 3/5\n[Practice Problems 5], due 3/26\n[Practice Problems 6], due 4/9\n[Practice Problems 7], due 4/16\n[Practice Problems 8], due 4/23"
+    "text": "…due Wednesdays at 5pm Central on Moodle!\n\nPractice Problems 1, due 2/5\nPractice Problems 2, due 2/12\nPractice Problems 3, due 2/26\n[Practice Problems 4], due 3/5\n[Practice Problems 5], due 3/26\n[Practice Problems 6], due 4/9\n[Practice Problems 7], due 4/16\n[Practice Problems 8], due 4/23"
   },
   {
     "objectID": "project.html",
@@ -1180,81 +1357,376 @@
     "text": "Exercise 3: Log transformations\n\n\n\n\n# Visualization: Big Mac minutes vs. gross annual teacher income\nbigmac %&gt;%\n  ggplot(aes(x = gross_annual_teacher_income, y = bigmac_mins)) +\n  geom_point() \n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nAs annual teacher income gets higher, time it takes in minutes to earn a Big Mac decreases, though the relationship does not appear linear. The amount of time it takes to earn a Big Mac is very high when income is below about 10,000 where it sharply decreases, and then decreases at a much lower rate when income is above around 20,000.\n\nCorrelation is a summary of the linear relationship between two quantitative variables, and this relationship does not appear to be linear!\n\n\n\n# Linear regression code\nmod &lt;- lm(bigmac_mins ~ gross_annual_teacher_income, data = bigmac)\nsummary(mod)\n\n\nCall:\nlm(formula = bigmac_mins ~ gross_annual_teacher_income, data = bigmac)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-29.649  -9.556  -1.784   4.512  43.715 \n\nCoefficients:\n                              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                  5.801e+01  3.104e+00   18.69  &lt; 2e-16 ***\ngross_annual_teacher_income -9.092e-04  9.591e-05   -9.48 6.16e-14 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 15.4 on 66 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.5766,    Adjusted R-squared:  0.5701 \nF-statistic: 89.86 on 1 and 66 DF,  p-value: 6.164e-14\n\n\nOn average, we expect a one dollar increase in gross annual teacher income to be associated with a decrease in the number of minutes it takes to earn a Big Mac by 9 x 10^(-4) minutes. Stated differently, we expect a ten-thousand dollar increase in gross annual teacher income to be associated with a decrease in the number of minutes it takes to earn a Big Mac by 9 minutes (note that here I did a scale transformation of gross annual teacher income to get this interpretation, which might make more sense when looking at the scale of salary!).\n\n\n\n\n# Residuals vs. fitted values plot\nggplot(mod, aes(x = .fitted, y = .resid)) + \n    geom_point() + \n    geom_hline(yintercept = 0) +\n    geom_smooth(se = FALSE)\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nThe residuals vs. fitted values plot shows a very clear, nonlinear pattern! As fitted values increase, residuals decrease for a while, and then sharply increase once fitted values are higher than around 40 minutes. The spread of residuals around zero also varies, with greater spread for higher fitted values.\n\nThe residuals appear to be large for people with negative fitted values and those with very high fitted values. Recall that a linear model does not “know” that number of minutes to earn a Big Mac can’t be negative, in context. If we look at the fitted line from our linear model on a scatterplot (see below)…\n\n\nbigmac %&gt;%\n  ggplot(aes(x = gross_annual_teacher_income, y = bigmac_mins)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nWe observe that negative fitted values and very large fitted values occur when annual teacher income is greater than around 70,000 and less than 10,000, respectively. This implies that the model does a worse job at predicting the number of minutes to earn a Big Mac in countries where annual teacher income is either very high or very low.\nWe’ll now consider a log transformation of teaching salary. In the code chunk below, create a new variable called log_sal that contains the logged values of gross_annual_teacher_income.\n\n# Creating new variable log_sal\nbigmac &lt;- bigmac %&gt;%\n  mutate(log_sal = log(gross_annual_teacher_income))\n\n\n\n\n\nbigmac %&gt;%\n  ggplot(aes(log_sal, bigmac_mins)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nThe relationship between logged annual teaching salary and minutes to earn a Big Mac appears roughly linear, with a weakly negative relationship. Correlation is likely an appropriate numerical summary for the relationship between these two quantitative variables, as the relationship is roughly linear!\n\n\n\n\nmod_log &lt;- lm(bigmac_mins ~ log_sal, data = bigmac)\nsummary(mod_log)\n\n\nCall:\nlm(formula = bigmac_mins ~ log_sal, data = bigmac)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-36.817  -6.951  -1.241   6.032  41.357 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  210.875     14.687   14.36   &lt;2e-16 ***\nlog_sal      -18.142      1.502  -12.08   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 13.21 on 66 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.6886,    Adjusted R-squared:  0.6838 \nF-statistic: 145.9 on 1 and 66 DF,  p-value: &lt; 2.2e-16\n\n\nEach 1 unit increase in logged salary is associated with a 18.14 minute decrease in time to earn a Big Mac on average.\nWe can also use a property of logarithms to interpret the slope of -18.14 in a different way. Suppose we have two salaries: Salary1 and Salary2. If Salary2 is 10% higher than Salary1, then Salary2/Salary1 = 1.1. It is a property of logarithms that log(Salary2/Salary1) = log(Salary2) - log(Salary1). In this case log(Salary2/Salary1) = log(Salary2) - log(Salary1) = log(1.1) = 0.09531018. So a 10% increase in salary is a 0.09 unit increase in the log scale:\n\n# Multiplicative difference of 1.1, or 10% between salaries gives us the \nlog(1.1) * -18.142\n\n[1] -1.729117\n\n\nWhile a 1 unit increase in log salary is associated with an average decrease of 18 Big Mac minutes, a 0.0953 unit increase in log salary (which corresponds to a 10% multiplicative increase), is associated with a 1.7 minute decrease in Big Mac minutes.\nUnderlying math:\nCase 1: Salary = x\n   E[bigmacmin_1] = beta0 + beta1 log(x)\nCase 2: Salary = m*x\n   E[bigmacmin_2] = beta0 + beta1 log(m*x)\n\nE[bigmacmin_2] - E[bigmacmin_1] = beta1 log(m)\n\n\n\n\n# Residuals vs. fitted values plot\nggplot(mod_log, aes(x = .fitted, y = .resid)) + \n    geom_point() + \n    geom_hline(yintercept = 0) +\n    geom_smooth(se = FALSE)\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nThe residuals seem to lie roughly around zero for all possible fitted values, though the spread is still noticably larger for larger fitted values compared to smaller ones. This implies that the linearity assumption is likely satisfied for this model, but equal variance may be a concern."
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html",
-    "href": "solutions/07_slr_cat_predictor.html",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
+    "objectID": "solutions/08_mlr_intro.html",
+    "href": "solutions/08_mlr_intro.html",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
     "section": "",
-    "text": "# Load packages and import data\nlibrary(ggplot2)\nlibrary(dplyr)\n\ndata(diamonds)\n\n# A little bit of data wrangling code - let's not focus on this for now\ndiamonds &lt;- diamonds %&gt;% \n    mutate(\n        cut = factor(cut, ordered = FALSE),\n        color = factor(color, ordered = FALSE),\n        clarity = factor(clarity, ordered = FALSE)\n    )"
+    "text": "# Load packages\nlibrary(readr)\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Load data\nlibrary(palmerpenguins)\ndata(penguins)\npenguins &lt;- penguins %&gt;% \n  filter(species != \"Adelie\", bill_length_mm &lt; 57)\n\n# Check it out\nhead(penguins)\n\n# A tibble: 6 × 8\n  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Gentoo  Biscoe           46.1          13.2               211        4500\n2 Gentoo  Biscoe           50            16.3               230        5700\n3 Gentoo  Biscoe           48.7          14.1               210        4450\n4 Gentoo  Biscoe           50            15.2               218        5700\n5 Gentoo  Biscoe           47.6          14.5               215        5400\n6 Gentoo  Biscoe           46.5          13.5               210        4550\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-1-get-to-know-the-data",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-1-get-to-know-the-data",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 1: Get to know the data",
-    "text": "Exercise 1: Get to know the data\n\nA case represents a single diamond.\nThe distribution of price is right skewed with considerable high outliers. The right skew is evidenced by the mean price ($3932) being much higher than the median price ($2401).\nMost diamonds in this data are of Good cut or better. Ideal cut diamonds are the most common with each succesive grade being the next most common.\n\n\ndim(diamonds)\n\n[1] 53940    10\n\nhead(diamonds)\n\n# A tibble: 6 × 10\n  carat cut       color clarity depth table price     x     y     z\n  &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43\n2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31\n3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31\n4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63\n5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75\n6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48\n\n# Visualize price (outcome variable)\nggplot(diamonds, aes(x = price)) +\n    geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\nggplot(diamonds, aes(y = price)) +\n    geom_boxplot()\n\n\n\n\n\n\n\ndiamonds %&gt;%\n    summarize(mean(price), median(price), sd(price))\n\n# A tibble: 1 × 3\n  `mean(price)` `median(price)` `sd(price)`\n          &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;\n1         3933.            2401       3989.\n\n# Visualize cut (predictor variable)\nggplot(diamonds, aes(x = cut)) +\n    geom_bar()\n\n\n\n\n\n\n\ndiamonds %&gt;% \n    count(cut)\n\n# A tibble: 5 × 2\n  cut           n\n  &lt;fct&gt;     &lt;int&gt;\n1 Fair       1610\n2 Good       4906\n3 Very Good 12082\n4 Premium   13791\n5 Ideal     21551"
+    "objectID": "solutions/08_mlr_intro.html#review-exercise-1-visualizing-bivariate-relationships",
+    "href": "solutions/08_mlr_intro.html#review-exercise-1-visualizing-bivariate-relationships",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Review Exercise 1: Visualizing bivariate relationships",
+    "text": "Review Exercise 1: Visualizing bivariate relationships\nConsider two potential predictors of flipper length: a penguin’s bill length, and the species of penguin.\nLet’s first visualize how each of these predictors is related to flipper length:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)+\n  theme_classic()\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n# could instead do a density plot or histogram too!\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = species)) + \n  geom_boxplot() + \n  theme_classic()"
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-2-visualizations",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-2-visualizations",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 2: Visualizations",
-    "text": "Exercise 2: Visualizations\nStart by visualizing this relationship of interest, that between price and cut.\n\nWe just don’t see anything clearly on a scatterplot. With the small number of unique values of the predictor variable, all of the points are bunched up on each other.\n\n\n# Try a scatterplot\nggplot(diamonds, aes(y = price, x = cut)) + \n    geom_point()\n\n\n\n\n\n\n\n\n\nSeparately run each chunk below, with two plots. Comment (#) on what changes in the code / output.\n\n\n# Univariate boxplot\nggplot(diamonds, aes(y = price)) + \n    geom_boxplot()\n\n\n\n\n\n\n\n\n\n# Separate boxes by category\nggplot(diamonds, aes(y = price, x = cut)) + \n    geom_boxplot()\n\n\n\n\n\n\n\n\n\n# Univariate density plot\nggplot(diamonds, aes(x = price)) + \n    geom_density()\n\n\n\n\n\n\n\n\n\n# Separate density plots by category\nggplot(diamonds, aes(x = price, color = cut)) + \n    geom_density()\n\n\n\n\n\n\n\n\n\n# Univariate histogram\nggplot(diamonds, aes(x = price)) + \n    geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\n# Separate histograms by category\nggplot(diamonds, aes(x = price)) + \n    geom_histogram() + \n    facet_wrap(~ cut)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\nThe relationship between price and cut seems to be opposite what we would expect. The diamonds with the best cut (Ideal) have the lowest average price, and the ones with the worst cut (Fair) are woth the most. Maybe something else is different between the diamonds with the best and worst cuts…size maybe?"
+    "objectID": "solutions/08_mlr_intro.html#review-exercise-2-model-the-bivariate-relationships",
+    "href": "solutions/08_mlr_intro.html#review-exercise-2-model-the-bivariate-relationships",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Review Exercise 2: model the bivariate relationships",
+    "text": "Review Exercise 2: model the bivariate relationships\nLet’s fit 2 simple linear regression models of flipper_length_mm by penguin bill_length_mm and species:\n\nsummary(lm(flipper_length_mm ~ bill_length_mm, penguins))\n\n\nCall:\nlm(formula = flipper_length_mm ~ bill_length_mm, data = penguins)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-30.441 -10.998   3.015   8.942  19.881 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)    177.4971    13.6676  12.987   &lt;2e-16 ***\nbill_length_mm   0.6712     0.2850   2.355   0.0195 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 11.91 on 187 degrees of freedom\nMultiple R-squared:  0.02881,   Adjusted R-squared:  0.02362 \nF-statistic: 5.548 on 1 and 187 DF,  p-value: 0.01954\n\n\nReview: How do we interpret the bill_length_mm coefficient from this model?\n\nFor every 1mm increase in bill length, we expect the flipper length increases by 0.715mm\n\n\nsummary(lm(flipper_length_mm ~ species, penguins))\n\n\nCall:\nlm(formula = flipper_length_mm ~ species, data = penguins)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-18.045  -5.045  -1.045   3.955  15.955 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   196.0448     0.8065  243.07   &lt;2e-16 ***\nspeciesGentoo  21.0372     1.0039   20.96   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 6.602 on 187 degrees of freedom\nMultiple R-squared:  0.7014,    Adjusted R-squared:  0.6998 \nF-statistic: 439.2 on 1 and 187 DF,  p-value: &lt; 2.2e-16\n\n\nReview: How do we interpret the intercept and speciesGentoo coefficient from this model?\n\nIntercept: the expected flipper length for Chinstrap penguins is 196mm.\n\n\nSlope: the expected flipper length for Gentoo penguins is 21.08mm longer than that of Chinstrap penguins.\n\nWhat do these visualizations and models tell us? Do you think it would be useful to consider both bill length and species as predictors?\n\nBoth bill length and species appear to be associated with flipper length–perhaps we should try to model these both simultaneously!"
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-3-numerical-summaries",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-3-numerical-summaries",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 3: Numerical summaries",
-    "text": "Exercise 3: Numerical summaries\nLet’s follow up our plots with some numerical summaries.\n\nMean price across all diamonds:\n\n\ndiamonds %&gt;% \n    summarize(mean(price))\n\n# A tibble: 1 × 1\n  `mean(price)`\n          &lt;dbl&gt;\n1         3933.\n\n\n\nMean price for each type of cut:\n\n\ndiamonds %&gt;% \n    group_by(cut) %&gt;% \n    summarize(mean(price))\n\n# A tibble: 5 × 2\n  cut       `mean(price)`\n  &lt;fct&gt;             &lt;dbl&gt;\n1 Fair              4359.\n2 Good              3929.\n3 Very Good         3982.\n4 Premium           4584.\n5 Ideal             3458.\n\n\n\nGroup means should reflect what you see in the plots (easiest to see in the boxplots)\nCreate our new cutFair variable:\n\n\ndiamonds &lt;- diamonds %&gt;%\n  mutate(cutFair=ifelse(cut == \"Fair\", 1, 0))\n\n\nCalculate the group means based on this new variable\n\n\ndiamonds %&gt;% \n    group_by(cutFair) %&gt;% \n    summarize(mean(price))\n\n# A tibble: 2 × 2\n  cutFair `mean(price)`\n    &lt;dbl&gt;         &lt;dbl&gt;\n1       0         3920.\n2       1         4359."
+    "objectID": "solutions/08_mlr_intro.html#exercise-3-visualizing-the-model",
+    "href": "solutions/08_mlr_intro.html#exercise-3-visualizing-the-model",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 3: Visualizing the model",
+    "text": "Exercise 3: Visualizing the model\nWe’ve learned how to visualize the relationship of flipper_length_mm by bill_length_mm alone:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point()\n\n\n\n\n\n\n\n\n\nTHINK: How might we change the scatterplot points to also indicate information about penguin species? (There’s more than 1 approach!)\n\n\nUse the categorical species variable as a color aesthetic\n\n\nTry out your idea by modifying the code below. If you get stuck, talk with the tables around you!\n\n\n# instead of colour = species, could also use shape or size\npenguins %&gt;%\n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, colour = species)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\nTHINK: Reflect on this plot–how do you think a multiple regression model of flipper_length_mm using both of these predictors would be represented?\n\n\nperhaps separate lines of best fit for each of the species\n\n\nCheck your intuition below by modifying the code below to include species in this plot, as you did in Exercise 1.\n\n\npenguins %&gt;%\n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, colour = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-4-modeling-trend-using-a-categorical-predictor-with-exactly-2-categories",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-4-modeling-trend-using-a-categorical-predictor-with-exactly-2-categories",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 4: Modeling trend using a categorical predictor with exactly 2 categories",
-    "text": "Exercise 4: Modeling trend using a categorical predictor with exactly 2 categories\n\n# Construct the model\ndiamond_mod0 &lt;- lm(price ~ cutFair, data = diamonds)\n\n# Summarize the model\ncoef(summary(diamond_mod0))\n\n             Estimate Std. Error    t value     Pr(&gt;|t|)\n(Intercept) 3919.6946    17.4367 224.795616 0.000000e+00\ncutFair      439.0632   100.9269   4.350309 1.361951e-05\n\n\nThe intercept is the expected value (mean) of the price for all diamonds with a cut quality that isn’t Fair (Good, Very Good, Premium, or Ideal, i.e. when cutFair = 0)–the same as we saw in exercise 3e.\n\nWhen we add the intercept and coefficient for cutFair, we get 3919.69 + 439.06 = 4358.75–this is the mean price for all diamonds with a Fair cut quality that we saw in exercise 3e! Therefore, the coefficient of cutFair (439.06) is interpreted as the difference between the mean value of diamonds with a Fair cut quality and the mean value of diamonds with a higher cut quality."
+    "objectID": "solutions/08_mlr_intro.html#exercise-4-intuition",
+    "href": "solutions/08_mlr_intro.html#exercise-4-intuition",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 4: Intuition",
+    "text": "Exercise 4: Intuition\n\nGentoo tend to have longer flippers.\nFlipper length is positively associated with bill length.\nNo. the lines are parallel / have the same slopes."
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-5-modeling-trend-using-a-categorical-predictor-with-2-categories",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-5-modeling-trend-using-a-categorical-predictor-with-2-categories",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 5: Modeling trend using a categorical predictor with >2 categories",
-    "text": "Exercise 5: Modeling trend using a categorical predictor with &gt;2 categories\n\n# Construct the model\ndiamond_mod &lt;- lm(price ~ cut, data = diamonds)\n\n# Summarize the model\ncoef(summary(diamond_mod))\n\n              Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)  4358.7578   98.78795 44.122361 0.000000e+00\ncutGood      -429.8933  113.84940 -3.775982 1.595493e-04\ncutVery Good -376.9979  105.16422 -3.584849 3.375707e-04\ncutPremium    225.4999  104.39521  2.160060 3.077240e-02\ncutIdeal     -901.2158  102.41155 -8.799943 1.408406e-18\n\n\n\nWe are seeing 4 coefficient estimates because each category is being assigned to a separate indicator variable–cutGood = 1 when cut == \"Good\" and 0 otherwise, cutVery Good = 1 when `cut == “Very Good” and 0 otherwise, and so on.\nE[price | cut] = 4358.7578 - 429.8933 cutGood - 376.9979 cutVery Good + 225.4999 cutPremium - 901.2158 cutIdeal"
+    "objectID": "solutions/08_mlr_intro.html#exercise-5-model-formula",
+    "href": "solutions/08_mlr_intro.html#exercise-5-model-formula",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 5: Model formula",
+    "text": "Exercise 5: Model formula\n\n# Build the model\npenguin_mod &lt;- lm(flipper_length_mm ~ bill_length_mm + species, data = penguins)\n\n# Summarize the model\nsummary(penguin_mod)\n\n\nCall:\nlm(formula = flipper_length_mm ~ bill_length_mm + species, data = penguins)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-15.4763  -3.2260  -0.1525   3.1581  15.5303 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)    127.7537     6.1175   20.88   &lt;2e-16 ***\nbill_length_mm   1.4024     0.1250   11.22   &lt;2e-16 ***\nspeciesGentoo   22.8480     0.7938   28.78   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.112 on 186 degrees of freedom\nMultiple R-squared:  0.8219,    Adjusted R-squared:   0.82 \nF-statistic: 429.3 on 2 and 186 DF,  p-value: &lt; 2.2e-16\n\n\n\nbill_length_mm + species\nE[flipper_length_mm | bill_length_mm, speciesGentoo] = 127.75 + 1.40 * bill_length_mm + 22.85 * speciesGentoo"
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-6-making-sense-of-the-model",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-6-making-sense-of-the-model",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 6: Making sense of the model",
-    "text": "Exercise 6: Making sense of the model\n\nExpected/typical price for diamonds of Good cut:\n\nE[price | cut] = 4358.7578 - 429.8933 * 1 - 376.9979 * 0 + 225.4999 * 0 - 901.2158 * 0 = 4358.7578 - 429.8933 = $3928.865\n\npredict(diamond_mod, newdata = data.frame(cut = \"Good\"))\n\n       1 \n3928.864 \n\n\n\nExpected/typical price for diamonds of Fair cut:\n\nE[price | cut] = 4358.7578 - 429.8933 * 0 - 376.9979 * 0 + 225.4999 * 0 - 901.2158 * 0 = $4358.7578\n\npredict(diamond_mod, newdata = data.frame(cut = \"Fair\"))\n\n       1 \n4358.758 \n\n\n\nThese come from our group mean calculations in Exercise 3b! The predicted value for diamonds of Fair cut is also the same as what we obtained using the SLR model in exercise 4 with only a single cutFair indicator variable."
+    "objectID": "solutions/08_mlr_intro.html#exercise-6-sub-model-formulas",
+    "href": "solutions/08_mlr_intro.html#exercise-6-sub-model-formulas",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 6: Sub-model formulas",
+    "text": "Exercise 6: Sub-model formulas\nChinstrap: flipper_length_mm = 127.75 + 1.40 bill_length_mm\nGentoo: flipper_length_mm = (127.75 + 22.85) + 1.40 bill_length_mm = 150.6 + 1.40 bill_length_mm"
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-7-interpreting-coefficients",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-7-interpreting-coefficients",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 7: Interpreting coefficients",
-    "text": "Exercise 7: Interpreting coefficients\nRecall that our model formula is not a formula for a line. Thus we can’t interpret the coefficients as “slopes” as we have before. Taking this into account and reflecting upon your calculations above…\n\nThe average price of a Fair cut diamonds is $4358.7578.\n\nInterpretation of cutGood coefficient: On average, Good cut diamonds are worth $429.89 less than Fair cut diamonds.\nInterpretation of cutVery Good coefficient: On average, Very Good cut diamonds are worth $377.00 less than Fair cut diamonds."
+    "objectID": "solutions/08_mlr_intro.html#exercise-7-coefficients-physical-interpretation",
+    "href": "solutions/08_mlr_intro.html#exercise-7-coefficients-physical-interpretation",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 7: coefficients – physical interpretation",
+    "text": "Exercise 7: coefficients – physical interpretation\n\nThe intercept coefficient, 127.75, is the intercept of the line for Chinstrap penguins.\nThe bill_length_mm coefficient, 1.40, is the slope of both lines.\nThe speciesGentoo coefficient, 22.85, indicates that the intercept of the line for Gentoo is 22.85mm higher than the intercept of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any bill_length_mm."
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-8-modeling-choices-challenge",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-8-modeling-choices-challenge",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 8: Modeling choices (CHALLENGE)",
-    "text": "Exercise 8: Modeling choices (CHALLENGE)\nWhy do we fit this model in this way (using 4 indicator variables cutGood, cutVery Good, cutPremium, cutIdeal)? Instead, suppose that we created a single variable cutCat that gave each category a numerical value: 0 for Fair, 1 for Good, 2 for Very Good, 3 for Premium, and 4 for Ideal.\n\nIf we used 0-4 instead of creating indicator variables, we would be constraining the change from 0 to 1, from 1 to 2, etc. to always be of the same magnitude. That is, a 1 unit change in the cut variable would always have the same change in price in our model.\nUsing separate indicator variables allows the difference between subsequent categories to be different, which allows our model to be a bit more nuanced. It is possible to take nuance too far though. For example, in our previous investigations of bikeshare data, we modeled ridership versus temperature. We treated temperature as a quantitative predictor. Imagine if we had created an indicator variable for each unique temperature in the data—that would be so many variables! Having so many variables creates a very complex model which can be hard to make sense of. (These ideas are addressed further in STAT 253: Statistical Machine Learning!)"
+    "objectID": "solutions/08_mlr_intro.html#exercise-8-coefficients-contextual-interpretation",
+    "href": "solutions/08_mlr_intro.html#exercise-8-coefficients-contextual-interpretation",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 8: coefficients – contextual interpretation",
+    "text": "Exercise 8: coefficients – contextual interpretation\n\nFor Chinstrap penguins with 0mm bills (silly), we expect a flipper length of 127.75mm.\nFor both Chinstrap and Gentoo penguins, flipper lengths increase by 1.40mm on average for every additional mm in bill length.\nAt any bill_length_mm, we expect the a Gentoo penguin to have 22.85mm longer flippers than a Chinstrap, on average."
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-9-diamond-color",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-9-diamond-color",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 9: Diamond color",
-    "text": "Exercise 9: Diamond color\nConsider modeling price by color.\n\nThe best color diamonds are J, and worst are D. We would expect D diamonds to have the lowest price and increase steadily as we get to J. This is in fact what we see in the boxplots.\n\n\nggplot(diamonds, aes(x = color, y = price)) +\n    geom_boxplot()\n\n\n\n\n\n\n\ndiamonds %&gt;% \n    group_by(color) %&gt;% \n    summarize(mean(price))\n\n# A tibble: 7 × 2\n  color `mean(price)`\n  &lt;fct&gt;         &lt;dbl&gt;\n1 D             3170.\n2 E             3077.\n3 F             3725.\n4 G             3999.\n5 H             4487.\n6 I             5092.\n7 J             5324.\n\n\n\nWe fit a linear model and obtain the model formula: E[price | color] = 3169.95 - 93.20 colorE + 554.93 colorF + 829.18 colorG + 1316.72 colorH + 1921.92 colorI + 2153.86 colorJ\n\n\ndiamond_mod2 &lt;- lm(price ~ color, data = diamonds)\n\ncoef(summary(diamond_mod2))\n\n              Estimate Std. Error   t value      Pr(&gt;|t|)\n(Intercept) 3169.95410   47.70694 66.446391  0.000000e+00\ncolorE       -93.20162   62.04724 -1.502107  1.330752e-01\ncolorF       554.93230   62.38527  8.895246  6.004834e-19\ncolorG       829.18158   60.34470 13.740751  6.836340e-43\ncolorH      1316.71510   64.28715 20.481777  7.074714e-93\ncolorI      1921.92086   71.55308 26.860072 7.078041e-158\ncolorJ      2153.86392   88.13203 24.439060 3.414906e-131\n\n\n\nColor D is the reference level because we don’t see its indicator variable in the model output.\nInterpretation of the intercept: Diamonds with D color cost $3169.95 on average.\nInterpretation of the colorE coefficient: Diamonds with E color cost $93.20 less than D color diamonds on average.\nInterpretation of the colorF coefficient: Diamonds with F color cost $554.93 more than D color diamonds on average."
+    "objectID": "solutions/08_mlr_intro.html#exercise-9-prediction",
+    "href": "solutions/08_mlr_intro.html#exercise-9-prediction",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 9: Prediction",
+    "text": "Exercise 9: Prediction\n\n# a\n127.75 + 1.40*50 + 22.85*0\n\n[1] 197.75\n\n# b\n127.75 + 1.40*50 + 22.85*1\n\n[1] 220.6\n\n# c\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = 50, \n                             species = \"Chinstrap\"))\n\n      1 \n197.872 \n\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = 50, \n                             species = \"Gentoo\"))\n\n       1 \n220.7201"
   },
   {
-    "objectID": "solutions/07_slr_cat_predictor.html#exercise-10-diamond-clarity",
-    "href": "solutions/07_slr_cat_predictor.html#exercise-10-diamond-clarity",
-    "title": "Solutions for 07. Simple linear regression: categorical predictor",
-    "section": "Exercise 10: Diamond clarity",
-    "text": "Exercise 10: Diamond clarity\nWe see the unexpected result that diamonds of better clarity (VS1 and higher) have lower average prices. In fact the best clarity diamonds (VVS1 and IF) have the lowest average prices. What might be going on? What if the most clear diamonds were also quite small…\n\nggplot(diamonds, aes(x = clarity, y = price)) +\n    geom_boxplot()\n\n\n\n\n\n\n\ndiamonds %&gt;% \n    group_by(clarity) %&gt;% \n    summarize(mean(price))\n\n# A tibble: 8 × 2\n  clarity `mean(price)`\n  &lt;fct&gt;           &lt;dbl&gt;\n1 I1              3924.\n2 SI2             5063.\n3 SI1             3996.\n4 VS2             3925.\n5 VS1             3839.\n6 VVS2            3284.\n7 VVS1            2523.\n8 IF              2865.\n\ndiamond_mod3 &lt;- lm(price ~ clarity, data = diamonds)\n\ncoef(summary(diamond_mod3))\n\n                 Estimate Std. Error      t value      Pr(&gt;|t|)\n(Intercept)  3924.1686910   144.5619 27.145247517 3.513547e-161\nclaritySI2   1138.8599147   150.2746  7.578526239  3.550711e-14\nclaritySI1     71.8324571   148.6049  0.483378837  6.288287e-01\nclarityVS2      0.8207037   148.8672  0.005512992  9.956013e-01\nclarityVS1    -84.7132999   150.9746 -0.561109670  5.747251e-01\nclarityVVS2  -640.4316203   154.7737 -4.137858008  3.510944e-05\nclarityVVS1 -1401.0540535   158.5401 -8.837224284  1.010097e-18\nclarityIF   -1059.3295848   171.8990 -6.162510636  7.210567e-10"
+    "objectID": "solutions/08_mlr_intro.html#exercise-10-r-squared",
+    "href": "solutions/08_mlr_intro.html#exercise-10-r-squared",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 10: R-squared",
+    "text": "Exercise 10: R-squared\n\nspecies\nno wrong answer\nIt’s higher than the R-squared when we use either predictor alone!"
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-1-review-visualization",
+    "href": "solutions/08_mlr_intro.html#exercise-1-review-visualization",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 1: Review visualization",
+    "text": "Exercise 1: Review visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = windspeed, color = weekend)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-2-review-model",
+    "href": "solutions/08_mlr_intro.html#exercise-2-review-model",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 2: Review model",
+    "text": "Exercise 2: Review model\nweekdays: rides = 4738.38 - 63.97 windspeed\nweekends: rides = 4738.38 - 63.97 windspeed - 925.16 = 3813.22 - 63.97 windspeed"
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-3-review-coefficient-interpretation",
+    "href": "solutions/08_mlr_intro.html#exercise-3-review-coefficient-interpretation",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 3: Review coefficient interpretation",
+    "text": "Exercise 3: Review coefficient interpretation\n\nWe expect an average of 4738 riders on weekdays with 0 windspeed.\nOn average, we expect a 1mph increase in windspeed to be associated with 64 fewer riders, controlling for weekend status.\nOn average, we expect 925 fewer riders on weekend days than on weekends, controlling for windspeed."
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-4-2-categorical-predictors-visualization",
+    "href": "solutions/08_mlr_intro.html#exercise-4-2-categorical-predictors-visualization",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 4: 2 categorical predictors – visualization",
+    "text": "Exercise 4: 2 categorical predictors – visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = season, fill = weekend)) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-5-follow-up",
+    "href": "solutions/08_mlr_intro.html#exercise-5-follow-up",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 5: follow-up",
+    "text": "Exercise 5: follow-up\n\nIn every season, ridership tends to be lower on weekends. Across weekend status, ridership tends to be highest in summer and lowest in winter.\n8 expected outcomes"
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-6-2-categorical-predictors-build-the-model",
+    "href": "solutions/08_mlr_intro.html#exercise-6-2-categorical-predictors-build-the-model",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 6: 2 categorical predictors – build the model",
+    "text": "Exercise 6: 2 categorical predictors – build the model\n\n\n\n\n#fall weekday:    \n4260.45 - 912.33*0 - 116.38*0 + 438.44*0 - 1719.06*0\n\n[1] 4260.45\n\n#winter weekday:\n4260.45 - 912.33*0 - 116.38*0 + 438.44*0 - 1719.06*1\n\n[1] 2541.39\n\n#fall weekend:    \n4260.45 - 912.33*1 - 116.38*0 + 438.44*0 - 1719.06*0\n\n[1] 3348.12\n\n#winter weekend:\n4260.45 - 912.33*1 - 116.38*0 + 438.44*0 - 1719.06*1\n\n[1] 1629.06\n\n\n\n8: 2 weekend categories * 4 season categories"
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-7-2-categorical-predictors-interpret-the-model",
+    "href": "solutions/08_mlr_intro.html#exercise-7-2-categorical-predictors-interpret-the-model",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 7: 2 categorical predictors – interpret the model",
+    "text": "Exercise 7: 2 categorical predictors – interpret the model\n\nWe expect there to be, on average, 4260 riders on weekdays during the fall.\nOn average, we expect there to be 912 fewer riders on weekends than on weekends, adjusting for season.\nOn average, we expect there to be 1719 fewer riders in winter than in fall, adjusting for weekday status."
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-8-2-quantitative-predictors-visualization",
+    "href": "solutions/08_mlr_intro.html#exercise-8-2-quantitative-predictors-visualization",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 8: 2 quantitative predictors – visualization",
+    "text": "Exercise 8: 2 quantitative predictors – visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = windspeed, color = temp_feel)) + \n  geom_point()"
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-9-follow-up",
+    "href": "solutions/08_mlr_intro.html#exercise-9-follow-up",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 9: follow-up",
+    "text": "Exercise 9: follow-up\nRidership tends to increase with temperature (no matter the windspeed) and decrease with windspeed (no matter the temperature)."
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-10-2-quantitative-predictors-modeling",
+    "href": "solutions/08_mlr_intro.html#exercise-10-2-quantitative-predictors-modeling",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 10: 2 quantitative predictors – modeling",
+    "text": "Exercise 10: 2 quantitative predictors – modeling\n\n-24.06 = average ridership on days with 0 windspeed and a 0 degree temperature. (Note: this is a correct interpretation, even though it doesn’t make conceptual sense! The model doesn’t know that ridership can’t be negative!)\nOn average, we expect a 1mph increase in windspeed to be associated with 37 fewer riders on a given day, adjusting for temperature.\nOn average, we expect a 1 degree increase in temperature to be associated with 56 more riders on a given day, adjusting for windspeed."
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-11-which-is-best",
+    "href": "solutions/08_mlr_intro.html#exercise-11-which-is-best",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 11: Which is best?",
+    "text": "Exercise 11: Which is best?\n\nmodel 2\ntemperature\nR-squared increases (our model is stronger when we include another predictor)\nnope. model 1 (with windspeed and weekend) has a lower R-squared than model 5 (with only temperature)"
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-13-practice-1",
+    "href": "solutions/08_mlr_intro.html#exercise-13-practice-1",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 13: Practice 1",
+    "text": "Exercise 13: Practice 1\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = weekend, fill = weather_cat)) + \n  geom_boxplot()\n\n\n\n\n\n\n\nnew_model_1 &lt;- lm(rides ~ weekend + weather_cat, bikes)\ncoef(summary(new_model_1))\n\n                    Estimate Std. Error   t value      Pr(&gt;|t|)\n(Intercept)        4211.8741   75.54724 55.751529 9.461947e-265\nweekendTRUE        -982.2106  117.24719 -8.377264  2.786301e-16\nweather_catcateg2  -608.8640  113.00211 -5.388077  9.628947e-08\nweather_catcateg3 -2360.2049  319.71640 -7.382183  4.270163e-13\n\n\n\nThe average ridership on a weekday with nice weather (categ1) is 4212 rides.\nOn days with the same weather, we expect on average 982 rides less on a weekend than on a weekday.\nOn average, we expect ridership to be 609 rides less on dreary days than when the weather is nice, controlling for day of the week."
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-14-practice-2",
+    "href": "solutions/08_mlr_intro.html#exercise-14-practice-2",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 14: Practice 2",
+    "text": "Exercise 14: Practice 2\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = humidity)) + \n    geom_point()\n\n\n\n\n\n\n\nnew_model_2 &lt;- lm(rides ~ temp_feel + humidity, bikes)\ncoef(summary(new_model_2))\n\n               Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)   315.83704 303.777334  1.039699 2.988249e-01\ntemp_feel      60.43316   3.272315 18.468015 9.451345e-63\nhumidity    -1868.99356 336.963661 -5.546573 4.078901e-08\n\n\n\nOn average, we expect 316 riders on days that feel like 0 degrees with no humidity.\nOn average, we expect a 1 degree increase in ridership to be associated with a 60 ride increase in ridership, for days with the same humidity.\nOn average, we expect a 0.1 increase in humidity levels to be associated with a decrease in ridership by 187 rides, for days with the same temperature."
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-15-practice-3",
+    "href": "solutions/08_mlr_intro.html#exercise-15-practice-3",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 15: Practice 3",
+    "text": "Exercise 15: Practice 3\n\nnew_model_3 &lt;- lm(rides ~ temp_feel + weather_cat, bikes)\ncoef(summary(new_model_3))\n\n                     Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)        -288.68840 251.264383 -1.148943 2.509574e-01\ntemp_feel            55.30133   3.215495 17.198387 7.082670e-56\nweather_catcateg2  -386.42241 100.187725 -3.856984 1.249775e-04\nweather_catcateg3 -1919.01375 283.022420 -6.780430 2.481218e-11\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = weather_cat)) + \n  geom_point() + \n  geom_line(aes(y = new_model_3$fitted.values), size = 1.5)\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\n\nWe expect an average of -289 riders on nice weather days that feel like 0 degrees. (Note: this is a correct interpretation, even though it doesn’t make conceptual sense!)\nOn average, we expect a 1 degree increase in temperature to be associated with a 55 ride increase, for days with the same weather.\nOn average, we expect the number of rides to be 386 rides lower on a dreary weather day compared to a nice weather day, for days with the same temperature."
+  },
+  {
+    "objectID": "solutions/08_mlr_intro.html#exercise-16-challenge",
+    "href": "solutions/08_mlr_intro.html#exercise-16-challenge",
+    "title": "Solutions for 08/09. Introduction to multiple regression",
+    "section": "Exercise 16: CHALLENGE",
+    "text": "Exercise 16: CHALLENGE\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = humidity, size = weekend)) + \n  geom_point()\n\nWarning: Using size for a discrete variable is not advised.\n\n\n\n\n\n\n\n\nnew_model_4 &lt;- lm(rides ~ temp_feel + humidity + weekend, bikes)\ncoef(summary(new_model_4))\n\n               Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept)   668.60236 292.181063  2.288315 2.240530e-02\ntemp_feel      59.36751   3.119256 19.032585 7.626695e-66\nhumidity    -1906.43437 320.982938 -5.939364 4.433789e-09\nweekendTRUE  -869.05771 100.057822 -8.685555 2.471050e-17\n\n\n\nWe expect an average of 669 riders on weekdays that feel like 0 degrees, and have no humidity.\nOn average, we expect a 1 degree increase in temperature to be associated with a 59 ride increase in ridership, for days with the same humidity levels and time of the week.\nOn average, we expect a 0.1 point increase in humidity levels to be associated with a 190.6 ride decrease in ridership, for days with the same temperature and time of the week.\nOn average, we expect ridership to be 869 rides lower on weekends compared to weekdays, controlling for temperature and humidity."
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html",
+    "href": "activities/02_foundations_univariate.html",
+    "title": "02. Univariate visualization and summaries",
+    "section": "",
+    "text": "Download the .qmd file for this activity here.",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#learning-goals",
+    "href": "activities/02_foundations_univariate.html#learning-goals",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Learning goals",
+    "text": "Learning goals\nBy the end of this lesson, you should be able to:\n\nDescribe what a case (or unit of analysis) represents in a dataset.\nDescribe what a variable represents in a dataset.\nIdentify whether a variable is categorical or quantitative and what summarizations and visualizations are appropriate for that variable\nWrite R code to read in data and to summarize and visualize a single variable at a time.\nInterpret key features of barplots, boxplots, histograms, and density plots\nDescribe information about the distribution of a quantitative variable using the concepts of shape, center, spread, and outliers\nRelate summary statistics of data to the concepts of shape, center, spread, and outliers",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#readings-and-videos",
+    "href": "activities/02_foundations_univariate.html#readings-and-videos",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Readings and videos",
+    "text": "Readings and videos\nChoose either the reading or the videos to go through before class.\n\nReading: Sections 2.1-2.4, 2.6 in the STAT 155 Notes\nVideos:\n\nUnivariate visualization and summarization (slides)\nR Code for Categorical Visualization and Summarization\nR Code for Quantitative Visualization and Summarization\n\n\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-1-get-curious",
+    "href": "activities/02_foundations_univariate.html#exercise-1-get-curious",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 1: Get curious",
+    "text": "Exercise 1: Get curious\n\nHypothesize with each other: what themes do you think might come up often in Dear Abby letters?\nAfter brainstorming, take a quick glance at the original article from The Pudding to see what themes they explored.\nGo to the very end of the Pudding article to the section titled “Data and Method”. In thinking about the who, what, when, where, why, and how of data context, what concerns/limitations surface with regards to using this data to learn about Americans’ concerns over the decades?",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-2-importing-and-getting-to-know-the-data",
+    "href": "activities/02_foundations_univariate.html#exercise-2-importing-and-getting-to-know-the-data",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 2: Importing and getting to know the data",
+    "text": "Exercise 2: Importing and getting to know the data\nFirst, in the Console pane of RStudio, run the following command to install some necessary packages (you will need to do this any time you are installing a new package):\ninstall.packages(\"tidyverse\")\nNow, in the Quarto pane, run the following code chunk to load the package and load a dataset (you can either click the green arrow in the top right of the code chunk, put your cursor in the code chunk and hit Ctrl+Alt+C [on Windows/Linux] or Command+Option+C [on Mac]).\n\n# Load package\nlibrary(tidyverse)\n\n# Read in the course evaluation data\nabby &lt;- read_csv(\"https://mac-stat.github.io/data/dear_abby.csv\")\n\nIf it runs successfully, you should see the following output appear in the Console pane:\n&gt; # Load package\n&gt; library(tidyverse)\n&gt; \n&gt; # Read in the course evaluation data\n&gt; abby &lt;- read_csv(\"https://mac-stat.github.io/data/dear_abby.csv\")\nRows: 20034 Columns: 11\n── Column specification ────────────────────────────\nDelimiter: \",\"\nchr (4): day, url, title, question_only\ndbl (7): year, month, letterId, afinn_overall, a...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nClick on the Environment tab (generally in the upper right hand pane in RStudio). Then click the abby line. The abby data will pop up as a separate pane (like viewing a spreadsheet) – check it out.\nIn this tidy dataset, what is the unit of observation? That is, what is represented in each row of the dataset?\nWhat term do we use for the columns of the dataset?\nTry out each function below. Identify what each function tells you about the abby data and note this in the ???:\n\n\n# ??? [what do both numbers mean?]\ndim(abby)\n\n\n# ???\nnrow(abby)\n\n\n# ???\nncol(abby)\n\n\n# ???\nhead(abby)\n\n\n# ???\nnames(abby)\n\n\n[OPTIONAL] If you’re not sure how exactly to use a function, you can pull up a built-in help page with information about the arguments a function takes (i.e., what goes inside the parentheses), and the output it produces. To do this, click inside the Console pane, and enter ?function_name. For example, to pull up a help page for the dim() function, we can type ?dim and hit Enter. Try pulling up the help page for the read_csv() function we used to load the dataset.",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-3-preparing-to-summarize-and-visualize-the-data",
+    "href": "activities/02_foundations_univariate.html#exercise-3-preparing-to-summarize-and-visualize-the-data",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 3: Preparing to summarize and visualize the data",
+    "text": "Exercise 3: Preparing to summarize and visualize the data\nIn the next exercises, we will be exploring themes in the Dear Abby questions and the overall “mood” or sentiment of the questions. Before continuing, read the codebook for this dataset for some context about sentiment analysis, which gives us a measure of the mood/sentiment of a text.\n\nWhat sentiment variables do we have in the dataset? Are they quantitative or categorical?\nIf we were able to create a theme variable that took values like “friendship”, “marriage”, and “relationships”, would theme be quantitative or categorical?\nWhat visualizations are appropriate for looking at the distribution of a single quantitative variable? What about a single categorical variable?",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-4-exploring-themes-in-the-letters",
+    "href": "activities/02_foundations_univariate.html#exercise-4-exploring-themes-in-the-letters",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 4: Exploring themes in the letters",
+    "text": "Exercise 4: Exploring themes in the letters\nThe dplyr package provides many useful functions for managing data (like creating new variables, summarizing information). The stringr package provides tools for working with strings (text). We’ll use these packages to search for words in the questions in order to (roughly) identify themes/subjects.\nThe code below searches for words related to mothers, fathers, marriage, and money and combines them into a single theme variable.\n\nInside mutate() the line moms = ifelse(str_detect(question_only, \"mother|mama|mom\"), \"mom\", \"no mom\") creates a new variable called moms. If any of the text “mother”, “mama”, or “mom” (which covers “mommy”) is found, then the variable takes the value “mom”. Otherwise, the variable takes the value “no mom”.\nThe dads, marriage, and money variables are created similarly.\nThe themes = str_c(moms, dads, marriage, money, sep = \"|\") line takes the 4 created variables and combines the text of those variables separated with a |. For example, one value of the themes variable is “mom|no_dad|no_marriage|no_money” (which contains words about moms but not dads, marriage, or money).\n\n\nlibrary(dplyr)\nlibrary(stringr)\n\nabby &lt;- abby %&gt;% \n    mutate(\n        moms = ifelse(str_detect(question_only, \"mother|mama|mom\"), \"mom\", \"no mom\"),\n        dads = ifelse(str_detect(question_only, \"father|papa|dad\"), \"dad\", \"no dad\"),\n        marriage = ifelse(str_detect(question_only, \"marriage|marry|married\"), \"marriage\", \"no marriage\"),\n        money = ifelse(str_detect(question_only, \"money|finance\"), \"money\", \"no money\"),\n        themes = str_c(moms, dads, marriage, money, sep = \"|\")\n    )\n\n\nModify the code above however you wish to replace themes (e.g., replace “moms” with something else) or add new themes to search for. If you want to add a new subject to search for, copy and paste a line for an existing subject above the themes line, and modify the code like this:\n\nIf your subject is captured by multiple words: YOUR_SUBJECT = ifelse(str_detect(question_only, \"WORD1|WORD2|ETC\"), \"SUBJECT\", \"NO SUBJECT\"),\nIf your subject is captured by a single word: YOUR_SUBJECT = ifelse(str_detect(question_only, \"WORD\"), \"SUBJECT\", \"NO SUBJECT\"),\nTry to have no more than 6 subjects—otherwise we’ll have too many themes, which will complicate exploration.\n\nThe code below makes a barplot of the themes variable using the ggplot2 visualization package. Before making the plot, make note of what you expect the plot might look like. (This might be hard–just do your best!) Then compare to what you observe when you run the code chunk to make the plot. (Clearly defining your expectations first is good scientific practice to avoid confirmation bias.)\n\n\n# Load package\nlibrary(ggplot2)\n\n# barplot\nggplot(abby, aes(x = themes)) +\n    geom_bar() +\n    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\n\n\nWe can follow up on the barplot with a simple numerical summary. Whereas the ggplot2 package is great for visualizations, dplyr is great for numerical summaries. The code below constructs a table of the number of questions with each theme. Make sure that these numerical summaries match up with what you saw in the barplot.\n\n\n# Construct a table of counts\nabby %&gt;% \n    count(themes)\n\n\nBefore proceeding, let’s break down the plotting code above. Run each chunk to see how the two lines of code above build up the plot in “layers”. Add comments (on the lines starting with #) to document what you notice.\n\n\n# ???\nggplot(abby, aes(x = themes))\n\n\n# ???\nggplot(abby, aes(x = themes)) +\n    geom_bar()\n\n\n# ???\nggplot(abby, aes(x = themes)) +\n    geom_bar() +\n    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))\n\n\n# ???\nggplot(abby, aes(x = themes)) +\n    geom_bar() +\n    theme_classic() +\n    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-5-exploring-sentiment",
+    "href": "activities/02_foundations_univariate.html#exercise-5-exploring-sentiment",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 5: Exploring sentiment",
+    "text": "Exercise 5: Exploring sentiment\nWe’ll look at the distribution of the afinn_overall sentiment variable and associated summary statistics.\n\nThe code below creates a boxplot of this variable. In the comment, make note of how this code is simliar to the code for the barplot above. As in the previous exercise, before running the code chunk to create the plot, make note of what you expect the boxplot to look like.\n\n\n# ???\nggplot(abby, aes(x = afinn_overall)) +\n    geom_boxplot()\n\n\nChallenge: Using the code for the barplot and boxplot as a guide, try to make a histogram and a density plot of the overall average ratings.\n\nWhat information is given by the tallest bar of the histogram?\nHow would you describe the shape of the distribution?\n\n\n\n# Histogram\n\n# Density plot\n\n\nWe can compute summary statistics (numerical summaries) for a quantitative variable using the summary() function or with the summarize() function from the dplyr package. (1st Qu. and 3rd Qu. stand for first and third quartile.) After inspecting these summaries, look back to your boxplot, histogram, and density plot. Which plots show which summaries most clearly?\n\n\n# Summary statistics\n# Using summary() - convenient for computing many summaries in one command\n# Does not show the standard deviation\nsummary(abby$afinn_overall)\n\n# Using summarize() from dplyr\n# Note that we use %&gt;% to pipe the data into the summarize() function\n# We need to use na.rm = TRUE because there are missing values (NAs)\nabby %&gt;% \n    summarize(mean(afinn_overall, na.rm = TRUE), median(afinn_overall, na.rm = TRUE), sd(afinn_overall, na.rm = TRUE))\n\n\nWrite a good paragraph describing the information in the histogram (or density plot) by discussing shape, center, spread, and outliers. Incorporate the numerical summaries from part c.",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-6-box-plots-vs.-histograms-vs.-density-plots",
+    "href": "activities/02_foundations_univariate.html#exercise-6-box-plots-vs.-histograms-vs.-density-plots",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 6: Box plots vs. histograms vs. density plots",
+    "text": "Exercise 6: Box plots vs. histograms vs. density plots\nWe took 3 different approaches to plotting the quantitative average course variable above. They all have pros and cons.\n\nWhat is one pro about the boxplot in comparison to the histogram and density plot?\nWhat is one con about the boxplot in comparison to the histogram and density plots?\nIn this example, which plot do you prefer and why?",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-7-explore-outliers",
+    "href": "activities/02_foundations_univariate.html#exercise-7-explore-outliers",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 7: Explore outliers",
+    "text": "Exercise 7: Explore outliers\nGiven that Dear Abby column is an advice column, it seems natural that the sentiment of the questions would lean more negative. What’s going on with the questions that have particularly positive sentiments?\nWe can use the filter() function in the dplyr package to look at the . Based on the plots of afinn_overall that you made in Exercise 5, pick a threshold for the afinn_overall variable—we’ll say that questions with an overall sentiment score above this threshold are high outliers. Fill in this number where it says YOUR_THRESHOLD below.\n\nabby %&gt;% \n    filter(afinn_overall &gt; YOUR_THRESHOLD) %&gt;% \n    pull(question_only)\n\nWhat do you notice? Why might these questions have such high sentiment scores?",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-8-returning-to-our-context-looking-ahead",
+    "href": "activities/02_foundations_univariate.html#exercise-8-returning-to-our-context-looking-ahead",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 8: Returning to our context, looking ahead",
+    "text": "Exercise 8: Returning to our context, looking ahead\nIn this activity, we explored data on Dear Abby question, with a focus on exploring a single variable at a time.\n\nIn big picture terms, what have we learned about Dear Abby questions?\nWhat further curiosities do you have about the data?",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-9-different-ways-to-think-about-data-visualization",
+    "href": "activities/02_foundations_univariate.html#exercise-9-different-ways-to-think-about-data-visualization",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 9: Different ways to think about data visualization",
+    "text": "Exercise 9: Different ways to think about data visualization\nIn working with and visualizing data, it’s important to keep in mind what a data point represents. It can reflect the experience of a real person. It might reflect the sentiment in a piece of art. It might reflect history. We’ve taken one very narrow and technical approach to data visualization. Check out the following examples, and write some notes about anything you find interesting.\n\nDear Data\nW.E.B. DuBois\nDecolonizing Data Viz\nPhase Change Project (by Prof Kim, Mac research students)",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-10-rendering-your-work",
+    "href": "activities/02_foundations_univariate.html#exercise-10-rendering-your-work",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 10: Rendering your work",
+    "text": "Exercise 10: Rendering your work\nSave this file, and then click the “Render” button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.\n\nScroll through and inspect the document to see how your work was translated into this HTML format. Neat!\nClose the browser tab.\nGo to the “Background Jobs” pane in RStudio and click the Stop button to end the rendering process.\nNavigate to your “Activities” subfolder within your “STAT155” folder and locate the HTML file. You can open it again in your browser to double check.",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#reflection",
+    "href": "activities/02_foundations_univariate.html#reflection",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Reflection",
+    "text": "Reflection\nGo to the top of this file and review the learning objectives for this lesson. Which objectives do you have a good handle on, are at least familiar with, or are struggling with? What feels challenging right now? What are some wins from the day?\n\nResponse: Put your response here.",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-11-read-in-and-get-to-know-the-weather-data",
+    "href": "activities/02_foundations_univariate.html#exercise-11-read-in-and-get-to-know-the-weather-data",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 11: Read in and get to know the weather data",
+    "text": "Exercise 11: Read in and get to know the weather data\nDaily weather data are available for 3 locations in Perth, Australia.\n\nView the codebook here.\nComplete the code below to read in the data.\n\n\n# Replace the ??? with your own name for the weather data\n# Replace the ___ with the correct function\n??? &lt;- ___(\"https://mac-stat.github.io/data/weather_3_locations.csv\")",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-12-exploring-the-data-structure",
+    "href": "activities/02_foundations_univariate.html#exercise-12-exploring-the-data-structure",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 12: Exploring the data structure",
+    "text": "Exercise 12: Exploring the data structure\nCheck out the basic features of the weather data.\n\n# Examine the first six cases\n\n# Find the dimensions of the data\n\nWhat does a case represent in this data?",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-13-exploring-rainfall",
+    "href": "activities/02_foundations_univariate.html#exercise-13-exploring-rainfall",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 13: Exploring rainfall",
+    "text": "Exercise 13: Exploring rainfall\nThe raintoday variable contains information about rainfall.\n\nIs this variable quantitative or categorical?\nCreate an appropriate visualization, and compute appropriate numerical summaries.\nWhat do you learn about rainfall in Perth?\n\n\n# Visualization\n\n# Numerical summaries",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-14-exploring-temperature",
+    "href": "activities/02_foundations_univariate.html#exercise-14-exploring-temperature",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 14: Exploring temperature",
+    "text": "Exercise 14: Exploring temperature\nThe maxtemp variable contains information on the daily high temperature.\n\nIs this variable quantitative or categorical?\nCreate an appropriate visualization, and compute appropriate numerical summaries.\nWhat do you learn about high temperatures in Perth?\n\n\n# Visualization\n\n# Numerical summaries",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
+  },
+  {
+    "objectID": "activities/02_foundations_univariate.html#exercise-15-customizing-challenge",
+    "href": "activities/02_foundations_univariate.html#exercise-15-customizing-challenge",
+    "title": "02. Univariate visualization and summaries",
+    "section": "Exercise 15: Customizing! (CHALLENGE)",
+    "text": "Exercise 15: Customizing! (CHALLENGE)\nThough you will naturally absorb some RStudio code throughout the semester, being an effective statistical thinker and “programmer” does not require that we memorize all code. That would be impossible! In contrast, using the foundation you built today, do some digging online to learn how to customize your visualizations.\n\nFor the histogram below, add a title and more meaningful axis labels. Specifically, title the plot “Distribution of max temperatures in Perth”, change the x-axis label to “Maximum temperature” and y-axis label to “Number of days”. HINT: Do a Google search for something like “add axis labels ggplot”.\n\n\n# Add a title and axis labels\nggplot(weather, aes(x = maxtemp)) + \n    geom_histogram()\n\n\nAdjust the code below in order to color the bars green. NOTE: Color can be an effective tool, but here it is simply gratuitous.\n\n\n# Make the bars green\nggplot(weather, aes(x = raintoday)) + \n    geom_bar()\n\n\nCheck out the ggplot2 cheat sheet. Try making some of the other kinds of univariate plots outlined there.\nWhat else would you like to change about your plot? Try it!\n\n\nSolutions",
+    "crumbs": [
+      "02. Univariate visualization and summaries"
+    ]
   },
   {
     "objectID": "activities/03_slr_introduction.html",

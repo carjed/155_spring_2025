@@ -45,6 +45,16 @@ coef(summary(peaks_model))
 
 ## Exercise 2: Confounders
 
+```{r}
+# Import data
+cps <- read_csv("https://mac-stat.github.io/data/cps_2018.csv") %>% 
+    filter(age >= 18, age <= 34) %>% 
+    filter(wage < 250000)
+
+# Check it out
+head(cps)
+```
+
 age, education, job industry, ...
 
 `marital` vs `wage`:

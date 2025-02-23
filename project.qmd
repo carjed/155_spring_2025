@@ -3,11 +3,13 @@ title: "Project"
 sidebar: false
 ---
 
-As noted in the syllabus, a detailed description of the group project can be found [here](https://docs.google.com/document/d/1GpwqXcdKkyB9ctmUu54X4ukruu_WHNKJE0nkdVu041g/edit?usp=sharing). Important dates and additional information are listed below.
+As noted in the syllabus, a detailed description of the group project can be found [here](https://docs.google.com/document/d/19bnUmovc6D_-3V8rwgJ1Wgfha1t-2qA4842GWdq6JwQ). Important dates and additional information are listed below.
 
 ### Important Dates
 
-Details coming soon!
+- Friday, February 28: Project Checkpoint 1 Due
+- Friday, April 11: Project Checkpoint 2 Due
+- Last day of class: Final Draft Due
 
 ### Grading
 

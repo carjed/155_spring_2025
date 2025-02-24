@@ -2,6 +2,10 @@
 title: "10. Confounding variables"
 subtitle: "Notes and in-class exercises"
 sidebar: false
+format: 
+  html:
+    embed-resources: true
+    toc: true
 eval: false # change this to "true" if you want to render a complete .qmd    
 ---
 

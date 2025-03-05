@@ -1935,91 +1935,130 @@
     "href": "activities/14_mlr_model_building_2.html",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "",
-    "text": "Download the .qmd file for this activity here.\n\n\n\nBy the end of this lesson, you should be able to:\n\nExplain when variables are redundant or multicollinear.\nRelate redundancy and multicollinearity to coefficient estimates and \\(R^2\\).\nExplain why adjusted \\(R^2\\) is preferable to multiple \\(R^2\\) when comparing models with different numbers of predictors.\n\n\n\n\nToday is a day to discover ideas, so no readings or videos to go through before class, but if you want to see today’s ideas presented in a different way, you can take a look at the following after class:\n\nReading: Section 3.9.5 in the STAT 155 Notes\nVideo: Redundancy and Multicollinearity\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder."
+    "text": "Download the .qmd file for this activity here.\n\n\n\nBy the end of this lesson, you should be able to:\n\nExplain when variables are redundant or multicollinear.\nRelate redundancy and multicollinearity to coefficient estimates and \\(R^2\\).\nExplain why adjusted \\(R^2\\) is preferable to multiple \\(R^2\\) when comparing models with different numbers of predictors.\n\n\n\n\nToday is a day to discover ideas, so no readings or videos to go through before class, but if you want to see today’s ideas presented in a different way, you can take a look at the following after class:\n\nReading: Section 3.9.5 in the STAT 155 Notes\nVideo: Redundancy and Multicollinearity\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#learning-goals",
     "href": "activities/14_mlr_model_building_2.html#learning-goals",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "",
-    "text": "By the end of this lesson, you should be able to:\n\nExplain when variables are redundant or multicollinear.\nRelate redundancy and multicollinearity to coefficient estimates and \\(R^2\\).\nExplain why adjusted \\(R^2\\) is preferable to multiple \\(R^2\\) when comparing models with different numbers of predictors."
+    "text": "By the end of this lesson, you should be able to:\n\nExplain when variables are redundant or multicollinear.\nRelate redundancy and multicollinearity to coefficient estimates and \\(R^2\\).\nExplain why adjusted \\(R^2\\) is preferable to multiple \\(R^2\\) when comparing models with different numbers of predictors.",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#readings-and-videos",
     "href": "activities/14_mlr_model_building_2.html#readings-and-videos",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "",
-    "text": "Today is a day to discover ideas, so no readings or videos to go through before class, but if you want to see today’s ideas presented in a different way, you can take a look at the following after class:\n\nReading: Section 3.9.5 in the STAT 155 Notes\nVideo: Redundancy and Multicollinearity\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder."
+    "text": "Today is a day to discover ideas, so no readings or videos to go through before class, but if you want to see today’s ideas presented in a different way, you can take a look at the following after class:\n\nReading: Section 3.9.5 in the STAT 155 Notes\nVideo: Redundancy and Multicollinearity\n\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#exercise-1-modeling-bill-length-by-flipper-length",
     "href": "activities/14_mlr_model_building_2.html#exercise-1-modeling-bill-length-by-flipper-length",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Exercise 1: Modeling bill length by flipper length",
-    "text": "Exercise 1: Modeling bill length by flipper length\nWhat can a penguin’s flipper (arm) length tell us about their bill length? To answer this question, we’ll consider 3 of our models:\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_2\nflipper_length_cm\n\n\npenguin_model_3\nflipper_length_mm + flipper_length_cm\n\n\n\nPlots of the first two models are below:\n\nggplot(penguins, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\nggplot(penguins, aes(y = bill_length_mm, x = flipper_length_cm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\n\nBefore examining the model summaries, check your intuition. Do you think the penguin_model_2 R-squared will be less than, equal to, or more than that of penguin_model_1? Similarly, how do you think the penguin_model_3 R-squared will compare to that of penguin_model_1?\nCheck your intuition: Examine the R-squared values for the three penguin models and summarize how these compare.\n\n\nsummary(penguin_model_1)$r.squared\nsummary(penguin_model_2)$r.squared\nsummary(penguin_model_3)$r.squared\n\n\nExplain why your observation in part b makes sense. Support your reasoning with a plot of just the 2 predictors: flipper_length_mm vs flipper_length_cm.\n\n\nOPTIONAL challenge: In summary(penguin_model_3), the flipper_length_cm coefficient is NA. Explain why this makes sense. HINT: Thinking about what you learned about controlling for covariates, why wouldn’t it make sense to interpret this coefficient? BONUS: For those of you that have taken MATH 236, this has to do with matrices that are not of full rank!"
+    "text": "Exercise 1: Modeling bill length by flipper length\nWhat can a penguin’s flipper (arm) length tell us about their bill length? To answer this question, we’ll consider 3 of our models:\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_2\nflipper_length_cm\n\n\npenguin_model_3\nflipper_length_mm + flipper_length_cm\n\n\n\nPlots of the first two models are below:\n\nggplot(penguins, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\nggplot(penguins, aes(y = bill_length_mm, x = flipper_length_cm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\n\nBefore examining the model summaries, check your intuition. Do you think the penguin_model_2 R-squared will be less than, equal to, or more than that of penguin_model_1? Similarly, how do you think the penguin_model_3 R-squared will compare to that of penguin_model_1?\nCheck your intuition: Examine the R-squared values for the three penguin models and summarize how these compare.\n\n\nsummary(penguin_model_1)$r.squared\nsummary(penguin_model_2)$r.squared\nsummary(penguin_model_3)$r.squared\n\n\nExplain why your observation in part b makes sense. Support your reasoning with a plot of just the 2 predictors: flipper_length_mm vs flipper_length_cm.\n\n\nOPTIONAL challenge: In summary(penguin_model_3), the flipper_length_cm coefficient is NA. Explain why this makes sense. HINT: Thinking about what you learned about controlling for covariates, why wouldn’t it make sense to interpret this coefficient? BONUS: For those of you that have taken MATH 236, this has to do with matrices that are not of full rank!",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#exercise-2-incorporating-body_mass_g",
     "href": "activities/14_mlr_model_building_2.html#exercise-2-incorporating-body_mass_g",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Exercise 2: Incorporating body_mass_g",
-    "text": "Exercise 2: Incorporating body_mass_g\nIn this exercise you’ll consider 3 models of bill_length_mm:\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_4\nbody_mass_g\n\n\npenguin_model_5\nflipper_length_mm + body_mass_g\n\n\n\n\nWhich is the better predictor of bill_length_mm: flipper_length_mm or body_mass_g? Provide some numerical evidence.\npenguin_model_5 incorporates both flipper_length_mm and body_mass_g as predictors. Before examining a model summary, ask your gut: Will the penguin_model_5 R-squared be close to 0.35, close to 0.43, or greater than 0.6?\nCheck your intuition. Report the penguin_model_5 R-squared and summarize how this compares to that of penguin_model_1 and penguin_model_4.\nExplain why your observation in part c makes sense. Support your reasoning with a plot of the 2 predictors: flipper_length_mm vs body_mass_g."
+    "text": "Exercise 2: Incorporating body_mass_g\nIn this exercise you’ll consider 3 models of bill_length_mm:\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_4\nbody_mass_g\n\n\npenguin_model_5\nflipper_length_mm + body_mass_g\n\n\n\n\nWhich is the better predictor of bill_length_mm: flipper_length_mm or body_mass_g? Provide some numerical evidence.\npenguin_model_5 incorporates both flipper_length_mm and body_mass_g as predictors. Before examining a model summary, ask your gut: Will the penguin_model_5 R-squared be close to 0.35, close to 0.43, or greater than 0.6?\nCheck your intuition. Report the penguin_model_5 R-squared and summarize how this compares to that of penguin_model_1 and penguin_model_4.\nExplain why your observation in part c makes sense. Support your reasoning with a plot of the 2 predictors: flipper_length_mm vs body_mass_g.",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#exercise-3-redundancy-and-multicollinearity",
     "href": "activities/14_mlr_model_building_2.html#exercise-3-redundancy-and-multicollinearity",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Exercise 3: Redundancy and Multicollinearity",
-    "text": "Exercise 3: Redundancy and Multicollinearity\nThe exercises above have illustrated special phenomena in multivariate modeling:\n\ntwo predictors are redundant if they contain the same exact information\ntwo predictors are multicollinear if they are strongly associated (they contain very similar information) but are not completely redundant.\n\nRecall that we examined 5 models:\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_2\nflipper_length_cm\n\n\npenguin_model_3\nflipper_length_mm + flipper_length_cm\n\n\npenguin_model_4\nbody_mass_g\n\n\npenguin_model_5\nflipper_length_mm + body_mass_g\n\n\n\n\nWhich model had redundant predictors and which predictors were these?\nWhich model had multicollinear predictors and which predictors were these?\nIn general, what happens to the R-squared value if we add a redundant predictor to a model: will it decrease, stay the same, increase by a small amount, or increase by a significant amount?\nSimilarly, what happens to the R-squared value if we add a multicollinear predictor to a model: will it decrease, stay the same, increase by a small amount, or increase by a significant amount?"
+    "text": "Exercise 3: Redundancy and Multicollinearity\nThe exercises above have illustrated special phenomena in multivariate modeling:\n\ntwo predictors are redundant if they contain the same exact information\ntwo predictors are multicollinear if they are strongly associated (they contain very similar information) but are not completely redundant.\n\nRecall that we examined 5 models:\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_2\nflipper_length_cm\n\n\npenguin_model_3\nflipper_length_mm + flipper_length_cm\n\n\npenguin_model_4\nbody_mass_g\n\n\npenguin_model_5\nflipper_length_mm + body_mass_g\n\n\n\n\nWhich model had redundant predictors and which predictors were these?\nWhich model had multicollinear predictors and which predictors were these?\nIn general, what happens to the R-squared value if we add a redundant predictor to a model: will it decrease, stay the same, increase by a small amount, or increase by a significant amount?\nSimilarly, what happens to the R-squared value if we add a multicollinear predictor to a model: will it decrease, stay the same, increase by a small amount, or increase by a significant amount?",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#exercise-4-considerations-for-strong-models",
     "href": "activities/14_mlr_model_building_2.html#exercise-4-considerations-for-strong-models",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Exercise 4: Considerations for strong models",
-    "text": "Exercise 4: Considerations for strong models\nLet’s dive deeper into important considerations when building a strong model. We’ll use a subset of the penguins data for exploring these ideas.\n\n# For illustration purposes only, take a sample of 10 penguins.\n# We'll discuss this code later in the course!\nset.seed(155)\npenguins_small &lt;- sample_n(penguins, size = 10) %&gt;%\n  mutate(flipper_length_mm = jitter(flipper_length_mm))\n\nConsider 3 models of bill length:\n\n# A model with one predictor (flipper_length_mm)\npoly_mod_1 &lt;- lm(bill_length_mm ~ flipper_length_mm, penguins_small)\n\n# A model with two predictors (flipper_length_mm and flipper_length_mm^2)\npoly_mod_2 &lt;- lm(bill_length_mm ~ poly(flipper_length_mm, 2), penguins_small)\n\n# A model with nine predictors (flipper_length_mm, flipper_length_mm^2, ... on up to flipper_length_mm^9)\npoly_mod_9 &lt;- lm(bill_length_mm ~ poly(flipper_length_mm, 9), penguins_small)\n\n\nBefore doing any analysis, which of the three models do you think will be best?\nCalculate the R-squared values of these 3 models. Which model do you think is best?\n\n\nsummary(poly_mod_1)$r.squared\nsummary(poly_mod_2)$r.squared\nsummary(poly_mod_9)$r.squared\n\n\nCheck out plots depicting the relationship estimated by these 3 models. Which model do you think is best?\n\n\n# A plot of model 1\nggplot(penguins_small, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", se = FALSE)\n\n\n# A plot of model 2\nggplot(penguins_small, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", formula = y ~ poly(x, 2), se = FALSE)\n\n\n# A plot of model 9\nggplot(penguins_small, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", formula = y ~ poly(x, 9), se = FALSE)"
+    "text": "Exercise 4: Considerations for strong models\nLet’s dive deeper into important considerations when building a strong model. We’ll use a subset of the penguins data for exploring these ideas.\n\n# For illustration purposes only, take a sample of 10 penguins.\n# We'll discuss this code later in the course!\nset.seed(155)\npenguins_small &lt;- sample_n(penguins, size = 10) %&gt;%\n  mutate(flipper_length_mm = jitter(flipper_length_mm))\n\nConsider 3 models of bill length:\n\n# A model with one predictor (flipper_length_mm)\npoly_mod_1 &lt;- lm(bill_length_mm ~ flipper_length_mm, penguins_small)\n\n# A model with two predictors (flipper_length_mm and flipper_length_mm^2)\npoly_mod_2 &lt;- lm(bill_length_mm ~ poly(flipper_length_mm, 2), penguins_small)\n\n# A model with nine predictors (flipper_length_mm, flipper_length_mm^2, ... on up to flipper_length_mm^9)\npoly_mod_9 &lt;- lm(bill_length_mm ~ poly(flipper_length_mm, 9), penguins_small)\n\n\nBefore doing any analysis, which of the three models do you think will be best?\nCalculate the R-squared values of these 3 models. Which model do you think is best?\n\n\nsummary(poly_mod_1)$r.squared\nsummary(poly_mod_2)$r.squared\nsummary(poly_mod_9)$r.squared\n\n\nCheck out plots depicting the relationship estimated by these 3 models. Which model do you think is best?\n\n\n# A plot of model 1\nggplot(penguins_small, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", se = FALSE)\n\n\n# A plot of model 2\nggplot(penguins_small, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", formula = y ~ poly(x, 2), se = FALSE)\n\n\n# A plot of model 9\nggplot(penguins_small, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", formula = y ~ poly(x, 9), se = FALSE)",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#exercise-5-reflecting-on-these-investigations",
     "href": "activities/14_mlr_model_building_2.html#exercise-5-reflecting-on-these-investigations",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Exercise 5: Reflecting on these investigations",
-    "text": "Exercise 5: Reflecting on these investigations\n\nList 3 of your favorite foods. Now imagine making a dish that combines all of these foods. Do you think it would taste good?\nToo many good things doesn’t make necessarily make a better thing. Model 9 demonstrates that it’s always possible to get a perfect R-squared of 1, but there are drawbacks to putting more and more predictors into our model. Answer the following about model 9:\n\nHow easy would it be to interpret this model?\nWould you say that this model captures the general trend of the relationship between bill_length_mm and flipper_length_mm?\nHow well do you think this model would generalize to penguins that were not included in the penguins_small sample? For example, would you expect these new penguins to fall on the wiggly model 9 curve?"
+    "text": "Exercise 5: Reflecting on these investigations\n\nList 3 of your favorite foods. Now imagine making a dish that combines all of these foods. Do you think it would taste good?\nToo many good things doesn’t make necessarily make a better thing. Model 9 demonstrates that it’s always possible to get a perfect R-squared of 1, but there are drawbacks to putting more and more predictors into our model. Answer the following about model 9:\n\nHow easy would it be to interpret this model?\nWould you say that this model captures the general trend of the relationship between bill_length_mm and flipper_length_mm?\nHow well do you think this model would generalize to penguins that were not included in the penguins_small sample? For example, would you expect these new penguins to fall on the wiggly model 9 curve?",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#exercise-6-overfitting",
     "href": "activities/14_mlr_model_building_2.html#exercise-6-overfitting",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Exercise 6: Overfitting",
-    "text": "Exercise 6: Overfitting\nModel 9 provides an example of a model that is overfit to our sample data. That is, it picks up the tiny details of our data at the cost of losing the more general trends of the relationship of interest. Check out the following xkcd comic. Which plot pokes fun at overfitting?\n\nSome other goodies:"
+    "text": "Exercise 6: Overfitting\nModel 9 provides an example of a model that is overfit to our sample data. That is, it picks up the tiny details of our data at the cost of losing the more general trends of the relationship of interest. Check out the following xkcd comic. Which plot pokes fun at overfitting?\n\nSome other goodies:",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#exercise-7-questioning-r-squared",
     "href": "activities/14_mlr_model_building_2.html#exercise-7-questioning-r-squared",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Exercise 7: Questioning R-squared",
-    "text": "Exercise 7: Questioning R-squared\nZooming out, explain some limitations of relying on R-squared to measure the strength / usefulness of a model."
+    "text": "Exercise 7: Questioning R-squared\nZooming out, explain some limitations of relying on R-squared to measure the strength / usefulness of a model.",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#exercise-8-adjusted-r-squared",
     "href": "activities/14_mlr_model_building_2.html#exercise-8-adjusted-r-squared",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Exercise 8: Adjusted R-squared",
-    "text": "Exercise 8: Adjusted R-squared\nWe’ve seen that, unless a predictor is redundant with another, R-squared will increase. Even if that predictor is strongly multicollinear with another. Even if that predictor isn’t a good predictor! Thus if we only look at R-squared we might get overly greedy. We can check our greedy impulses a few ways. We take a more in depth approach in STAT 253, but one quick alternative is reported right in our model summary() tables. Adjusted R-squared includes a penalty for incorporating more and more predictors. Mathematically (where \\(n\\) is the sample size and \\(p\\) is the number of non-intercept coefficients):\n\\[\n\\text{Adjusted } R^2 = 1 - (1 - R^2) \\left( \\frac{n-1}{n-p-1} \\right)\n\\]\nThus unlike R-squared, Adjusted R-squared can decrease when the information that a predictor contributes to a model isn’t enough to offset the complexity it adds to that model. Consider two models:\n\nexample_1 &lt;- lm(bill_length_mm ~ species, penguins)\nexample_2 &lt;- lm(bill_length_mm ~ species + island, penguins)\n\n\nCheck out the summaries for the 2 example models. In general, how does a model’s Adjusted R-squared compare to the R-squared? Is it greater, less than, or equal to the R-squared?\nHow did the R-squared change from example model 1 to model 2? How did the Adjusted R-squared change?\nExplain what it is about island that resulted in a decreased Adjusted R-squared. Note: it’s not necessarily the case that island is a bad predictor on its own!"
+    "text": "Exercise 8: Adjusted R-squared\nWe’ve seen that, unless a predictor is redundant with another, R-squared will increase. Even if that predictor is strongly multicollinear with another. Even if that predictor isn’t a good predictor! Thus if we only look at R-squared we might get overly greedy. We can check our greedy impulses a few ways. We take a more in depth approach in STAT 253, but one quick alternative is reported right in our model summary() tables. Adjusted R-squared includes a penalty for incorporating more and more predictors. Mathematically (where \\(n\\) is the sample size and \\(p\\) is the number of non-intercept coefficients):\n\\[\n\\text{Adjusted } R^2 = 1 - (1 - R^2) \\left( \\frac{n-1}{n-p-1} \\right)\n\\]\nThus unlike R-squared, Adjusted R-squared can decrease when the information that a predictor contributes to a model isn’t enough to offset the complexity it adds to that model. Consider two models:\n\nexample_1 &lt;- lm(bill_length_mm ~ species, penguins)\nexample_2 &lt;- lm(bill_length_mm ~ species + island, penguins)\n\n\nCheck out the summaries for the 2 example models. In general, how does a model’s Adjusted R-squared compare to the R-squared? Is it greater, less than, or equal to the R-squared?\nHow did the R-squared change from example model 1 to model 2? How did the Adjusted R-squared change?\nExplain what it is about island that resulted in a decreased Adjusted R-squared. Note: it’s not necessarily the case that island is a bad predictor on its own!",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#reflection",
     "href": "activities/14_mlr_model_building_2.html#reflection",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Reflection",
-    "text": "Reflection\nToday we looked at some cautions surrounding indiscriminately adding variables to a model. Summarize key takeaways.\n\nResponse: Put your response here."
+    "text": "Reflection\nToday we looked at some cautions surrounding indiscriminately adding variables to a model. Summarize key takeaways.\n\nResponse: Put your response here.",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "activities/14_mlr_model_building_2.html#render-your-work",
     "href": "activities/14_mlr_model_building_2.html#render-your-work",
     "title": "Multiple linear regression: model building (part 2)",
     "section": "Render your work",
-    "text": "Render your work\n\nClick the “Render” button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.\nScroll through and inspect the document to check that your work translated to the HTML format correctly.\nClose the browser tab.\nGo to the “Background Jobs” pane in RStudio and click the Stop button to end the rendering process.\nNavigate to your “Activities” subfolder within your “STAT155” folder and locate the HTML file. You can open it again in your browser to double check.\n\n\nSolutions"
+    "text": "Render your work\n\nClick the “Render” button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.\nScroll through and inspect the document to check that your work translated to the HTML format correctly.\nClose the browser tab.\nGo to the “Background Jobs” pane in RStudio and click the Stop button to end the rendering process.\nNavigate to your “Activities” subfolder within your “STAT155” folder and locate the HTML file. You can open it again in your browser to double check.\n\n\nSolutions",
+    "crumbs": [
+      "Multiple linear regression: model building (part 2)"
+    ]
   },
   {
     "objectID": "solutions/06_slr_transformations.html",

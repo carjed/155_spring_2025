@@ -1,0 +1,435 @@
+---
+title: "Solutions for 15/16: Intro to odds + logistic regression"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+---
+
+
+
+# Exercises
+
+**Context:** To begin formally learning about probabilities and odds, we’ll be exploring a dataset containing information on 2,500 singleton (i.e. not twins) births in King County, Washington in 2001. Each row contains information from one birth parent, and there are no birth parents included in the dataset more than once. 
+
+The main research question this study aimed to answer was whether the [First Steps](https://kingcounty.gov/en/dept/dph/health-safety/health-centers-programs-services/maternity-support-wic/maternity-support-services-infant-case-management) program in King County improved birth outcomes for women from socioeconomically disadvantaged backgrounds. We'll attempt to answer this research question using the information available to us as we go!
+
+The variables in this dataset we'll look at more closely for each birth parent are:
+
+- `age`: age of birth parent at time of birth (years)
+- `parity`: number of children the birth parent has given birth to before
+- `married`: indicator for whether the birth parent is currently married (1 = yes, 0 = no)
+- `bwt`: birthweight of the child (in grams)
+- `smokeN`: number of cigarettes smoked per day during pregnancy
+- `drinkN`: number of alcoholic drinks consumed per day during pregnancy
+- `firstep`: indicator for whether the birth parent participated in the “First Steps” pregnancy program
+- `gestation`: number of weeks at which birth parent gave birth
+
+Run the code below to read in the `firststeps` data, and create a few new variables that we'll explore as well.
+
+
+```{r}
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+
+firststeps <- read_csv("https://mac-stat.github.io/data/firststeps.csv") %>%
+  mutate(firstchild = ifelse(parity == 0, "Yes", "No"), # Is this the first child this parent has had?
+         low_bwt = ifelse(bwt < 2500, "low", "not low"),
+         preterm = ifelse(gestation < 37, "Yes", "No")) # short gestational period
+```
+
+# Part 1
+
+## Exercise 1: Exploring First Steps enrollment and Gestational Age
+
+
+```{r}
+# 2x2 Table: preterm vs. First Steps
+firststeps %>% 
+    count(preterm, firstep)
+```
+
+
+a. 343 + 60 = 403 parents were enrolled in the First Steps program. I used both rows of the table where `firstep = 1`.
+
+b. 16.12% of people in the study were enrolled in First Steps!
+
+```{r}
+403 / 2500
+```
+
+c. 60 birth parents
+
+d. 14.89% of birth parents in First Steps had a premature baby.
+
+```{r}
+60 / 403
+```
+
+
+e. The total number of birth parents who had a premature baby was 218 + 60 = 278. Of those. 60 were enrolled in First Steps. Therefore, 21.58% of birth parents who had a premature baby were enrolled in First Steps.
+
+```{r}
+60/278
+```
+
+
+Using formal probability notation, we can write
+
+> b. $P(\text{First Steps})$ = .1612
+
+> d. $P(\text{Preterm} | \text{First Steps})$ = .1488
+
+> e. $P(\text{First Steps} | \text{Preterm})$ = .2158
+
+
+f. 
+
+> $P(\text{Preterm} | \text{Not in First Steps})$ = 218 / (218 + 1879) = 0.103958
+
+g. 
+
+$$
+\frac{(\text{Preterm} | \text{First Steps})}{P(\text{Preterm} | \text{Not in First Steps})} = .1488 / 0.103958 = 1.43
+$$
+
+h. Parents in this study in the First Steps program are 1.43 times more likely to have a premature birth than those not enrolled in the First Steps program, indicating that gestational age does differ by First Steps enrollment. This implies that enrollment in the First Steps program may not be associated with better birth outcomes, as measured by gestational age.
+
+*Note:* However, you may argue that this is not a fair comparison, or that this summary is not what researchers were actually interested in! Ideally, we would compare birth outcomes from mothers in the First Steps program to the birth outcomes from *those same mothers* not in the First Steps program, to determine if the program made a positive impact. This idea hints at a sub-field of statistics called **causal inference** and the idea of a **counterfactual** ("what would have happened if..."). Take more statistics classes to learn about other methods for approaching this question!
+
+
+i. 
+
+```{r}
+# Side-by-side bar chart
+firststeps %>%
+  ggplot(aes(firstep, fill = preterm)) +
+  geom_bar(position = "dodge") +
+  theme_classic()
+
+# Stacked bar chart
+firststeps %>%
+  ggplot(aes(firstep, fill = preterm)) +
+  geom_bar() +
+  theme_classic()
+
+# Stacked relative frequency bar chart
+firststeps %>%
+  ggplot(aes(firstep, fill = preterm)) +
+  geom_bar(position = "fill") +
+  theme_classic()
+```
+
+**Bonus Question:** Which of the above three plots allows you to directly see the conditional probabilities we calculated previously?
+
+> The stacked relative frequency bar chart! 
+
+
+
+## Exercise 2: Exploring First Steps enrollment and Low birthweights
+
+a. 
+
+```{r}
+# 2x2 Table: low_bwt vs. First Steps
+firststeps %>%
+  count(low_bwt, firstep)
+```
+
+b. 
+
+> $P(\text{Low birth weight} | \text{First Steps})$ = 25 / (25 + 378) = 0.062
+
+> $P(\text{Normal birth weight} | \text{First Steps})$ = 378 / (25 + 378) = 0.938
+
+
+
+> $P(\text{Low birth weight} | \text{Not in First Steps})$ = 102 / (102 + 1995) = 0.049
+
+> $P(\text{Normal birth weight} | \text{Not in First Steps})$ = 1995 / (102 + 1995) = 0.951
+
+
+c. 
+
+> $Odds(\text{Low birth weight} | \text{First Steps})$ = 0.062 / (1 - 0.062) = 0.06609808
+
+> $Odds(\text{Normal birth weight} | \text{First Steps})$ = 0.938 / (1 - 0.938) = 15.12903
+
+
+
+> $Odds(\text{Low birth weight} | \text{Not in First Steps})$ = 0.049 / (1 - 0.049) = 0.05152471
+
+> $Odds(\text{Normal birth weight} | \text{Not in First Steps})$ = 0.951 / (1 - 0.951) = 19.40816
+
+
+d. 
+
+```{r}
+0.06609808 / 0.05152471
+```
+
+
+e. The odds of having a low birth weight baby are 1.28 times higher for those enrollment in First Steps compared to those not in First Steps. Just as in Exercise 1, this implies that the First Steps program may not be associated with improved birth outcomes (with the same caveats as given in the answer to 1 (h)).
+
+f. To go along with your summary, add code below to make one of the three visualization options we tried out in Exercise 1.
+
+```{r}
+# Stacked relative frequency bar chart (with some fancy aesthetics)
+firststeps %>%
+  mutate(Birthweight = low_bwt %>% str_to_title()) %>%
+  ggplot(aes(firstep, fill = Birthweight)) +
+  geom_bar(position = "fill") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "H") +
+  labs(x = "First Steps", title = "Birthweight by First Steps Enrollment") +
+  scale_x_continuous(breaks = c(0,1), labels = c("Not Enrolled", "Enrolled")) 
+```
+
+## Exercise 3: Conditional vs. Marginal probabilities
+
+Suppose we select a person at random from the entire global population. For each of the following probabilities, which do you think is bigger? Explain your reasoning.
+
+a. P(lung cancer | smoker) is likely bigger, since lung cancer is more rare in the general population than it is among smokers.
+
+b. P(likes McDonald's) is likely bigger, since vegetarians don't likely like McDonald's very much (few options that they can eat).
+
+c. P(smart | Mac grad) is likely bigger, because there are *very* few Mac grads relative to the global population. Lots of people are smart, few are Mac grads.
+
+## Exercise 4: Probability practice
+
+Let's explore whether birth weight of a baby varies by whether or not it was the *first* child that a mother had, *and* whether this relationship differs by First Steps enrollment. We make a table below:
+
+```{r}
+firststeps %>%
+  count(firstchild, low_bwt, firstep)
+```
+
+a. What is the probability that a mother enrolled in First steps who is having their first child, has a baby who is born at a low birthweight? Calculate your answer, and write it using formal probability notation.
+
+> P(\text{Low Birthweight} | \text{First Steps}, \text{First Child}) = 12 / (12 + 180) = 0.0625
+
+b. What is the probability that a mother *not* enrolled in First steps who is having their first child, has a baby who is born at a low birthweight? Calculate your answer, and write it using formal probability notation.
+
+> P(\text{Low Birthweight} | \text{Not in First Steps}, \text{First Child}) = 59 / (59 + 915) = 0.06057495
+
+c. What is the probability that a mother's first child has a low birthweight? Calculate your answer, and write it using formal probability notation.
+
+> P(\text{Low Birthweight} | \text{First Child}) = (59 + 12) / (59 + 12 + 915 + 180) = 0.06089194
+
+d. How many times *more likely* is a child to be born at a low birthweight, comparing children who are the first born to those not first born?
+
+> P(\text{Low Birthweight} | \text{First Child}) / P(\text{Low Birthweight} | \text{Not First Child}) = ((59 + 12) / (59 + 12 + 915 + 180)) / ((43 + 13) / (43 + 13 + 1080 + 198)) = 1.450533
+
+
+
+# Part 2
+
+```{r}
+library(readr)
+library(ggplot2)
+library(ggmosaic)
+library(dplyr)
+
+titanic <- read_csv("https://mac-stat.github.io/data/titanic.csv")
+```
+
+
+## Exercise 5: Exploring age
+
+The boxplot doesn't clearly indicate a difference in the age distributions across survivors and non-survivors, but we do notice from the density plot that there is a greater density of younger passengers among the survivors. We also see from the last plot that younger passengers tend to have a higher survival chance.
+
+```{r}
+# Create a boxplot
+ggplot(titanic, aes(x = factor(Survived), y = Age)) +
+    geom_boxplot()
+
+# Can flip the boxplot on its side too
+ggplot(titanic, aes(y = factor(Survived), x = Age)) +
+    geom_boxplot()
+
+# Create a density plot
+ggplot(titanic, aes(x = Age, color = factor(Survived))) +
+    geom_density()
+
+# Use the code below to create a plot of the fraction who survived at each age
+titanic_summ <- titanic %>% 
+    group_by(Age) %>%
+    summarize(frac_survived = mean(Survived))
+
+ggplot(titanic_summ, aes(x = Age, y = frac_survived)) +
+    geom_point() +
+    geom_smooth(se = FALSE)
+```
+
+
+
+## Exercise 6: Exploring sex and ticket class
+
+- Females were more likely to survive than males.
+- 1st class was most likely to survive, followed by 2nd then 3rd class.
+
+```{r}
+# Standard bar plots
+ggplot(titanic, aes(x = Sex, fill = factor(Survived))) +
+    geom_bar(position = "fill")
+
+ggplot(titanic, aes(x = PClass, fill = factor(Survived))) +
+    geom_bar(position = "fill")
+
+# Mosaic plots
+ggplot(data = titanic %>% mutate(Survived = as.factor(Survived))) +
+    geom_mosaic(aes(x = product(Sex), fill = Survived))
+
+ggplot(data = titanic %>% mutate(Survived = as.factor(Survived))) +
+    geom_mosaic(aes(x = product(PClass), fill = Survived))
+```
+
+
+
+## Exercise 7: Linear regression model
+
+```{r}
+titanic %>% 
+    count(PClass, Survived)
+```
+
+a. 
+
+Class     | Died     | Survived | Total 
+----------|----------|----------|-------
+1st Class | 129      |  193     | 322
+2nd Class | 160      |  119     | 279
+3rd Class | 573      |  138     | 711
+Total     | 862      |  450     | 1312
+
+b. 
+    - the probability of surviving among 1st class passengers: 193/322 = `r round(193/322,3)`
+    - the probability of surviving among 2nd class passengers: 119/279 = `r round(119/279,3)`
+    - the probability of surviving among 3rd class passengers: 138/711 = `r round(138/711,3)`
+    - the difference in the probability of surviving, comparing 2nd class passengers to 1st class passengers (i.e., how much lower is the probability of 2nd class passengers as compared to 1st class passengers?): 119/279 - 193/322 = `r round(119/279 - 193/322, 3)`
+    - the difference in the probability of surviving, comparing 3rd class passengers to 1st class passengers  (i.e., how much lower is the probability of 3rd class passengers as compared to 1st class passengers?): 138/711 - 193/322 = `r round(138/711 - 193/322, 3)`
+
+c. This model can be written as: $E[Survived | PClass] = \beta_0 + \beta_1 PClass2nd + \beta_2 PClass3rd$.
+    - In the context of a binary variable, the expected value/average is the same as the probability that the variable equals one. To see an example of this, calculate the average of this list of 0's and 1's: (0,0,1,1,0,1,0,1). Now calculate the proportion of 1's. What do you notice?
+    - This means that we can also write this model as follows: $P[Survived = 1 | PClass] = \beta_0 + \beta_1 PClass2nd + \beta_2 PClass3rd$
+
+```{r}
+lin_mod <- lm(Survived ~ PClass, data = titanic)
+summary(lin_mod)
+```
+
+d. The coefficient estimates are the differences in probability from part b!
+    - `(Intercept)`: the estimated probability of survival for passengers in 1st class is 0.599 (59.9%)
+    - `PClass2nd`: the difference in the estimated probability of survival comparing passengers in 1st class to passengers in 2nd class is 0.173 (17.3%), where passengers in 1st class have the higher estimated survival probability
+        - OR... comparing passengers in 1st class to passengers in 2nd class, the difference in the proportion of passengers that survived is 0.173 (17.3%), with 1st class having a higher proportion of passengers that survived
+        - OR... the probability of survival is 17.3% lower among passengers in 2nd class than it is among passengers in 1st class
+    - `PClass3rd`: the difference in the estimated probability of survival comparing passengers in 1st class to passengers in 3rd class is 0.405 (40.5%), where passengers in 1st class have the higher estimated survival probability
+
+
+
+## Exercise 8: Logistic regression model (categorical predictor)
+
+a. 
+    - the odds of surviving among 1st class passengers: 193/129 = `r round(193/129,3)`
+    - the odds of surviving among 2nd class passengers: 119/160 = `r round(119/160,3)`
+    - the odds of surviving among 3rd class passengers: 138/573 = `r round(138/573,3)`
+    - the ratio of the odds of surviving, comparing 2nd class passengers to 1st class passengers (i.e., how many times higher/lower is the odds of survival among 2nd class passengers as compared to 1st class passengers?): (119/160)/(193/129) = `r round((119/160) / (193/129), 3)`
+    - the ratio of the odds of surviving, comparing 3rd class passengers to 1st class passengers: (138/573)/(193/129) = `r round((138/573) / (193/129), 3)`
+
+b. $\log(Odds[Survived = 1 | PClass]) = \beta_0 + \beta_1 PClass2nd + \beta_2 PClass3rd$
+
+```{r}
+log_mod <- glm(Survived ~ PClass, data = titanic, family = "binomial")
+
+# These logistic coefficient estimates are NOT exponentiated
+coef(summary(log_mod))
+```
+
+```{r}
+# Calculations for exponentiating coefficients
+exp(0.4028778)
+exp(-0.6989281)
+exp(-1.8265098)
+```
+
+
+d. These exponentiated coefficient estimates compare to your the odds and odds ratios in part a!
+    - exp(Intercept): the estimated odds of survival among passengers in first class is 1.496 (i.e., passengers in first class are 1.496 times more likely to survive than they are to die)
+    - exp(PClass2nd): we estimate that the odds of survival for passengers in 2nd class are only 0.50 times as high as the odds of survival among passengers in 1st class (i.e., the odds of survival are 2 times higher among passengers in 1st class than they are among passengers in 2nd class)
+    - exp(PClass3rd): we estimate that the odds of survival for passengers in 3rd class are only 0.16 times as high as the odds of survival among passengers in 1st class (i.e., the odds of survival are 1/0.16 = `r round(1/0.1609744, 2)` times higher among passengers in 1st class than they are among passengers in 3rd class)
+
+## Exercise 9: Logistic regression model (quantitative predictor)
+
+a. After fitting the logistic regression model below, write out the model formula using correct notation.
+
+```{r}
+log_mod <- glm(Survived ~ Age, data = titanic, family = "binomial")
+coef(summary(log_mod))
+```
+
+$\log(Odds[Survived = 1 | Age]) = \beta_0 + \beta_1 Age$
+
+b. Write an interpretation of each of the *exponentiated* coefficients in this logistic regression model.
+
+- exp(Intercept): $exp(-0.0814)=0.92$ --> the estimated odds of survival among passengers who are 0 years old is 0.92 (i.e., passengers who are 0 years old are 0.92 times more likely to survive than they are to die--so very slightly *more* likely to die)
+- exp(Age): $exp(-0.0088)=0.99$ --> For every 1-year increase in a passenger's age, the estimated odds of survival *decrease* by about 1%.
+
+## Exercise 10: Linear vs. logistic modeling
+
+To highlight a key difference between linear vs. logistic modeling, consider the following linear and logistic regression models of survival with sex and age as predictors in addition to ticket class.
+
+```{r}
+lin_mod2 <- lm(Survived ~ PClass + Sex + Age, data = titanic)
+coef(summary(lin_mod2))
+
+log_mod2 <- glm(Survived ~ PClass + Sex + Age, data = titanic, family = "binomial")
+coef(summary(log_mod2))
+```
+
+a.
+
+```{r}
+## predict for Rose
+## (by hand)
+1.130523 + (-0.207434)*0 + (-0.393344)*0 + (-0.501326)*0 + (-0.006005)*17
+
+## (using predict)
+predict(lin_mod2, newdata = data.frame(PClass = "1st", Sex = "female", Age = 17))
+
+## predict for Jack
+## (by hand)
+1.130523 + (-0.207434)*0 + (-0.393344)*1 + (-0.501326)*1 + (-0.006005)*20
+
+## (using predict)
+predict(lin_mod2, newdata = data.frame(PClass = "3rd", Sex = "male", Age = 20))
+```
+
+
+b. 
+
+```{r}
+## predict for Rose
+## (by hand)
+log_odds_rose <- 3.75966210 + (-1.29196240)*0 + (-2.52141915)*0 + (-2.63135683)*0 + (-0.03917681)*17
+odds_rose <- exp(log_odds_rose)
+odds_rose/(1+odds_rose)
+
+## (using predict)
+predict(log_mod2, newdata = data.frame(PClass = "1st", Sex = "female", Age = 17), type = "response")
+
+## predict for Jack
+## (by hand)
+log_odds_jack <- 3.75966210 + (-1.29196240)*0 + (-2.52141915)*1 + (-2.63135683)*1 + (-0.03917681)*20
+odds_jack <- exp(log_odds_jack)
+odds_jack/(1+odds_jack)
+
+## (using predict)
+predict(log_mod2, newdata = data.frame(PClass = "3rd", Sex = "male", Age = 20), type = "response")
+```
+
+c. Our linear model predicted that Rose's probability of survival was over 100% (which doesn't make sense). The predictions for Jack are fairly similar: 10.2% based on our logistic model and 11.6% based on our linear model.
+
+

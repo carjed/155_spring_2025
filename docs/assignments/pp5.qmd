@@ -10,7 +10,7 @@ format:
 ---
 
 <center>
-**Due Friday, 10/25 at 5pm on [Moodle](INSERT_LINK_TO_MOODLE_ASSIGNMENT).**
+**Due Wednesday, 10/26 at 5pm on Moodle
 </center>
 
 # Purpose

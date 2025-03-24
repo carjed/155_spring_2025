@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11/12: Multiple linear regression: exploring interaction – STAT 155</title>
+<title>17. Multiple logistic regression – STAT 155</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4884,7 +4884,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -4987,102 +4987,10 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../activities/11_mlr_interaction_explore.html">11/12: Multiple linear regression: exploring interaction</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
- <span class="menu-text">activities/17_logistic_multiple_evaluation.qmd</span>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/15_prob_odds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">15/16: Intro to odds + logistic regression</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/14_mlr_model_building_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">14. Multiple linear regression: model building (part 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/13_mlr_model_building_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">13. Multiple linear regression: model building (part 1)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/11_mlr_interaction_explore.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">11/12: Multiple linear regression: exploring interaction</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/10_mlr_confounding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10. Confounding variables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/08_mlr_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">08/09. Introduction to multiple linear regression</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/07_slr_cat_predictor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">07. Simple linear regression: categorical predictor</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/06_slr_transformations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">06. Simple linear regression: Transformations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/05_slr_model_eval.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">05. Simple linear regression: model evaluation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/03_slr_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">03/04. Introduction to simple linear regression</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/02_foundations_univariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">02. Univariate visualization and summaries</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../activities/01_foundations_welcome.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">01. Collecting and Summarizing Data</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -5094,22 +5002,14 @@ window.Quarto = {
   <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning goals</a></li>
   <li><a href="#readings-and-videos" id="toc-readings-and-videos" class="nav-link" data-scroll-target="#readings-and-videos">Readings and videos</a></li>
   </ul></li>
-  <li><a href="#class-exploration" id="toc-class-exploration" class="nav-link" data-scroll-target="#class-exploration">Class exploration</a>
-  <ul class="collapse">
-  <li><a href="#exercise-a.-visualize-education-vs-wages" id="toc-exercise-a.-visualize-education-vs-wages" class="nav-link" data-scroll-target="#exercise-a.-visualize-education-vs-wages">Exercise A. Visualize education vs wages</a></li>
-  <li><a href="#exercise-b.-model-the-relationship-between-education-and-wages" id="toc-exercise-b.-model-the-relationship-between-education-and-wages" class="nav-link" data-scroll-target="#exercise-b.-model-the-relationship-between-education-and-wages">Exercise B. Model the relationship between education and wages</a></li>
-  <li><a href="#exercise-c.-draw-a-causal-diagram-with-industry-as-a-confounder" id="toc-exercise-c.-draw-a-causal-diagram-with-industry-as-a-confounder" class="nav-link" data-scroll-target="#exercise-c.-draw-a-causal-diagram-with-industry-as-a-confounder">Exercise C. Draw a causal diagram with industry as a confounder</a></li>
-  <li><a href="#exercise-d.-adjusting-for-a-confounder" id="toc-exercise-d.-adjusting-for-a-confounder" class="nav-link" data-scroll-target="#exercise-d.-adjusting-for-a-confounder">Exercise D. Adjusting for a confounder</a></li>
-  <li><a href="#exercise-e.-fitting-an-interaction-model" id="toc-exercise-e.-fitting-an-interaction-model" class="nav-link" data-scroll-target="#exercise-e.-fitting-an-interaction-model">Exercise E. Fitting an interaction model</a></li>
-  <li><a href="#exercise-f-wages-across-all-industries" id="toc-exercise-f-wages-across-all-industries" class="nav-link" data-scroll-target="#exercise-f-wages-across-all-industries">Exercise F: Wages across all industries</a></li>
-  </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
   <ul class="collapse">
-  <li><a href="#exercise-1-translating-scientific-questions-into-statistical-questions" id="toc-exercise-1-translating-scientific-questions-into-statistical-questions" class="nav-link" data-scroll-target="#exercise-1-translating-scientific-questions-into-statistical-questions">Exercise 1: Translating scientific questions into statistical questions</a></li>
-  <li><a href="#exercise-2-visualizing-interaction" id="toc-exercise-2-visualizing-interaction" class="nav-link" data-scroll-target="#exercise-2-visualizing-interaction">Exercise 2: Visualizing Interaction</a></li>
-  <li><a href="#exercise-3-fitting-and-interpreting-models-with-interaction-terms" id="toc-exercise-3-fitting-and-interpreting-models-with-interaction-terms" class="nav-link" data-scroll-target="#exercise-3-fitting-and-interpreting-models-with-interaction-terms">Exercise 3: Fitting and interpreting models with interaction terms</a></li>
-  <li><a href="#exercise-4-interactions-between-two-categorical-variables" id="toc-exercise-4-interactions-between-two-categorical-variables" class="nav-link" data-scroll-target="#exercise-4-interactions-between-two-categorical-variables">Exercise 4: Interactions between two categorical variables</a></li>
-  <li><a href="#exercise-5-interactions-between-two-quantitative-variables" id="toc-exercise-5-interactions-between-two-quantitative-variables" class="nav-link" data-scroll-target="#exercise-5-interactions-between-two-quantitative-variables">Exercise 5: Interactions between two quantitative variables</a></li>
+  <li><a href="#exercise-1-graphical-and-numerical-summaries" id="toc-exercise-1-graphical-and-numerical-summaries" class="nav-link" data-scroll-target="#exercise-1-graphical-and-numerical-summaries">Exercise 1: Graphical and numerical summaries</a></li>
+  <li><a href="#exercise-2-logistic-regression-modeling" id="toc-exercise-2-logistic-regression-modeling" class="nav-link" data-scroll-target="#exercise-2-logistic-regression-modeling">Exercise 2: Logistic regression modeling</a></li>
+  <li><a href="#exercise-3-interaction-terms" id="toc-exercise-3-interaction-terms" class="nav-link" data-scroll-target="#exercise-3-interaction-terms">Exercise 3: Interaction terms</a></li>
+  <li><a href="#exercise-4-prediction" id="toc-exercise-4-prediction" class="nav-link" data-scroll-target="#exercise-4-prediction">Exercise 4: Prediction</a></li>
+  <li><a href="#exercise-5-evaluating-logistic-models-with-plots" id="toc-exercise-5-evaluating-logistic-models-with-plots" class="nav-link" data-scroll-target="#exercise-5-evaluating-logistic-models-with-plots">Exercise 5: Evaluating logistic models with plots</a></li>
+  <li><a href="#exercise-6-evaluating-logistic-models-with-evaluation-metrics" id="toc-exercise-6-evaluating-logistic-models-with-evaluation-metrics" class="nav-link" data-scroll-target="#exercise-6-evaluating-logistic-models-with-evaluation-metrics">Exercise 6: Evaluating logistic models with evaluation metrics</a></li>
   <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
   <li><a href="#render-your-work" id="toc-render-your-work" class="nav-link" data-scroll-target="#render-your-work">Render your work</a></li>
   </ul></li>
@@ -5121,7 +5021,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">11/12: Multiple linear regression: exploring interaction</h1>
+<h1 class="title">17. Multiple logistic regression</h1>
 <p class="subtitle lead">Notes and in-class exercises</p>
 </div>
 
@@ -5142,395 +5042,306 @@ window.Quarto = {
 <section id="notes" class="level1">
 <h1>Notes</h1>
 <ul>
-<li>Download the <code>.qmd</code> file for this activity <a href="../activity_templates/11_mlr_interaction_explore.qmd">here</a>.</li>
+<li>Download the <code>.qmd</code> file for this activity <a href="../activity_templates/17_logistic_multivariate_evaluation.qmd">here</a>.</li>
 </ul>
 <section id="learning-goals" class="level2">
 <h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
 <p>By the end of this lesson, you should be able to:</p>
 <ul>
-<li>Visualize interactions between categorical and quantitative predictors using scatterplots and side-by-side or boxplots</li>
-<li>Critically think through whether an interaction term makes sense, or should be included in a multiple linear regression model</li>
-<li>Write a <strong>model formula</strong> for a multiple linear regression model with an interaction term between two quantitative predictors, two categorical predictors, or one quantitative and one categorical predictor</li>
-<li>Interpret the <strong>intercept</strong> and <strong>slope</strong> coefficients in a multiple linear regression model with an interaction term</li>
+<li>Construct multiple logistic regression models in R</li>
+<li>Interpret coefficients in multiple logistic regression models</li>
+<li>Use multiple logistic regression models to make predictions</li>
+<li>Evaluate the quality of logistic regression models by using predicted probability boxplots and by computing and interpreting accuracy, sensitivity, specificity, false positive rate, and false negative rate</li>
 </ul>
 </section>
 <section id="readings-and-videos" class="level2">
 <h2 class="anchored" data-anchor-id="readings-and-videos">Readings and videos</h2>
-<p>Choose either the reading or the videos to go through <strong>before</strong> class.</p>
+<p>Please go through the following reading or videos <strong>before</strong> class.</p>
 <ul>
-<li>Reading: Section 3.9.3 in the <a href="https://mac-stat.github.io/Stat155Notes/">STAT 155 Notes</a></li>
-<li>Video:
+<li><p>Reading: Section 4.4 in the <a href="https://mac-stat.github.io/Stat155Notes/">STAT 155 Notes</a></p></li>
+<li><p>Videos:</p>
 <ul>
-<li><a href="https://voicethread.com/share/15085486/">Interaction variables</a></li>
+<li><a href="https://youtu.be/jisiKHHDz0U">Part 1: Concepts</a> (<a href="https://drive.google.com/file/d/1ohEyz_ZLce8KW8LE8hftWYZVR--mVb0A/view?usp=sharing">script</a>)</li>
+<li><a href="https://youtu.be/1iF0ZaUBGT4">Part 2: R Code</a> (<a href="https://drive.google.com/file/d/1cuJZcgZhEvESeApRA6dR36wUeQfQ0En9/view?usp=sharing">script</a>)</li>
 </ul></li>
 </ul>
+<!-- This section is for any mini-lecture, review material, material to motivate today's lesson, more guided / structured examples than the exercises section below. -->
 <p><strong>File organization:</strong> Save this file in the “Activities” subfolder of your “STAT155” folder.</p>
-</section>
-</section>
-<section id="class-exploration" class="level1">
-<h1>Class exploration</h1>
-<blockquote class="blockquote">
-<p><strong>Guiding question:</strong> What job sectors have the highest return on education?</p>
-</blockquote>
-<p>We’ll use data from the 2018 Current Population Survey to explore. The codebook for this data is available <a href="https://mac-stat.github.io/data/cps_2018_codebook.html">here</a>. For now we’ll focus on individuals who have jobs in the management or transportation sectors to simplify our explorations.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages and data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://mac-stat.github.io/data/cps_2018.csv&quot;</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get data on just the management and transportation sectors</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cps_sub <span class="ot">&lt;-</span> cps <span class="sc">%&gt;%</span> </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(industry <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;management&quot;</span>, <span class="st">&quot;transportation&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="exercise-a.-visualize-education-vs-wages" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-a.-visualize-education-vs-wages">Exercise A. Visualize education vs wages</h2>
-<p>It would be great to know the true effect of years of education on wages. Let’s start by looking at the relationship between these two variables.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cps_sub, <span class="fu">aes</span>(<span class="at">x =</span> education, <span class="at">y =</span> wage)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-b.-model-the-relationship-between-education-and-wages" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-b.-model-the-relationship-between-education-and-wages">Exercise B. Model the relationship between education and wages</h2>
-<p>There is a positive correlation between years of education and wages, with a fair bit of spread about the line of best fit. We can fit a simple linear regression model to obtain the intercept and slope of that line.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wage_mod_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> education, <span class="at">data =</span> cps_sub)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_mod_1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note that our intercept estimate is negative which doesn’t make sense! People with 0 years of education still earn wages! Inspecting the plot, we likely could have better accounted for this with a nonlinear transformation of the <code>education</code> variable, but we will leave this issue aside for now.</p>
-<p>Let’s focus on this question: does this simple linear regression model help us understand the true effect of years of education?</p>
-</section>
-<section id="exercise-c.-draw-a-causal-diagram-with-industry-as-a-confounder" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-c.-draw-a-causal-diagram-with-industry-as-a-confounder">Exercise C. Draw a causal diagram with industry as a confounder</h2>
-<p>We’ll want to consider confounding variables in order to better answer that question. One possible confounder is industry. <strong>Draw a causal diagram showing how industry, years of education, and wage relate, and explain what unfair comparisons result from using a simple linear regression model.</strong></p>
-</section>
-<section id="exercise-d.-adjusting-for-a-confounder" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-d.-adjusting-for-a-confounder">Exercise D. Adjusting for a confounder</h2>
-<p>Let’s adjust for industry by fitting a multiple linear regression model.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wage_mod_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> education <span class="sc">+</span> industry, cps_sub)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_mod_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Interpret the <code>education</code> and <code>industrytransportation</code> coefficients in the context of the data. (Remember to include units.) How does the relationship between years of education and wages change after adjusting for industry?</strong></p>
-<p>Hold on! We sped ahead too quickly. It’s important to visualize our data thoroughly first. Let’s add industry to our original scatterplot. <strong>What do you notice about the lines of best fit for these two industries?</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cps_sub, <span class="fu">aes</span>(<span class="at">x =</span> education, <span class="at">y =</span> wage, <span class="at">color =</span> industry)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>It would be nice to be able to capture the different trend for the two industries. Let’s see if our original multiple linear regression model (<code>wage_mod_1</code>) was able to do so.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the relationships from the fitted model</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cps_sub, <span class="fu">aes</span>(<span class="at">y =</span> wage, <span class="at">x =</span> education, <span class="at">color =</span> industry)) <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> wage_mod_2<span class="sc">$</span>fitted.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>What do you notice about what our model produces? Based on your coefficient interpretations from earlier, is this behavior what you would have expected? How do you think our multiple linear regression model is limited? How might we try to fix this?</strong></p>
-<p>In our causal diagram, both years of education and industry affect wages, and <em>one</em> way to capture this is with our model in <code>wage_mod_2</code>:</p>
-<p><span class="math inline">\(E[\text{wage} \mid \text{education}, \text{industry}) = \beta_0 + \beta_1 \text{education} + \beta_2 \text{industrytransportation}\)</span></p>
-<p>Some other ways to capture how wages are affected by years of education and industry could look like this:</p>
-<ul>
-<li><span class="math inline">\(\beta_0 + \beta_1 \text{education} + \beta_2 \text{industrytransportation} + \beta_3 \text{education}^2\)</span></li>
-<li><span class="math inline">\(\beta_0 + \beta_1 \text{education} + \beta_2 \text{industrytransportation} + \beta_3 \log(\text{education})\)</span></li>
-<li><span class="math inline">\(\beta_0 + \beta_1 \text{education} + \beta_2 \text{industrytransportation} + \beta_3 \text{education}*\text{industrytransportation}\)</span></li>
-</ul>
-<p>That last type of model is called an <strong>interaction model</strong>. A general interaction model formula looks like this:</p>
-<p><span class="math inline">\(E[Y \mid X_1, X_2) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_1*X_2\)</span></p>
-<p>The outcome <span class="math inline">\(Y\)</span> depends on <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> with the usual multiple linear regression part: <span class="math inline">\(\beta_1 X_1 + \beta_2 X_2\)</span>. But it <em>also</em> includes an <strong>interaction term</strong> <span class="math inline">\(\beta_3 X_1*X_2\)</span>.</p>
-</section>
-<section id="exercise-e.-fitting-an-interaction-model" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-e.-fitting-an-interaction-model">Exercise E. Fitting an interaction model</h2>
-<p>Let’s fit an interaction model for our <code>cps_sub</code> data and explore what relationships our model estimates.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an interaction model</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># NEW SYNTAX: Note the * instead of +</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wage_mod_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> education <span class="sc">*</span> industry, cps_sub)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the relationships from the interaction model</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cps_sub, <span class="fu">aes</span>(<span class="at">y =</span> wage, <span class="at">x =</span> education, <span class="at">color =</span> industry)) <span class="sc">+</span> </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> wage_mod_2<span class="sc">$</span>fitted.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>How does our new interaction model compare to our previous one?</strong></p>
-<p>This is a more complex new model! Let’s explore what is going on mathematically by examining the overall model formula and how we can use it to get model formulas for each industry.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View coefficient estimates</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_mod_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Model formulas:</strong></p>
-<p>E[wage | education, industry] = -65590.606 + 8678.274 education + 90232.230 transportation - 7580.228 education * transportation</p>
-<p><strong>Broken down by industry:</strong></p>
-<p>Management:</p>
-<p>E[wage | education, industry = management] = -65590.606 + 8678.274 education</p>
-<p>Transportation:</p>
-<p>E[wage | education, industry = transportation] = -65590.606 + 8678.274 education + 90232.230 - 7580.228 education = (-65590.606 + 90232.230) + (8678.274 - 7580.228)education<br>
-= 24641.62 + 1098.046education</p>
-<p><strong>Question 1:</strong> The intercept coefficient, -65590.606, corresponds to what property of the lines?</p>
-<ol type="a">
-<li>management intercept</li>
-<li>transportation intercept</li>
-<li>how the transportation intercept compares to the management intercept</li>
-</ol>
-<p>Thus, how can we interpret this coefficient in the context of the wage analysis?</p>
-<p><strong>Question 2:</strong> The transportation coefficient, 90232.230, corresponds to what property of the lines?</p>
-<ol type="a">
-<li>management intercept</li>
-<li>transportation intercept</li>
-<li>how the transportation intercept compares to the management intercept</li>
-</ol>
-<p>Thus, how can we interpret this coefficient in the context of the wage analysis?</p>
-<p><strong>Question 3:</strong> The education coefficient, 8678.274, corresponds to what property of the lines?</p>
-<ol type="a">
-<li>management slope</li>
-<li>transportation slope</li>
-<li>how the transportation slope compares to the management slope</li>
-</ol>
-<p>Thus, how can we interpret this coefficient in the context of the wage analysis?</p>
-<p><strong>Question 4:</strong> The interaction coefficient, -7580.228, corresponds to what property of the lines?</p>
-<ol type="a">
-<li>management slope</li>
-<li>transportation slope</li>
-<li>how the transportation slope compares to the management slope</li>
-</ol>
-<p>Thus, how can we interpret this coefficient in the context of the wage analysis?</p>
-</section>
-<section id="exercise-f-wages-across-all-industries" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-f-wages-across-all-industries">Exercise F: Wages across all industries</h2>
-<p>The plot below illustrates the relationship between wage and education for all of the industries in our <code>cps</code> dataset.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cps, <span class="fu">aes</span>(<span class="at">y =</span> wage, <span class="at">x =</span> education, <span class="at">color =</span> industry)) <span class="sc">+</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol type="a">
-<li><p>What about this plot indicates that it would be a good idea to fit an interaction model?</p></li>
-<li><p>What industry will R use as the reference category?</p></li>
-<li><p>(Challenge!) Before fitting the model in R, write down what you think the model formula will look like.</p></li>
-<li><p>Fit a model that includes an <strong>interaction term</strong> between <code>education</code> and <code>industry</code>.</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit an interaction model called wage_model</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display summarized model output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="5" type="a">
-<li><p>In what industry do wages increase the <em>most</em> per additional year of education? What is this increase?</p></li>
-<li><p>Similarly, in what industry do wages increase the <em>least</em> per additional year of education? What is this increase?</p></li>
-</ol>
 </section>
 </section>
 <section id="exercises" class="level1">
 <h1>Exercises</h1>
-<p><strong>Context:</strong> Today we’ll explore data on incumbency and campaign spending, revisit the bikes data we’ve looked at previously in this course, and explore data on characteristics of used cars. Read in the data below.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages and import data</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>bikes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://mac-stat.github.io/data/bikeshare.csv&quot;</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># A little bit of data wrangling code - let&#39;s not focus on this for now</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>campaigns <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://mac-stat.github.io/data/campaign_spending.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(wholename, district, votes, incumbent, spending) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">spending =</span> spending <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(spending))</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># A little bit of data wrangling code - let&#39;s not focus on this for now</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://mac-stat.github.io/data/used_cars.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">milage =</span> milage <span class="sc">%&gt;%</span> <span class="fu">str_replace</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">str_replace</span>(<span class="st">&quot; mi.&quot;</span>,<span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>(),</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">price =</span> price <span class="sc">%&gt;%</span> <span class="fu">str_replace</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">str_replace</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">$&quot;</span>,<span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>(),</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> <span class="dv">2025</span> <span class="sc">-</span> model_year) <span class="co"># 2025 so that yr. 2024 cars are one year old</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>For the first several exercises, we’ll consider the following research questions:</p>
-<ol type="1">
-<li><p>What role does campaign spending play in elections?</p></li>
-<li><ol type="a">
-<li>Do candidates that spend more money tend to get more votes?</li>
-</ol></li>
-<li><ol start="2" type="a">
-<li>How might this depend upon whether a candidate is an incumbent (they are running for RE-election) or a challenger (they are challenging the incumbent)?</li>
-</ol></li>
-</ol>
-<p>We’ll use data collected by <a href="http://www.kenbenoit.net/pdfs/ajps_348.pdf">Benoit and Marsh (2008)</a> on the campaign spending of 464 candidates in the 2002 Irish Dail elections (Ireland’s version of the U.S. House of Representatives) to explore these questions. The units of <code>spending</code> are 1,000 Euros.</p>
-<section id="exercise-1-translating-scientific-questions-into-statistical-questions" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-translating-scientific-questions-into-statistical-questions">Exercise 1: Translating scientific questions into statistical questions</h2>
-<ol type="a">
-<li>Look at the variables we have access to in the cleaned version of the data we read into R, and consider our first research question. How might we translate this question into a statistical one, that we could answer using the data we have available?</li>
-</ol>
-<p>There is no one <em>right</em> answer to this! Brainstorm with your group.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(campaigns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="a">
-<li>Question 2 (a) is a bit more specific than Question 1. Translate this question into a statistical one that can be answered using a simple linear regression model. Write out the model statement in <span class="math inline">\(E[Y | X] = ...\)</span> notation that would answer this question, and note which regression coefficient you would interpret to provide you with an answer.</li>
-</ol>
-<p><span class="math display">\[
-E[___ | ___] = ...
-\]</span></p>
-<ol start="3" type="a">
-<li>Question 2 (b) is also specific, and builds on Question 2 (a). Translate this question into a statistical one that can be answered using a <em>multiple</em> linear regression model. Write out the model statement in <span class="math inline">\(E[Y | X] = ...\)</span> notation that would answer this question, and note which regression coefficient you would interpret to provide you with an answer.</li>
-</ol>
-<p><span class="math display">\[
-E[___ | ___] = ...
-\]</span></p>
-</section>
-<section id="exercise-2-visualizing-interaction" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-visualizing-interaction">Exercise 2: Visualizing Interaction</h2>
-<ol type="a">
-<li>Write R code to visualize the relationship between campaign spending and number of votes a candidate received. Include an aesthetic to distinguish this relationship between incumbents and challengers. Do <em>not</em> include lines of best fit from any statistical model on your plot at this point!</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="a">
-<li><p>Based on your visualization from part (a), what are your answers to research questions 2 (a) and 2 (b)? Write your answer in 2-3 sentences, describing general trends you notice, suitable for a general audience.</p></li>
-<li><p>Add lines of best fit from a statistical model that includes an interaction term between incumbent status and spending to your plot from part (a), using <code>geom_smooth</code>. Based on your updated plot, do you think including an interaction between incumbent status and spending in a multiple linear regression model would be meaningful in this context? Why or why not?</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization with lines of best fit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-3-fitting-and-interpreting-models-with-interaction-terms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3-fitting-and-interpreting-models-with-interaction-terms">Exercise 3: Fitting and interpreting models with interaction terms</h2>
-<ol type="a">
-<li>Fit the regression model you wrote out in Exercise 1 (c). <em>Report</em> (do not interpret yet!) the regression coefficients below.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model with interaction term</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<blockquote class="blockquote">
-<p>(Intercept):</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>incumbentYes:</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>spending:</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>incumbentYes:spending:</p>
-</blockquote>
-<ol start="2" type="a">
-<li>Using the coefficient estimates from part (a), write out <em>two separate model statements</em>, one for incumbents and one for challengers. Combine terms (using algebra) when you can! <em>Hint</em>: remember the indicator variables video!</li>
-</ol>
+<p><strong>Context:</strong> In this activity, we’ll look at data from an experiment conducted in 2001-2002 that investigated the influence of race and gender on job applications. The researchers created realistic-looking resumes and then randomly assigned a name to the resume that “would communicate the applicant’s gender and race” (e.g., they they assumed the name Emily would generally be interpreted as a white woman, whereas the name Jamal would generally be interpreted as a black man). They then submitted these resumes to job postings in Boston and Chicago and waited to see if the applicant got a call back from the job posting.</p>
+<p>You can find a full description of the variables in this dataset <a href="https://www.openintro.org/data/index.php?data=resume">here</a>. Today, we’ll focus on the following variables:</p>
 <ul>
-<li>For incumbents:</li>
+<li><code>received_callback</code>: indicator that the resume got a call back from the job posting</li>
+<li><code>gender</code>: inferred binary gender associated with the first name on the resume</li>
+<li><code>race</code>: inferred race associated with the first name on the resume</li>
 </ul>
-<p><span class="math display">\[
-E[votes | spending] =
-\]</span></p>
-<ul>
-<li>For challengers:</li>
-</ul>
-<p><span class="math display">\[
-E[votes | spending] =
-\]</span></p>
-<ol start="3" type="a">
-<li><p>Interpret the coefficient for <code>incumbent</code> in your interaction model, in context. <em>Make sure to use non-causal language, include units, and talk about averages rather than individual cases.</em> Is this coefficient scientifically meaningful?</p></li>
-<li><p>When interpreting an interaction coefficient where one of the variables interacting is quantitative and one is categorical, it is often convenient to do so in separate sentences: interpret the slope for each category separately!</p></li>
+<p>Our research question is: <strong>does an applicant’s inferred gender and race have an effect on the chance that they receive a callback after submitting their resume for an open job posting?</strong></p>
+<p>You’ll need to run <code>install.packages(&quot;broom&quot;)</code> in the Console first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>resume <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://mac-stat.github.io/data/resume.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-1-graphical-and-numerical-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-graphical-and-numerical-summaries">Exercise 1: Graphical and numerical summaries</h2>
+<p>Our research question involves three categorical variables: <code>received_callback</code> (1 = yes, 0 = no), <code>gender</code> (f = female, m = male), and <code>race</code> (Black, White). Let’s start by creating a mosaic plot to visually compare inferred binary gender and callbacks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create mosaic plot of callback vs gender</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resume) <span class="sc">+</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(gender), <span class="at">fill =</span> received_callback)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="st">&quot;Received Callback? </span><span class="sc">\n</span><span class="st">(1 = yes, 0 = no)&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Inferred Binary Gender (f = female, m = male)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Received Callback? (1 = yes, 0 = no)&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this activity, we’re also interested in looking at the relationship between inferred race and callbacks. One way we can add a third variable to a plot is to use the <code>facet_grid</code> function, particularly when that third variable is categorical. Let’s try that now:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create mosaic plot of callback vs gender and race</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resume) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(gender), <span class="at">fill =</span> received_callback)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(. <span class="sc">~</span> race) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="st">&quot;Received Callback? </span><span class="sc">\n</span><span class="st">(1 = yes, 0 = no)&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Inferred Binary Gender (f = female, m = male)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Received Callback? (1 = yes, 0 = no)&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here’s another way of looking at the relationship between these three variables, switching the placement of <code>gender</code> and <code>race</code> in the mosaic plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create mosaic plot of callback vs gender and race</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resume) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(received_callback, race), <span class="at">fill =</span> received_callback)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(. <span class="sc">~</span> gender) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="st">&quot;Received Callback? </span><span class="sc">\n</span><span class="st">(1 = yes, 0 = no)&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Inferred Race&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Received Callback? (1 = yes, 0 = no)&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When we are comparing three categorical variables, a useful numerical summary is to calculate relative frequencies/proportions of cases falling into each category of the outcome variable, conditional on which categories of the explanatory variables they fall into. Run this code chunk to calculate the conditional proportion of resumes that did nor did not receive a callback, given the inferred gender and race of the applicant:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># corresponding numerical summaries</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>resume <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(race, gender) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(received_callback) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(race, gender) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">condprop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Write a short description that summarizes the information you gain from these visualizations and numerical summaries. Write this summary using good sentences that tell a story and do not resemble a checklist. Don’t forget to consider the context of the data, and make sure that your summary addresses our research question: <em>does an applicant’s inferred gender or race have an effect on the chance that they receive a callback?</em></p>
+</section>
+<section id="exercise-2-logistic-regression-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-logistic-regression-modeling">Exercise 2: Logistic regression modeling</h2>
+<p>Next, we’ll fit a logistic regression model to these data, modeling the <em>log odds</em> of receiving a callback as a function of the applicant’s inferred gender and race:</p>
+<p><span class="math display">\[\log(Odds[ReceivedCallback = 1 \mid gender, race]) = \beta_0 + \beta_1 genderm + \beta_2 racewhite\]</span></p>
+<p>Fill in the blanks in the code below to fit this logistic regression model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit logistic model and save it as object called &quot;mod1&quot;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(received_callback <span class="sc">~</span> gender <span class="sc">+</span> race, <span class="at">data =</span> ___, <span class="at">family =</span> ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, run the code chunk below to get the coefficient estimates and exponentiated estimates, presented in a nicely formatted table:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print out tidy summary of mod, focusing on estimates &amp; exponentiated estimates</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(mod1) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(term, estimate) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">estimate_exp =</span> <span class="fu">exp</span>(estimate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Write an interpretation of each of the exponentiated coefficients in your logistic regression model.</p>
+</section>
+<section id="exercise-3-interaction-terms" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-interaction-terms">Exercise 3: Interaction terms</h2>
+<ol type="a">
+<li><p>Do you think it would make sense to add an interaction term (between gender and race) to our logistic regression model? Why/why not?</p></li>
+<li><p>Let’s try adding an interaction between gender and race. Update the code below to fit this new interaction model.</p></li>
 </ol>
-<p>Interpret the coefficient for the interaction term in your model, in context. <em>Make sure to use non-causal language, include units, and talk about averages rather than individual cases.</em></p>
-<ol start="5" type="a">
-<li>Based on your interpretation in part (d), and the visualization you made including lines of best fit, do you think that including an interaction term for incumbent status and spending is meaningful, when predicting number of votes? Explain why or why not.</li>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit logistic model and save it as object called &quot;mod2&quot;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(received_callback <span class="sc">~</span> ___, <span class="at">data =</span> resume, <span class="at">family =</span> ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, run the code chunk below to get the coefficient estimates and exponentiated estimates for this interaction model, presented in a nicely formatted table:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print out tidy summary of mod, focusing on estimates &amp; exponentiated estimates</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(mod2) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(term, estimate) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">estimate_exp =</span> <span class="fu">exp</span>(estimate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li>(CHALLENGE) Write out the logistic regression model formula separately for males and for females. Based on this how would we interpret the exponentiated coefficients in this model?</li>
 </ol>
 </section>
-<section id="exercise-4-interactions-between-two-categorical-variables" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4-interactions-between-two-categorical-variables">Exercise 4: Interactions between two categorical variables</h2>
-<p>Let’s return to our data on bike ridership. Suppose we are interested in the relationship between daily ridership (our response variable) and whether a user is a casual or registered rider <strong>and</strong> whether the day falls on a weekend. First, we need to create a binary variable indicating whether a user is a casual or registered rider.</p>
+<section id="exercise-4-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-prediction">Exercise 4: Prediction</h2>
+<p>We can use our models to predict whether or not a resume will receive a call back based on the inferred gender and race of the applicant. Run the code below to use the <code>predict()</code> function to predict the probability of getting a call back for four job applicants: a person inferred to be a black female, a person inferred to be black male, a person inferred to be a white female, and a person inferred to be a white male.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating user variable, don&#39;t worry about syntax!</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>new_bikes <span class="ot">&lt;-</span> bikes <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(riders_casual, riders_registered, weekend, temp_actual) <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> riders_casual<span class="sc">:</span>riders_registered, <span class="at">names_to =</span> <span class="st">&quot;user&quot;</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;riders_&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;rides&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weekend =</span> <span class="fu">factor</span>(weekend))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up data frame with people we want to predict for</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>predict_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">race =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;white&quot;</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(predict_data)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># prediction based on model without interaction</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>mod1 <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict</span>(<span class="at">newdata =</span> predict_data, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># prediction based on model with interaction</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>mod2 <span class="sc">%&gt;%</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict</span>(<span class="at">newdata =</span> predict_data, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Report and compare the predictions we get from <code>predict()</code>. Do they make sense to you based on your understanding of the data? Combine insights from visualizations and modeling to write a few sentences summarizing findings for our research question: <em>does an applicant’s inferred gender and race have an effect on the chance that they receive a callback after submitting their resume for an open job posting?</em></p>
+</section>
+<section id="exercise-5-evaluating-logistic-models-with-plots" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-evaluating-logistic-models-with-plots">Exercise 5: Evaluating logistic models with plots</h2>
+<p>We’ll fit one more model that adds on to the interaction model to also include years of college, years of work experience, and resume quality. The <code>augment()</code> code takes our fitted models and stores the predicted probabilities in a variable called <code>.fitted</code>. Then we use boxplots to show the predicted probabilities of receiving a callback in those who actually did and did not receive a callback.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(received_callback <span class="sc">~</span> gender<span class="sc">*</span>race <span class="sc">+</span> years_college <span class="sc">+</span> years_experience <span class="sc">+</span> resume_quality, <span class="at">data =</span> resume, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mod1_output <span class="ot">&lt;-</span> <span class="fu">augment</span>(mod1, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>) <span class="co"># Store predicted probabilities in a variable called .fitted</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mod2_output <span class="ot">&lt;-</span> <span class="fu">augment</span>(mod2, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>mod3_output <span class="ot">&lt;-</span> <span class="fu">augment</span>(mod3, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mod1_output, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(received_callback), <span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mod2_output, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(received_callback), <span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mod3_output, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(received_callback), <span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="a">
-<li>For each of our three relevant variables, <code>weekend</code>, <code>user</code>, and <code>rides</code>, classify them as quantitative or categorical.</li>
-</ol>
-<blockquote class="blockquote">
-<p><code>weekend</code>:</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><code>user</code>:</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><code>rides</code>:</p>
-</blockquote>
-<ol start="2" type="a">
-<li>Make an appropriate visualization to explore the relationship between these three variables.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="a">
-<li><p>Is the relationship between ridership and weekend status the same for both registered and casual users? Explain why or why not, referencing the visualization you made in part (b).</p></li>
-<li><p>To reflect what you observed in your visualization, fit a multiple linear regression model with an interaction term between <code>weekend</code> and <code>user</code> in our model of ridership.</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple linear regression model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="5" type="a">
-<li>Interpret the interaction term from your model, in context. <em>Make sure to use non-causal language, include units, and talk about averages rather than individual cases.</em> Just as in Exercise 3, you may find it useful to first write out multiple model statements for different categories defined by one of your categorical variables, and proceed from there!</li>
+<li><p>Summarize what you learn about the ability of the 3 models to differentiate those who actually did and did not receive a callback. What model seems best, and why?</p></li>
+<li><p>If you had to draw a horizontal line across each of the boxplots that vertically separates the left and right boxplots well, where would you place them?</p></li>
 </ol>
 </section>
-<section id="exercise-5-interactions-between-two-quantitative-variables" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-5-interactions-between-two-quantitative-variables">Exercise 5: Interactions between two quantitative variables</h2>
-<p>Here we’ll explore the relationship between <code>price</code>, <code>milage</code>, and <code>age</code> of a used car. Below is a scatterplot of mileage vs. price, colored by age:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> milage, <span class="at">y =</span> price, <span class="at">col =</span> age)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="co"># make the points less opaque</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">&quot;H&quot;</span>) <span class="sc">+</span> <span class="co"># a fun, colorblind-friendly palette!</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># removes the gray background and grid</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>It’s a little difficult to tell what exactly is going on here. In particular, does the relationship between mileage and price vary with age of a used car? Let’s try adding some fitted lines for cars of different ages.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ignore where the numbers in geom_abline() came from for now... we&#39;ll get there</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> milage, <span class="at">y =</span> price, <span class="at">col =</span> age)) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">&quot;H&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="sc">-</span><span class="fl">6.558e-01</span> <span class="sc">+</span> <span class="fl">2.431e-02</span>, <span class="at">intercept =</span> <span class="fl">9.096e+04</span> <span class="sc">-</span><span class="fl">2.665e+03</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="sc">-</span><span class="fl">6.558e-01</span> <span class="sc">+</span> <span class="dv">10</span> <span class="sc">*</span> <span class="fl">2.431e-02</span>, <span class="at">intercept =</span> <span class="fl">9.096e+04</span> <span class="sc">-</span> <span class="dv">10</span> <span class="sc">*</span> <span class="fl">2.665e+03</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="sc">-</span><span class="fl">6.558e-01</span> <span class="sc">+</span> <span class="dv">30</span> <span class="sc">*</span> <span class="fl">2.431e-02</span>, <span class="at">intercept =</span> <span class="fl">9.096e+04</span> <span class="sc">-</span> <span class="dv">30</span> <span class="sc">*</span> <span class="fl">2.665e+03</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Black: Age = 1yr, Blue: Age = 10yr, Green: Age = 30yr&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol type="a">
-<li><strong>Challenge question</strong>: Based on the fitted lines in the plot above, anticipate what the <em>signs</em> (positive or negative) of the coefficients in the following interaction model will be:</li>
-</ol>
-<p><span class="math display">\[
-E[price | age, milage] = \beta_0 + \beta_1 milage + \beta_2 age + \beta_3 milage:age
-\]</span> * <span class="math inline">\(\beta_0\)</span>: Put your response here…</p>
+<section id="exercise-6-evaluating-logistic-models-with-evaluation-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6-evaluating-logistic-models-with-evaluation-metrics">Exercise 6: Evaluating logistic models with evaluation metrics</h2>
+<p>Sometimes we may need to go beyond the predicted probabilities from our model and try to classify individuals into one of the two binary outcomes (received or did not receive a callback). How high of a predicted probability would we need from our model in order to be convinced that the person actually got a callback? This is the idea behind the horizontal lines that we drew in the previous exercise.</p>
+<p>Let’s explore using a probability threshold of 0.08 (8%) to make a binary prediction for each case:</p>
 <ul>
-<li><p><span class="math inline">\(\beta_1\)</span>: Put your response here…</p></li>
-<li><p><span class="math inline">\(\beta_2\)</span>: Put your response here…</p></li>
-<li><p><span class="math inline">\(\beta_3\)</span>: Put your response here…</p></li>
+<li>If a model’s predicted probability of getting a callback is greater than or equal to 8.5%, we’ll predict they got a callback.</li>
+<li>If the predicted probability is below 8%, we’ll predict they didn’t get a callback.</li>
 </ul>
-<ol start="2" type="a">
-<li>Fit a multiple linear regression model with an interaction term between <code>milage</code> and <code>age</code> in our model of used car <code>price</code>.</li>
-</ol>
+<p>We can visualize this threshold on our predicted probability boxplots:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple linear regression model</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ... now do you see where the numbers in geom_abline() came from?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mod1_output, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(received_callback), <span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.08</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mod2_output, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(received_callback), <span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.08</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mod3_output, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(received_callback), <span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.08</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As before, we could choose distinct ages, and interpret the relationship between mileage and price for each of those groups separately. However, since age is <em>quantitative</em> and not <em>categorical</em>, this doesn’t quite give us the whole picture. Instead, we want to know how the relationship between mileage and price changes <strong>for each additional year old</strong> a car is. This is what the interaction coefficient estimates, when the interaction term is between two quantitative variables!</p>
+<p>Next, we can use our threshold to classify each person in our dataset based on their predicted probability of getting a callback: we’ll predict that everyone with a predicted probability higher than our threshold got a callback, and otherwise they did not. Then, we’ll compare our model’s prediction to the true outcome (whether or not they actually did get a callback).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get binary predictions for mod1 and compare to truth</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mod1_output <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">predictCallback =</span> .fitted <span class="sc">&gt;=</span> threshold) <span class="sc">%&gt;%</span> <span class="do">## predict callback if probability greater than or equal to threshold</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(received_callback, predictCallback) <span class="do">## compare actual and predicted callbacks</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>mod2_output <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">predictCallback =</span> .fitted <span class="sc">&gt;=</span> threshold) <span class="sc">%&gt;%</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(received_callback, predictCallback)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>mod3_output <span class="sc">%&gt;%</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">predictCallback =</span> .fitted <span class="sc">&gt;=</span> threshold) <span class="sc">%&gt;%</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(received_callback, predictCallback)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can use the <code>count()</code> output to fill create contingency tables of the results. (These tables are also called <strong>confusion matrices</strong>.)</p>
+<ol type="a">
+<li>Fill in the confusion matrix for Model 3.</li>
+</ol>
+<blockquote class="blockquote">
+<p>Models 1 and 2: (Both models result in the same confusion matrix.)</p>
+</blockquote>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Predict callback</th>
+<th style="text-align: center;">Predict no callback</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Actually got callback</td>
+<td style="text-align: center;">235</td>
+<td style="text-align: center;">157</td>
+<td style="text-align: center;">392</td>
+</tr>
+<tr class="even">
+<td>Actually did not</td>
+<td style="text-align: center;">2200</td>
+<td style="text-align: center;">2278</td>
+<td style="text-align: center;">4478</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: center;">2435</td>
+<td style="text-align: center;">2435</td>
+<td style="text-align: center;">4870</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>Model 3:</p>
+</blockquote>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Predict callback</th>
+<th style="text-align: center;">Predict no callback</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Actually got callback</td>
+<td style="text-align: center;">____</td>
+<td style="text-align: center;">____</td>
+<td style="text-align: center;">____</td>
+</tr>
+<tr class="even">
+<td>Actually did not</td>
+<td style="text-align: center;">____</td>
+<td style="text-align: center;">____</td>
+<td style="text-align: center;">____</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: center;">____</td>
+<td style="text-align: center;">____</td>
+<td style="text-align: center;">____</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="a">
+<li>Now compute the following evaluation metrics for the models:</li>
+</ol>
+<p>Models 1 and 2:</p>
+<ul>
+<li>Accuracy: P(Predict Y Correctly)</li>
+<li>Sensitivity: P(Predict Y = 1 | Actual Y = 1)</li>
+<li>Specificity: P(Predict Y = 0 | Actual Y = 0)</li>
+<li>False negative rate: P(Predict Y = 0 | Actual Y = 1)</li>
+<li>False positive rate: P(Predict Y = 1 | Actual Y = 0)</li>
+</ul>
+<p>Model 3:</p>
+<ul>
+<li>Accuracy: P(Predict Y Correctly)</li>
+<li>Sensitivity: P(Predict Y = 1 | Actual Y = 1)</li>
+<li>Specificity: P(Predict Y = 0 | Actual Y = 0)</li>
+<li>False negative rate: P(Predict Y = 0 | Actual Y = 1)</li>
+<li>False positive rate: P(Predict Y = 1 | Actual Y = 0)</li>
+</ul>
 <ol start="3" type="a">
-<li>Interpret the interaction term, in context. <em>Make sure to use non-causal language, include units, and talk about averages rather than individual cases.</em></li>
+<li>Imagine that we are a career center on a college campus and we want to use this model to help students that are looking for jobs. Consider the consequences of incorrectly predicting whether or not an individual will get a callback. What are the consequences of a false negative? What about a false positive? Which one is worse?</li>
 </ol>
 </section>
 <section id="reflection" class="level2">
 <h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
-<p>Through the exercises above, you practiced visualizing, fitting, and interpreting multiple linear regression models with interaction terms between combinations of categorical and quantitative variables. Think about how the fitted lines looked in situations where you think there was a <em>meaningful</em> interaction taking place. How do you think the fitted lines would look if there was <em>no</em> meaningful interaction present? Explain your reasoning.</p>
+<p>What are some similarities and differences between how we interpret and evaluate linear and logistic regression models?</p>
 <blockquote class="blockquote">
 <p><strong>Response:</strong> Put your response here.</p>
 </blockquote>
@@ -5545,7 +5356,7 @@ E[price | age, milage] = \beta_0 + \beta_1 milage + \beta_2 age + \beta_3 milage
 <li>Navigate to your “Activities” subfolder within your “STAT155” folder and locate the HTML file. You can open it again in your browser to double check.</li>
 </ul>
 <p><br><br><br><br><br><br></p>
-<p><a href="../solutions/11_mlr_interaction_explore.html">Solutions</a></p>
+<p><a href="../solutions/17_logistic_multivariate_evaluation.html">Solutions</a></p>
 
 
 </section>

@@ -1,0 +1,194 @@
+---
+title: "Solutions for 18. The Normal model & sampling variation"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+---
+
+
+## Exercise 1: Using the Normal model
+
+```{r message = FALSE, warning = FALSE}
+library(tidyverse)
+
+shaded_normal <- function(mean, sd, a = NULL, b = NULL){
+  min_x <- mean - 4*sd
+  max_x <- mean + 4*sd
+  a <- max(a, min_x)
+  b <- min(b, max_x)
+  ggplot() + 
+    scale_x_continuous(limits = c(min_x, max_x), breaks = c(mean - sd*(0:3), mean + sd*(1:3))) +
+    stat_function(fun = dnorm, args = list(mean = mean, sd = sd)) + 
+    stat_function(geom = "area", fun = dnorm, args = list(mean = mean, sd = sd), xlim = c(a, b), fill = "blue") + 
+    labs(y = "density") + 
+    theme_minimal()
+}
+```
+
+
+a.
+
+```{r}
+shaded_normal(mean = 55, sd = 5, a = 50, b = 60)
+```
+
+b. 16% (32/2)
+
+c. between 0.0015 and 0.025
+
+
+
+
+## Exercise 2: Z-scores
+
+a. intuition
+
+
+b. .
+
+```{r}
+# Driver A
+(60 - 55) / 5
+
+# Driver B
+(36 - 30) / 3
+```
+
+c. B, they are 2 standard deviations above the mean (the speed limit)
+
+
+
+
+## Exercise 3: Parameter vs estimate
+
+```{r}
+# Load the data
+library(fivethirtyeight)
+data(fandango)
+
+fandango <- fandango %>%
+  dplyr::select(film,
+                userscore_rt=rottentomatoes_user,
+                criticscore_rt=rottentomatoes)
+
+# Plot the relationship
+fandango %>% 
+  ggplot(aes(x = criticscore_rt, y = userscore_rt)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+# Model the relationship
+m1 <- lm(userscore_rt ~ criticscore_rt, data = fandango)
+summary(m1)
+```
+
+## Exercise 4: Random sampling
+
+```{r}
+# Observe that the 2 films change every time & differ from your neighbors' samples
+sample_n(fandango, size = 2, replace = FALSE)
+```
+
+```{r}
+# Observe that the 2 films are the same every time & are the same as your neighbors' samples
+set.seed(155)
+sample_n(fandango, size = 2, replace = FALSE)
+```
+
+
+
+
+
+
+## Exercise 5: Take your own sample
+    
+will vary from student to student
+
+
+
+
+
+
+
+## Exercise 6: Sampling variation
+
+The sample estimates *vary* around the population model:
+
+```{r}
+# Import the experiment results
+library(gsheet)
+results <- gsheet2tbl('https://docs.google.com/spreadsheets/d/11OT1VnLTTJasp5BHSKulgJiCbSLiutv8mKDOfvvXZSo/edit?usp=sharing')
+
+fandango %>% 
+  ggplot(aes(y = userscore_rt, x = criticscore_rt)) +
+  geom_abline(data = results, aes(intercept = sample_intercept, slope = sample_slope, linetype=section), color = "gray") + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+    
+
+
+
+
+
+
+## Exercise 7: Sample intercepts
+
+
+The intercepts are roughly normal, centered around the  intercept of the larger sample (32.3), and range from roughly `r round(quantile(results$sample_intercept, 0.025), 3)` to `r round(quantile(results$sample_intercept, 0.975), 3)`:
+
+```{r}
+results %>% 
+  ggplot(aes(x = sample_intercept)) + 
+  geom_density() + 
+  geom_vline(xintercept = 32.3, color = "red")
+```    
+
+
+
+
+
+
+
+
+
+## Exercise 8: Slopes
+
+a. intuition
+b. intuition
+c. Check your intuition:        
+
+```{r}
+results %>% 
+  ggplot(aes(x = sample_slope)) + 
+  geom_density() + 
+  geom_vline(xintercept = 0.52, color = "red")
+```    
+
+d. Will vary, but should roughly be `r round(sd(results$sample_slope), 2)`.
+
+
+
+
+
+
+## Exercise 9: Standard error
+
+a. For example, suppose my estimate were 0.7:
+    
+```{r}
+0.7 - 0.52
+```
+
+
+
+b. For example, suppose my estimate were 0.7. Then my Z-score is (0.7 - 0.52) / `r round(sd(results$sample_slope), 2)` = `r (0.7 - 0.52) / round(sd(results$sample_slope), 2)`
+    
+
+c. This is somewhat subjective. But we'll learn that if your estimate is within 2 sd of the actual slope, i.e. your Z-score is between -2 and 2, you're pretty "lucky".
+
+
+
+
+    

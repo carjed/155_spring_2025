@@ -1,0 +1,471 @@
+---
+title: "10. Confounding variables"
+subtitle: "Notes and in-class exercises"
+sidebar: false
+format: 
+  html:
+    embed-resources: true
+    toc: true
+eval: false # change this to "true" if you want to render a complete .qmd    
+---
+
+-   Download the `.qmd` file for this activity [here](../activity_templates/10_mlr_confounding.qmd).
+
+# Notes
+
+- **File organization:** Save this file in the "Activities" subfolder of your "STAT155" folder.
+
+## Learning goals
+
+By the end of this lesson, you should be familiar with:
+
+- confounding variables
+- how to control for confounding variables in our models
+- how to represent the role of confounding variables using causal diagrams
+
+## Readings and videos
+
+Before class you should have read and watched:
+
+- Sections 3.9.2 in the [STAT 155 Notes](https://mac-stat.github.io/Stat155Notes/)
+- [Confounding (and other causal diagrams)](https://voicethread.com/myvoice/thread/15362352/96009456/96009456)
+  - Watch from 0:00 - 6:54
+
+
+
+
+
+# Exercises
+
+## Exercise 1: Review
+
+The `peaks` data includes information on hiking trails in the 46 "high peaks" in the Adirondack mountains of northern New York state:
+
+
+```{r message=FALSE, warning=FALSE}
+# Load useful packages and data
+library(readr)
+library(ggplot2)
+library(dplyr)
+peaks <- read_csv("https://mac-stat.github.io/data/high_peaks.csv") %>%
+    mutate(ascent = ascent / 1000)
+
+# Check it out 
+head(peaks)
+```
+
+
+Below is a model of the `time` (in hours) that it takes to complete a hike by the hike's `length` (in miles), vertical `ascent`(in 1000s of feet), and `rating` (easy, moderate, or difficult):
+
+```{r eval=FALSE}
+peaks_model <- lm(time ~ length + ascent + rating, data = peaks)
+coef(summary(peaks_model))
+```
+
+Interpret the `length` and `ratingeasy` coefficients in the model formula below by using our strategy:
+
+> **Strategy:** When interpreting a coefficient for a variable x, compare two units whose values of x differ by 1 but who are identical for all other variables.
+
+E[time | length, ascent, rating] = 6.511 + 0.459 length + 0.187 ascent - 3.169 ratingeasy - 2.477 ratingmoderate
+
+---
+
+Synthesis:
+
+- Interpreting the coefficient $\beta_Q$ for a quantitative variable Q:
+    - Holding all other variables constant, each unit increase in Q is associated with $\beta_Q$ change (note if it's an increase or decrease) in Y on average.
+
+- Interpreting the coefficient $\beta_C$ for an indicator variable:
+    - Holding all other variables constant, the average outcome for the group referenced by this indicator (group for whom indicator = 1), is $\beta_C$ higher/lower than that of the reference group.
+
+
+
+
+
+
+
+
+
+
+
+## Exercise 2: Confounders
+
+> **Research question:** Is there a wage gap, hence possibly discrimination, by marital status among 18-34 year olds?
+
+To explore, we can revisit the `cps` data with employment information collected by the U.S. Current Population Survey (CPS) in 2018. View the codebook [here](https://github.com/Mac-STAT/data/blob/main/cps_2018_codebook.md).
+
+```{r}
+# Import data
+cps <- read_csv("https://mac-stat.github.io/data/cps_2018.csv") %>% 
+    filter(age >= 18, age <= 34) %>% 
+    filter(wage < 250000)
+
+# Check it out
+head(cps)
+```
+
+Recall that a **simple linear regression model** of `wage` by `marital` suggests that single workers make $17,052 *less* than married workers:
+
+```{r eval=FALSE}
+wage_model_1 <- lm(wage ~ marital, data = cps)
+coef(summary(wage_model_1))
+```
+
+
+That's a big gap!!
+
+BUT this model ignores important **confounding variables** that might help explain this gap.
+
+A confounding variable is a cause of both the predictor of interest (`marital`) and of the response variable (`wage`).
+
+We can represent this idea with a **causal diagram**:
+
+```{r fig.width = 6, fig.height = 2, echo = FALSE}
+par(mar = rep(0,4))
+plot(1, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "", xlim = c(0,6), ylim = c(1,4))
+text(c("marital", "confounder", "wage"), x = c(1,3,5), y = c(1,4,1), cex = 1.1)
+arrows(x0 = c(3,3), y0 = c(4,4)-0.2, x1 = c(1,5), y1 = c(1,1)+0.2, angle = 25, lwd = 4)
+arrows(x0 = 1.7, y0 = 1, x1 = 4.5, y1 = 1, angle = 25, lwd = 4)
+```
+
+Another definition of a confounding variable is one that
+
+- is a cause of the outcome (wage)
+- is associated with the main variable of interest (marital status)
+- NOT caused by the variable of interest
+
+We can represent this on the causal diagram with a line from the confounder to the variable of interest (instead of an arrow):
+
+```{r fig.width = 6, fig.height = 2, echo = FALSE}
+par(mar = rep(0,4))
+plot(1, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "", xlim = c(0,6), ylim = c(1,4))
+text(c("marital", "confounder", "wage"), x = c(1,3,5), y = c(1,4,1), cex = 1.1)
+arrows(x0 = 3, y0 = 4-0.2, x1 = 5, y1 = 1+0.2, angle = 25, lwd = 4)
+lines(x = c(3, 1), y = c(3.8, 1.2), lwd = 4)
+arrows(x0 = 1.7, y0 = 1, x1 = 4.5, y1 = 1, angle = 25, lwd = 4)
+```
+
+Name at least 2 potential confounders.
+
+
+## Exercise 2b: How & why do confounders bias results?
+
+Unaccounted-for confounders are often a source of **bias** in our models, meaning that when we ignore them, we often over- or under-estimate the true underlying relationship between a predictor and response variable. To explore why this is important, let's first look at how our focal predictor `marital` is associated with our response variable, `wage`:
+
+```{r}
+cps %>%
+  ggplot(aes(x=marital, y=wage))+
+  geom_boxplot()+
+  theme_classic()
+```
+
+Now, let's consider `age` as a potential confounder. The following plot shows how age is associated with marital status:
+
+```{r}
+cps %>%
+  ggplot(aes(x=age, y=marital))+
+  geom_boxplot()+
+  theme_classic()
+```
+
+...this should make sense, because the older a person is, the more likely they are to be married. Similarly, we can show how `age` is associated with `wage`:
+
+```{r}
+cps %>%
+  ggplot(aes(x=age, y=wage))+
+  geom_point()+
+  geom_smooth(method="lm", se=F)+
+  theme_classic()
+```
+Here we see that there is a positive correlation between age and wages (which again makes sense, because people who have been in the workforce longer typically earn more).
+
+Let's revisit our initial plot showing the relationship between marital status and wages:
+
+```{r}
+cps %>%
+  ggplot(aes(x=marital, y=wage))+
+  geom_boxplot()+
+  theme_classic()
+```
+
+Since we now know that age is associated with both being married *and* higher wages, this plot doesn't tell the full story--people who are married could simply be earning higher wages because they tend to be older, *not necessarily because they are married!* Age is therefore a **confounder** in the relationship between marital status and wages.
+
+
+## Exercise 3: Controlling for confounders
+
+The exercise above illustrates that it is important to *control* or *adjust* for confounding variables when trying to understand the *actual* causal relationship between a predictor (e.g. `marital`) and response (e.g. `wage`). 
+
+a. Sometimes, we can control (adjust) for confounding variables through a carefully designed **experiment**. For example, in comparing the effectiveness (y) of 2 different cold remedies (x), we might want to control for the age, general health, and severity of symptoms among the participants. How might we do that?
+
+b. BUT we're often working with **observational**, not experimental, data. Why? Well, explain what an experiment might look like if we wanted to explore the relationship between `wage` (y) and `marital` status (x) while controlling for `age`.
+
+
+
+
+
+
+
+## Exercise 4: Age
+
+We're in luck.
+
+We can control (adjust) for confounding variables by *including them in our model*!
+
+That's one of the superpowers of **multiple linear regression**.
+
+Let's start simple, by *controlling for* age in our model of wages by marital status:
+
+```{r eval=FALSE}
+# Construct the model
+wage_model_2 <- lm(wage ~ marital + age, cps)
+coef(summary(wage_model_2))
+```
+
+
+a. Visualize this model by modifying the code below. 
+
+(Note: The last line where we add a `geom_line` layer adds in trendlines similar to what we might obtain using `geom_smooth`, but it uses the exact fitted values from our model. `geom_smooth`, on the other hand, adds in trendlines based on fitting two separate models to the `married` and `single` subsets of the data. Tray adding `geom_smooth(method="lm", se=F, linetype="dashed")` to the plot to see how they compare).
+
+```{r eval=FALSE}
+ggplot(cps, aes(y = ___, x = ___, color = ___)) +
+    geom____(size = 0.1, alpha = 0.5) +
+    geom_line(aes(y = wage_model_2$fitted.values), linewidth = 0.5)
+```
+
+b. Suppose 2 workers are the *same age*, but one is married and one is single. By how much do we expect the single worker's wage to differ from the married worker's wage? (How does this compare to the $17,052 marital gap among all workers?)
+
+c. How can we interpret the `maritalsingle` coefficient?
+    
+
+    
+    
+
+
+
+## Exercise 5: More confounders
+
+Let's control for even more potential confounders!
+
+Model wages by marital status while controlling for `age` *and* years of `education`:   
+
+```{r eval=FALSE}
+wage_model_3 <- lm(wage ~ marital + age + education, cps)
+coef(summary(wage_model_3))
+```
+
+a. With so many variables, this is a tough model to visualize. If you *had* to draw it, how would the model trend appear: 1 point, 2 points, 2 lines, 1 plane, or 2 planes? Explain your rationale. Hint: pay attention to whether your predictors are quantitative or categorical.
+
+b. Given our research question, which coefficient is of primary interest? Interpret this coefficient.
+
+c. Interpret the two other coefficients in this model.
+
+
+
+
+## Exercise 6: Even more
+
+Let's control for *another* potential confounder, the job `industry` in which one works (categorical):
+
+```{r eval=FALSE}
+wage_model_4 <- lm(wage ~ marital + age + education + industry, cps)
+coef(summary(wage_model_4))
+```
+    
+If we *had* to draw it, this model would appear as 12 planes.
+
+The original plane explains the relationship between wage and the 2 quantitative predictors, age and education.
+
+Then this plane is split into 12 (2*6) individual planes, 1 for each possible combination of marital status (2 possibilities) and industry (6 possibilities).
+
+a. Interpret the main coefficient of interest for our research question.
+
+b. When controlling for a worker's age, marital status, and education level, which industry tends to have the highest wages? The lowest? Note: the following table shows the 6 industries:
+
+```{r eval=FALSE}
+cps %>% count(industry)
+```
+
+
+
+
+
+
+
+
+## Exercise 7: Biggest model yet
+
+Build a model that helps us explore `wage` by `marital` status while controlling for: `age`, `education`, job `industry`, typical number of work `hours`, and `health` status.
+
+Store this model as `wage_model_5`.
+
+
+
+
+
+
+
+
+
+
+## Exercise 8: Reflection
+
+Take two workers -- one is married and the other is single.
+
+The models above provided the following insights into the typical difference in wages for these two groups:    
+    
+Model            Assume the two people have the same...    Wage difference
+---------------- --------------------------------------- -----------------
+`wage_model_1`   NA                                               -$17,052
+`wage_model_2`   age                                               -$7,500
+`wage_model_3`   age, education                                    -$6,478
+`wage_model_4`   age, education, industry                          -$5,893
+`wage_model_5`   age, education, industry, hours, health           -$4,993
+
+
+
+a. Though not the case in every analysis, the `marital` coefficient got closer and closer to 0 as we controlled for more confounders. Explain the significance of this phenomenon, in context - what does it *mean*?
+
+b. Do you still find the wage gap for single vs married people to be meaningfully "large"? Can you think of any remaining factors that might explain part of this remaining gap? Or do you think we've found evidence of inequitable wage practices for single vs married workers?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Exercise 9: A new (extreme) example
+
+For a more extreme example of why it's important to control for confounding variables, let's return to the `diamonds` data:
+
+```{r}
+# Import and wrangle the data
+data(diamonds)
+diamonds <- diamonds %>% 
+    mutate(
+        cut = factor(cut, ordered = FALSE),
+        color = factor(color, ordered = FALSE),
+        clarity = factor(clarity, ordered = FALSE)
+    ) %>% 
+    select(price, clarity, cut, color, carat)
+```
+
+Our goal is to explore how the `price` of a diamond depends upon its `clarity` (a measure of quality).
+
+Clarity is classified as follows, in order from best to worst:
+
+clarity  description
+-------- ------------------------------------------------
+IF       flawless (no internal imperfections) 
+VVS1     very very slightly imperfect
+VVS2     " "
+VS1      very slightly imperfect
+VS2      " "
+SI1      slightly imperfect
+SI2      " "
+I1       imperfect
+
+
+a. Check out a model of `price` by `clarity`. What clarity has the highest average price? The lowest? (This is surprising!)       
+
+```{r eval=FALSE}
+diamond_model_1 <- lm(price ~ clarity, data = diamonds)
+
+# Get a model summary
+coef(summary(diamond_model_1))
+```
+
+b. What *confounding variable* might explain these results? What's your rationale?
+    
+    
+
+
+
+
+
+## Exercise 10: Size
+
+It turns out that `carat`, the *size* of a diamond, is an important confounding variable.
+
+Let's explore what happens when we control for this in our model:
+
+```{r eval=FALSE}
+diamond_model_2 <- lm(price ~ clarity + carat, data = diamonds)
+
+# Get a model summary
+coef(summary(diamond_model_2))
+
+# Plot the model
+diamonds %>% 
+    ggplot(aes(y = price, x = carat, color = clarity)) + 
+    geom_line(aes(y = diamond_model_2$fitted.values))
+```
+
+What do you think now?
+
+Which clarity has the highest expected price?
+
+The lowest?
+
+Provide numerical evidence from the model.
+
+
+
+
+
+
+
+
+
+## Exercise 11: Simpson's Paradox
+
+Controlling for `carat` didn't just *change* the `clarity` coefficients, hence our understanding of the relationship between `price` and `clarity`...
+It flipped the *signs* of many of these coefficients.
+
+This extreme scenario has a name: **Simpson's paradox**.
+
+CHALLENGE: Explain *why* this happened and support your argument with *graphical* evidence.
+
+HINTS: Think about the causal diagram below. *How* do you think `carat` influences `clarity`? *How* do you think `carat` influences `price`? Make 2 `ggplot()` that support your answers.
+
+
+```{r fig.width = 6, fig.height = 2, echo = FALSE}
+par(mar = rep(0,4))
+plot(1, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "", xlim = c(0,6), ylim = c(1,4))
+text(c("clarity", "carat", "price"), x = c(1,3,5), y = c(1,4,1), cex = 1.1)
+arrows(x0 = 3, y0 = 4-0.2, x1 = 5, y1 = 1+0.2, angle = 25, lwd = 4)
+lines(x = c(3, 1), y = c(3.8, 1.2), lwd = 4)
+arrows(x0 = 1.7, y0 = 1, x1 = 4.5, y1 = 1, angle = 25, lwd = 4)
+```
+
+
+
+
+
+
+## Exercise 12: Final conclusion
+
+What's your final conclusion about diamond prices?    
+
+Which diamonds are more expensive: flawed ones or flawless ones?
+    
+
+
+
+
+## Reflection
+
+Write a one-sentence warning label for what might happen if we do *not* control for confounding variables in our model.
+
+> **Response:** Put your response here.
+
+
+<br><br><br><br><br><br>
+
+[Solutions](../solutions/10_mlr_confounding.qmd)

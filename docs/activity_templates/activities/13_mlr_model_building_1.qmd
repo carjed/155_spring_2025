@@ -1,0 +1,102 @@
+---
+title: "13. Multiple linear regression: model building (part 1)"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+---
+
+# Notes
+
+-   Download the `.qmd` file for this activity [here](../activity_templates/13_mlr_model_building_1.qmd).
+
+## Learning goals
+
+By the end of this lesson, you should be able to:
+
+- Distinguish between descriptive, predictive, and causal research questions
+
+- Iterate on your group's research question to make it more precise and answerable
+
+- Choose appropriate model(s) for addressing your group's research question
+
+## Readings and videos
+
+Please watch the following video **before** class.
+
+- Video: [Causal Diagrams and Confounding Variables](https://voicethread.com/share/15362352/)
+
+**File organization:** If you would like to take notes *in this document*, download the template and save it in the "Activities" subfolder of your "STAT155" folder. You are more than welcome to take notes in a separate google document, shared with your project group, if you'd find that more useful!
+
+# Steps
+
+## Step 1: Review
+
+Take a look at the first project checkpoint (your statistical analysis plan) that your group submitted. As part of this checkpoint, you should have come up with a research question. Record the research question you came up with: we'll iterate on this question throughout the activity!
+
+> Record your research question here
+
+Answer the following questions as a group (some of this may already be in your statistical analysis plan!):
+
+- Who would be interested in the answer to this question?
+- What variables do you need in a dataset to address this question?
+- What data summaries (**not** models) would help you answer this question, and why?
+- What plots (**not** models) would help you address your research question, and why?
+
+## Step 2: Descriptive Research Questions
+
+Descriptive research questions are questions that seek to better understand the relationships between variables, *without* interest in causality. In practice, nearly every research question asked is ultimately interested in causality, but practical constraints (such as unmeasured confounding) lead us to ask descriptive questions instead. 
+
+If we're only interested in *associations* (not causality), we don't need to adjust for potential confounding variables in our model.
+
+<!-- This section is to input (or pause to talk about) a descriptive research question your professor has encountered in their career -->
+
+For your group's chosen research question, write a model statement that would address a **descriptive** version of your research question below:
+
+> Model statement for a descriptive question here
+
+## Step 3: Predictive Research Questions
+
+Predictive research questions seek to determine if (and how well) we can predict outcomes for new / future events, using the information we already have. We've seen a bit of prediction in this course when we talked about fitted values!
+
+<!-- This section is to input (or pause to talk about) a predictive research question your professor has encountered in their career -->
+
+With your groups, discuss the following:
+
+- Is your research question *predictive*, or *inferential*? Inferential questions seek to understand the relationships between variables.
+- If your question *were* predictive, who would be interested/invested in the results from your project? How could the results from your project be used in practice?
+- Are there any variables that are *not* available to you in your data that you would include in your predictive model if you could? Why or why not?
+
+## Step 3: Causal Research Questions
+
+Causal research questions are ultimately what most inferential statistics is interested in, regardless of whether or not we end up being able to make causal conclusions. From the videos for today, you learned about different types of variables, and whether or not they should be included or excluded from a model, depending on your causal research question.
+
+With your groups, make a causal diagram (DAG) on the whiteboard for your research question. Consider including all variables you *wish* you had access to, even if they aren't available in your data (this will help you later when talking about limitations of your analysis in your final paper), but certainly include relevant variables that *are* available in your data. 
+
+For each variable in your DAG *that is available in your dataset*, determine whether it should be *included* or *excluded* from your model. Use this to update your descriptive model statement from Step 2.
+
+> Model statement for a causal question here
+
+Now look back at your DAG, and note if any of the variables that are *not* available in your data are *potential confounders*. If so, record them here (this means you likely won't be able to draw causal conclusions):
+
+> List of "unmeasured" confounding variables here
+
+## Step 4: Reflection
+
+Today was all about iterating on a research question, and using those questions to guide the way we explore data and fit statistical models. How confident do you feel in distinguishing between descriptive, predictive, and causal research questions? How confident do you feel in knowing which components of a model matter more or less, in each specific case? What might help you feel more confident?
+
+> **Response:** Put your response here.
+
+
+
+## Render your work
+
+- Click the "Render" button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.
+- Scroll through and inspect the document to check that your work translated to the HTML format correctly.
+- Close the browser tab.
+- Go to the "Background Jobs" pane in RStudio and click the Stop button to end the rendering process.
+- Navigate to your "Activities" subfolder within your "STAT155" folder and locate the HTML file. You can open it again in your browser to double check.
+
+
+

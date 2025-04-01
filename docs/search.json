@@ -392,7 +392,7 @@
     "href": "activities/18_sampling_normal.html",
     "title": "18. The Normal model & sampling variation",
     "section": "",
-    "text": "Recognize the difference between a population parameter and a sample estimate.\nReview the Normal probability model, a tool we’ll need to turn information in our sample data into inferences about the broader population.\nExplore the ideas of randomness, sampling distributions, and standard error through a class experiment. (We’ll define these more formally in the next class.)\n\n\n\n\nPlease do the following videos and reading before class.\n\nReading: Section 6 Introduction, and Section 6.6 in the STAT 155 Notes\nVideo 1: exploration vs inference\nVideo 2: Normal probability model",
+    "text": "You can download a template file to work with here.\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.\n\n\n\n\nRecognize the difference between a population parameter and a sample estimate.\nReview the Normal probability model, a tool we’ll need to turn information in our sample data into inferences about the broader population.\nExplore the ideas of randomness, sampling distributions, and standard error through a class experiment. (We’ll define these more formally in the next class.)\n\n\n\n\nPlease do the following videos and reading before class.\n\nReading: Section 6 Introduction, and Section 6.6 in the STAT 155 Notes\nVideo 1: exploration vs inference\nVideo 2: Normal probability model",
     "crumbs": [
       "18. The Normal model & sampling variation"
     ]
@@ -2063,7 +2063,7 @@
     "href": "solutions/18_sampling_normal.html#exercise-4-random-sampling",
     "title": "Solutions for 18. The Normal model & sampling variation",
     "section": "Exercise 4: Random sampling",
-    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film      userscore_rt criticscore_rt\n  &lt;chr&gt;            &lt;int&gt;          &lt;int&gt;\n1 Cake                47             49\n2 Self/less           51             20\n\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film            userscore_rt criticscore_rt\n  &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n1 Unbroken                  70             51\n2 Project Almanac           46             34"
+    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film          userscore_rt criticscore_rt\n  &lt;chr&gt;                &lt;int&gt;          &lt;int&gt;\n1 Vacation                55             27\n2 Strange Magic           50             17\n\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film            userscore_rt criticscore_rt\n  &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n1 Unbroken                  70             51\n2 Project Almanac           46             34"
   },
   {
     "objectID": "solutions/18_sampling_normal.html#exercise-5-take-your-own-sample",

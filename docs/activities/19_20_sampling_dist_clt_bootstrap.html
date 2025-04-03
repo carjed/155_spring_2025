@@ -5297,7 +5297,7 @@ E(Concen | Length) = \beta_0 + \beta_1 Length
 <li>the <em>quality</em> of this approximation hinges upon the validity of the Central Limit <em>theorem</em> which hinges upon the validity of the <em>theoretical</em> model assumptions, as well as a large sample size</li>
 <li>the CLT uses theoretical formulas for the standard error estimates, thus can feel a little mysterious without a solid foundation in probability theory</li>
 </ul></li>
-<li>We can <em>approxiate</em> the sampling distribution and standard error using bootstrapping. BUT:
+<li>We can <em>approximate</em> the sampling distribution and standard error using bootstrapping. BUT:
 <ul>
 <li>it feels magical. The statistical theory behind bootstrapping is quite complicated, and there are certain obscure cases (none that we will encounter in Stat 155) where the assumptions underlying bootstrapping fail to hold</li>
 </ul></li>
@@ -5326,7 +5326,7 @@ E(Concen | Length) = \beta_0 + \beta_1 Length
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Concen <span class="sc">~</span> Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also take <em>multiple</em> unique samples and build a sample model from each.</p>
-<p>The code below obtains <em>500</em> separate samples of 10 fish, and stores the model estimates from each:</p>
+<p>The code below obtains <em>500</em> separate samples of 10 fish, and stores the model estimates from each. (You will first need to run <code>install.packages(&quot;mosaic&quot;)</code> in the Console):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the seed so that we all get the same results</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">155</span>)</span>
@@ -5450,7 +5450,7 @@ E(Concen | Length) = \beta_0 + \beta_1 Length
 <p>Specifically, all possible sample slopes will vary Normally around the population slope.</p>
 <ul>
 <li><p>Do your simulation results support this assumption? Why or why not?</p></li>
-<li><p>Want more intuition into the CLT? Watch this video explanation using bunnies and dragons: <a href="https://www.youtube.com/watch?v=jvoxEYmQHNM">https://www.youtube.com/watch?v=jvoxEYmQHNM</a></p></li>
+<li><p>Want more intuition into the CLT? Watch this video explanation using bunnies and dragons: <a href="https://www.youtube.com/watch?v=jvoxEYmQHNM" class="uri">https://www.youtube.com/watch?v=jvoxEYmQHNM</a></p></li>
 </ul>
 </section>
 <section id="exercise-6-using-the-clt" class="level2">

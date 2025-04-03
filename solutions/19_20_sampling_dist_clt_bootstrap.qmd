@@ -1,0 +1,312 @@
+---
+title: "Solutions for 19/20: Sampling distributions, the CLT, and Bootstrapping"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+---
+
+
+
+# Warm-Up
+
+Rivers contain small concentrations of mercury which can accumulate in fish.
+Scientists studied this phenomenon among largemouth bass in the Wacamaw and Lumber rivers of North Carolina.
+
+One goal of this study was to explore the relationship of a fish's mercury concentration (Concen) with its size, specifically its Length:
+
+
+$$
+E(Concen | Length) = \beta_0 + \beta_1 Length
+$$
+
+
+To this end, they caught and evaluated 171 fish, and recorded the following:
+
+
+| variable | meaning                                                  |
+|:---------|:---------------------------------------------------------|
+| River    | Lumber or Wacamaw                                        |
+| Station  | Station number where the fish was caught (0, 1, ..., 15) |
+| Length   | Fish's length (in centimeters)                           |
+| Weight   | Fish's weight (in grams)                                 |
+| Concen   | Fish's mercury concentration (in parts per million; ppm) |
+
+
+```{r}
+# Load the data & packages
+library(tidyverse)
+library(readr)
+fish <- read_csv("https://Mac-STAT.github.io/data/Mercury.csv")
+```
+
+Plot and model the relationship of mercury concentration with length:
+
+```{r}
+fish %>% 
+  ggplot(aes(y = Concen, x = Length)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+fish_model <- lm(Concen ~ Length, data = fish)
+coef(summary(fish_model))
+```
+
+
+## Exercise 1: 500 samples of size 10
+
+a. `do()` repeats the code within the parentheses as many times as you tell it. do()` is a shortcut for a for loop.
+
+b. 500 different sample estimates of the model 
+
+```{r}
+# Set the seed so that we all get the same results
+set.seed(155)
+
+# Store the sample models
+sample_models_10 <- mosaic::do(500)*(
+  fish %>% 
+    sample_n(size = 10, replace = TRUE) %>% 
+    with(lm(Concen ~ Length))
+)
+
+# Check it out
+head(sample_models_10)
+dim(sample_models_10)
+```
+
+
+c. 
+
+```{r}
+# Set the seed so that we all get the same results
+set.seed(155)
+
+# Store the sample models
+sample_models_boot <- mosaic::do(500)*(
+  fish %>% 
+    sample_n(size = 171, replace = TRUE) %>% 
+    with(lm(Concen ~ Length))
+)
+```
+
+## Exercise 2: Why "resampling" (`replace = TRUE`)?
+
+
+```{r}
+# Define data
+small_sample <- data.frame(
+  id = 1:5,
+  Length = c(44, 43, 54, 52, 40))
+
+small_sample
+```
+
+a. The sample and the mean are the same every time!
+
+b. If we rerun the code below multiple times, we'll get different samples every time! Note that some of the observations are repeated (this is because of `replace = TRUE`), but we actually obtain variation in our samples and their mean lengths.
+    
+```{r}
+sample_2 <- sample_n(small_sample, size = 5, replace = TRUE)
+sample_2
+
+sample_2 %>% 
+  summarize(mean(Length))
+```
+
+
+## Exercise 3: Sampling distribution
+
+
+```{r}
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_abline(data = sample_models_boot, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+
+sample_models_boot %>% 
+  ggplot(aes(x = Length)) + 
+  geom_density() + 
+  geom_vline(xintercept = 0.05813, color = "red") 
+```    
+
+a. The sampling distribution is symmetric, unimodal, and shaped like a bell curve!
+
+b. It is roughly centered at the slope calculated from our entire sample!
+
+c. Most of the estimates lie within the range 0.04 to 0.075.
+
+
+## Exercise 4: Standard error
+
+```{r}
+# boostrapped se
+sample_models_boot %>% 
+  summarize(sd(Length))
+
+# CLT se
+coef(summary(fish_model))
+```
+
+They are basically identical! Both are about 0.005.
+
+## Exercise 5: Central Limit Theorem (CLT)
+
+Recall that the CLT assumes that, so long as our sample size is "big enough", the sampling distribution of the sample slope will be Normal.
+
+Specifically, all possible sample slopes will vary Normally around the population slope.
+
+- Do your simulation results support this assumption? Why or why not?
+
+> Yes! They support this assumption because the shape of sampling distribution is roughly normal (i.e. bell-shaped).
+
+
+
+## Exercise 6: Using the CLT
+
+
+```{r}
+# Hint: Adapt the code from Exercise 4...
+sample_models_10 %>% 
+  summarize(sd(Length))
+```
+
+a. 95%
+
+b. 100% - 95% = 5%
+
+c. (100 - 99.7)/2 = 0.15% (Note that we divide by two here, because we only want those *above* 3 SEs, not either above or below!)
+    
+    
+
+## Exercise 7: CLT and the 68-95-99.7 Rule
+
+- 68% of samples will produce $\hat{\beta}_1$ estimates within **1 st. err.** of $\beta_1$
+
+- 95% of samples will produce $\hat{\beta}_1$ estimates within **2 st. err.** of $\beta_1$
+
+- 99.7% of samples will produce $\hat{\beta}_1$ estimates within **3 st. err.** of $\beta_1$
+
+
+
+## Exercise 8: Increasing sample size
+
+Intuition, no wrong answer.
+
+
+## Exercise 9: 500 samples of size n
+
+
+```{r}
+set.seed(155)
+sample_models_50 <- mosaic::do(500)*(
+  fish %>% 
+    sample_n(size = 50, replace = FALSE) %>% 
+    with(lm(Concen ~ Length))
+)
+
+# Check it out
+head(sample_models_50)
+```
+
+
+Similarly, take 500 samples of size 100, and build a sample model from each.
+
+```{r}
+set.seed(155)
+sample_models_100 <- mosaic::do(500)*(
+  fish %>% 
+    sample_n(size = 100, replace = FALSE) %>% 
+    with(lm(Concen ~ Length))
+)
+
+# Check it out
+head(sample_models_100)
+```
+
+
+
+## Exercise 10: Impact of sample size (part I)
+
+```{r}
+# 500 sample models using samples of size 10
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_smooth(method = "lm", se = FALSE) + 
+  geom_abline(data = sample_models_10, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+
+```{r}
+# 500 sample models using samples of size 50
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_smooth(method = "lm", se = FALSE) + 
+  geom_abline(data = sample_models_50, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+```{r}
+# 500 sample models using samples of size 100
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_smooth(method = "lm", se = FALSE) + 
+  geom_abline(data = sample_models_100, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+a. The sample model lines become less and less variable from sample to sample.
+
+
+## Exercise 11: Impact of sample size (part II)
+  
+        
+```{r}
+# Don't think too hard about this code!
+# Combine the estimates & sample size into a new data set
+# Then plot it
+
+data.frame(estimates = c(sample_models_10$Length, sample_models_50$Length, sample_models_100$Length),
+           sample_size = rep(c("10","50","100"), each = 500)) %>% 
+  mutate(sample_size = fct_relevel(sample_size, c("10", "50", "100"))) %>% 
+  ggplot(aes(x = estimates, color = sample_size)) + 
+  geom_density() + 
+  geom_vline(xintercept = 0.05813, color = "red", linetype = "dashed") + 
+  labs(title = "Sampling distributions of the sample slope")
+```    
+
+a. No matter the sample size, the sample estimates are normally distributed around the population slope. But as sample size increases, the variability of the sample estimates decreases.
+
+
+
+
+## Exercise 12: Properties of sampling distributions
+
+In light of your observations, complete the following statements about the sampling distribution of the sample slope.    
+  
+a. For all sample sizes, the shape of the sampling distribution is roughly **normal** and the sampling distribution is roughly centered around **0.05813**, the sample estimate from our original data.  
+
+b. As sample size increases:    
+    The average sample slope estimate IS FAIRLY STABLE.    
+    The standard error of the sample slopes DECREASES.
+    
+c. Thus, as sample size increases, our sample slopes become MORE RELIABLE.
+  
+  
+  
+  
+
+
+
+

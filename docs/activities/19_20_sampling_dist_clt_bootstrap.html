@@ -4919,6 +4919,10 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
         <li>
+    <a class="dropdown-item" href="../activities/21_confidence_intervals.html">
+ <span class="dropdown-text">21. Confidence intervals</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../activities/19_20_sampling_dist_clt_bootstrap.html">
  <span class="dropdown-text">19/20. Sampling distributions, the CLT, and Bootstrapping</span></a>
   </li>  
@@ -5016,6 +5020,12 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/21_confidence_intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">21. Confidence intervals</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../activities/19_20_sampling_dist_clt_bootstrap.html" class="sidebar-item-text sidebar-link active">
@@ -5462,7 +5472,7 @@ E(Concen | Length) = \beta_0 + \beta_1 Length
 </div>
 <p>You should get a SE of <em>roughly</em> 0.026.</p>
 <p>Thus, by the CLT, the sampling distribution of <span class="math inline">\(\hat{\beta}_1\)</span> is:</p>
-<p><span class="math display">\[\hat{\beta}_1 \sim N(\beta_1, 0.26^2)\]</span></p>
+<p><span class="math display">\[\hat{\beta}_1 \sim N(\beta_1, 0.026^2)\]</span></p>
 <p>Use this result with the 68-95-99.7 property of the Normal model to understand the potential error in a slope estimate.</p>
 <ol type="a">
 <li><p>There are many possible samples of 10 fish. What percent of these will produce an estimate <span class="math inline">\(\hat{\beta}_1\)</span> that’s within 0.052, i.e. <em>2 standard errors</em>, of the actual population slope <span class="math inline">\(\beta_1\)</span>?</p></li>

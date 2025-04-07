@@ -317,7 +317,7 @@ You should get a SE of *roughly* 0.026.
 
 Thus, by the CLT, the sampling distribution of $\hat{\beta}_1$ is:
 
-$$\hat{\beta}_1 \sim N(\beta_1, 0.26^2)$$
+$$\hat{\beta}_1 \sim N(\beta_1, 0.026^2)$$
 
 Use this result with the 68-95-99.7 property of the Normal model to understand the potential error in a slope estimate.
 

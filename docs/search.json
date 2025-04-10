@@ -1317,7 +1317,7 @@
     "href": "solutions/18_sampling_normal.html#exercise-4-random-sampling",
     "title": "Solutions for 18. The Normal model & sampling variation",
     "section": "Exercise 4: Random sampling",
-    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film        userscore_rt criticscore_rt\n  &lt;chr&gt;              &lt;int&gt;          &lt;int&gt;\n1 Unfriended            39             60\n2 Poltergeist           24             31\n\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film            userscore_rt criticscore_rt\n  &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n1 Unbroken                  70             51\n2 Project Almanac           46             34"
+    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film              userscore_rt criticscore_rt\n  &lt;chr&gt;                    &lt;int&gt;          &lt;int&gt;\n1 Strange Magic               50             17\n2 The Vatican Tapes           21             13\n\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film            userscore_rt criticscore_rt\n  &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n1 Unbroken                  70             51\n2 Project Almanac           46             34"
   },
   {
     "objectID": "solutions/18_sampling_normal.html#exercise-5-take-your-own-sample",
@@ -1338,7 +1338,7 @@
     "href": "solutions/18_sampling_normal.html#exercise-7-sample-intercepts",
     "title": "Solutions for 18. The Normal model & sampling variation",
     "section": "Exercise 7: Sample intercepts",
-    "text": "Exercise 7: Sample intercepts\nThe intercepts are roughly normal, centered around the intercept of the larger sample (32.3), and range from roughly 15.87 to 50.153:\n\nresults %&gt;% \n  ggplot(aes(x = sample_intercept)) + \n  geom_density() + \n  geom_vline(xintercept = 32.3, color = \"red\")"
+    "text": "Exercise 7: Sample intercepts\nThe intercepts are roughly normal, centered around the intercept of the larger sample (32.3), and range from roughly 15.88 to 50.106:\n\nresults %&gt;% \n  ggplot(aes(x = sample_intercept)) + \n  geom_density() + \n  geom_vline(xintercept = 32.3, color = \"red\")"
   },
   {
     "objectID": "solutions/18_sampling_normal.html#exercise-8-slopes",
@@ -1355,67 +1355,85 @@
     "text": "Exercise 9: Standard error\n\nFor example, suppose my estimate were 0.7:\n\n\n0.7 - 0.52\n\n[1] 0.18\n\n\n\nFor example, suppose my estimate were 0.7. Then my Z-score is (0.7 - 0.52) / 0.14 = 1.2857143\nThis is somewhat subjective. But we’ll learn that if your estimate is within 2 sd of the actual slope, i.e. your Z-score is between -2 and 2, you’re pretty “lucky”."
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html",
-    "href": "solutions/14_mlr_model_building_2.html",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "objectID": "solutions/22_hypothesis_testing_discovery.html",
+    "href": "solutions/22_hypothesis_testing_discovery.html",
+    "title": "Solutions for 22. Hypothesis testing: discovery",
     "section": "",
-    "text": "# Load packages\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n# Load data\nlibrary(palmerpenguins)\ndata(penguins)\n\npenguins &lt;- penguins %&gt;% \n    mutate(flipper_length_cm = flipper_length_mm / 10)\nRun the code chunk below to build a bunch of models that you’ll be exploring in the exercises:\npenguin_model_1 &lt;- lm(bill_length_mm ~ flipper_length_mm, penguins)\npenguin_model_2 &lt;- lm(bill_length_mm ~ flipper_length_cm, penguins)\npenguin_model_3 &lt;- lm(bill_length_mm ~ flipper_length_mm + flipper_length_cm, penguins)\npenguin_model_4 &lt;- lm(bill_length_mm ~ body_mass_g, penguins)\npenguin_model_5 &lt;- lm(bill_length_mm ~ flipper_length_mm + body_mass_g, penguins)"
+    "text": "# Load the data & packages\nlibrary(tidyverse)\nlibrary(readr)\nfish &lt;- read_csv(\"https://mac-stat.github.io/data/Mercury.csv\")\n\nhead(fish)\n\n# A tibble: 6 × 5\n  River  Station Length Weight Concen\n  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 Lumber       0   47     1616   1.6 \n2 Lumber       0   48.7   1862   1.5 \n3 Lumber       0   55.7   2855   1.7 \n4 Lumber       0   45.2   1199   0.73\n5 Lumber       0   44.7   1320   0.56\n6 Lumber       0   43.8   1225   0.51"
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html#exercise-1-modeling-bill-length-by-flipper-length",
-    "href": "solutions/14_mlr_model_building_2.html#exercise-1-modeling-bill-length-by-flipper-length",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
-    "section": "Exercise 1: Modeling bill length by flipper length",
-    "text": "Exercise 1: Modeling bill length by flipper length\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_2\nflipper_length_cm\n\n\npenguin_model_3\nflipper_length_mm + flipper_length_cm\n\n\n\nPlots of the first two models are below:\n\nggplot(penguins, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nggplot(penguins, aes(y = bill_length_mm, x = flipper_length_cm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range (`stat_smooth()`).\nRemoved 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\nYour intuition–answers will vary\nThe R-squared values are all the same!\n\n\nsummary(penguin_model_1)$r.squared\n\n[1] 0.430574\n\nsummary(penguin_model_2)$r.squared\n\n[1] 0.430574\n\nsummary(penguin_model_3)$r.squared\n\n[1] 0.430574\n\n\n\nThe two variables are perfectly linearly correlated—they contain exactly the same information!\n\n\nggplot(penguins, aes(x = flipper_length_cm, y = flipper_length_mm)) +\n    geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\nAn NA means that the coefficient couldn’t be estimated. In penguin_model_3, the interpretation of the flipper_length_cm coefficient is the average change in bill length per centimeter change in flipper length, while holding flipper length in millimeters constant…this is impossible! We can’t hold flipper length in millimeters fixed while varying flipper length in centimeters—if one changes the other must. (In linear algebra terms, the matrix underlying our data is not of full rank.)"
+    "objectID": "solutions/22_hypothesis_testing_discovery.html#exercise-1",
+    "href": "solutions/22_hypothesis_testing_discovery.html#exercise-1",
+    "title": "Solutions for 22. Hypothesis testing: discovery",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nResearch question: Is there evidence that the mercury concentration in fish (Concen) differs according to the River they were sampled from?\n\npart a: fit the model\nFit a simple linear regression model that would address our research question\n\nmod_fish &lt;- lm(Concen ~ River, data=fish)\nsummary(mod_fish)\n\n\nCall:\nlm(formula = Concen ~ River, data = fish)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.1664 -0.5681 -0.1764  0.4219  2.4219 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   1.07808    0.08866  12.160   &lt;2e-16 ***\nRiverWacamaw  0.19835    0.11712   1.694   0.0922 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.7575 on 169 degrees of freedom\nMultiple R-squared:  0.01669,   Adjusted R-squared:  0.01087 \nF-statistic: 2.868 on 1 and 169 DF,  p-value: 0.09218\n\n\nInterpret the intercept from this model.\n\nOur model estimates an average mercury concentration of 1.078ppm among fish in the Lumber River.\n\n\n\npart b: construct a CI\nUsing the 68-95-99.7 rule, construct an approximate 95% confidence interval for the intercept term, and provide an appropriate interpretation.\n\n1.078 +/- 2*0.089 –&gt; [0.90, 1.256]\n\n\nPreferred interpretation: It is plausible that the true mean mercury concentration among fish in the Lumber River is between 0.90ppm and 1.25ppm.\n\n\n(technical addendum to this interpretation): …specifically, we expect that if we take many different samples and obtain a set of corresponding parameter estimates and confidence intervals, we expect that 95% of the resulting intervals will contain the true mean mercury concentration of the entire Lumber River fish population. We hope that our interval is one of the lucky 95% and not one of the unlucky 5% that don’t contain the true population parameter.\n\n\nNot as preferred interpretation: We are 95% confident that the mean mercury concentration among fish in the Lumber River is between 0.90ppm and 1.25ppm.\n\nCompare your CI to an exact 95% confidence interval for the model coefficients:\n\nconfint(mod_fish, level=0.95)\n\n                   2.5 %    97.5 %\n(Intercept)   0.90305825 1.2531061\nRiverWacamaw -0.03285077 0.4295435\n\n\n\n\npart c: what can we conclude from multiple samples?\nSuppose we take 200 different samples of fish from the Lumber River. In how many of those samples would you expect to observe an estimated mean mercury concentration greater than 1.25ppm?\n\nWe don’t/can’t actually know! This depends on the true population parameter and the accuracy of our sampling distribution.\n\n\nWhat we can say is that if our sampling distribution model is accurate, then we should expect that about 10 out of 200 samples (5% of them) will produce confidence intervals that don’t contain the population parameter. We should expect that half of these–so 5 samples–are overestimates and the other half are underestimates.\n\n\n\npart d: intuition for constructing & interpreting test statistics\nSuppose previous environmental studies have found little evidence of mercury pollution in other rivers in the area, so perhaps our “default” assumption is that fish from the Lumber river should have an expected mercury concentration of 0ppm. How many standard errors is our sample estimate (1.078ppm) away from this expectation? What are three possible conclusions?\n\nIf we assume that 0ppm is the “true” mercury concentration, then our estimate of Beta_0 = 1.078ppm with a standard error of 0.08866 means that our estimate is (1.07808-0)/0.08866 = 12.16 standard errors away from what we should expect.\n\n\nPossible conclusions:\n\n\n\nOur working assumption that 0ppm should be the “true” mercury concentration in the Lumber river fish population was wrong! The confidence interval we constructed above suggests that a true value of 0ppm is extremely implausible.\n\n\n\n\nPerhaps ~0ppm is actually the true average mercury concentration in the population, we just got extremely, outrageously unlucky with our sample.\n\n\n\n\nPerhaps there was a measurement/data entry error, and the units are actually parts per billion, not million.\n\n\n\n\npart e: do individual observations contradict our conclusions?\nNow suppose we sample a single fish from the Lumber River and find it has a mercury concentration of 2.5ppm. Are you surprised by this result? Why or why not? (Hint: create a code chunk that calculates the mean, standard deviation, and maximum of the Concen variable in each river in our original sample)\n\nfish %&gt;% \n  group_by(River) %&gt;% \n  summarise(mean=mean(Concen), \n            sd=sd(Concen), \n            max=max(Concen))\n\n# A tibble: 2 × 4\n  River    mean    sd   max\n  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Lumber   1.08 0.649   3.5\n2 Wacamaw  1.28 0.829   3.6\n\n\n\nObserving a single fish with a mercury concentration of 2.5ppm is actually not that surprising! 2.5ppm is a little more than 2 standard deviations away from the mean mercury concentration in our sample of fish from the Lumber River (1.08+2*0.64=2.43), but there are certainly fish in the sample with even higher mercury concentrations (max=3.5ppm), so this isn’t outside the bounds of what we’d expect."
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html#exercise-2-incorporating-body_mass_g",
-    "href": "solutions/14_mlr_model_building_2.html#exercise-2-incorporating-body_mass_g",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
-    "section": "Exercise 2: Incorporating body_mass_g",
-    "text": "Exercise 2: Incorporating body_mass_g\nIn this exercise you’ll consider 3 models of bill_length_mm:\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_4\nbody_mass_g\n\n\npenguin_model_5\nflipper_length_mm + body_mass_g\n\n\n\n\nflipper_length_mm is a better predictor than body_mass_g because penguin_model_1 has an R-squared value of 0.4306 vs 0.3542 for penguin_model_4.\nIntuition check–answers will vary\nR-squared is for penguin_model_5 which is slightly higher than that of penguin_model_1 and penguin_model_4.\n\nd.flipper_length_mm and body_mass_g are positively correlated and thus contain related information, but not completely redundant information. There’s some information in flipper length in explaining bill length that isn’t captured by body mass, and vice-versa.\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n    geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+    "objectID": "solutions/22_hypothesis_testing_discovery.html#exercise-2",
+    "href": "solutions/22_hypothesis_testing_discovery.html#exercise-2",
+    "title": "Solutions for 22. Hypothesis testing: discovery",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nLet’s look at the model summary output again:\n\nsummary(mod_fish)\n\n\nCall:\nlm(formula = Concen ~ River, data = fish)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.1664 -0.5681 -0.1764  0.4219  2.4219 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   1.07808    0.08866  12.160   &lt;2e-16 ***\nRiverWacamaw  0.19835    0.11712   1.694   0.0922 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.7575 on 169 degrees of freedom\nMultiple R-squared:  0.01669,   Adjusted R-squared:  0.01087 \nF-statistic: 2.868 on 1 and 169 DF,  p-value: 0.09218\n\n\n\npart a: interpret model coefficient\nNow, let’s interpret the RiverWacamaw coefficient. Based only on the coefficient (don’t think about the standard error yet), what can we say about the difference in mercury concentration among fish in the two rivers?\n\nThe RiverWacamaw coefficient is 0.19835, meaning that the mean mercury concentration among fish in the Wacamaw River is, on average, about 0.20ppm higher than that of fish in the Lumber River.\n\n\n\npart b: construct a CI\nUsing the 68-95-99.7 rule, construct an approximate 95% confidence interval for the RiverWacamaw coefficient, and provide an appropriate interpretation.\n\n0.20 +/- 2*0.11 –&gt; [-0.02, 0.42]\n\n\nPreferred interpretation: It is plausible that the true difference in mean mercury concentration among fish in the Wacamaw River compared to the Lumber River is between -0.02 ppm and 0.42ppm.\n\n\nNot as preferred interpretation: We are 95% confident that the mean mercury concentration among fish in the Wacamaw River somewhere between 0.02ppm less than that of fish in the Lumber River and 0.42ppm more than that of fish in the Lumber River.\n\n\n\npart c: interpreting the CI\nDo you believe it plausible that the mean mercury concentration of the fish population in the Wacamaw River is approximately the same as that of the fish population in the Lumber River? How would you confirm this? What assumptions are you making?\n\nAnswers may vary–this is certainly plausible, since our 95% CI contains 0 (i.e., there is no difference in means between the two rivers). However, we might also argue that there is SOME evidence of a difference, since most of the CI is &gt; 0.\n\n\n\npart d: effect of sample size on our conclusions\nSuppose we sample 10 times as many fish from the Wacamaw River, and get a similar coefficient estimate (0.2). Thinking back to the Central Limit Theorem, what should happen to the standard error of the RiverWacamaw coefficient? How small of a standard error would we need to more conclusively say that there is an actual difference in mean mercury concentrations of the Lumber River and Wacamaw River fish populations?\n\nA larger sample should result in a smaller standard error of the RiverWacamaw coefficient. If the standard error is smaller than 0.1 (say 0.098), then a 95% confidence interval would be [0.004, 0.396]. Since this interval doesn’t include 0, we could conclude that fish in the Wacamaw River, on average, have a higher mercury concentration than fish in the Lumber River. More importantly, the lower standard error of the coefficient allows us to say there is evidence that this difference should be observable across new samples.\n\n\n\npart e: reconciling parameter estimates and uncertainty\nSuppose the true population coefficient for the RiverWacamawparameter is 0.02 (i.e. the average mercury concentration is 0.02ppm higher for the Wacamaw River fish population compared to that of the Lumber River). Is this meaningful?\n\nThis will depend on context–a priori, this difference appears to be negligible, and we could potentially chalk it up to uncontrolled confounders (e.g., perhaps fish in one river tend to be older/bigger and therefore have slightly higher mercury concentrations, even if there is no underlying difference in mercury pollution). We also might consider: what is considered a “harmful” mercury concentration, and are fish in either river near that threshold? Has this changed over time, and by how much?\n\n\n\npart f: (CHALLENGE)\nUsing the model summary output, report the mean mercury concentration for our sample of fish from the Wacamaw River:\n\nsummary(mod_fish)\n\n\nCall:\nlm(formula = Concen ~ River, data = fish)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.1664 -0.5681 -0.1764  0.4219  2.4219 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   1.07808    0.08866  12.160   &lt;2e-16 ***\nRiverWacamaw  0.19835    0.11712   1.694   0.0922 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.7575 on 169 degrees of freedom\nMultiple R-squared:  0.01669,   Adjusted R-squared:  0.01087 \nF-statistic: 2.868 on 1 and 169 DF,  p-value: 0.09218\n\n\n\n1.07808 + 0.19835 = 1.27643ppm\n\nWhich of the following values do you think is the standard error of the sample mean for the Wacamaw River?\nTo answer this question, look at the code chunk below, which fits the same model, but uses the Wacamaw River as our reference category instead of the Lumber River:\n\nmod_fish2 &lt;- lm(Concen ~ River, data=fish %&gt;% mutate(River=ifelse(River == \"Wacamaw\", paste0(\"_\", River), River)))\nsummary(mod_fish2)\n\n\nCall:\nlm(formula = Concen ~ River, data = fish %&gt;% mutate(River = ifelse(River == \n    \"Wacamaw\", paste0(\"_\", River), River)))\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.1664 -0.5681 -0.1764  0.4219  2.4219 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  1.27643    0.07652  16.681   &lt;2e-16 ***\nRiverLumber -0.19835    0.11712  -1.694   0.0922 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.7575 on 169 degrees of freedom\nMultiple R-squared:  0.01669,   Adjusted R-squared:  0.01087 \nF-statistic: 2.868 on 1 and 169 DF,  p-value: 0.09218\n\n\nCompare this to the output for mod_fish1. What do you notice about the standard errors of the intercepts (i.e., the standard errors of the means for each river) compared to the standard errors of the RiverWacamaw and RiverLumber coefficients (i.e., the standard errors of the differences between the means)?\n\nSEs for the means are 0.08866 and 0.07652 for the Lumber and Wacamaw rivers, respectively. The SE for the difference is the same in both models (0.11712), which is greater than the SE of either mean. Because standard errors quantify uncertainty in a given parameter estimate, this tells us that the uncertainty of the estimated difference between two means is greater than the uncertainty in our estimate of either mean by itself."
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html#exercise-3-redundancy-and-multicollinearity",
-    "href": "solutions/14_mlr_model_building_2.html#exercise-3-redundancy-and-multicollinearity",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
-    "section": "Exercise 3: Redundancy and Multicollinearity",
-    "text": "Exercise 3: Redundancy and Multicollinearity\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_2\nflipper_length_cm\n\n\npenguin_model_3\nflipper_length_mm + flipper_length_cm\n\n\npenguin_model_4\nbody_mass_g\n\n\npenguin_model_5\nflipper_length_mm + body_mass_g\n\n\n\n\npenguin_model_3 had redundant predictors: `flipper_length_mm and flipper_length_cm\npenguin_model_5 had multicollinear predictors: flipper_length_mm and body_mass_g were related but not redundant\nR-squared will stay the same if we add a redundant predictor to a model.\nR-squared will increase by a small amount if we add a multicollinear predictor to a model."
+    "objectID": "activities/22_hypothesis_testing_discovery.html",
+    "href": "activities/22_hypothesis_testing_discovery.html",
+    "title": "22. Hypothesis testing: discovery",
+    "section": "",
+    "text": "You can download a template file to work with here.\nFile organization: Save this file in the “Activities” subfolder of your “STAT155” folder.\n\n\n\nBy the end of this lesson, you should be able to:\n\nUnderstand how standard errors and confidence intervals enable us to make statistical inferences\nArticulate how we can formalize a research question as a testable, statistical hypothesis\n\n\n\n\nThis is a discovery activity, so no assigned readings/videos today.",
+    "crumbs": [
+      "22. Hypothesis testing: discovery"
+    ]
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html#exercise-4-considerations-for-strong-models",
-    "href": "solutions/14_mlr_model_building_2.html#exercise-4-considerations-for-strong-models",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
-    "section": "Exercise 4: Considerations for strong models",
-    "text": "Exercise 4: Considerations for strong models\n\nA gut check! Answers will vary\nBased on R-squared: recall that R-squared is interpreted as the proportion of variation in the outcome that our model explains. It would seem that higher is better, so poly_mod_9 might seem to be the best. BUT we’ll see where this reasoning is flawed soon!\nBased on the plots: Answers will vary"
+    "objectID": "activities/22_hypothesis_testing_discovery.html#learning-goals",
+    "href": "activities/22_hypothesis_testing_discovery.html#learning-goals",
+    "title": "22. Hypothesis testing: discovery",
+    "section": "",
+    "text": "By the end of this lesson, you should be able to:\n\nUnderstand how standard errors and confidence intervals enable us to make statistical inferences\nArticulate how we can formalize a research question as a testable, statistical hypothesis",
+    "crumbs": [
+      "22. Hypothesis testing: discovery"
+    ]
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html#exercise-5-reflecting-on-these-investigations",
-    "href": "solutions/14_mlr_model_building_2.html#exercise-5-reflecting-on-these-investigations",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
-    "section": "Exercise 5: Reflecting on these investigations",
-    "text": "Exercise 5: Reflecting on these investigations\n\nsalmon, chocolate, samosas. Together? Yuck!\nRegarding model 9:\n\nNOT easy to interpret.\nNO. It’s much more wiggly than the general trend.\nNOT WELL. It is too tailored to our data."
+    "objectID": "activities/22_hypothesis_testing_discovery.html#readings-and-videos",
+    "href": "activities/22_hypothesis_testing_discovery.html#readings-and-videos",
+    "title": "22. Hypothesis testing: discovery",
+    "section": "",
+    "text": "This is a discovery activity, so no assigned readings/videos today.",
+    "crumbs": [
+      "22. Hypothesis testing: discovery"
+    ]
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html#exercise-6-overfitting",
-    "href": "solutions/14_mlr_model_building_2.html#exercise-6-overfitting",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
-    "section": "Exercise 6: Overfitting",
-    "text": "Exercise 6: Overfitting\nThe bottom left plot pokes fun at overfitting."
+    "objectID": "activities/22_hypothesis_testing_discovery.html#exercise-1",
+    "href": "activities/22_hypothesis_testing_discovery.html#exercise-1",
+    "title": "22. Hypothesis testing: discovery",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nResearch question: Is there evidence that the mercury concentration in fish (Concen) differs according to the River they were sampled from?\n\npart a: fit the model\nFit a simple linear regression model that would address our research question\n\nmod_fish &lt;- ___\nsummary(mod_fish)\n\nInterpret the intercept from this model.\n\nResponse\n\n\n\npart b: construct a CI\nUsing the 68-95-99.7 rule, construct an approximate 95% confidence interval for the intercept term, and provide an appropriate interpretation.\n\nResponse\n\nCompare your CI to an exact 95% confidence interval for the model coefficients:\n\nconfint(mod_fish, level=0.95)\n\n\n\npart c: what can we conclude from multiple samples?\nSuppose we take 200 different samples of fish from the Lumber River. Based on these results, in how many of those samples would you expect to observe mean mercury concentration greater than 1.25ppm?\n\nResponse\n\n\n\npart d: intuition for constructing & interpreting test statistics\nSuppose previous environmental studies have found little evidence of mercury pollution in other rivers in the area, so perhaps our “default” assumption is that fish from the Lumber river should have an expected mercury concentration of 0ppm. How many standard errors is our sample estimate (1.078ppm) away from this expectation? What are three possible conclusions?\n\nResponse\n\n\n\npart e: do individual observations contradict our conclusions?\nNow suppose we sample a single fish from the Lumber River and find it has a mercury concentration of 2.5ppm. Are you surprised by this result? Why or why not? (Hint: create a code chunk that calculates the mean, standard deviation, and maximum of the Concen variable in each river in our original sample)\n\nResponse",
+    "crumbs": [
+      "22. Hypothesis testing: discovery"
+    ]
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html#exercise-7-questioning-r-squared",
-    "href": "solutions/14_mlr_model_building_2.html#exercise-7-questioning-r-squared",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
-    "section": "Exercise 7: Questioning R-squared",
-    "text": "Exercise 7: Questioning R-squared\nIt measures how well our model explains / predicts our sample data, not how well it explains / predicts the broader population. It also has the feature that any non-redundant predictor added to a model will increase the R-squared."
+    "objectID": "activities/22_hypothesis_testing_discovery.html#exercise-2",
+    "href": "activities/22_hypothesis_testing_discovery.html#exercise-2",
+    "title": "22. Hypothesis testing: discovery",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nLet’s look at the model summary output again:\n\nsummary(mod_fish)\n\n\npart a: interpret model coefficient\nNow, let’s interpret the RiverWacamaw coefficient. Based only on the coefficient (don’t think about the standard error yet), what can we say about the difference in mercury concentration among fish in the two rivers?\n\nResponse\n\n\n\npart b: construct a CI\nUsing the 68-95-99.7 rule, construct an approximate 95% confidence interval for the RiverWacamaw coefficient, and provide an appropriate interpretation.\n\nResponse\n\n\n\npart c: interpreting the CI\nDo you believe it plausible that the mean mercury concentration of the fish population in the Wacamaw River is approximately the same as that of the fish population in the Lumber River? How would you confirm this? What assumptions are you making?\n\nResponse\n\n\n\npart d: effect of sample size on our conclusions\nSuppose we sample 10 times as many fish from the Wacamaw River, and get a similar coefficient estimate (0.2). Thinking back to the Central Limit Theorem, what should happen to the standard error of the RiverWacamaw coefficient? How small of a standard error would we need to more conclusively say that there is an actual difference in mean mercury concentrations of the Lumber River and Wacamaw River fish populations?\n\nResponse\n\n\n\npart e: reconciling parameter estimates and uncertainty\nSuppose the true population coefficient for the RiverWacamawparameter is 0.02 (i.e. the average mercury concentration is 0.02ppm higher for the Wacamaw River fish population compared to that of the Lumber River). Is this meaningful?\n\nResponse\n\n\n\npart f (CHALLENGE)\nUsing the model summary output, report the mean mercury concentration for our sample of fish from the Wacamaw River:\n\nsummary(mod_fish)\n\n\nResponse:\n\nWhich of the following values do you think is the standard error of the sample mean for the Wacamaw River?\n\n0.11712\n0.08866\n0.11712 + 0.08866 = 0.20578\n0.11712 - 0.08866 = 0.02846\nsomething else\n\nTo answer this question, look at the code chunk below, which fits the same model, but uses the Wacamaw River as our reference category instead of the Lumber River:\n\nmod_fish2 &lt;- lm(Concen ~ River, data=fish %&gt;% mutate(River=ifelse(River == \"Wacamaw\", paste0(\"_\", River), River)))\nsummary(mod_fish2)\n\nCompare this to the output for mod_fish1. What do you notice about the standard errors of the intercepts (i.e., the standard errors of the means for each river) compared to the standard errors of the RiverWacamaw and RiverLumber coefficients (i.e., the standard errors of the differences between the means)?\n\nResponse:",
+    "crumbs": [
+      "22. Hypothesis testing: discovery"
+    ]
   },
   {
-    "objectID": "solutions/14_mlr_model_building_2.html#exercise-8-adjusted-r-squared",
-    "href": "solutions/14_mlr_model_building_2.html#exercise-8-adjusted-r-squared",
-    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
-    "section": "Exercise 8: Adjusted R-squared",
-    "text": "Exercise 8: Adjusted R-squared\n\nAdjusted R-squared is less than the R-squared\nFrom model 1 to 2, R-squared increased and Adjusted R-squared decreased.\nisland didn’t provide useful information about bill length beyond what was already provided by species."
+    "objectID": "activities/22_hypothesis_testing_discovery.html#reflection",
+    "href": "activities/22_hypothesis_testing_discovery.html#reflection",
+    "title": "22. Hypothesis testing: discovery",
+    "section": "Reflection",
+    "text": "Reflection\nBased on this activity and the inference tools you’ve learned about so far (sampling distributions, standard errors, confidence intervals), can you think of and describe a way that you can quantify evidence “for” or “against” a coefficient being equal to some particular value? (for example, we have evidence that the average mercury concentration in Lumber River fish is ~1.08ppm, and the standard error of this estimate suggests that observing a fish with 0ppm is very unlikely. How can we quantify that evidence?)\n\nResponse:\n\n\nSolutions",
+    "crumbs": [
+      "22. Hypothesis testing: discovery"
+    ]
   },
   {
     "objectID": "tech_setup.html",
@@ -1861,6 +1879,69 @@
     "crumbs": [
       "21. Confidence intervals"
     ]
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html",
+    "href": "solutions/14_mlr_model_building_2.html",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "",
+    "text": "# Load packages\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n# Load data\nlibrary(palmerpenguins)\ndata(penguins)\n\npenguins &lt;- penguins %&gt;% \n    mutate(flipper_length_cm = flipper_length_mm / 10)\nRun the code chunk below to build a bunch of models that you’ll be exploring in the exercises:\npenguin_model_1 &lt;- lm(bill_length_mm ~ flipper_length_mm, penguins)\npenguin_model_2 &lt;- lm(bill_length_mm ~ flipper_length_cm, penguins)\npenguin_model_3 &lt;- lm(bill_length_mm ~ flipper_length_mm + flipper_length_cm, penguins)\npenguin_model_4 &lt;- lm(bill_length_mm ~ body_mass_g, penguins)\npenguin_model_5 &lt;- lm(bill_length_mm ~ flipper_length_mm + body_mass_g, penguins)"
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html#exercise-1-modeling-bill-length-by-flipper-length",
+    "href": "solutions/14_mlr_model_building_2.html#exercise-1-modeling-bill-length-by-flipper-length",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "Exercise 1: Modeling bill length by flipper length",
+    "text": "Exercise 1: Modeling bill length by flipper length\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_2\nflipper_length_cm\n\n\npenguin_model_3\nflipper_length_mm + flipper_length_cm\n\n\n\nPlots of the first two models are below:\n\nggplot(penguins, aes(y = bill_length_mm, x = flipper_length_mm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nggplot(penguins, aes(y = bill_length_mm, x = flipper_length_cm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range (`stat_smooth()`).\nRemoved 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\nYour intuition–answers will vary\nThe R-squared values are all the same!\n\n\nsummary(penguin_model_1)$r.squared\n\n[1] 0.430574\n\nsummary(penguin_model_2)$r.squared\n\n[1] 0.430574\n\nsummary(penguin_model_3)$r.squared\n\n[1] 0.430574\n\n\n\nThe two variables are perfectly linearly correlated—they contain exactly the same information!\n\n\nggplot(penguins, aes(x = flipper_length_cm, y = flipper_length_mm)) +\n    geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\nAn NA means that the coefficient couldn’t be estimated. In penguin_model_3, the interpretation of the flipper_length_cm coefficient is the average change in bill length per centimeter change in flipper length, while holding flipper length in millimeters constant…this is impossible! We can’t hold flipper length in millimeters fixed while varying flipper length in centimeters—if one changes the other must. (In linear algebra terms, the matrix underlying our data is not of full rank.)"
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html#exercise-2-incorporating-body_mass_g",
+    "href": "solutions/14_mlr_model_building_2.html#exercise-2-incorporating-body_mass_g",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "Exercise 2: Incorporating body_mass_g",
+    "text": "Exercise 2: Incorporating body_mass_g\nIn this exercise you’ll consider 3 models of bill_length_mm:\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_4\nbody_mass_g\n\n\npenguin_model_5\nflipper_length_mm + body_mass_g\n\n\n\n\nflipper_length_mm is a better predictor than body_mass_g because penguin_model_1 has an R-squared value of 0.4306 vs 0.3542 for penguin_model_4.\nIntuition check–answers will vary\nR-squared is for penguin_model_5 which is slightly higher than that of penguin_model_1 and penguin_model_4.\n\nd.flipper_length_mm and body_mass_g are positively correlated and thus contain related information, but not completely redundant information. There’s some information in flipper length in explaining bill length that isn’t captured by body mass, and vice-versa.\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n    geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html#exercise-3-redundancy-and-multicollinearity",
+    "href": "solutions/14_mlr_model_building_2.html#exercise-3-redundancy-and-multicollinearity",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "Exercise 3: Redundancy and Multicollinearity",
+    "text": "Exercise 3: Redundancy and Multicollinearity\n\n\n\nmodel\npredictors\n\n\n\n\npenguin_model_1\nflipper_length_mm\n\n\npenguin_model_2\nflipper_length_cm\n\n\npenguin_model_3\nflipper_length_mm + flipper_length_cm\n\n\npenguin_model_4\nbody_mass_g\n\n\npenguin_model_5\nflipper_length_mm + body_mass_g\n\n\n\n\npenguin_model_3 had redundant predictors: `flipper_length_mm and flipper_length_cm\npenguin_model_5 had multicollinear predictors: flipper_length_mm and body_mass_g were related but not redundant\nR-squared will stay the same if we add a redundant predictor to a model.\nR-squared will increase by a small amount if we add a multicollinear predictor to a model."
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html#exercise-4-considerations-for-strong-models",
+    "href": "solutions/14_mlr_model_building_2.html#exercise-4-considerations-for-strong-models",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "Exercise 4: Considerations for strong models",
+    "text": "Exercise 4: Considerations for strong models\n\nA gut check! Answers will vary\nBased on R-squared: recall that R-squared is interpreted as the proportion of variation in the outcome that our model explains. It would seem that higher is better, so poly_mod_9 might seem to be the best. BUT we’ll see where this reasoning is flawed soon!\nBased on the plots: Answers will vary"
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html#exercise-5-reflecting-on-these-investigations",
+    "href": "solutions/14_mlr_model_building_2.html#exercise-5-reflecting-on-these-investigations",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "Exercise 5: Reflecting on these investigations",
+    "text": "Exercise 5: Reflecting on these investigations\n\nsalmon, chocolate, samosas. Together? Yuck!\nRegarding model 9:\n\nNOT easy to interpret.\nNO. It’s much more wiggly than the general trend.\nNOT WELL. It is too tailored to our data."
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html#exercise-6-overfitting",
+    "href": "solutions/14_mlr_model_building_2.html#exercise-6-overfitting",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "Exercise 6: Overfitting",
+    "text": "Exercise 6: Overfitting\nThe bottom left plot pokes fun at overfitting."
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html#exercise-7-questioning-r-squared",
+    "href": "solutions/14_mlr_model_building_2.html#exercise-7-questioning-r-squared",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "Exercise 7: Questioning R-squared",
+    "text": "Exercise 7: Questioning R-squared\nIt measures how well our model explains / predicts our sample data, not how well it explains / predicts the broader population. It also has the feature that any non-redundant predictor added to a model will increase the R-squared."
+  },
+  {
+    "objectID": "solutions/14_mlr_model_building_2.html#exercise-8-adjusted-r-squared",
+    "href": "solutions/14_mlr_model_building_2.html#exercise-8-adjusted-r-squared",
+    "title": "Solutions for 14. Multiple linear regression: model building (part 2)",
+    "section": "Exercise 8: Adjusted R-squared",
+    "text": "Exercise 8: Adjusted R-squared\n\nAdjusted R-squared is less than the R-squared\nFrom model 1 to 2, R-squared increased and Adjusted R-squared decreased.\nisland didn’t provide useful information about bill length beyond what was already provided by species."
   },
   {
     "objectID": "solutions/17_logistic_multiple_evaluation.html",

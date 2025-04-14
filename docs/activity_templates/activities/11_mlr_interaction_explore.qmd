@@ -1,0 +1,466 @@
+---
+title: "11/12: Multiple linear regression: exploring interaction"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+eval: false # change this to "true" if you want to render a complete .qmd      
+---
+
+# Notes
+
+-   Download the `.qmd` file for this activity [here](../activity_templates/11_mlr_interaction_explore.qmd).
+
+## Learning goals
+
+By the end of this lesson, you should be able to:
+
+- Visualize interactions between categorical and quantitative predictors using scatterplots and side-by-side or boxplots
+- Critically think through whether an interaction term makes sense, or should be included in a multiple linear regression model
+- Write a **model formula** for a multiple linear regression model with an interaction term between two quantitative predictors, two categorical predictors, or one quantitative and one categorical predictor
+- Interpret the **intercept** and **slope** coefficients in a multiple linear regression model with an interaction term
+
+## Readings and videos
+
+Choose either the reading or the videos to go through **before** class.
+
+- Reading: Section 3.9.3 in the [STAT 155 Notes](https://mac-stat.github.io/Stat155Notes/)
+- Video:
+    - [Interaction variables](https://voicethread.com/share/15085486/)
+
+
+**File organization:** Save this file in the "Activities" subfolder of your "STAT155" folder.
+
+# Class exploration
+
+> **Guiding question:** What job sectors have the highest return on education?
+
+We'll use data from the 2018 Current Population Survey to explore. The codebook for this data is available [here](https://mac-stat.github.io/data/cps_2018_codebook.html). For now we'll focus on individuals who have jobs in the management or transportation sectors to simplify our explorations.
+
+```{r}
+# Load packages and data
+library(readr)
+library(ggplot2)
+library(dplyr)
+cps <- read_csv("https://mac-stat.github.io/data/cps_2018.csv")
+
+# Get data on just the management and transportation sectors
+cps_sub <- cps %>% 
+    filter(industry %in% c("management", "transportation"))
+```
+
+## Exercise A. Visualize education vs wages
+
+It would be great to know the true effect of years of education on wages. Let's start by looking at the relationship between these two variables.
+
+```{r}
+ggplot(cps_sub, aes(x = education, y = wage)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE)
+```
+
+
+## Exercise B. Model the relationship between education and wages
+
+There is a positive correlation between years of education and wages, with a fair bit of spread about the line of best fit. We can fit a simple linear regression model to obtain the intercept and slope of that line.
+
+```{r}
+wage_mod_1 <- lm(wage ~ education, data = cps_sub)
+coef(summary(wage_mod_1))
+```
+
+Note that our intercept estimate is negative which doesn't make sense! People with 0 years of education still earn wages! Inspecting the plot, we likely could have better accounted for this with a nonlinear transformation of the `education` variable, but we will leave this issue aside for now.
+
+Let's focus on this question: does this simple linear regression model help us understand the true effect of years of education?
+
+## Exercise C. Draw a causal diagram with industry as a confounder
+
+We'll want to consider confounding variables in order to better answer that question. One possible confounder is industry. **Draw a causal diagram showing how industry, years of education, and wage relate, and explain what unfair comparisons result from using a simple linear regression model.**
+
+## Exercise D. Adjusting for a confounder
+
+Let's adjust for industry by fitting a multiple linear regression model.
+
+```{r}
+wage_mod_2 <- lm(wage ~ education + industry, cps_sub)
+coef(summary(wage_mod_2))
+```
+
+**Interpret the `education` and `industrytransportation` coefficients in the context of the data. (Remember to include units.) How does the relationship between years of education and wages change after adjusting for industry?**
+
+Hold on! We sped ahead too quickly. It's important to visualize our data thoroughly first. Let's add industry to our original scatterplot. **What do you notice about the lines of best fit for these two industries?**
+
+```{r}
+ggplot(cps_sub, aes(x = education, y = wage, color = industry)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE)
+```
+
+It would be nice to be able to capture the different trend for the two industries. Let's see if our original multiple linear regression model (`wage_mod_1`) was able to do so.
+
+```{r}
+# Visualize the relationships from the fitted model
+ggplot(cps_sub, aes(y = wage, x = education, color = industry)) + 
+    geom_line(aes(y = wage_mod_2$fitted.values))
+```
+
+**What do you notice about what our model produces? Based on your coefficient interpretations from earlier, is this behavior what you would have expected? How do you think our multiple linear regression model is limited? How might we try to fix this?**
+
+In our causal diagram, both years of education and industry affect wages, and *one* way to capture this is with our model in `wage_mod_2`:
+
+$E[\text{wage} \mid \text{education}, \text{industry}) = \beta_0 + \beta_1 \text{education} + \beta_2 \text{industrytransportation}$
+
+Some other ways to capture how wages are affected by years of education and industry could look like this:
+
+- $\beta_0 + \beta_1 \text{education} + \beta_2 \text{industrytransportation} + \beta_3 \text{education}^2$
+- $\beta_0 + \beta_1 \text{education} + \beta_2 \text{industrytransportation} + \beta_3 \log(\text{education})$
+- $\beta_0 + \beta_1 \text{education} + \beta_2 \text{industrytransportation} + \beta_3 \text{education}*\text{industrytransportation}$
+
+That last type of model is called an **interaction model**. A general interaction model formula looks like this:
+
+$E[Y \mid X_1, X_2) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_1*X_2$
+
+The outcome $Y$ depends on $X_1$ and $X_2$ with the usual multiple linear regression part: $\beta_1 X_1 + \beta_2 X_2$. But it *also* includes an **interaction term** $\beta_3 X_1*X_2$.
+
+## Exercise E. Fitting an interaction model
+
+Let's fit an interaction model for our `cps_sub` data and explore what relationships our model estimates.
+
+```{r}
+# Fit an interaction model
+# NEW SYNTAX: Note the * instead of +
+wage_mod_2 <- lm(wage ~ education * industry, cps_sub)
+
+# Visualize the relationships from the interaction model
+ggplot(cps_sub, aes(y = wage, x = education, color = industry)) + 
+    geom_line(aes(y = wage_mod_2$fitted.values))
+```
+
+**How does our new interaction model compare to our previous one?**
+
+This is a more complex new model! Let's explore what is going on mathematically by examining the overall model formula and how we can use it to get model formulas for each industry.
+
+```{r}
+# View coefficient estimates
+coef(summary(wage_mod_2))
+```
+
+**Model formulas:**
+
+E[wage | education, industry] = -65590.606 + 8678.274 education + 90232.230 transportation - 7580.228 education * transportation
+
+**Broken down by industry:**    
+
+Management:
+
+E[wage | education, industry = management] = -65590.606 + 8678.274 education
+
+Transportation:
+
+E[wage | education, industry = transportation] = -65590.606 + 8678.274 education + 90232.230 - 7580.228 education
+    = (-65590.606 + 90232.230) + (8678.274 - 7580.228)education    
+    = 24641.62 + 1098.046education
+
+
+**Question 1:** The intercept coefficient, -65590.606, corresponds to what property of the lines?
+
+a) management intercept
+b) transportation intercept
+c) how the transportation intercept compares to the management intercept
+
+Thus, how can we interpret this coefficient in the context of the wage analysis?
+
+
+**Question 2:** The transportation coefficient, 90232.230, corresponds to what property of the lines?
+
+a) management intercept
+b) transportation intercept
+c) how the transportation intercept compares to the management intercept
+
+Thus, how can we interpret this coefficient in the context of the wage analysis?
+
+
+**Question 3:** The education coefficient, 8678.274, corresponds to what property of the lines?
+
+a) management slope
+b) transportation slope
+c) how the transportation slope compares to the management slope
+
+Thus, how can we interpret this coefficient in the context of the wage analysis?
+
+
+**Question 4:** The interaction coefficient, -7580.228, corresponds to what property of the lines?
+
+a) management slope
+b) transportation slope
+c) how the transportation slope compares to the management slope
+
+Thus, how can we interpret this coefficient in the context of the wage analysis?
+
+## Exercise F: Wages across all industries
+
+The plot below illustrates the relationship between wage and education for all of the industries in our `cps` dataset.
+
+```{r}
+# Plot
+ggplot(cps, aes(y = wage, x = education, color = industry)) + 
+    geom_smooth(method = "lm", se = FALSE)
+```
+
+a. What about this plot indicates that it would be a good idea to fit an interaction model?
+
+b. What industry will R use as the reference category?
+
+c. (Challenge!) Before fitting the model in R, write down what you think the model formula will look like.
+
+d. Fit a model that includes an **interaction term** between `education` and `industry`.
+
+```{r}
+# Fit an interaction model called wage_model
+
+
+# Display summarized model output
+
+```
+
+e. In what industry do wages increase the *most* per additional year of education? What is this increase?
+
+f. Similarly, in what industry do wages increase the *least* per additional year of education? What is this increase?
+
+
+# Exercises
+
+**Context:** Today we'll explore data on incumbency and campaign spending, revisit the bikes data we've looked at previously in this course, and explore data on characteristics of used cars. Read in the data below.
+
+```{r warning=FALSE, message=FALSE}
+# Load packages and import data
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(stringr)
+library(tidyr)
+
+bikes <- read_csv("https://mac-stat.github.io/data/bikeshare.csv")
+
+# A little bit of data wrangling code - let's not focus on this for now
+campaigns <- read_csv("https://mac-stat.github.io/data/campaign_spending.csv") %>% 
+  dplyr::select(wholename, district, votes, incumbent, spending) %>% 
+  mutate(spending = spending / 1000) %>% 
+  filter(!is.na(spending))
+
+# A little bit of data wrangling code - let's not focus on this for now
+cars <- read_csv("https://mac-stat.github.io/data/used_cars.csv") %>%
+  mutate(milage = milage %>% str_replace(",","") %>% str_replace(" mi.","") %>% as.numeric(),
+         price = price %>% str_replace(",","") %>% str_replace("\\$","") %>% as.numeric(),
+         age = 2025 - model_year) # 2025 so that yr. 2024 cars are one year old
+```
+
+For the first several exercises, we'll consider the following research questions:
+
+1. What role does campaign spending play in elections? 
+
+2. (a) Do candidates that spend more money tend to get more votes? 
+
+2. (b) How might this depend upon whether a candidate is an incumbent (they are running for RE-election) or a challenger (they are challenging the incumbent)? 
+
+We'll use data collected by [Benoit and Marsh (2008)](http://www.kenbenoit.net/pdfs/ajps_348.pdf) on the campaign spending of 464 candidates in the 2002 Irish Dail elections (Ireland's version of the U.S. House of Representatives) to explore these questions. The units of `spending` are 1,000 Euros.
+
+
+
+## Exercise 1: Translating scientific questions into statistical questions
+
+a. Look at the variables we have access to in the cleaned version of the data we read into R, and consider our first research question. How might we translate this question into a statistical one, that we could answer using the data we have available? 
+
+There is no one *right* answer to this! Brainstorm with your group.
+
+```{r}
+head(campaigns)
+```
+
+b. Question 2 (a) is a bit more specific than Question 1. Translate this question into a statistical one that can be answered using a simple linear regression model. Write out the model statement in $E[Y | X] = ...$ notation that would answer this question, and note which regression coefficient you would interpret to provide you with an answer.
+
+$$
+E[___ | ___] = ...
+$$
+
+c. Question 2 (b) is also specific, and builds on Question 2 (a). Translate this question into a statistical one that can be answered using a *multiple* linear regression model. Write out the model statement in $E[Y | X] = ...$ notation that would answer this question, and note which regression coefficient you would interpret to provide you with an answer.
+
+$$
+E[___ | ___] = ...
+$$
+
+## Exercise 2: Visualizing Interaction
+
+a. Write R code to visualize the relationship between campaign spending and number of votes a candidate received. Include an aesthetic to distinguish this relationship between incumbents and challengers. Do *not* include lines of best fit from any statistical model on your plot at this point!
+
+```{r}
+# Visualization
+
+```
+
+b. Based on your visualization from part (a), what are your answers to research questions 2 (a) and 2 (b)? Write your answer in 2-3 sentences, describing general trends you notice, suitable for a general audience.
+
+c. Add lines of best fit from a statistical model that includes an interaction term between incumbent status and spending to your plot from part (a), using `geom_smooth`. Based on your updated plot, do you think including an interaction between incumbent status and spending in a multiple linear regression model would be meaningful in this context? Why or why not?
+
+```{r}
+# Visualization with lines of best fit
+
+```
+
+## Exercise 3: Fitting and interpreting models with interaction terms
+
+a. Fit the regression model you wrote out in Exercise 1 (c). *Report* (do not interpret yet!) the regression coefficients below.
+
+```{r}
+# Model with interaction term
+
+```
+
+> (Intercept):
+
+> incumbentYes:
+
+> spending:
+
+> incumbentYes:spending:
+
+b. Using the coefficient estimates from part (a), write out *two separate model statements*, one for incumbents and one for challengers. Combine terms (using algebra) when you can! *Hint*: remember the indicator variables video!
+
+* For incumbents:
+
+$$
+E[votes | spending] = 
+$$
+
+* For challengers:
+
+$$
+E[votes | spending] = 
+$$
+
+c. Interpret the coefficient for `incumbent` in your interaction model, in context. *Make sure to use non-causal language, include units, and talk about averages rather than individual cases.* Is this coefficient scientifically meaningful?
+
+d. When interpreting an interaction coefficient where one of the variables interacting is quantitative and one is categorical, it is often convenient to do so in separate sentences: interpret the slope for each category separately! 
+
+Interpret the coefficient for the interaction term in your model, in context. *Make sure to use non-causal language, include units, and talk about averages rather than individual cases.*
+
+e. Based on your interpretation in part (d), and the visualization you made including lines of best fit, do you think that including an interaction term for incumbent status and spending is meaningful, when predicting number of votes? Explain why or why not.
+
+## Exercise 4: Interactions between two categorical variables
+
+Let's return to our data on bike ridership. Suppose we are interested in the relationship between daily ridership (our response variable) and whether a user is a casual or registered rider **and** whether the day falls on a weekend. First, we need to create a binary variable indicating whether a user is a casual or registered rider.
+
+```{r}
+# Creating user variable, don't worry about syntax!
+new_bikes <- bikes %>%
+  dplyr::select(riders_casual, riders_registered, weekend, temp_actual) %>%
+  pivot_longer(cols = riders_casual:riders_registered, names_to = "user",
+               names_prefix = "riders_", values_to = "rides") %>%
+  mutate(weekend = factor(weekend))
+```
+
+a. For each of our three relevant variables, `weekend`, `user`, and `rides`, classify them as quantitative or categorical.
+
+> `weekend`:
+
+> `user`:
+
+> `rides`:
+
+b. Make an appropriate visualization to explore the relationship between these three variables.
+
+```{r}
+# Visualization
+
+```
+
+c. Is the relationship between ridership and weekend status the same for both registered and casual users? Explain why or why not, referencing the visualization you made in part (b).
+
+d. To reflect what you observed in your visualization, fit a multiple linear regression model with an interaction term between `weekend` and `user` in our model of ridership.
+
+```{r}
+# Multiple linear regression model
+
+```
+
+e. Interpret the interaction term from your model, in context. *Make sure to use non-causal language, include units, and talk about averages rather than individual cases.* Just as in Exercise 3, you may find it useful to first write out multiple model statements for different categories defined by one of your categorical variables, and proceed from there! 
+
+## Exercise 5: Interactions between two quantitative variables
+
+Here we'll explore the relationship between `price`, `milage`, and `age` of a used car. Below is a scatterplot of mileage vs. price, colored by age:
+
+```{r}
+cars %>% 
+  ggplot(aes(x = milage, y = price, col = age)) +
+  geom_point(alpha = 0.5) + # make the points less opaque
+  scale_color_viridis_c(option = "H") + # a fun, colorblind-friendly palette!
+  theme_classic() # removes the gray background and grid
+```
+
+It's a little difficult to tell what exactly is going on here. In particular, does the relationship between mileage and price vary with age of a used car? Let's try adding some fitted lines for cars of different ages.
+
+```{r}
+# Ignore where the numbers in geom_abline() came from for now... we'll get there
+cars %>% 
+  ggplot(aes(x = milage, y = price, col = age)) +
+  geom_point(alpha = 0.5) + 
+  scale_color_viridis_c(option = "H") + 
+  theme_classic() +
+  geom_abline(slope = -6.558e-01 + 2.431e-02, intercept = 9.096e+04 -2.665e+03, col = "black") +
+  geom_abline(slope = -6.558e-01 + 10 * 2.431e-02, intercept = 9.096e+04 - 10 * 2.665e+03, col = "blue") +
+  geom_abline(slope = -6.558e-01 + 30 * 2.431e-02, intercept = 9.096e+04 - 30 * 2.665e+03, col = "green") +
+  ggtitle("Black: Age = 1yr, Blue: Age = 10yr, Green: Age = 30yr")
+```
+
+a. **Challenge question**: Based on the fitted lines in the plot above, anticipate what the *signs* (positive or negative) of the coefficients in the following interaction model will be:
+
+$$
+E[price | age, milage] = \beta_0 + \beta_1 milage + \beta_2 age + \beta_3 milage:age
+$$
+* $\beta_0$:  Put your response here...
+
+* $\beta_1$:  Put your response here...
+
+* $\beta_2$:  Put your response here...
+
+* $\beta_3$:  Put your response here...
+
+b. Fit a multiple linear regression model with an interaction term between `milage` and `age` in our model of used car `price`.
+
+
+```{r}
+# Multiple linear regression model
+
+
+
+# ... now do you see where the numbers in geom_abline() came from?
+```
+
+
+As before, we could choose distinct ages, and interpret the relationship between mileage and price for each of those groups separately. However, since age is *quantitative* and not *categorical*, this doesn't quite give us the whole picture. Instead, we want to know how the relationship between mileage and price changes **for each additional year old** a car is. This is what the interaction coefficient estimates, when the interaction term is between two quantitative variables!
+
+c. Interpret the interaction term, in context. *Make sure to use non-causal language, include units, and talk about averages rather than individual cases.*
+
+
+
+## Reflection
+
+Through the exercises above, you practiced visualizing, fitting, and interpreting multiple linear regression models with interaction terms between combinations of categorical and quantitative variables. Think about how the fitted lines looked in situations where you think there was a *meaningful* interaction taking place. How do you think the fitted lines would look if there was *no* meaningful interaction present? Explain your reasoning.
+
+> **Response:** Put your response here.
+
+
+
+## Render your work
+
+- Click the "Render" button in the menu bar for this pane (blue arrow pointing right). This will create an HTML file containing all of the directions, code, and responses from this activity. A preview of the HTML will appear in the browser.
+- Scroll through and inspect the document to check that your work translated to the HTML format correctly.
+- Close the browser tab.
+- Go to the "Background Jobs" pane in RStudio and click the Stop button to end the rendering process.
+- Navigate to your "Activities" subfolder within your "STAT155" folder and locate the HTML file. You can open it again in your browser to double check.
+
+<br><br><br><br><br><br>
+
+[Solutions](../solutions/11_mlr_interaction_explore.qmd)
+

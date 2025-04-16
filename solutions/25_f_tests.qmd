@@ -1,0 +1,251 @@
+---
+title: "Nested Models & F-Tests"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r, warning = FALSE, message = FALSE}
+# load necessary packages
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+# load datasets
+MacGrades <- read_csv("https://mac-stat.github.io/data/MacGrades.csv")
+```
+
+## Exercise 1: Nested Models
+
+a. Models 1, 2, 4 and 6.
+
+b. 
+
+- Model 1 is nested in Model 2 TRUE
+- Model 1 is nested in Model 3 TRUE
+- Model 1 is nested in Model 4 FALSE
+- Model 2 is nested in Model 3 TRUE
+- Model 3 is nested in Model 2 FALSE
+- Model 2 is nested in Model 6 FALSE
+
+c. You could compare the Adjusted $R^2$ values from each model, and note that the one with a higher adjusted $R^2$ is better by this metric. Multiple $R^2$ would *not* be a good metric, because the larger model (within the nesting structure) will *always* have a higher $R^2$ value.
+
+
+## Exercise 2: F-Tests
+
+
+a. It is reasonable to assume that course grade varies by department as well as course level and instructor. Certain instructors may grade more strictly (or curve more) than others, and similarly, this can vary across department due to cultural norms within the department. As the level of a course gets higher, I would expect grades to perhaps get lower, since courses with higher numbers are expected to be more difficult. Then again, students perhaps “care” more about such courses, and may put in more effort to get a higher grade. I doubt semester plays a significant role in determining course grades, though it is possible that Fall semester first-years or Spring semester seniors have worse grades, on average. We don’t have course year as a variable in our data, so we would be unable to examine this relationship. As enrollment in a course goes up, I would expect grades to decrease, since professors have less time to dedicate to individual students when course enrollment is high.
+
+b. Explore the relationship between course grades and other variables in the data. Make at least four visualizations, *and* describe any patterns you observe.
+
+```{r, message = FALSE, warning = FALSE}
+library(stringr)
+# Exploratory plots
+
+# course grade vs. enrollment
+MacGrades %>%
+  ggplot(aes(enroll, grade)) +
+  geom_jitter() +
+  theme_classic() +
+  ggtitle("Course grades by enrollment numbers")
+
+# course grade vs. level
+MacGrades %>%
+  mutate(level = factor(level)) %>%
+  ggplot(aes(y = grade, x = level)) +
+  geom_boxplot() +
+  ggtitle("Course grades by course level")
+
+# course grade vs. level (treating grade as categorical)
+MacGrades %>%
+  filter(!is.na(grade)) %>%
+  mutate(level = factor(level),
+         grade = factor(grade)) %>%
+  ggplot(aes(x = level, fill = grade)) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d(option = "H") +
+  theme_classic() +
+  ggtitle("Course grades by course level")
+
+# course grade vs. semester
+MacGrades %>%
+  filter(!is.na(grade)) %>%
+  mutate(grade = factor(grade)) %>%
+  ggplot(aes(x = sem, fill = grade)) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d(option = "H") +
+  theme_classic() +
+  ggtitle("Course grades by semester") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Let's do something fancy and check out how grades have changed over time... this will require
+# some string manipulation
+
+MacGrades$year <- MacGrades$sem %>%
+  str_replace("FA", "") %>%
+  str_replace("SP", "") %>%
+  str_replace("S1", "") %>%
+  str_replace("S2", "") %>% 
+  str_replace("IT", "") %>% as.numeric()
+
+MacGrades %>%
+  ggplot(aes(year, grade)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_classic() +
+  ggtitle("Course grades by year, with least-squares line")
+```
+In general, course grades seem to be associated with enrollment numbers. Specifically, when enrollments are greater than 50, we see very few students receiving a course grade lower than a 2.0, which is different than when enrollments are fewer than 50 students. There does not appear to be a clear relationship between course grade and course level, with the exception of 600-level courses. In these cases, every student received either an A or A-. It does seem like the proportion of students who received lower than a 2.67 is greater for 100-level courses than the other course levels.
+
+
+c. 
+
+```{r}
+# Make level categorical
+MacGrades <- MacGrades %>%
+  mutate(level = factor(level))
+```
+
+
+d. 
+
+```{r}
+mod <- lm(grade ~ level, data = MacGrades)
+summary(mod)
+```
+
+We observe that as course level goes up, course grades also tend to increase on average.
+
+e. State the null and alternative hypotheses associated with the research question in part (d).
+
+$$
+H_0: \beta_1 = \beta_2 = \beta_3 = \beta_4 = 0
+$$
+
+$$
+H_1: \text{One of } \beta_1, \beta_2, \beta_3, \beta_4 \neq 0
+$$
+In words, the null is that there is *no* relationship between course level and course grades, and the alternative is that there is *some* relationship (either positive or negative) between course level and course grades.
+
+f. The p-value associated with this hypothesis test is 9.713 x $10^{-13}$. We do have enough evidence to reject the null hypothesis.
+
+
+g. 
+
+```{r}
+mod <- lm(grade ~ enroll, data = MacGrades)
+summary(mod)
+```
+
+
+h. 
+
+$$
+H_0: \beta_1 = 0
+$$
+
+$$
+H_1: \beta_1 \neq 0
+$$
+
+i. The p-value associated with this hypothesis test is 2.806 x $10^{-06}$. We do have enough evidence to reject the null hypothesis. Note that this p-value could be obtained from either the overall model fit or from the individual coefficient for enroll (they are the same). They may be ever so slightly different when there are few observations in your dataset, but when there are a lot, they will be exactly identical.
+
+
+j. We do *not* need to conduct an F-test, because our hypothesis test involves only a single regression coefficient, and therefore is readily obtained from the summary output of our linear model in R.
+
+
+## Exercise 3: More F-tests
+
+
+a. 
+
+$$
+E[grade | enroll, level] = \beta_0 + \beta_1 enroll + \beta_2 level200 + \beta_3 level300 + \beta_4 level400 + \beta_5 level600
+$$
+
+The relevant coefficient that answers our scientific question is $\beta_1$, or the coefficient that corresponds to enrollment.
+
+
+b. 
+
+The relevant null and alternative hypotheses are:
+
+$$
+H_0: \beta_1 = 0
+$$
+$$
+H_1: \beta_1 \neq 0
+$$
+We do not need to conduct an F-test to complete this hypothesis testing procedure, since our hypothesis involves only a single regression coefficient.
+
+c.  
+
+```{r}
+mod <- lm(grade ~ enroll + level, data = MacGrades)
+summary(mod)
+```
+
+We have statistically significant evidence of a relationship between enrollment and course grade, for courses of the same level (p = 0.001058). We reject the null hypothesis that there is no relationship between enrollment and course grade, adjusting for course level.
+
+
+## Exercise 4
+
+
+Our model statement is identical to that in Exercise 3, but the relevant coefficients are $\beta_2, \beta_3, \beta_4$, and $\beta_5$. 
+
+The relevant null and alternative hypotheses are:
+
+$$
+H_0: \beta_2 = \beta_3 = \beta_4 = \beta_5 = 0
+$$
+
+$$
+H_1: \text{At least one of } \beta_2, \beta_3, \beta_4, \beta_5 \neq 0
+$$
+
+We *do* need to conduct an F-test to complete this hypothesis testing procedure, since our hypothesis involves more than one regression coefficient.
+
+```{r}
+# Same model as in Question 10, we just now need to do an F-test!
+mod <- lm(grade ~ enroll + level, data = MacGrades)
+smaller_mod <- lm(grade ~ enroll, data = MacGrades)
+
+anova(smaller_mod, mod)
+```
+
+We have statistically significant evidence of a relationship between course level and course grade, for courses of the same enrollment ($p = 2.19 \times 10^{-10}$). We reject the null hypothesis that there is no relationship between course level and course grade, adjusting for enrollment.
+
+## Exercise 5: Reference categories
+
+a. 
+
+H0: There is no relationship between course grade and department.
+
+H1: There is *some* relationship between course grade and department.
+
+b. 
+
+```{r}
+mod <- lm(grade ~ dept, data = MacGrades)
+summary(mod)
+```
+
+We have statistically significant evidence of a relationship between department and course grades at a significance level of 0.05 (p-value < 2.2 x $10^{-16}$). We reject the null hypothesis that there is no relationship between course grade and department.
+
+c. 
+
+*None* of the individual p-values for department are significant! These p-values tell us about whether or not there is a statistically significant difference in course grades between each respective department and the *reference* department (Department "A"). This doesn't contradict our answer to part (b) because there are different hypothesis tests that answer different questions!
+
+
+
+
+
+
+
+
+

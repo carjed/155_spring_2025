@@ -38,7 +38,7 @@ website:
       title: "Activities"
       contents:
         # - "activities/26_p_values_discussion.qmd"
-        # - "activities/25_f_tests.qmd"
+        - "activities/25_f_tests.qmd"
         # - "activities/24_hypothesis_testing_considerations.qmd"
         - "activities/23_hypothesis_testing_details.qmd"
         - "activities/22_hypothesis_testing_discovery.qmd"

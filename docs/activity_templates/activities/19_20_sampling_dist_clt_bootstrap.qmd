@@ -1,0 +1,461 @@
+---
+title: "19/20. Sampling distributions, the CLT, and Bootstrapping"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+eval: false # change this to "true" if you want to render a complete .qmd          
+---
+
+<!-- NOTES to instructor: Go through the "Warm-Up" section together as a class!-->
+
+# Notes
+
+-   You can download a template file to work with [here](../activity_templates/19_20_sampling_dist_clt_bootstrap.qmd).
+-   **File organization:** Save this file in the "Activities" subfolder of your "STAT155" folder.
+
+## Learning goals
+
+Let $\beta$ be some *population parameter* and $\hat{\beta}$ be a *sample estimate* of $\beta$. Our goals for the day are to:
+
+-   use simulation to solidify our understanding of **sampling distributions** and **standard errors**
+-   explore and compare two approaches to approximating the sampling distribution of $\hat{\beta}$:
+    -   Central Limit Theorem (CLT)
+    -   bootstrapping
+-   explore the impact of **sample size** on sampling distributions and standard errors
+
+## Readings and videos
+
+Please watch/do the following videos and readings **before** class:
+
+-   Reading: Section 6.7 in the [STAT 155 Notes](https://mac-stat.github.io/Stat155Notes/)
+-   Video 1: [sampling distributions](https://youtu.be/Md0TlOoBW38)
+-   Video 2: [Central Limit Theorem](https://youtu.be/_Sz0IDI-apk)
+-   Video 3: [bootstrapping](https://voicethread.com/myvoice/thread/15611638/97563140)
+
+# Warm-Up
+
+Rivers contain small concentrations of mercury which can accumulate in fish. Scientists studied this phenomenon among largemouth bass in the Wacamaw and Lumber rivers of North Carolina.
+
+One goal of this study was to explore the relationship of a fish's mercury concentration (Concen) with its size, specifically its Length:
+
+$$
+E(Concen | Length) = \beta_0 + \beta_1 Length
+$$
+
+To this end, they caught and evaluated 171 fish, and recorded the following:
+
+| variable | meaning                                                  |
+|:---------|:---------------------------------------------------------|
+| River    | Lumber or Wacamaw                                        |
+| Station  | Station number where the fish was caught (0, 1, ..., 15) |
+| Length   | Fish's length (in centimeters)                           |
+| Weight   | Fish's weight (in grams)                                 |
+| Concen   | Fish's mercury concentration (in parts per million; ppm) |
+
+```{r}
+# Load the data & packages
+library(tidyverse)
+library(readr)
+fish <- read_csv("https://Mac-STAT.github.io/data/Mercury.csv")
+```
+
+Plot and model the relationship of mercury concentration with length:
+
+```{r}
+fish %>% 
+  ggplot(aes(y = Concen, x = Length)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+fish_model <- lm(Concen ~ Length, data = fish)
+coef(summary(fish_model))
+```
+
+a.  In the summary table, is the `Length` coefficient 0.058 the *population parameter* $\beta_1$ or a *sample estimate* $\hat{\beta}_1$?
+
+> Your response here
+
+Since we don't know $\beta_1$, we *can't* know the exact error in $\hat{\beta}_1$! This is where **sampling distributions** come in.
+
+They describe how estimates $\hat{\beta}_1$ might vary from sample to sample, thus how far these estimates might fall from $\beta_1$:
+
+![](https://Mac-STAT.github.io/images/155/sampling_distribution_schema.png)
+
+For each of the concepts in the diagram above (Superpopulation, Finite Population, Sample), these represent for this specific data example:
+
+> Superpopulation: The true underlying process that governs the relationship between mercury concentration and length of fish, for every fish that has ever existed and ever will exist in these two rivers!
+
+> Finite Population: At the time the data was collected, the true observed relationship between mercury concentration and length of fish, for all fish in the two rivers *at that time*.
+
+> Sample: In our data, the observed/estimated relationship between mercury concentration and length of fish (this is $\hat{\beta}_1$!).
+
+In the previous activity, each student took *1* sample of 10 observations.
+
+This gave us a quick sense of how these estimates could vary from sample to sample.
+
+When trying to understand/approximate our sampling distribution, there are two main approaches we can take:
+
+1.  When our sample size n is "large enough", we might approximate the sampling distribution using the CLT:
+
+$$\hat{\beta}_1 \sim N(\beta_1, \text{standard error}^2)$$
+
+The standard error in the CLT is approximated from our *sample* via some formula $c / \sqrt{n}$ where "c" is complicated.
+
+Obtain and interpret this standard error from the model summary table:
+
+```{r}
+coef(summary(fish_model))
+```
+
+2.  Our *second* option is something called *bootstrapping*. It turns out that we can actually *resample* from our observed data, to approximate the sampling distribution of our estimate! If it feels somewhat magical to you that this works out, that's a very reasonable feeling.
+
+The saying "*to pull oneself up by the bootstraps*" is often attributed to Rudolf Erich Raspe's 1781 *The Surprising Adventures of Baron Munchausen* in which the character pulls himself out of a swamp by his hair (not bootstraps). In short, it means to get something from nothing, through your own effort:
+
+![](https://larspsyll.wordpress.com/wp-content/uploads/2015/12/muenchhausen_herrfurth_7_500x789.jpg?w=300&h=500)
+
+In this spirit, statistical bootstrapping **doesn't make any probability model assumptions**. It uses only the information from our one sample to approximate standard errors.
+
+## REFLECT
+
+Great! We have two options. Here are some things to think about / reflect on:
+
+-   We can *approximate* the sampling distribution and standard error using the CLT. BUT:
+    -   the *quality* of this approximation hinges upon the validity of the Central Limit *theorem* which hinges upon the validity of the *theoretical* model assumptions, as well as a large sample size
+    -   the CLT uses theoretical formulas for the standard error estimates, thus can feel a little mysterious without a solid foundation in probability theory
+-   We can *approximate* the sampling distribution and standard error using bootstrapping. BUT:
+    -   it feels magical. The statistical theory behind bootstrapping is quite complicated, and there are certain obscure cases (none that we will encounter in Stat 155) where the assumptions underlying bootstrapping fail to hold
+
+Neither approach is perfect, but they complement one another. **Bootstrapping** in particular, while it cannot and should not *replace* the CLT, gives us some nice intuition behind the idea of resampling, which is fundamental for hypothesis testing (which we'll get to shortly!).
+
+> **Reflect:** Before testing them out, what questions do you have about either approach? What do you think would help you build more intuition for the CLT and/or bootstrapping? Does one approach resonate with you more than the other?
+
+# Exercises
+
+## Exercise 1: 500 samples of size 10
+
+Recall that we can sample 10 observations from our dataset using `sample_n()`:
+
+```{r}
+# Run this chunk a few times to explore the different samples you get
+fish %>% 
+  sample_n(size = 10, replace = TRUE)
+```
+
+We can also take a sample and then use the data to estimate the model:
+
+```{r}
+# Run this chunk a few times to explore the different sample models you get
+fish %>% 
+  sample_n(size = 10, replace = TRUE) %>% 
+  with(lm(Concen ~ Length))
+```
+
+We can also take *multiple* unique samples and build a sample model from each.
+
+The code below obtains *500* separate samples of 10 fish, and stores the model estimates from each. (You will first need to run `install.packages("mosaic")` in the Console):
+
+```{r}
+# Set the seed so that we all get the same results
+set.seed(155)
+
+# Store the sample models
+sample_models_10 <- mosaic::do(500)*(
+  fish %>% 
+    sample_n(size = 10, replace = TRUE) %>% 
+    with(lm(Concen ~ Length))
+)
+
+# Check it out
+head(sample_models_10)
+dim(sample_models_10)
+```
+
+a.  What's the point of the `do()` function?!? If you've taken any COMP classes, what process do you think `do()` is a shortcut for?
+
+b.  What is stored in the `Intercept`, `Length`, and `r.squared` columns of the results?
+
+c.  We'll obtain a **bootstrapping distribution** of $\hat{\beta}_1$ by taking many (500, in this case) different samples of *every* fish in our dataset (171 of them) and exploring the degree to which $\hat{\beta}_1$ varies from sample to sample.
+
+Edit the code below to obtain a bootstrapping distribution.
+
+```{r}
+# Set the seed so that we all get the same results
+set.seed(155)
+
+# Store the sample models
+sample_models_boot <- mosaic::do(___)*(
+  fish %>% 
+    sample_n(size = ___, replace = TRUE) %>% 
+    with(lm(Concen ~ Length))
+)
+```
+
+## Exercise 2: Why "resampling" (`replace = TRUE`)?
+
+Let's wrap our minds around the idea of *resampling*, before coming back to our boostrapping distribution, using a small example of 5 fish:
+
+```{r}
+# Define data
+small_sample <- data.frame(
+  id = 1:5,
+  Length = c(44, 43, 54, 52, 40))
+
+small_sample
+```
+
+This sample has a mean Length of 46.6 cm:
+
+```{r}
+small_sample %>% 
+  summarize(mean(Length))
+```
+
+a.  The chunk below samples 5 fish *without* replacement from our `small_sample` of 5 fish, and calculates their mean length. Run it several times. How do the sample and resulting mean change?
+
+```{r}
+sample_1 <- sample_n(small_sample, size = 5, replace = FALSE)
+sample_1
+
+sample_1 %>% 
+  summarize(mean(Length))
+```
+
+b.  Sampling our sample *without* replacement merely returns our original sample. Instead, *resample* 5 fish from our `small_sample` *with* replacement. Run it several times. What do you notice about the samples? About their mean lengths?
+
+```{r}
+sample_2 <- sample_n(small_sample, size = 5, replace = TRUE)
+sample_2
+
+sample_2 %>% 
+  summarize(mean(Length))
+```
+
+*Resampling* our sample provides insight into the variability, hence potential error, in our sample estimates. (This works better when we have a sample bigger than 5!) As you observed in part b, each resample might include some fish from the original sample several times and others not at all.
+
+**Bonus Fact:** Sampling with replacement also ensures that our resampled observations are *independent*, which we need in order for bootstrapping to "work"!
+
+## Exercise 3: Sampling distribution
+
+Check out the resulting **500** bootstrapped sample models:
+
+```{r}
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_abline(data = sample_models_boot, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+Let's focus on the slopes of these 500 sample models.
+
+A plot of the 500 slopes *approximates* the **sampling distribution** of the sample slopes.
+
+```{r}
+sample_models_boot %>% 
+  ggplot(aes(x = Length)) + 
+  geom_density() + 
+  geom_vline(xintercept = 0.05813, color = "red") 
+```
+
+Describe the sampling distribution:
+
+a.  What's its general shape?
+
+b.  Where is it roughly centered?
+
+c.  Roughly what's its spread / i.e. what’s the range of estimates you observed?
+
+## Exercise 4: Standard error
+
+For a more rigorous assessment of the spread among the sample slopes, let's calculate their standard deviation:
+
+```{r}
+sample_models_boot %>% 
+  summarize(sd(Length))
+```
+
+Recall: The standard deviation of sample estimates is called a **"standard error"**.
+
+It measures the typical distance of a sample estimate from the actual population value.
+
+Compare the bootstrapped standard error to the standard error reported from our regression model (see the `Std. Error` column):
+
+```{r}
+coef(summary(fish_model))
+```
+
+Are they roughly equivalent?
+
+> Your response here
+
+## Exercise 5: Central Limit Theorem (CLT)
+
+Recall that the CLT assumes that, so long as our sample size is "big enough", the sampling distribution of the sample slope will be Normal.
+
+Specifically, all possible sample slopes will vary Normally around the population slope.
+
+-   Do your simulation results support this assumption? Why or why not?
+
+-   Want more intuition into the CLT? Watch this video explanation using bunnies and dragons: <https://www.youtube.com/watch?v=jvoxEYmQHNM>
+
+## Exercise 6: Using the CLT
+
+Let $\hat{\beta}_1$ be an estimate of the (super)population slope parameter $\beta_1$ calculated from a sample of 10 fish (`sample_models_10`).
+
+Estimate the standard error of the slope from these resampled estimates
+
+```{r}
+# Hint: Adapt the code from Exercise 4...
+
+```
+
+You should get a SE of *roughly* 0.026.
+
+Thus, by the CLT, the sampling distribution of $\hat{\beta}_1$ is:
+
+$$\hat{\beta}_1 \sim N(\beta_1, 0.026^2)$$
+
+Use this result with the 68-95-99.7 property of the Normal model to understand the potential error in a slope estimate.
+
+a.  There are many possible samples of 10 fish. What percent of these will produce an estimate $\hat{\beta}_1$ that's within 0.052, i.e. *2 standard errors*, of the actual population slope $\beta_1$?
+
+b.  More than 2 standard errors from $\beta_1$?
+
+c.  More than 0.079, i.e. 3 standard errors, *above* $\beta_1$?
+
+## Exercise 7: CLT and the 68-95-99.7 Rule
+
+Fill in the blanks below to complete some general properties assumed by the CLT:
+
+-   \_\_\_% of samples will produce $\hat{\beta}_1$ estimates within **1 st. err.** of $\beta_1$
+
+-   \_\_\_% of samples will produce $\hat{\beta}_1$ estimates within **2 st. err.** of $\beta_1$
+
+-   \_\_\_% of samples will produce $\hat{\beta}_1$ estimates within **3 st. err.** of $\beta_1$
+
+## Exercise 8: Increasing sample size
+
+Now that we have a sense of the potential variability and error in sample estimates, let's consider the impact of **sample size**.
+
+Suppose we were to increase our sample size from n = 10 to n = 50 or n = 100 fish. What impact do you *anticipate* this having on our sample estimates of the population parameters:
+
+-   Do you expect there to be more or less variability among the sample model lines?
+
+-   Around what value would you expect the sampling distribution of sample slopes to be centered?
+
+-   What general shape would you expect that sampling distribution to have?
+
+-   In comparison to estimates based on the samples of size 10, do you think the estimates based on samples of size 50 will be closer to or farther from the true slope (on average)?
+
+## Exercise 9: 500 samples of size n
+
+Let's increase the sample size in our simulation.
+
+Fill in the blanks to take 500 samples of size 50, and build a sample model from each.
+
+```{r}
+set.seed(155)
+sample_models_50 <- mosaic::do(___)*(
+  fish %>% 
+    ___(size = ___, replace = FALSE) %>% 
+    ___(___(Concen ~ Length))
+)
+
+# Check it out
+head(sample_models_50)
+```
+
+Similarly, take 500 samples of size 100, and build a sample model from each.
+
+```{r}
+set.seed(155)
+sample_models_100 <- mosaic::do(___)*(
+  fish %>% 
+    ___(size = ___, replace = FALSE) %>% 
+    ___(___(Concen ~ Length))
+)
+
+# Check it out
+head(sample_models_100)
+```
+
+## Exercise 10: Impact of sample size (part I)
+
+Compare and contrast the 500 sets of sample models when using samples of size 10, 50, and 100.
+
+```{r}
+# 500 sample models using samples of size 10
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_smooth(method = "lm", se = FALSE) + 
+  geom_abline(data = sample_models_10, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+```{r}
+# 500 sample models using samples of size 50
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_smooth(method = "lm", se = FALSE) + 
+  geom_abline(data = sample_models_50, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+```{r}
+# 500 sample models using samples of size 100
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_smooth(method = "lm", se = FALSE) + 
+  geom_abline(data = sample_models_100, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+a.  What happens to our sample models as sample size increases? Was this what you expected?
+
+## Exercise 11: Impact of sample size (part II)
+
+Let's focus on just the sampling distributions of our 500 slope estimates $\hat{\beta}_1$.
+
+For easy comparison, plot the estimates based on samples of size 10, 50, and 100 on the same frame:
+
+```{r}
+# Don't think too hard about this code!
+# Combine the estimates & sample size into a new data set
+# Then plot it
+
+data.frame(estimates = c(sample_models_10$Length, sample_models_50$Length, sample_models_100$Length),
+           sample_size = rep(c("10","50","100"), each = 500)) %>% 
+  mutate(sample_size = fct_relevel(sample_size, c("10", "50", "100"))) %>% 
+  ggplot(aes(x = estimates, color = sample_size)) + 
+  geom_density() + 
+  geom_vline(xintercept = 0.05813, color = "red", linetype = "dashed") + 
+  labs(title = "Sampling distributions of the sample slope")
+```
+
+a.  How do the shapes, centers, and spreads of these sampling distributions compare? Was this what you expected?
+
+## Exercise 12: Properties of sampling distributions
+
+In light of your observations, complete the following statements about the sampling distribution of the sample slope.
+
+a.  For all sample sizes, the shape of the sampling distribution is roughly \_\_\_ and the sampling distribution is roughly centered around \_\_\_, the sample estimate from our original data.
+
+b.  As sample size increases:\
+    The average sample slope estimate INCREASES / DECREASES / IS FAIRLY STABLE.\
+    The standard error of the sample slopes INCREASES / DECREASES / IS FAIRLY STABLE.
+
+c.  Thus, as sample size increases, our sample slopes become MORE RELIABLE / LESS RELIABLE.
+
+<br><br><br><br><br><br>
+
+[Solutions](../solutions/19_20_sampling_dist_clt_bootstrap.qmd)

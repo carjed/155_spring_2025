@@ -239,4 +239,4 @@ Compare the output of this model to that of `mod_fish2`. What happened to the es
 
 <br><br><br><br><br><br>
 
-[Solutions](../solutions/22_hypothesis_testing_details.qmd)
+[Solutions](../solutions/23_hypothesis_testing_details.qmd)

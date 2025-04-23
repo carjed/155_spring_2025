@@ -1779,11 +1779,46 @@
     ]
   },
   {
+    "objectID": "solutions/26_p_values_discussion.html",
+    "href": "solutions/26_p_values_discussion.html",
+    "title": "P-value Discussion",
+    "section": "",
+    "text": "In this activity, you will read an article about p-values and then discuss a set of prompts as a group. Each group will then share out some highlights of your discussion to the class.\n\n\nYour instructor will assign you to one of four groups, each with a different reading to complete ahead of class time. You are of course welcome to read more than only your assigned reading if you choose to! The group reading assignments are as follows:\n\nGroup 1: The ASA Statement on p-values\nGroup 2: Scientific method: Statistical error\nGroup 3: Moving to a World Beyond “p &lt; 0.05”\nGroup 4: Statistical tests, p-values, confidence intervals, and power: a guide to misinterpretations"
+  },
+  {
+    "objectID": "solutions/26_p_values_discussion.html#readings-and-videos",
+    "href": "solutions/26_p_values_discussion.html#readings-and-videos",
+    "title": "P-value Discussion",
+    "section": "",
+    "text": "Your instructor will assign you to one of four groups, each with a different reading to complete ahead of class time. You are of course welcome to read more than only your assigned reading if you choose to! The group reading assignments are as follows:\n\nGroup 1: The ASA Statement on p-values\nGroup 2: Scientific method: Statistical error\nGroup 3: Moving to a World Beyond “p &lt; 0.05”\nGroup 4: Statistical tests, p-values, confidence intervals, and power: a guide to misinterpretations"
+  },
+  {
+    "objectID": "solutions/26_p_values_discussion.html#step-1-review",
+    "href": "solutions/26_p_values_discussion.html#step-1-review",
+    "title": "P-value Discussion",
+    "section": "Step 1: Review",
+    "text": "Step 1: Review\nTake a few minutes to review the assigned reading. Make note of the things you found most important, the things you found most confusing, or the things you still have questions about."
+  },
+  {
+    "objectID": "solutions/26_p_values_discussion.html#step-2-discuss",
+    "href": "solutions/26_p_values_discussion.html#step-2-discuss",
+    "title": "P-value Discussion",
+    "section": "Step 2: Discuss",
+    "text": "Step 2: Discuss\nOnce everyone in your group is ready, find an empty space at the whiteboard.\nYou’ll discuss the following questions with your group and write down your key takeaways from your conversation on the board. After a few minutes, rotate to the next station: respond/react to the previous responses (e.g., add a + if you agree) and add your own. Repeat until you’ve visited all stations.\nQuestions:\n\nHow does this reading relate to your previous knowledge about p-values?\nWas anything that you learned from the reading particularly surprising?\nWhat are some of the ways in which p-values are often misinterpreted and/or misused?\nWhat suggestions does the article offer in terms of how p-values should be used?\nDoes the article provide any suggestions in terms of other tools that we should use instead of or in addition to p-values?\nWhat are your main takeaways from the reading?"
+  },
+  {
+    "objectID": "solutions/26_p_values_discussion.html#step-3-share-out",
+    "href": "solutions/26_p_values_discussion.html#step-3-share-out",
+    "title": "P-value Discussion",
+    "section": "Step 3: Share out",
+    "text": "Step 3: Share out\nDesignate someone from your group who will share the highlights of your discussion with the full class!"
+  },
+  {
     "objectID": "schedule.html",
     "href": "schedule.html",
     "title": "Course Schedule",
     "section": "",
-    "text": "The course schedule below will be filled in throughout the semester. Any urgent announcements will be made over email.\n\n\n\nWeek\nTuesday\nThursday\nAnnouncements\n\n\n\n\n12\n4/15: Hypothesis Testing Details\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n4/17: Hypothesis Testing: Nested Models\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n\nPP#7 due by 5pm on Wednesday, 4/16\nPP#8 due at 5pm on Wednesday 4/23 (Last homework!)\n\n\n\n11\n4/8: Confidence Intervals\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n4/10: Hypothesis Testing Discovery\nBefore class:\n\nno Moodle checkpoint due today!\n\n\nPP#6 due by 5pm on Wednesday, 4/9\nQuiz corrections/reflections due by 11:59pm on Thursday, 4/10\nProject Checkpoint #2 is due Friday, 4/11\n\n\n\n10\n4/1: The Normal model and sampling variation\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n4/3: Tools for inference\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n\nLast day to withdraw is Friday, 4/4\nNo due dates this week\n\nPP#6 is due at 5pm on Wednesday, 4/9\nProject Checkpoint #2 is due Friday, 4/11\n\n\n\n\n9\n3/25: Multiple Logistic Regression\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n3/27: Quiz 2 (1 hour in class)\n\nPP#5 due by 5pm on Wednesday, 3/26\n\n\n\n\n3/18: NO CLASS (spring break!)\n3/20: NO CLASS (spring break!)\n\n\n\n8\n3/11: Intro to Logistic Regression\nBefore class:\n\nComplete today’s Moodle checkpoints (two of them!)\n\n3/13: Review + Project Workday\n\nMidterm grades will be posted on Wednesday, 3/12\n\n\n\n7\n3/4: Model Building I\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n3/6: Model Building II\n\nNo Moodle checkpoint due today!\n\n\nPP#4 due by 5pm Wednesday, 3/5\n\n\n\n6\n2/25: MLR interactions\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/27: NO CLASS TODAY\n\nIn lieu of class, please attend 2-3 MSCS Capstone Talks taking place today or Friday (view the schedule here).\nSubmit a short summary of the talks you attended on Moodle\n\n\nPP#3 due by 5pm Wednesday, 2/26\nProject Checkpoint #1 due Friday, 2/28\n\n\n\n5\n2/18: Intro to multiple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/20: MLR confounding + project work day\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nNo homework due this week!\nLibrarians will be in class for project help on Thursday\n\n\n\n4\n2/11: SLR categorical predictors\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/13: Quiz 1 (1 hour in class)\n\nPP#2 due by 5pm Wednesday, 2/12\nGroup members for the final project are posted on Moodle\n\n\n\n3\n2/4: SLR model evaluation\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/6: SLR variable transformations + library activity\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nPP#1 due by 5pm Wednesday, 2/5\nPlease complete the project preferences survey by Friday, 2/7\nSee course Google Calendar for updated office hours\n\n\n\n2\n1/28: Intro to R + univariate visualization & summaries\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n1/30: Intro to simple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nLast day to add/drop is Friday, 1/31\nPreceptor office hours start this week–see the Google calendar for times\nPP#1 is posted on the assignments tab (due Wednesday, 2/5 at 5pm CT)\n\n\n\n1\nWinter Break\n1/23: First day of class!\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\nWelcome back to campus!"
+    "text": "The course schedule below will be filled in throughout the semester. Any urgent announcements will be made over email.\n\n\n\nWeek\nTuesday\nThursday\nAnnouncements\n\n\n\n\n14\n4/29: Project work day\n5/1: Last day of class! (Project poster session)\n\nSee the syllabus for final quiz times the week of 5/5\n\n\n\n13\n4/22: Project work day\n4/24: P-value discussion\nBefore class:\n\nDo your assigned reading for today’s activity (Linked in Moodle Checkpoint)\n\n\n\nTo receive credit for today’s “checkpoint”, you must (1) have read your assigned reading in preparation for class and confirmed this on the Moodle Checkpoint Quiz, and (2) attend class and be an active participant in the discussion!\n\n\nPP#8 due at 5pm on Wednesday 4/23 (Last homework\nProject presentation (very low-stakes) on 5/1 during class\nFinal Draft for project due 5/1 at Midnight!\n\n\n\n12\n4/15: Hypothesis Testing Details\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n4/17: Hypothesis Testing: Nested Models\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n\nPP#7 due by 5pm on Wednesday, 4/16\nPP#8 due at 5pm on Wednesday 4/23 (Last homework!)\n\n\n\n11\n4/8: Confidence Intervals\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n4/10: Hypothesis Testing Discovery\nBefore class:\n\nno Moodle checkpoint due today!\n\n\nPP#6 due by 5pm on Wednesday, 4/9\nQuiz corrections/reflections due by 11:59pm on Thursday, 4/10\nProject Checkpoint #2 is due Friday, 4/11\n\n\n\n10\n4/1: The Normal model and sampling variation\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n4/3: Tools for inference\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n\nLast day to withdraw is Friday, 4/4\nNo due dates this week\n\nPP#6 is due at 5pm on Wednesday, 4/9\nProject Checkpoint #2 is due Friday, 4/11\n\n\n\n\n9\n3/25: Multiple Logistic Regression\nBefore class:\n\ncomplete today’s Moodle checkpoint\n\n3/27: Quiz 2 (1 hour in class)\n\nPP#5 due by 5pm on Wednesday, 3/26\n\n\n\n\n3/18: NO CLASS (spring break!)\n3/20: NO CLASS (spring break!)\n\n\n\n8\n3/11: Intro to Logistic Regression\nBefore class:\n\nComplete today’s Moodle checkpoints (two of them!)\n\n3/13: Review + Project Workday\n\nMidterm grades will be posted on Wednesday, 3/12\n\n\n\n7\n3/4: Model Building I\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n3/6: Model Building II\n\nNo Moodle checkpoint due today!\n\n\nPP#4 due by 5pm Wednesday, 3/5\n\n\n\n6\n2/25: MLR interactions\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/27: NO CLASS TODAY\n\nIn lieu of class, please attend 2-3 MSCS Capstone Talks taking place today or Friday (view the schedule here).\nSubmit a short summary of the talks you attended on Moodle\n\n\nPP#3 due by 5pm Wednesday, 2/26\nProject Checkpoint #1 due Friday, 2/28\n\n\n\n5\n2/18: Intro to multiple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/20: MLR confounding + project work day\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nNo homework due this week!\nLibrarians will be in class for project help on Thursday\n\n\n\n4\n2/11: SLR categorical predictors\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/13: Quiz 1 (1 hour in class)\n\nPP#2 due by 5pm Wednesday, 2/12\nGroup members for the final project are posted on Moodle\n\n\n\n3\n2/4: SLR model evaluation\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n2/6: SLR variable transformations + library activity\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nPP#1 due by 5pm Wednesday, 2/5\nPlease complete the project preferences survey by Friday, 2/7\nSee course Google Calendar for updated office hours\n\n\n\n2\n1/28: Intro to R + univariate visualization & summaries\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n1/30: Intro to simple linear regression\nBefore class:\n\nComplete today’s Moodle checkpoint\n\n\nLast day to add/drop is Friday, 1/31\nPreceptor office hours start this week–see the Google calendar for times\nPP#1 is posted on the assignments tab (due Wednesday, 2/5 at 5pm CT)\n\n\n\n1\nWinter Break\n1/23: First day of class!\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\nWelcome back to campus!"
   },
   {
     "objectID": "index.html",
@@ -1791,6 +1826,56 @@
     "title": "STAT 155: Introduction to Statistical Modeling",
     "section": "",
     "text": "STAT 155: Introduction to Statistical Modeling\nMacalester College, Spring 2025\n\nLearn the fundamentals of summarizing, visualizing, and modeling data to answer research questions.\n\n\nInstructor: Jedidiah Carlson  Class meeting times:\n\nSection 02: Tu/Th 9:40-11:10am\nSection 03: Tu/Th 1:20-2:50pm\nSection 04: Tu/Th 3:00-4:30pm\n\nClass location: THTR 202 \nJed’s drop-in hours:\n\nlocation: My office (OLRI 235)\ntimes: See this calendar (Typically from 1-3pm on Wednesdays and additional times on Monday or Thursday, depending on the week).\n1:1 appointments: I’m also happy to meet one-on-one if my normal drop-in hours don’t work for you. You can schedule a time to meet with me using this link.\n\n\nR/RStudio Preceptor Office Hours: Available on the MSCS Events google calendar (not to be used for questions about course content, only R-related things!)\nSTAT 155 Preceptor Office Hours: There is a link to a Google Calendar containing all preceptor office hours available at the top of the course Moodle page!\n\nThis course website will be updated throughout the semester with new activities, assignments, and announcements, so please bookmark this page if you are enrolled in the course!\nIf you find any typos, bugs, dead links, or have other questions, please email jcarls13@macalester.edu"
+  },
+  {
+    "objectID": "activities/26_p_values_discussion.html",
+    "href": "activities/26_p_values_discussion.html",
+    "title": "P-value Discussion",
+    "section": "",
+    "text": "In this activity, you will read an article about p-values and then discuss a set of prompts as a group. Each group will then share out some highlights of your discussion to the class.\n\n\nYour instructor will assign you to one of four groups, each with a different reading to complete ahead of class time. You are of course welcome to read more than only your assigned reading if you choose to! The group reading assignments are as follows:\n\nGroup 1: The ASA Statement on p-values\nGroup 2: Scientific method: Statistical error\nGroup 3: Moving to a World Beyond “p &lt; 0.05”\nGroup 4: Statistical tests, p-values, confidence intervals, and power: a guide to misinterpretations",
+    "crumbs": [
+      "P-value Discussion"
+    ]
+  },
+  {
+    "objectID": "activities/26_p_values_discussion.html#readings-and-videos",
+    "href": "activities/26_p_values_discussion.html#readings-and-videos",
+    "title": "P-value Discussion",
+    "section": "",
+    "text": "Your instructor will assign you to one of four groups, each with a different reading to complete ahead of class time. You are of course welcome to read more than only your assigned reading if you choose to! The group reading assignments are as follows:\n\nGroup 1: The ASA Statement on p-values\nGroup 2: Scientific method: Statistical error\nGroup 3: Moving to a World Beyond “p &lt; 0.05”\nGroup 4: Statistical tests, p-values, confidence intervals, and power: a guide to misinterpretations",
+    "crumbs": [
+      "P-value Discussion"
+    ]
+  },
+  {
+    "objectID": "activities/26_p_values_discussion.html#step-1-review",
+    "href": "activities/26_p_values_discussion.html#step-1-review",
+    "title": "P-value Discussion",
+    "section": "Step 1: Review",
+    "text": "Step 1: Review\nTake a few minutes to review the assigned reading. Make note of the things you found most important, the things you found most confusing, or the things you still have questions about.",
+    "crumbs": [
+      "P-value Discussion"
+    ]
+  },
+  {
+    "objectID": "activities/26_p_values_discussion.html#step-2-discuss",
+    "href": "activities/26_p_values_discussion.html#step-2-discuss",
+    "title": "P-value Discussion",
+    "section": "Step 2: Discuss",
+    "text": "Step 2: Discuss\nOnce everyone in your group is ready, find an empty space at the whiteboard.\nYou’ll discuss the following questions with your group and write down your key takeaways from your conversation on the board. After a few minutes, rotate to the next station: respond/react to the previous responses (e.g., add a + if you agree) and add your own. Repeat until you’ve visited all stations.\nQuestions:\n\nHow does this reading relate to your previous knowledge about p-values?\nWas anything that you learned from the reading particularly surprising?\nWhat are some of the ways in which p-values are often misinterpreted and/or misused?\nWhat suggestions does the article offer in terms of how p-values should be used?\nDoes the article provide any suggestions in terms of other tools that we should use instead of or in addition to p-values?\nWhat are your main takeaways from the reading?",
+    "crumbs": [
+      "P-value Discussion"
+    ]
+  },
+  {
+    "objectID": "activities/26_p_values_discussion.html#step-3-share-out",
+    "href": "activities/26_p_values_discussion.html#step-3-share-out",
+    "title": "P-value Discussion",
+    "section": "Step 3: Share out",
+    "text": "Step 3: Share out\nDesignate someone from your group who will share the highlights of your discussion with the full class!",
+    "crumbs": [
+      "P-value Discussion"
+    ]
   },
   {
     "objectID": "activities/13_mlr_model_building_1.html",
@@ -1983,6 +2068,116 @@
     ]
   },
   {
+    "objectID": "activities/24_hypothesis_testing_considerations.html",
+    "href": "activities/24_hypothesis_testing_considerations.html",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "",
+    "text": "No template file today - all exercises can be viewed from the webpage\n\n\n\nBy the end of this lesson, you should be able to:\n\nDifferentiate between more and less accurate interpretations of p-values\nExplain how different factors affect statistical power\nExplain the difference between practical and statistical significance\nExplain how multiple testing impacts the conduct and interpretation of statistical research\n\n\n\n\nNo new readings or videos for today.",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#learning-goals",
+    "href": "activities/24_hypothesis_testing_considerations.html#learning-goals",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "",
+    "text": "By the end of this lesson, you should be able to:\n\nDifferentiate between more and less accurate interpretations of p-values\nExplain how different factors affect statistical power\nExplain the difference between practical and statistical significance\nExplain how multiple testing impacts the conduct and interpretation of statistical research",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#readings-and-videos",
+    "href": "activities/24_hypothesis_testing_considerations.html#readings-and-videos",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "",
+    "text": "No new readings or videos for today.",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#exercise-1-conceptual-understanding",
+    "href": "activities/24_hypothesis_testing_considerations.html#exercise-1-conceptual-understanding",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 1: Conceptual understanding",
+    "text": "Exercise 1: Conceptual understanding\n\nSuppose that you and a friend are in two different sections (each with the same number of students) of the same class. On your respective midterm exams, you each obtained 85%, and the class average in both of your classes was 80%. Could one of you or your friend still be considered further above the class average than the other? Briefly explain.\nNow suppose that your section’s test scores were more tightly packed around 80%: maybe the standard deviation of your section’s scores was 2.5, whereas the standard deviation of your friend’s section’s scores was 5. Which of you or your friend was further above the class average? Explain/justify your answer.\nBroadly speaking, does a p-value measure the chance of a hypothesis being true, or, the chance of the data having occurred?\nWhy can’t a p-value measure the other quantity that you didn’t choose in Part c?\nExplain in words why, in calculating a p-value, we need to assume that the null hypothesis is true.\nSuppose that a hypothesis test yields a p-value of 1e-6 (\\(1\\times 10^{-6}\\)). What can you tell about the magnitude of the effect or the uncertainty of the effect from this p-value? (i.e., What can you tell about the coefficient estimate or the standard error?)",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#exercise-2-statistical-vs.-practical-significance",
+    "href": "activities/24_hypothesis_testing_considerations.html#exercise-2-statistical-vs.-practical-significance",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 2: Statistical vs. practical significance",
+    "text": "Exercise 2: Statistical vs. practical significance\nMusic researchers compiled information on 16,216 Spotify songs. They looked at the relationship between a song’s genre (latin vs. not latin) and song duration in seconds. Their modeling code and output is below:\nspotify_model &lt;- lm(duration ~ latin_genre, data = spotify)\ncoef(summary(spotify_model))\n##                   Estimate Std. Error   t value   Pr(&gt;|t|)\n## (Intercept)     212.673908  0.4165491 510.56143 0.00000000\n## latin_genreTRUE   1.555355  0.7435700   2.09174 0.03647731\n\nInterpret the latin_genreTRUE coefficient.\nIn the context of song listening, is this a large or small effect size?\nReport and interpret the p-value for the latin_genreTRUE coefficient.\nUse the p-value to make a yes/no decision about the evidence for a relationship between genre and song duration.\nThis exercise highlights the difference between statistical significance and practical significance—explain how. That is, when might we observe statistically significant results that aren’t practically significant?",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#exercise-3-power",
+    "href": "activities/24_hypothesis_testing_considerations.html#exercise-3-power",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 3: Power",
+    "text": "Exercise 3: Power\nStatistical power is the probability of rejecting the null hypothesis when the alternative hypothesis is true. We are frequently testing hypotheses to investigate differences or relationships, so in this context, statistical power is the probability of detecting a relationship when there truly is a relationship.\nNavigate to this page to look at an interactive visualization of the factors that influence statistical power.\nUnder “Settings”, next to the “Solve for?” text, click “Power”. You will vary the 3 different parameters (significance level, sample size, and effect size) one at a time to understand how these factors affect power.\nSome context behind this interactive visualization:\n\nVisualization is based on a one sample Z-test:\nThis is a test for whether the true population mean equals a particular value. (e.g., true mean = 30)\nThe effect size slider is measured with a metric called Cohen’s d:\n\nCohen’s d = magnitude of effect/standard deviation of response variable\nHere: how far is the true mean from the null value in units of SD?\ne.g., If the null value is 30, true mean is 40, and the true population SD of the quantity is 5, the Cohen’s d effect size is (40-30)/5 = 2.\n\n\n\nWhat is your intuition about how changing the significance level will change power? Check your intuition with the visualization and explain why this happens.\nRepeat Part a for the sample size.\nRepeat Part a for the effect size.",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#exercise-4-ethical-considerations",
+    "href": "activities/24_hypothesis_testing_considerations.html#exercise-4-ethical-considerations",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 4: Ethical considerations",
+    "text": "Exercise 4: Ethical considerations\n\nVisit this page and look at both the comic at the top and the various ways in which researchers have described p-values that do not fall below the \\(\\alpha = 0.05\\) significance level threshold. What ethical consideration is arising here? (Just for fun: a related xkcd comic)\nTake a look at the xkcd comic here. What ethical consideration is arising here?",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#exercise-1-conceptual-understanding-1",
+    "href": "activities/24_hypothesis_testing_considerations.html#exercise-1-conceptual-understanding-1",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 1: Conceptual understanding",
+    "text": "Exercise 1: Conceptual understanding\n\nSuppose that you and a friend are in two different sections (each with the same number of students) of the same class. On your respective midterm exams, you each obtained 85%, and the class average in both of your classes was 80%. Could one of you or your friend still be considered further above the class average than the other? Briefly explain.\n\n\nResponse: Yes! How well you do relative to the rest of the class depends on both the class average AND the variability of scores in each section. In this case, if your section was more variable, 85% wouldn’t be as far above the class average than in your friend’s section.\n\n\nNow suppose that your section’s test scores were more tightly packed around 80%: maybe the standard deviation of your section’s scores was 2.5, whereas the standard deviation of your friend’s section’s scores was 5. Which of you or your friend was further above the class average? Explain/justify your answer.\n\n\nResponse: In this case, we could note that your score of 85 was 2 standard deviations above the class average (85-80)/2.5 = 2, whereas your friend’s score was only one standard devation above the class average (85-80)/5 = 1. Here, your score would be considered more extreme, and therefore further above the class average than your friend’s score.\n\n\nBroadly speaking, does a p-value measure the chance of a hypothesis being true, or, the chance of the data having occurred?\nWhy can’t a p-value measure the other quantity that you didn’t choose in Part c?\n\n\nResponse: Broadly speaking, the latter is more correct. By definition, a p-value measures the probability that an observation (as or more extreme that what did observe) would occur over repeated sampling under the null hypothesis (if the null hypothesis were true). This does NOT measure the chance of a hypothesis being true, but rather, tries to make a statement about the null hypothesis through indirect means.\n\n\nExplain in words why, in calculating a p-value, we need to assume that the null hypothesis is true.\n\n\nResponse: In order to make probabilistic statements about repeatedly sampled measures (as p-values do), we need to first be able to define a probability distribution. The null hypothesis tells us where this probability distribution is centered. As a concrete example, we can’t answer questions like “what is the chance we observed this data?” without making some assumption about what the underlying truth is, or sometimes, where the truth is unlikely to be. For example, if we observe a regression coefficient of 2.3, we don’t know if this is likely or not. We can say, however, how likely it is we would observe 2.3 if the true population coefficient were 2 compared to if the true population coefficient were 0.5.\n\n\nSuppose that a hypothesis test yields a p-value of 1e-6 (\\(1\\times 10^{-6}\\)). What can you tell about the magnitude of the effect or the uncertainty of the effect from this p-value? (i.e., What can you tell about the coefficient estimate or the standard error?)\n\n\nResponse: A p-value tells us nothing about the coefficient estimate or the standard error because it only tells us about the test statistic. A small p-value only indicates that the test statistic is large. A large test statistic could have come about from a large effect (large coefficient) or from a small coefficient with a very small standard error. This is why reporting a confidence interval is more informative than only reporting a p-value. We get a sense of both the magnitude of the estimate and the amount of uncertainty with a CI, and with just a p-value, we don’t know either.",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#exercise-2-statistical-vs.-practical-significance-1",
+    "href": "activities/24_hypothesis_testing_considerations.html#exercise-2-statistical-vs.-practical-significance-1",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 2: Statistical vs. practical significance",
+    "text": "Exercise 2: Statistical vs. practical significance\nMusic researchers compiled information on 16,216 Spotify songs. They looked at the relationship between a song’s genre (latin vs. not latin) and song duration in seconds. Their modeling code and output is below:\nspotify_model &lt;- lm(duration ~ latin_genre, data = spotify)\ncoef(summary(spotify_model))\n##                   Estimate Std. Error   t value   Pr(&gt;|t|)\n## (Intercept)     212.673908  0.4165491 510.56143 0.00000000\n## latin_genreTRUE   1.555355  0.7435700   2.09174 0.03647731\n\nInterpret the latin_genreTRUE coefficient.\n\n\nResponse: On average, latin genre songs tend to be 1.56 seconds longer than non-latin songs.\n\n\nIn the context of song listening, is this a large or small effect size?\n\n\nResponse: Seems rather small—1.56 seconds in a song is really short.\n\n\nReport and interpret the p-value for the latin_genreTRUE coefficient.\n\n\nResponse: If there were truly no difference in the duration of latin vs non-latin songs (in the broader population of songs), there’s only a 3.6% chance that we would have obtained a sample in which the observed difference was so large relative to the amount of uncertainty in the estimate (the standard error).\n\n\nUse the p-value to make a yes/no decision about the evidence for a relationship between genre and song duration.\n\n\nResponse: We do have statistically significant evidence that latin genre songs tend to be longer than non-latin songs.\n\n\nThis exercise highlights the difference between statistical significance and practical significance—explain how. That is, when might we observe statistically significant results that aren’t practically significant?\n\n\nResponse: Our large sample size of over 16,000 songs is relevant. The more data we have, the smaller our standard errors. (Recall that standard errors are inversely proportionaly to the square root of sample size: std error = \\(c/\\sqrt{n}\\), where \\(c\\) is a constant from complicated formulas.) Larger sample sizes lead to narrower CIs, larger test staistics, and smaller p-values. With large sample sizes, it is easier to find statistically significant results even when the results aren’t practically significant.",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#exercise-3-power-1",
+    "href": "activities/24_hypothesis_testing_considerations.html#exercise-3-power-1",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 3: Power",
+    "text": "Exercise 3: Power\nOverall notes about the power investigations:\n\nBecause power is the probability of correctly rejecting the null hypothesis (rejecting the null when the alternative hypothesis is true), parameter changes that increase the frequency of rejecting the null hypothesis will increase power. Keep this in mind as you work through. Visually, power corresponds to the light blue area under the distribution on the right. The distribution on the left is our familiar sampling distribution of the test statistic (here called \\(Z_{\\text{crit}}\\)) under the null. The distribution on the right is very closely related but is the sampling distribution of the test statistics under the alternative hypothesis (which is why the \\(H_A\\) label is above it). Power corresponds to the light blue area under the \\(H_A\\) distribution because this area actually corresponds to the test statistics for which we would reject the null. The area represents the probability that we would obtain such test statistics if indeed the alternative were true. That is, the area represents the percentage of samples that would generate test statistics large enough to reject the null (if the alternative hypothesis were true).\n\nEffect of significance level:\n\nIf the significance level increases, there is a “less stringent” threshold for rejecting the null (p-value only has to be less than some higher threshold). Increasing the significance level will result in more frequent rejections of the null, and thus higher power (but at the price of a higher type 1 error rate).\n\nEffect of sample size:\n\nIf sample size increases, power should increase because higher sample size will decrease standard error, which will increase the test statistic, which more likely leads to rejecting the null.\n\nEffect of effect size:\n\nIf the magnitude of the effect (numerator of Cohen’s d) increases, power should increase because it is easier (we are more likely) to detect large effects. It is harder (we are less likely) to detect very small effects.\nIf the variability of the response variable decreases (denominator of Cohen’s d), power should increase because any “signal” from our predictors being picked up by our coefficient estimates will rise far enough above the “noise” in the small variability of the response. The variability of the response variable also contributes to the standard error for the coefficient. With low variability of the response, we will have lower standard errors because there will be lower spread in the estimates across samples. And with lower standard errors, test statistics should increase, resulting in greater frequency of rejecting the null.\nA large effect magnitude and small variability in the response result in a large effect size, and increasing effect size results in higher power.",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
+    "objectID": "activities/24_hypothesis_testing_considerations.html#exercise-4-ethical-considerations-1",
+    "href": "activities/24_hypothesis_testing_considerations.html#exercise-4-ethical-considerations-1",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 4: Ethical considerations",
+    "text": "Exercise 4: Ethical considerations\n\nVisit this page and look at both the comic at the top and the various ways in which researchers have described p-values that do not fall below the \\(\\alpha = 0.05\\) significance level threshold. What ethical consideration is arising here? (Just for fun: a related xkcd comic)\n\n\nResponse: The comic is an illustration of something called the file drawer phenomenon. There is a culture that has arisen when using hypothesis testing in statistical analysis to only appreciate rejections of the null hypothesis as meaningful results. Any results for which investigators were not able to reject the null were filed away, never to be reported. Investigators would keep trying until their p-values were lower than the significance level.\nThere are serious ethical considerations behind this phenomenon. Who ever said that rejecting the null hypothesis was the only way to get meaningful scientific results? There is immense benefit in knowing when there are no effects / no relationships. A very important public health example of this is the relationships between vaccination and autism risk in children. Time and time again, studies have not been able to detect any causal relationship. What would our society look like if those “null” results had been filed away, never to be reported?\n\n\nTake a look at the xkcd comic here. What ethical consideration is arising here?\n\n\nResponse: The idea here is that many, many hypothesis tests are being conducted, which is an idea called multiple testing. As more and more tests are being conducted, there is a higher and higher overall chance that the null hypothesis will be rejected - because we’re just trying so many times. If the null hypothesis is in fact true, testing more and more times is going to increase the probability of making at least one type 1 error.\nIn this comic, we would likely be inclined to believe that the null hypothesis is true (no true association between jelly bean eating and acne). But the sheer number of times that this hypothesis was tested (20 times) means that the scientists ended up finding an association just by chance. That is, the association found for green jelly beans was quite likely a type 1 error. And in fact one null hypothesis rejection among 20 tests is exactly a 5% error rate - in other words, exactly the number of null hypothesis rejections we would expect to make if indeed the null were true (exactly the expected number of type 1 errors).",
+    "crumbs": [
+      "Hypothesis testing: additional considerations"
+    ]
+  },
+  {
     "objectID": "assignments.html",
     "href": "assignments.html",
     "title": "Practice Problems",
@@ -1995,6 +2190,83 @@
     "title": "Project",
     "section": "",
     "text": "As noted in the syllabus, a detailed description of the group project can be found here. Important dates and additional information are listed below.\n\nImportant Dates\n\nFriday, February 28: Project Checkpoint 1 Due\nFriday, April 11: Project Checkpoint 2 Due\nLast day of class: Final Draft Due\n\n\n\nGrading\nThe final draft will be graded using the rubric found here. Although the first two checkpoints will not directly contribute to your course grade, the feedback they allow me to provide will ensure the success of your final draft!\n\n\nResources\nLater in the semester, I will post at least one example of a successful final draft, as well as a google doc template for the final draft.\n\n\nProject Groups\nProject groups will ultimately be determined by me, with the assistance of a Project Group Preferences survey. The survey will be sent out early in the semester (exact date TBD) and will allow you to either list people you would like to be in a group with or specify that you would like to be placed in a group randomly by me. I will do my best to ensure that groups are constructed as closely to survey responses as possible. Since one component of the project involves an in-class presentation, you may not work with students in different sections on the project.\nIf for any reason there is an individual (or individuals) with whom you do not feel safe participating in a project group with, there will be a space to note this on the survey. You will not be expected to provide any justification for your response to this question, but note that as I need to place you in groups, the survey will not be anonymous.\nGroup work and collaboration are important components of nearly all statistical analyses and projects. I recognize that individual contributions to a group project are not always consistent between group members. To this end, you will (as a group) be expected to explicitly specify the project tasks completed by each team member along with the final draft of your paper.\nIf there are any concerns with project groups throughout the semester, I am happy to meet with groups or individuals to discuss ways to move forward."
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html",
+    "href": "solutions/24_hypothesis_testing_considerations.html",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "",
+    "text": "No template file today - all exercises can be viewed from the webpage\n\n\n\nBy the end of this lesson, you should be able to:\n\nDifferentiate between more and less accurate interpretations of p-values\nExplain how different factors affect statistical power\nExplain the difference between practical and statistical significance\nExplain how multiple testing impacts the conduct and interpretation of statistical research\n\n\n\n\nNo new readings or videos for today."
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#learning-goals",
+    "href": "solutions/24_hypothesis_testing_considerations.html#learning-goals",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "",
+    "text": "By the end of this lesson, you should be able to:\n\nDifferentiate between more and less accurate interpretations of p-values\nExplain how different factors affect statistical power\nExplain the difference between practical and statistical significance\nExplain how multiple testing impacts the conduct and interpretation of statistical research"
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#readings-and-videos",
+    "href": "solutions/24_hypothesis_testing_considerations.html#readings-and-videos",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "",
+    "text": "No new readings or videos for today."
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#exercise-1-conceptual-understanding",
+    "href": "solutions/24_hypothesis_testing_considerations.html#exercise-1-conceptual-understanding",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 1: Conceptual understanding",
+    "text": "Exercise 1: Conceptual understanding\n\nSuppose that you and a friend are in two different sections (each with the same number of students) of the same class. On your respective midterm exams, you each obtained 85%, and the class average in both of your classes was 80%. Could one of you or your friend still be considered further above the class average than the other? Briefly explain.\nNow suppose that your section’s test scores were more tightly packed around 80%: maybe the standard deviation of your section’s scores was 2.5, whereas the standard deviation of your friend’s section’s scores was 5. Which of you or your friend was further above the class average? Explain/justify your answer.\nBroadly speaking, does a p-value measure the chance of a hypothesis being true, or, the chance of the data having occurred?\nWhy can’t a p-value measure the other quantity that you didn’t choose in Part c?\nExplain in words why, in calculating a p-value, we need to assume that the null hypothesis is true.\nSuppose that a hypothesis test yields a p-value of 1e-6 (\\(1\\times 10^{-6}\\)). What can you tell about the magnitude of the effect or the uncertainty of the effect from this p-value? (i.e., What can you tell about the coefficient estimate or the standard error?)"
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#exercise-2-statistical-vs.-practical-significance",
+    "href": "solutions/24_hypothesis_testing_considerations.html#exercise-2-statistical-vs.-practical-significance",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 2: Statistical vs. practical significance",
+    "text": "Exercise 2: Statistical vs. practical significance\nMusic researchers compiled information on 16,216 Spotify songs. They looked at the relationship between a song’s genre (latin vs. not latin) and song duration in seconds. Their modeling code and output is below:\nspotify_model &lt;- lm(duration ~ latin_genre, data = spotify)\ncoef(summary(spotify_model))\n##                   Estimate Std. Error   t value   Pr(&gt;|t|)\n## (Intercept)     212.673908  0.4165491 510.56143 0.00000000\n## latin_genreTRUE   1.555355  0.7435700   2.09174 0.03647731\n\nInterpret the latin_genreTRUE coefficient.\nIn the context of song listening, is this a large or small effect size?\nReport and interpret the p-value for the latin_genreTRUE coefficient.\nUse the p-value to make a yes/no decision about the evidence for a relationship between genre and song duration.\nThis exercise highlights the difference between statistical significance and practical significance—explain how. That is, when might we observe statistically significant results that aren’t practically significant?"
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#exercise-3-power",
+    "href": "solutions/24_hypothesis_testing_considerations.html#exercise-3-power",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 3: Power",
+    "text": "Exercise 3: Power\nStatistical power is the probability of rejecting the null hypothesis when the alternative hypothesis is true. We are frequently testing hypotheses to investigate differences or relationships, so in this context, statistical power is the probability of detecting a relationship when there truly is a relationship.\nNavigate to this page to look at an interactive visualization of the factors that influence statistical power.\nUnder “Settings”, next to the “Solve for?” text, click “Power”. You will vary the 3 different parameters (significance level, sample size, and effect size) one at a time to understand how these factors affect power.\nSome context behind this interactive visualization:\n\nVisualization is based on a one sample Z-test:\nThis is a test for whether the true population mean equals a particular value. (e.g., true mean = 30)\nThe effect size slider is measured with a metric called Cohen’s d:\n\nCohen’s d = magnitude of effect/standard deviation of response variable\nHere: how far is the true mean from the null value in units of SD?\ne.g., If the null value is 30, true mean is 40, and the true population SD of the quantity is 5, the Cohen’s d effect size is (40-30)/5 = 2.\n\n\n\nWhat is your intuition about how changing the significance level will change power? Check your intuition with the visualization and explain why this happens.\nRepeat Part a for the sample size.\nRepeat Part a for the effect size."
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#exercise-4-ethical-considerations",
+    "href": "solutions/24_hypothesis_testing_considerations.html#exercise-4-ethical-considerations",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 4: Ethical considerations",
+    "text": "Exercise 4: Ethical considerations\n\nVisit this page and look at both the comic at the top and the various ways in which researchers have described p-values that do not fall below the \\(\\alpha = 0.05\\) significance level threshold. What ethical consideration is arising here? (Just for fun: a related xkcd comic)\nTake a look at the xkcd comic here. What ethical consideration is arising here?"
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#exercise-1-conceptual-understanding-1",
+    "href": "solutions/24_hypothesis_testing_considerations.html#exercise-1-conceptual-understanding-1",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 1: Conceptual understanding",
+    "text": "Exercise 1: Conceptual understanding\n\nSuppose that you and a friend are in two different sections (each with the same number of students) of the same class. On your respective midterm exams, you each obtained 85%, and the class average in both of your classes was 80%. Could one of you or your friend still be considered further above the class average than the other? Briefly explain.\n\n\nResponse: Yes! How well you do relative to the rest of the class depends on both the class average AND the variability of scores in each section. In this case, if your section was more variable, 85% wouldn’t be as far above the class average than in your friend’s section.\n\n\nNow suppose that your section’s test scores were more tightly packed around 80%: maybe the standard deviation of your section’s scores was 2.5, whereas the standard deviation of your friend’s section’s scores was 5. Which of you or your friend was further above the class average? Explain/justify your answer.\n\n\nResponse: In this case, we could note that your score of 85 was 2 standard deviations above the class average (85-80)/2.5 = 2, whereas your friend’s score was only one standard devation above the class average (85-80)/5 = 1. Here, your score would be considered more extreme, and therefore further above the class average than your friend’s score.\n\n\nBroadly speaking, does a p-value measure the chance of a hypothesis being true, or, the chance of the data having occurred?\nWhy can’t a p-value measure the other quantity that you didn’t choose in Part c?\n\n\nResponse: Broadly speaking, the latter is more correct. By definition, a p-value measures the probability that an observation (as or more extreme that what did observe) would occur over repeated sampling under the null hypothesis (if the null hypothesis were true). This does NOT measure the chance of a hypothesis being true, but rather, tries to make a statement about the null hypothesis through indirect means.\n\n\nExplain in words why, in calculating a p-value, we need to assume that the null hypothesis is true.\n\n\nResponse: In order to make probabilistic statements about repeatedly sampled measures (as p-values do), we need to first be able to define a probability distribution. The null hypothesis tells us where this probability distribution is centered. As a concrete example, we can’t answer questions like “what is the chance we observed this data?” without making some assumption about what the underlying truth is, or sometimes, where the truth is unlikely to be. For example, if we observe a regression coefficient of 2.3, we don’t know if this is likely or not. We can say, however, how likely it is we would observe 2.3 if the true population coefficient were 2 compared to if the true population coefficient were 0.5.\n\n\nSuppose that a hypothesis test yields a p-value of 1e-6 (\\(1\\times 10^{-6}\\)). What can you tell about the magnitude of the effect or the uncertainty of the effect from this p-value? (i.e., What can you tell about the coefficient estimate or the standard error?)\n\n\nResponse: A p-value tells us nothing about the coefficient estimate or the standard error because it only tells us about the test statistic. A small p-value only indicates that the test statistic is large. A large test statistic could have come about from a large effect (large coefficient) or from a small coefficient with a very small standard error. This is why reporting a confidence interval is more informative than only reporting a p-value. We get a sense of both the magnitude of the estimate and the amount of uncertainty with a CI, and with just a p-value, we don’t know either."
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#exercise-2-statistical-vs.-practical-significance-1",
+    "href": "solutions/24_hypothesis_testing_considerations.html#exercise-2-statistical-vs.-practical-significance-1",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 2: Statistical vs. practical significance",
+    "text": "Exercise 2: Statistical vs. practical significance\nMusic researchers compiled information on 16,216 Spotify songs. They looked at the relationship between a song’s genre (latin vs. not latin) and song duration in seconds. Their modeling code and output is below:\nspotify_model &lt;- lm(duration ~ latin_genre, data = spotify)\ncoef(summary(spotify_model))\n##                   Estimate Std. Error   t value   Pr(&gt;|t|)\n## (Intercept)     212.673908  0.4165491 510.56143 0.00000000\n## latin_genreTRUE   1.555355  0.7435700   2.09174 0.03647731\n\nInterpret the latin_genreTRUE coefficient.\n\n\nResponse: On average, latin genre songs tend to be 1.56 seconds longer than non-latin songs.\n\n\nIn the context of song listening, is this a large or small effect size?\n\n\nResponse: Seems rather small—1.56 seconds in a song is really short.\n\n\nReport and interpret the p-value for the latin_genreTRUE coefficient.\n\n\nResponse: If there were truly no difference in the duration of latin vs non-latin songs (in the broader population of songs), there’s only a 3.6% chance that we would have obtained a sample in which the observed difference was so large relative to the amount of uncertainty in the estimate (the standard error).\n\n\nUse the p-value to make a yes/no decision about the evidence for a relationship between genre and song duration.\n\n\nResponse: We do have statistically significant evidence that latin genre songs tend to be longer than non-latin songs.\n\n\nThis exercise highlights the difference between statistical significance and practical significance—explain how. That is, when might we observe statistically significant results that aren’t practically significant?\n\n\nResponse: Our large sample size of over 16,000 songs is relevant. The more data we have, the smaller our standard errors. (Recall that standard errors are inversely proportionaly to the square root of sample size: std error = \\(c/\\sqrt{n}\\), where \\(c\\) is a constant from complicated formulas.) Larger sample sizes lead to narrower CIs, larger test staistics, and smaller p-values. With large sample sizes, it is easier to find statistically significant results even when the results aren’t practically significant."
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#exercise-3-power-1",
+    "href": "solutions/24_hypothesis_testing_considerations.html#exercise-3-power-1",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 3: Power",
+    "text": "Exercise 3: Power\nOverall notes about the power investigations:\n\nBecause power is the probability of correctly rejecting the null hypothesis (rejecting the null when the alternative hypothesis is true), parameter changes that increase the frequency of rejecting the null hypothesis will increase power. Keep this in mind as you work through. Visually, power corresponds to the light blue area under the distribution on the right. The distribution on the left is our familiar sampling distribution of the test statistic (here called \\(Z_{\\text{crit}}\\)) under the null. The distribution on the right is very closely related but is the sampling distribution of the test statistics under the alternative hypothesis (which is why the \\(H_A\\) label is above it). Power corresponds to the light blue area under the \\(H_A\\) distribution because this area actually corresponds to the test statistics for which we would reject the null. The area represents the probability that we would obtain such test statistics if indeed the alternative were true. That is, the area represents the percentage of samples that would generate test statistics large enough to reject the null (if the alternative hypothesis were true).\n\nEffect of significance level:\n\nIf the significance level increases, there is a “less stringent” threshold for rejecting the null (p-value only has to be less than some higher threshold). Increasing the significance level will result in more frequent rejections of the null, and thus higher power (but at the price of a higher type 1 error rate).\n\nEffect of sample size:\n\nIf sample size increases, power should increase because higher sample size will decrease standard error, which will increase the test statistic, which more likely leads to rejecting the null.\n\nEffect of effect size:\n\nIf the magnitude of the effect (numerator of Cohen’s d) increases, power should increase because it is easier (we are more likely) to detect large effects. It is harder (we are less likely) to detect very small effects.\nIf the variability of the response variable decreases (denominator of Cohen’s d), power should increase because any “signal” from our predictors being picked up by our coefficient estimates will rise far enough above the “noise” in the small variability of the response. The variability of the response variable also contributes to the standard error for the coefficient. With low variability of the response, we will have lower standard errors because there will be lower spread in the estimates across samples. And with lower standard errors, test statistics should increase, resulting in greater frequency of rejecting the null.\nA large effect magnitude and small variability in the response result in a large effect size, and increasing effect size results in higher power."
+  },
+  {
+    "objectID": "solutions/24_hypothesis_testing_considerations.html#exercise-4-ethical-considerations-1",
+    "href": "solutions/24_hypothesis_testing_considerations.html#exercise-4-ethical-considerations-1",
+    "title": "Hypothesis testing: additional considerations",
+    "section": "Exercise 4: Ethical considerations",
+    "text": "Exercise 4: Ethical considerations\n\nVisit this page and look at both the comic at the top and the various ways in which researchers have described p-values that do not fall below the \\(\\alpha = 0.05\\) significance level threshold. What ethical consideration is arising here? (Just for fun: a related xkcd comic)\n\n\nResponse: The comic is an illustration of something called the file drawer phenomenon. There is a culture that has arisen when using hypothesis testing in statistical analysis to only appreciate rejections of the null hypothesis as meaningful results. Any results for which investigators were not able to reject the null were filed away, never to be reported. Investigators would keep trying until their p-values were lower than the significance level.\nThere are serious ethical considerations behind this phenomenon. Who ever said that rejecting the null hypothesis was the only way to get meaningful scientific results? There is immense benefit in knowing when there are no effects / no relationships. A very important public health example of this is the relationships between vaccination and autism risk in children. Time and time again, studies have not been able to detect any causal relationship. What would our society look like if those “null” results had been filed away, never to be reported?\n\n\nTake a look at the xkcd comic here. What ethical consideration is arising here?\n\n\nResponse: The idea here is that many, many hypothesis tests are being conducted, which is an idea called multiple testing. As more and more tests are being conducted, there is a higher and higher overall chance that the null hypothesis will be rejected - because we’re just trying so many times. If the null hypothesis is in fact true, testing more and more times is going to increase the probability of making at least one type 1 error.\nIn this comic, we would likely be inclined to believe that the null hypothesis is true (no true association between jelly bean eating and acne). But the sheer number of times that this hypothesis was tested (20 times) means that the scientists ended up finding an association just by chance. That is, the association found for green jelly beans was quite likely a type 1 error. And in fact one null hypothesis rejection among 20 tests is exactly a 5% error rate - in other words, exactly the number of null hypothesis rejections we would expect to make if indeed the null were true (exactly the expected number of type 1 errors)."
   },
   {
     "objectID": "syllabus.html",
@@ -2299,7 +2571,7 @@
     "href": "solutions/18_sampling_normal.html#exercise-4-random-sampling",
     "title": "Solutions for 18. The Normal model & sampling variation",
     "section": "Exercise 4: Random sampling",
-    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film               userscore_rt criticscore_rt\n  &lt;chr&gt;                     &lt;int&gt;          &lt;int&gt;\n1 Selma                        86             99\n2 Mad Max: Fury Road           88             97\n\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film            userscore_rt criticscore_rt\n  &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n1 Unbroken                  70             51\n2 Project Almanac           46             34"
+    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film                                               userscore_rt criticscore_rt\n  &lt;chr&gt;                                                     &lt;int&gt;          &lt;int&gt;\n1 The 100-Year-Old Man Who Climbed Out the Window a…           69             67\n2 Top Five                                                     64             86\n\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n\n# A tibble: 2 × 3\n  film            userscore_rt criticscore_rt\n  &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n1 Unbroken                  70             51\n2 Project Almanac           46             34"
   },
   {
     "objectID": "solutions/18_sampling_normal.html#exercise-5-take-your-own-sample",
